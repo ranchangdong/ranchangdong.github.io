@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="utf-8"?>
+<search>
+  <entry>
+    <title><![CDATA[云深]]></title>
+    <url>%2F2019%2F03%2F04%2F%E4%BA%91%E6%B7%B1%2F</url>
+    <content type="text"><![CDATA[云深第一篇文章这是三级列表哦 列表1 列表2 a 字体列表哦 b 字体列表哈 列表3 云深导航 字体是斜线的字体是加粗的 &lt;html&gt;&lt;/html&gt; 这个123456789&lt;html&gt; &lt;head&gt; &lt;title&gt;&lt;/title&gt; &lt;/head&gt; &lt;body&gt; 在博客中添加图片 ![云深不知处](图片路径) &lt;/body&gt;&lt;/html&gt; 这里的内容是引用的]]></content>
+      <categories>
+        <category>前端</category>
+      </categories>
+      <tags>
+        <tag>导航</tag>
+        <tag>分享</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title><![CDATA[Hello World]]></title>
+    <url>%2F2019%2F03%2F04%2Fhello-world%2F</url>
+    <content type="text"><![CDATA[Welcome to Hexo! This is your very first post. Check documentation for more info. If you get any problems when using Hexo, you can find the answer in troubleshooting or you can ask me on GitHub. Quick StartCreate a new post1$ hexo new "My New Post" More info: Writing Run server1$ hexo server More info: Server Generate static files1$ hexo generate More info: Generating Deploy to remote sites1$ hexo deploy More info: Deployment]]></content>
+  </entry>
+</search>
