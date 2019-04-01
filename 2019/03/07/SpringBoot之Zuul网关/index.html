@@ -96,7 +96,7 @@
 <meta property="og:locale" content="zh-Hans">
 <meta property="og:image" content="http://yoursite.com/2019/03/07/images/1525674644660.png">
 <meta property="og:image" content="http://yoursite.com/2019/03/07/images/1525675648881.png">
-<meta property="og:updated_time" content="2019-03-07T15:03:00.729Z">
+<meta property="og:updated_time" content="2019-04-01T09:06:15.900Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="SpringBoot之Zuul网关">
 <meta name="twitter:description" content="使用Spring Cloud实现微服务的架构基本成型，大致是这样的: 我们使用Spring Cloud Netflix中的Eureka实现了服务注册中心以及服务注册与发现；而服务间通过Ribbon或Feign实现服务的消费以及均衡负载；通过Spring Cloud Config实现了应用多环境的外部化配置以及版本管理。为了使得服务集群更为健壮，使用Hystrix的融断机制来避免在微服务架构中个别服">
@@ -394,7 +394,7 @@
                   <span class="post-meta-item-text">字数统计&#58;</span>
                 
                 <span title="字数统计">
-                  2.4k
+                  2.6k
                 </span>
               
 
@@ -410,7 +410,7 @@
                   <span class="post-meta-item-text">阅读时长 &asymp;</span>
                 
                 <span title="阅读时长">
-                  9
+                  10
                 </span>
               
             </div>
@@ -515,6 +515,8 @@
 <h2 id="负载均衡和熔断"><a href="#负载均衡和熔断" class="headerlink" title="负载均衡和熔断"></a>负载均衡和熔断</h2><p>Zuul中默认就已经集成了Ribbon负载均衡和Hystix熔断机制。但是所有的超时策略都是走的默认值，比如熔断超时时间只有1S，很容易就触发了。因此建议我们手动进行配置：</p>
 <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line">zuul:</span><br><span class="line">  retryable: true</span><br><span class="line">ribbon:</span><br><span class="line">  ConnectTimeout: 250 # 连接超时时间(ms)</span><br><span class="line">  ReadTimeout: 2000 # 通信超时时间(ms)</span><br><span class="line">  OkToRetryOnAllOperations: true # 是否对所有操作重试</span><br><span class="line">  MaxAutoRetriesNextServer: 2 # 同一服务不同实例的重试次数</span><br><span class="line">  MaxAutoRetries: 1 # 同一实例的重试次数</span><br><span class="line">hystrix:</span><br><span class="line">  command:</span><br><span class="line">  	default:</span><br><span class="line">        execution:</span><br><span class="line">          isolation:</span><br><span class="line">            thread:</span><br><span class="line">              timeoutInMillisecond: 6000 # 熔断超时时长：6000ms</span><br></pre></td></tr></table></figure>
 <p>ribbon的超时时长，真实值是（read+connect）*2,必须小于hystrix熔断超时时长</p>
+<p>最终配置</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line">server:</span><br><span class="line">  port: 10010</span><br><span class="line">spring:</span><br><span class="line">  application:</span><br><span class="line">    name: api-gateway</span><br><span class="line">eureka:</span><br><span class="line">  client:</span><br><span class="line">    service-url:</span><br><span class="line">      defaultZone: http://127.0.0.1:10086/eureka</span><br><span class="line">zuul:</span><br><span class="line">  prefix: /api # 添加路由前缀</span><br><span class="line">  routes:</span><br><span class="line">    item-service: /item/**</span><br><span class="line">    upload-service:</span><br><span class="line">      path: /upload/**</span><br><span class="line">      serviceId: upload-service</span><br><span class="line">      strip-prefix: false</span><br><span class="line">  add-host-header: true # API网关在进行请求路由转发前为请求设置Host头信息</span><br><span class="line">  sensitive-headers: # 默认情况下，敏感的头信息无法经过API网关进行传递，我们可以通过如下配置使之可以传递</span><br><span class="line">hystrix:</span><br><span class="line">  command:</span><br><span class="line">    default:</span><br><span class="line">      execution:</span><br><span class="line">        isolation:</span><br><span class="line">          thread:</span><br><span class="line">            timeoutInMillisecond: 50000 # 熔断超时时长：10000ms</span><br><span class="line">ribbon:</span><br><span class="line">  ConnectTimeout: 5000 # 连接超时时间(ms)</span><br><span class="line">  ReadTimeout: 5000 # 通信超时时间(ms)</span><br><span class="line">  MaxAutoRetriesNextServer: 0  # 同一服务不同实例的重试次数</span><br><span class="line">  MaxAutoRetries: 0 # 同一实例的重试次数</span><br></pre></td></tr></table></figure>
 
       
     </div>
@@ -593,6 +595,10 @@
           <span class="post-nav-divider"></span>
 
           <div class="post-nav-prev post-nav-item">
+            
+              <a href="/2019/03/29/SpringBoot之全局异常处理2/" rel="prev" title="SpringBoot之全局异常处理2">
+                SpringBoot之全局异常处理2 <i class="fa fa-chevron-right"></i>
+              </a>
             
           </div>
         </div>
@@ -700,7 +706,7 @@ var jiathis_config={
               
                 <a href="/archives/">
               
-                  <span class="site-state-item-count">18</span>
+                  <span class="site-state-item-count">30</span>
                   <span class="site-state-item-name">日志</span>
                 </a>
               </div>
@@ -711,7 +717,7 @@ var jiathis_config={
               
               <div class="site-state-item site-state-categories">
                 <a href="/categories/index.html">
-                  <span class="site-state-item-count">4</span>
+                  <span class="site-state-item-count">7</span>
                   <span class="site-state-item-name">分类</span>
                 </a>
               </div>

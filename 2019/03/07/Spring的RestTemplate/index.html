@@ -86,18 +86,18 @@
 
 
 
-<meta name="description" content="Spring提供了一个RestTemplate模板工具类，对基于Http的客户端进行了封装，并且实现了对象与json的序列化和反序列化，非常方便。RestTemplate并没有限定Http的客户端类型，而是进行了抽象，目前常用的3种都有支持：1.HttpClient2.OkHttp3.JDK原生的URLConnection（默认的）首先在项目中注册一个RestTemplate对象，可以在启动类位置">
+<meta name="description" content="系统之间调用Spring提供了一个RestTemplate模板工具类，对基于Http的客户端进行了封装，并且实现了对象与json的序列化和反序列化，非常方便。RestTemplate并没有限定Http的客户端类型，而是进行了抽象，目前常用的3种都有支持：1.HttpClient2.OkHttp3.JDK原生的URLConnection（默认的）首先在项目中注册一个RestTemplate对象，可以">
 <meta name="keywords" content="导航,分享">
 <meta property="og:type" content="article">
 <meta property="og:title" content="Spring的RestTemplate">
 <meta property="og:url" content="http://yoursite.com/2019/03/07/Spring的RestTemplate/index.html">
 <meta property="og:site_name" content="Mkdir">
-<meta property="og:description" content="Spring提供了一个RestTemplate模板工具类，对基于Http的客户端进行了封装，并且实现了对象与json的序列化和反序列化，非常方便。RestTemplate并没有限定Http的客户端类型，而是进行了抽象，目前常用的3种都有支持：1.HttpClient2.OkHttp3.JDK原生的URLConnection（默认的）首先在项目中注册一个RestTemplate对象，可以在启动类位置">
+<meta property="og:description" content="系统之间调用Spring提供了一个RestTemplate模板工具类，对基于Http的客户端进行了封装，并且实现了对象与json的序列化和反序列化，非常方便。RestTemplate并没有限定Http的客户端类型，而是进行了抽象，目前常用的3种都有支持：1.HttpClient2.OkHttp3.JDK原生的URLConnection（默认的）首先在项目中注册一个RestTemplate对象，可以">
 <meta property="og:locale" content="zh-Hans">
-<meta property="og:updated_time" content="2019-03-07T12:00:14.035Z">
+<meta property="og:updated_time" content="2019-04-01T08:47:44.603Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="Spring的RestTemplate">
-<meta name="twitter:description" content="Spring提供了一个RestTemplate模板工具类，对基于Http的客户端进行了封装，并且实现了对象与json的序列化和反序列化，非常方便。RestTemplate并没有限定Http的客户端类型，而是进行了抽象，目前常用的3种都有支持：1.HttpClient2.OkHttp3.JDK原生的URLConnection（默认的）首先在项目中注册一个RestTemplate对象，可以在启动类位置">
+<meta name="twitter:description" content="系统之间调用Spring提供了一个RestTemplate模板工具类，对基于Http的客户端进行了封装，并且实现了对象与json的序列化和反序列化，非常方便。RestTemplate并没有限定Http的客户端类型，而是进行了抽象，目前常用的3种都有支持：1.HttpClient2.OkHttp3.JDK原生的URLConnection（默认的）首先在项目中注册一个RestTemplate对象，可以">
 
 
 
@@ -391,7 +391,7 @@
                   <span class="post-meta-item-text">字数统计&#58;</span>
                 
                 <span title="字数统计">
-                  245
+                  251
                 </span>
               
 
@@ -428,7 +428,7 @@
       
 
       
-        <p>Spring提供了一个RestTemplate模板工具类，对基于Http的客户端进行了封装，并且实现了对象与json的序列化和反序列化，非常方便。RestTemplate并没有限定Http的客户端类型，而是进行了抽象，目前常用的3种都有支持：<br>1.HttpClient<br>2.OkHttp<br>3.JDK原生的URLConnection（默认的）<br>首先在项目中注册一个RestTemplate对象，可以在启动类位置注册：<br><a id="more"></a><br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line">@SpringBootApplication</span><br><span class="line">public class HttpDemoApplication &#123;</span><br><span class="line"></span><br><span class="line">	public static void main(String[] args) &#123;</span><br><span class="line">		SpringApplication.run(HttpDemoApplication.class, args);</span><br><span class="line">	&#125;</span><br><span class="line"></span><br><span class="line">	@Bean</span><br><span class="line">	public RestTemplate restTemplate() &#123;</span><br><span class="line">        // 默认的RestTemplate，底层是走JDK的URLConnection方式。</span><br><span class="line">		return new RestTemplate();</span><br><span class="line">	&#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
+        <h2 id="系统之间调用"><a href="#系统之间调用" class="headerlink" title="系统之间调用"></a>系统之间调用</h2><p>Spring提供了一个RestTemplate模板工具类，对基于Http的客户端进行了封装，并且实现了对象与json的序列化和反序列化，非常方便。RestTemplate并没有限定Http的客户端类型，而是进行了抽象，目前常用的3种都有支持：<br>1.HttpClient<br>2.OkHttp<br>3.JDK原生的URLConnection（默认的）<br>首先在项目中注册一个RestTemplate对象，可以在启动类位置注册：<br><a id="more"></a><br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line">@SpringBootApplication</span><br><span class="line">public class HttpDemoApplication &#123;</span><br><span class="line"></span><br><span class="line">	public static void main(String[] args) &#123;</span><br><span class="line">		SpringApplication.run(HttpDemoApplication.class, args);</span><br><span class="line">	&#125;</span><br><span class="line"></span><br><span class="line">	@Bean</span><br><span class="line">	public RestTemplate restTemplate() &#123;</span><br><span class="line">        // 默认的RestTemplate，底层是走JDK的URLConnection方式。</span><br><span class="line">		return new RestTemplate();</span><br><span class="line">	&#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
 <p>在测试类中直接@Autowired注入：</p>
 <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line">@RunWith(SpringRunner.class)</span><br><span class="line">@SpringBootTest(classes = HttpDemoApplication.class)</span><br><span class="line">public class HttpDemoApplicationTests &#123;</span><br><span class="line"></span><br><span class="line">	@Autowired</span><br><span class="line">	private RestTemplate restTemplate;</span><br><span class="line"></span><br><span class="line">	@Test</span><br><span class="line">	public void httpGet() &#123;</span><br><span class="line">		User user = this.restTemplate.getForObject(&quot;http://localhost/hello&quot;, User.class);</span><br><span class="line">		System.out.println(user);</span><br><span class="line">	&#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 <p>通过RestTemplate的getForObject()方法，传递url地址及实体类的字节码，RestTemplate会自动发起请求，接收响应，并且帮我们对响应结果进行反序列化。</p>
@@ -594,8 +594,17 @@ var jiathis_config={
       
 
       
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap">
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview-wrap">
+            站点概览
+          </li>
+        </ul>
+      
 
-      <section class="site-overview-wrap sidebar-panel sidebar-panel-active">
+      <section class="site-overview-wrap sidebar-panel">
         <div class="site-overview">
           <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
             
@@ -612,7 +621,7 @@ var jiathis_config={
               
                 <a href="/archives/">
               
-                  <span class="site-state-item-count">18</span>
+                  <span class="site-state-item-count">30</span>
                   <span class="site-state-item-name">日志</span>
                 </a>
               </div>
@@ -623,7 +632,7 @@ var jiathis_config={
               
               <div class="site-state-item site-state-categories">
                 <a href="/categories/index.html">
-                  <span class="site-state-item-count">4</span>
+                  <span class="site-state-item-count">7</span>
                   <span class="site-state-item-name">分类</span>
                 </a>
               </div>
@@ -673,6 +682,22 @@ var jiathis_config={
         </div>
       </section>
 
+      
+      <!--noindex-->
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+              
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#系统之间调用"><span class="nav-number">1.</span> <span class="nav-text">系统之间调用</span></a></li></ol></div>
+            
+
+          </div>
+        </section>
+      <!--/noindex-->
       
 
       
