@@ -1,6 +1,42 @@
 <?xml version="1.0" encoding="utf-8"?>
 <search>
   <entry>
+    <title><![CDATA[JPQL的简单使用]]></title>
+    <url>%2F2019%2F04%2F02%2FJPQL%E7%9A%84%E7%AE%80%E5%8D%95%E4%BD%BF%E7%94%A8%2F</url>
+    <content type="text"><![CDATA[JPA中的复杂查询 JPQL全称Java Persistence Query Language 基于首次在EJB2.0中引入的EJB查询语言(EJB QL),Java持久化查询语言(JPQL)是一种可移植的查询语言，旨在以面向对象表达式语言的表达式，将SQL语法和简单查询语义绑定在一起·使用这种语言编写的查询是可移植的，可以被编译成所有主流数据库服务器上的SQL。 其特征与原生SQL语句类似，并且完全面向对象，通过类名和属性访问，而不是表名和表的属性。 sql: 查询的是表和表中的字段jpql: 查询的是实体类和类中的属性 jpql和sql语句的语法相似 查询全部12345678910111213141516171819202122@Test public void testFindAll()&#123; EntityManager em = JpaUtils.getEntityManager(); EntityTransaction tx = em.getTransaction(); tx.begin(); String jpql = &quot;from com.jap.pojo.Customer&quot;; Query query = em.createQuery(jpql); List resultList = query.getResultList(); for(Object obj:resultList)&#123; System.out.println(obj); &#125; tx.commit(); em.close(); &#125; 排序12345678910111213141516171819202122@Test public void testOrders()&#123; EntityManager em = JpaUtils.getEntityManager(); EntityTransaction tx = em.getTransaction(); tx.begin(); String jpql = &quot;from com.jap.pojo.Customer order by custId desc &quot;; Query query = em.createQuery(jpql); List resultList = query.getResultList(); for(Object obj:resultList)&#123; System.out.println(obj); &#125; tx.commit(); em.close(); &#125; 聚合函数1234567891011121314151617181920@Test public void testCount()&#123; EntityManager em = JpaUtils.getEntityManager(); EntityTransaction tx = em.getTransaction(); tx.begin(); String jpql = &quot;select count(custId) from com.jap.pojo.Customer&quot;; Query query = em.createQuery(jpql); Object result = query.getSingleResult(); System.out.println(result); tx.commit(); em.close(); &#125; 分页查询1234567891011121314151617181920212223@Test public void testLimit()&#123; EntityManager em = JpaUtils.getEntityManager(); EntityTransaction tx = em.getTransaction(); tx.begin(); String jpql = &quot;from com.jap.pojo.Customer&quot;; Query query = em.createQuery(jpql); query.setFirstResult(0); query.setMaxResults(2); List result = query.getResultList(); System.out.println(result); tx.commit(); em.close(); &#125; 条件查询1234567891011121314151617181920212223@Test public void testCondition()&#123; EntityManager em = JpaUtils.getEntityManager(); EntityTransaction tx = em.getTransaction(); tx.begin(); String jpql = &quot;from com.jap.pojo.Customer where custName like ? &quot;; Query query = em.createQuery(jpql); query.setParameter(1,&quot;I%&quot;); List result = query.getResultList(); System.out.println(result); tx.commit(); em.close(); &#125;]]></content>
+      <categories>
+        <category>进阶</category>
+      </categories>
+      <tags>
+        <tag>分享</tag>
+        <tag>导航</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title><![CDATA[JPA的入门案例]]></title>
+    <url>%2F2019%2F04%2F02%2FJPA%E7%9A%84%E5%85%A5%E9%97%A8%E6%A1%88%E4%BE%8B%2F</url>
+    <content type="text"><![CDATA[由于JPA是sun公司制定的API规范，所以我们不需要导入额外的JPA相关的jar包，只需要导入JPA的提供商的jar包。我们选择Hibernate作为JPA的提供商，所以需要导入Hibernate的相关jar包。 导入jar包123456789101112131415161718192021222324252627282930313233343536373839404142&lt;properties&gt; &lt;project.build.sourceEncoding&gt;UTF-8&lt;/project.build.sourceEncoding&gt; &lt;project.hibernate.version&gt;5.0.7.Final&lt;/project.hibernate.version&gt; &lt;/properties&gt; &lt;dependencies&gt; &lt;!-- junit --&gt; &lt;dependency&gt; &lt;groupId&gt;junit&lt;/groupId&gt; &lt;artifactId&gt;junit&lt;/artifactId&gt; &lt;version&gt;4.12&lt;/version&gt; &lt;scope&gt;test&lt;/scope&gt; &lt;/dependency&gt; &lt;!-- hibernate对jpa的支持包 --&gt; &lt;dependency&gt; &lt;groupId&gt;org.hibernate&lt;/groupId&gt; &lt;artifactId&gt;hibernate-entitymanager&lt;/artifactId&gt; &lt;version&gt;$&#123;project.hibernate.version&#125;&lt;/version&gt; &lt;/dependency&gt; &lt;!-- c3p0 --&gt; &lt;dependency&gt; &lt;groupId&gt;org.hibernate&lt;/groupId&gt; &lt;artifactId&gt;hibernate-c3p0&lt;/artifactId&gt; &lt;version&gt;$&#123;project.hibernate.version&#125;&lt;/version&gt; &lt;/dependency&gt; &lt;!-- log日志 --&gt; &lt;dependency&gt; &lt;groupId&gt;log4j&lt;/groupId&gt; &lt;artifactId&gt;log4j&lt;/artifactId&gt; &lt;version&gt;1.2.17&lt;/version&gt; &lt;/dependency&gt; &lt;!-- Mysql and MariaDB --&gt; &lt;dependency&gt; &lt;groupId&gt;mysql&lt;/groupId&gt; &lt;artifactId&gt;mysql-connector-java&lt;/artifactId&gt; &lt;version&gt;5.1.6&lt;/version&gt; &lt;/dependency&gt; &lt;/dependencies&gt; 实体类：123456789101112131415161718192021222324252627282930313233343536373839404142434445464748495051525354555657585960616263646566676869707172737475767778798081828384858687888990919293949596979899100101102103104105106107108109110111112113114115116117118119120121122123/** * 客户实体类 * 配置映射关系 * 1.实体类和表的映射关系 * @Entity 声明这是一个实体类 * @Table 配置实体类和表的映射关系 * name: 配置数据库表的名称 * 2.实体类中属性和表中字段的映射关系 * * */@Entity@Table(name = &quot;cst_customer&quot;)public class Customer &#123; /** * @Id： 声明主键的配置 * @GeneratedValue: 配置主键生成策略 * strategy * GenerationType.IDENTITY： 自增 * * 底层数据库必须支持自动增长 * GenerationType.SEQUENCE : 序列 oracle * * 底层数据库必须支持序列 * GenerationType.TABLE : jpa提供的一种机制 通过一张数据库表的形式帮助我们完成主键自增 * GenerationType.AUTO : 有程序自动的帮助我们选择主键生成策略 * @Column:配置属性和字段的映射关系 * name: 数据库表中字段的名称 * */ @Id @GeneratedValue(strategy = GenerationType.IDENTITY) @Column(name = &quot;cust_id&quot;) private Long custId; //客户主键 @Column(name = &quot;cust_name&quot;) private String custName; //客户名称 @Column(name = &quot;cust_source&quot;) private String custSource; //客户来源 @Column(name = &quot;cust_industry&quot;) private String custIndustry; //客户所属行业 @Column(name = &quot;cust_level&quot;) private String custLevel; //客户级别 @Column(name = &quot;cust_address&quot;) private String custAddress; //客户地址 @Column(name = &quot;cust_phone&quot;) private String custPhone; //客户的联系方式 @Override public String toString() &#123; return &quot;Customer&#123;&quot; + &quot;custId=&quot; + custId + &quot;, custName=&apos;&quot; + custName + &apos;\&apos;&apos; + &quot;, custSource=&apos;&quot; + custSource + &apos;\&apos;&apos; + &quot;, custIndustry=&apos;&quot; + custIndustry + &apos;\&apos;&apos; + &quot;, custLevel=&apos;&quot; + custLevel + &apos;\&apos;&apos; + &quot;, custAddress=&apos;&quot; + custAddress + &apos;\&apos;&apos; + &quot;, custPhone=&apos;&quot; + custPhone + &apos;\&apos;&apos; + &apos;&#125;&apos;; &#125; public Long getCustId() &#123; return custId; &#125; public void setCustId(Long custId) &#123; this.custId = custId; &#125; public String getCustName() &#123; return custName; &#125; public void setCustName(String custName) &#123; this.custName = custName; &#125; public String getCustSource() &#123; return custSource; &#125; public void setCustSource(String custSource) &#123; this.custSource = custSource; &#125; public String getCustIndustry() &#123; return custIndustry; &#125; public void setCustIndustry(String custIndustry) &#123; this.custIndustry = custIndustry; &#125; public String getCustLevel() &#123; return custLevel; &#125; public void setCustLevel(String custLevel) &#123; this.custLevel = custLevel; &#125; public String getCustAddress() &#123; return custAddress; &#125; public void setCustAddress(String custAddress) &#123; this.custAddress = custAddress; &#125; public String getCustPhone() &#123; return custPhone; &#125; public void setCustPhone(String custPhone) &#123; this.custPhone = custPhone; &#125;&#125; 创建一个文件 persistence.xml 填写配置12345678910111213141516171819202122232425262728293031323334353637383940414243&lt;?xml version=&quot;1.0&quot; encoding=&quot;UTF-8&quot;?&gt;&lt;persistence xmlns=&quot;http://java.sun.com/xml/ns/persistence&quot; version=&quot;2.0&quot;&gt; &lt;!--需要配置 persistence-unit 节点 持久化单元格： name:持久化单元格名称 transaction-type:事务管理方式 JTA:分布式事务管理 RESOURCE_LOCAL:本地事务管理 --&gt; &lt;persistence-unit name=&quot;myJpa&quot; transaction-type=&quot;RESOURCE_LOCAL&quot;&gt; &lt;!--jpa的实现方式--&gt; &lt;provider&gt;org.hibernate.jpa.HibernatePersistenceProvider&lt;/provider&gt; &lt;!--数据库信息 用户名： javax.persistence.jdbc.user 密码： javax.persistence.jdbc.password 地址： javax.persistence.jdbc.url 数据库驱动： javax.persistence.jdbc.mysql --&gt; &lt;properties&gt; &lt;property name=&quot;javax.persistence.jdbc.user&quot; value=&quot;root&quot; /&gt; &lt;property name=&quot;javax.persistence.jdbc.password&quot; value=&quot;rcd520.&quot; /&gt; &lt;property name=&quot;javax.persistence.jdbc.url&quot; value=&quot;jdbc:mysql:///jpa&quot; /&gt; &lt;property name=&quot;javax.persistence.jdbc.mysql&quot; value=&quot;com.mysql.jdbc.Driver&quot; /&gt; &lt;!--可选配置 : 配置jpa实现方的配置信息 显示sql: false | true 自动创建数据库表： create: 程序运行时创建数据库表（如果有表 先删除再创建表） update: 程序运行时创建表（如果有表 不会创建表） none: 不会创建表 --&gt; &lt;property name=&quot;hibernate.show_sql&quot; value=&quot;true&quot; /&gt; &lt;property name=&quot;hibernate.hbm2ddl.auto&quot; value=&quot;update&quot; /&gt; &lt;/properties&gt; &lt;/persistence-unit&gt;&lt;/persistence&gt; 创建一个JPA的工具类 1234567891011121314151617181920212223/** * 解决实体管理工厂的浪费资源的耗时问题 * 通过静态代码块 当程序第一次访问此工具类时 创建一个公共的实体管理器工厂对象 * */public class JpaUtils &#123; private static EntityManagerFactory factory; static &#123; //加载配置文件 factory = Persistence.createEntityManagerFactory(&quot;myJpa&quot;); &#125; /** * 获取EntityManage对象 */ public static EntityManager getEntityManager()&#123; return factory.createEntityManager(); &#125;&#125; 在JPA 的查询方法中 保存：persist(Object o) 查询：find(Customer.class, 1L)/getReference(Customer.class, 1L) 根据id进行查询 删除：remove(object o) 更新：merge(Object o) 最后测试 123456789101112131415161718192021222324252627282930313233343536373839404142434445464748495051525354555657585960616263646566676869707172737475767778798081828384858687888990919293949596979899100101102103104105106107108109110111112113114115116117118119120121122123124public class JpaTest &#123; /** * 测试JPA的保存 * * JPA的操作步骤 * 加载配置文件创建工厂对象 * 通过实体类管理类工厂获取实体类管理器 * 获取事务对象 开启事务 * 完成增删改查操作 * 提交事务 * 释放资源 */ @Test public void testSave() &#123; //加载配置文件创建工厂对象 //EntityManagerFactory factory = Persistence.createEntityManagerFactory(&quot;myJpa&quot;); // 通过实体类管理类工厂获取实体类管理器// EntityManager em = factory.createEntityManager(); EntityManager em = JpaUtils.getEntityManager();// 获取事务对象 开启事务 EntityTransaction tx = em.getTransaction(); tx.begin(); //开启事务// 完成增删改查操作 Customer customer = new Customer(); customer.setCustName(&quot;小胖&quot;); customer.setCustIndustry(&quot;血池&quot;); //保存 em.persist(customer); //提交事务 tx.commit(); //释放资源 em.close(); &#125; /** * find() 立即加载 */ @Test public void testFind()&#123; EntityManager em = JpaUtils.getEntityManager(); EntityTransaction tx = em.getTransaction(); tx.begin(); Customer customer = em.find(Customer.class, 1L); System.out.println(customer); tx.commit(); em.close(); &#125; /** * getReference() 延迟加载 或者时 懒加载 */ @Test public void testReference()&#123; EntityManager em = JpaUtils.getEntityManager(); EntityTransaction tx = em.getTransaction(); tx.begin(); Customer customer = em.getReference(Customer.class, 1L); System.out.println(customer); tx.commit(); em.close(); &#125; /** * 删除 */ @Test public void testRemove()&#123; EntityManager em = JpaUtils.getEntityManager(); EntityTransaction tx = em.getTransaction(); tx.begin(); Customer customer = em.find(Customer.class, 1L); em.remove(customer); tx.commit(); em.close(); &#125; /** * 更新 * 使用 merge()方法 * */ @Test public void testUpdate()&#123; EntityManager em = JpaUtils.getEntityManager(); EntityTransaction tx = em.getTransaction(); tx.begin(); Customer customer = em.find(Customer.class, 1L); customer.setCustIndustry(&quot;IT&quot;); em.merge(customer); tx.commit(); em.close(); &#125;&#125;]]></content>
+      <categories>
+        <category>进阶</category>
+      </categories>
+      <tags>
+        <tag>分享</tag>
+        <tag>导航</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title><![CDATA[ORM思想]]></title>
+    <url>%2F2019%2F04%2F02%2FORM%E6%80%9D%E6%83%B3%2F</url>
+    <content type="text"><![CDATA[简单了解ORM思想ORM（Object-Relational Mapping） 表示对象关系映射。在面向对象的软件开发中，通过ORM，就可以把对象映射到关系型数据库中。只要有一套程序能够做到建立对象与数据库的关联，操作对象就可以直接操作数据库数据，就可以说这套程序实现了ORM对象关系映射 **主要目的** ：操作实体类就相当于操作数据库表，只需要对象打点调方法就可以实现数据库操作 建立两个映射关系： 实体类和表的与映射关系 实体类中属性与表中字段的映射关系 不再重点关注：sql语句 就能实现操作 实现了ORM思想的框架 ： mybatis,hibarnate,JPA 为什么使用ORM当实现一个应用程序时（不使用O/R Mapping），我们可能会写特别多数据访问层的代码，从数据库保存数据、修改数据、删除数据，而这些代码都是重复的。而使用ORM则会大大减少重复性代码。对象关系映射（Object Relational Mapping，简称ORM），主要实现程序对象到关系数据库数据的映射 JPA概述JPA的全称是Java Persistence API， 即Java 持久化API，是SUN公司推出的一套基于ORM的规范，内部是由一系列的接口和抽象类构成。 JPA通过JDK 5.0注解描述对象－关系表的映射关系，并将运行期的实体对象持久化到数据库中 hibernate概述Hibernate是一个开放源代码的对象关系映射框架，它对JDBC进行了非常轻量级的对象封装，它将POJO与数据库表建立映射关系，是一个全自动的orm框架，hibernate可以自动生成SQL语句，自动执行，使得Java程序员可以随心所欲的使用对象编程思维来操纵数据库。 JPA的优势 标准化 容器级特性的支持 简单方便 查询能力 高级特性 JPA与hibernate的关系JPA规范本质上就是一种ORM规范，注意不是ORM框架——因为JPA并未提供ORM实现，它只是制订了一些规范，提供了一些编程的API接口，但具体实现则由服务厂商来提供实现 JPA和Hibernate的关系就像JDBC和JDBC驱动的关系，JPA是规范，Hibernate除了作为ORM框架之外，它也是一种JPA实现。JPA怎么取代Hibernate呢？JDBC规范可以驱动底层数据库吗？答案是否定的，也就是说，如果使用JPA规范进行数据库操作，底层需要hibernate作为其实现类完成数据持久化工作。]]></content>
+      <categories>
+        <category>进阶</category>
+      </categories>
+      <tags>
+        <tag>分享</tag>
+        <tag>导航</tag>
+      </tags>
+  </entry>
+  <entry>
     <title><![CDATA[方法引用]]></title>
     <url>%2F2019%2F04%2F02%2F%E6%96%B9%E6%B3%95%E5%BC%95%E7%94%A8%2F</url>
     <content type="text"><![CDATA[在使用Lambda表达式的时候，我们实际上传递进去的代码就是一种解决方案：拿什么参数做什么操作。那么考虑 一种情况：如果我们在Lambda中所指定的操作方案，已经有地方存在相同方案，那是否还有必要再写重复逻辑？ 方法引用符双冒号 :: 为引用运算符，而它所在的表达式被称为方法引用。如果Lambda要表达的函数方案已经存在于某个方 法的实现中，那么则可以通过双冒号来引用该方法作为Lambda的替代者。 System.out 对象中有一个重载的 println(String) 方法恰好就是我们所需要的。那么对于 printString 方法的函数式接口参数，对比下面两种写法，完全等效： - Lambda表达式写法： s -&gt; System.out.println(s); - 方法引用写法： System.out::println 第一种语义是指：拿到参数之后经Lambda之手，继而传递给 System.out.println 方法去处理。 第二种等效写法的语义是指：直接让 System.out 中的 println 方法来取代Lambda。两种写法的执行效果完全一 样，而第二种方法引用的写法复用了已有方案，更加简洁。 注:Lambda 中 传递的参数 一定是方法引用中 的那个方法可以接收的类型,否则会抛出异常 推导与省略如果使用Lambda，那么根据“可推导就是可省略”的原则，无需指定参数类型，也无需指定的重载形式——它们都 将被自动推导。而如果使用方法引用，也是同样可以根据上下文进行推导。 函数式接口是Lambda的基础，而方法引用是Lambda的孪生兄弟。下面这段代码将会调用 println 方法的不同重载形式，将函数式接口改为int类型的参数：1234@FunctionalInterface public interface PrintableInteger &#123; void print(int str); &#125; 由于上下文变了之后可以自动推导出唯一对应的匹配重载，所以方法引用没有任何变化： 123456789public class Demo03PrintOverload &#123; private static void printInteger(PrintableInteger data) &#123; data.print(1024); &#125; public static void main(String[] args) &#123; printInteger(System.out::println); &#125; &#125; 这次方法引用将会自动匹配到 println(int) 的重载形式。 通过对象名引用成员方法这是常见的一种用法，与上例相同。如果一个类中已经存在了一个成员方法12345public class MethodRefObject &#123; public void printUpperCase(String str) &#123; System.out.println(str.toUpperCase()); &#125; &#125; 函数式接口仍然定义为：1234@FunctionalInterface public interface Printable &#123; void print(String str); &#125; 那么当需要使用这个 printUpperCase 成员方法来替代 Printable 接口的Lambda的时候，已经具有了 MethodRefObject 类的对象实例，则可以通过对象名引用成员方法，代码为：123456789public class Demo04MethodRef &#123; private static void printString(Printable lambda) &#123; lambda.print(&quot;Hello&quot;); &#125; public static void main(String[] args) &#123; MethodRefObject obj = new MethodRefObject(); printString(obj::printUpperCase); &#125; &#125; 通过类名称引用静态方法由于在 java.lang.Math 类中已经存在了静态方法 abs ，所以当我们需要通过Lambda来调用该方法时，有两种写 法。首先是函数式接口：1234@FunctionalInterface public interface Calcable &#123; int calc(int num); &#125; 第一种写法是使用Lambda表达式：12345678public class Demo05Lambda &#123; private static void method(int num, Calcable lambda) &#123; System.out.println(lambda.calc(num)); &#125; public static void main(String[] args) &#123; method(‐10, n ‐&gt; Math.abs(n)); &#125; &#125; 但是使用方法引用的更好写法是：12345678public class Demo06MethodRef &#123; private static void method(int num, Calcable lambda) &#123; System.out.println(lambda.calc(num)); &#125; public static void main(String[] args) &#123; method(‐10, Math::abs); &#125; &#125; 在这个例子中，下面两种写法是等效的： - Lambda表达式： n -&gt; Math.abs(n) - 方法引用： Math::abs 通过super引用成员方法如果存在继承关系，当Lambda中需要出现super调用时，也可以使用方法引用进行替代。首先是函数式接口1234@FunctionalInterface public interface Greetable &#123; void greet(); &#125; 然后是父类 Human 的内容：12345public class Human &#123; public void sayHello() &#123; System.out.println(&quot;Hello!&quot;); &#125;&#125; 最后是子类 Man 的内容，其中使用了Lambda的写法：123456789101112131415161718192021public class Man extends Human &#123; @Override public void sayHello() &#123; System.out.println(&quot;大家好,我是Man!&quot;); &#125; //定义方法method,参数传递Greetable接口 public void method(Greetable g)&#123; g.greet(); &#125; public void show()&#123; //调用method方法,使用Lambda表达式 method(()‐&gt;&#123; //创建Human对象,调用sayHello方法 new Human().sayHello(); &#125;); //简化Lambda method(()‐&gt;new Human().sayHello()); //使用super关键字代替父类对象 method(()‐&gt;super.sayHello()); &#125; &#125; 但是如果使用方法引用来调用父类中的 sayHello 方法会更好，例如另一个子类 Woman 12345678910111213public class Man extends Human &#123; @Override public void sayHello() &#123; System.out.println(&quot;大家好,我是Man!&quot;); &#125; //定义方法method,参数传递Greetable接口 public void method(Greetable g)&#123; g.greet(); &#125; public void show()&#123; method(super::sayHello); &#125; &#125; 在这个例子中，下面两种写法是等效的： Lambda表达式： () -&gt; super.sayHello() 方法引用： super::sayHello 通过this引用成员方法this代表当前对象，如果需要引用的方法就是当前类中的成员方法，那么可以使用“this::成员方法”的格式来使用方 法引用。首先是简单的函数式接口：1234@FunctionalInterface public interface Richable &#123; void buy(); &#125; 下面是一个丈夫 Husband 类：12345678public class Husband &#123; private void marry(Richable lambda) &#123; lambda.buy(); &#125; public void beHappy() &#123; marry(() ‐&gt; System.out.println(&quot;买套房子&quot;)); &#125; &#125; 开心方法 beHappy 调用了结婚方法 marry ，后者的参数为函数式接口 Richable ，所以需要一个Lambda表达式。 但是如果这个Lambda表达式的内容已经在本类当中存在了，则可以对 Husband 丈夫类进行修改： 1234567891011public class Husband &#123; private void buyHouse() &#123; System.out.println(&quot;买套房子&quot;); &#125; private void marry(Richable lambda) &#123; lambda.buy(); &#125; public void beHappy() &#123; marry(() ‐&gt; this.buyHouse()); &#125; &#125; 如果希望取消掉Lambda表达式，用方法引用进行替换，则更好的写法为： 1234567891011public class Husband &#123; private void buyHouse() &#123; System.out.println(&quot;买套房子&quot;); &#125; private void marry(Richable lambda) &#123; lambda.buy(); &#125; public void beHappy() &#123; marry(this::buyHouse); &#125; &#125; 在这个例子中，下面两种写法是等效的： Lambda表达式： () -&gt; this.buyHouse() 方法引用： this::buyHouse 类的构造器引用由于构造器的名称与类名完全一样，并不固定。所以构造器引用使用 类名称::new 的格式表示。首先是一个简单 的 Person 类123456789101112public class Person &#123; private String name; public Person(String name) &#123; this.name = name; &#125; public String getName() &#123; return name; &#125; public void setName(String name) &#123; this.name = name; &#125; &#125; 然后是用来创建 Person 对象的函数式接口 123public interface PersonBuilder &#123; Person buildPerson(String name); &#125; 要使用这个函数式接口，可以通过Lambda表达式：12345678public class Demo09Lambda &#123; public static void printName(String name, PersonBuilder builder) &#123; System.out.println(builder.buildPerson(name).getName()); &#125; public static void main(String[] args) &#123; printName(&quot;赵丽颖&quot;, name ‐&gt; new Person(name)); &#125; &#125; 但是通过构造器引用，有更好的写法：12345678public class Demo10ConstructorRef &#123; public static void printName(String name, PersonBuilder builder) &#123; System.out.println(builder.buildPerson(name).getName()); &#125; public static void main(String[] args) &#123; printName(&quot;赵丽颖&quot;, Person::new); &#125; &#125; 数组的构造器引用数组也是 Object 的子类对象，所以同样具有构造器，只是语法稍有不同。如果对应到Lambda的使用场景中时， 需要一个函数式接口：1234@FunctionalInterface public interface ArrayBuilder&#123; int[] buildArray(int length); &#125; 在应用该接口的时候，可以通过Lambda表达式：12345678public class Demo11ArrayInitRef &#123; private static int[] initArray(int length, ArrayBuilder builder) &#123; return builder.buildArray(length); &#125; public static void main(String[] args) &#123; int[] array = initArray(10, length ‐&gt; new int[length]); &#125; &#125; 但是更好的写法是使用数组的构造器引用：12345678public class Demo12ArrayInitRef &#123; private static int[] initArray(int length, ArrayBuilder builder) &#123; return builder.buildArray(length); &#125; public static void main(String[] args) &#123; int[] array = initArray(10, int[]::new); &#125; &#125;]]></content>
@@ -8,8 +44,8 @@
         <category>基础</category>
       </categories>
       <tags>
-        <tag>导航</tag>
         <tag>分享</tag>
+        <tag>导航</tag>
       </tags>
   </entry>
   <entry>
@@ -20,8 +56,8 @@
         <category>基础</category>
       </categories>
       <tags>
-        <tag>导航</tag>
         <tag>分享</tag>
+        <tag>导航</tag>
       </tags>
   </entry>
   <entry>
@@ -32,8 +68,8 @@
         <category>基础</category>
       </categories>
       <tags>
-        <tag>导航</tag>
         <tag>分享</tag>
+        <tag>导航</tag>
       </tags>
   </entry>
   <entry>
@@ -44,8 +80,8 @@
         <category>基础</category>
       </categories>
       <tags>
-        <tag>导航</tag>
         <tag>分享</tag>
+        <tag>导航</tag>
       </tags>
   </entry>
   <entry>
@@ -56,8 +92,8 @@
         <category>基础</category>
       </categories>
       <tags>
-        <tag>导航</tag>
         <tag>分享</tag>
+        <tag>导航</tag>
       </tags>
   </entry>
   <entry>
@@ -68,8 +104,8 @@
         <category>基础</category>
       </categories>
       <tags>
-        <tag>导航</tag>
         <tag>分享</tag>
+        <tag>导航</tag>
       </tags>
   </entry>
   <entry>
@@ -80,8 +116,8 @@
         <category>基础</category>
       </categories>
       <tags>
-        <tag>导航</tag>
         <tag>分享</tag>
+        <tag>导航</tag>
       </tags>
   </entry>
   <entry>
@@ -92,8 +128,8 @@
         <category>基础</category>
       </categories>
       <tags>
-        <tag>导航</tag>
         <tag>分享</tag>
+        <tag>导航</tag>
       </tags>
   </entry>
   <entry>
@@ -104,8 +140,8 @@
         <category>基础</category>
       </categories>
       <tags>
-        <tag>导航</tag>
         <tag>分享</tag>
+        <tag>导航</tag>
       </tags>
   </entry>
   <entry>
@@ -116,8 +152,8 @@
         <category>基础</category>
       </categories>
       <tags>
-        <tag>导航</tag>
         <tag>分享</tag>
+        <tag>导航</tag>
       </tags>
   </entry>
   <entry>
@@ -128,8 +164,8 @@
         <category>基础</category>
       </categories>
       <tags>
-        <tag>导航</tag>
         <tag>分享</tag>
+        <tag>导航</tag>
       </tags>
   </entry>
   <entry>
@@ -140,8 +176,8 @@
         <category>工具类</category>
       </categories>
       <tags>
-        <tag>导航</tag>
         <tag>分享</tag>
+        <tag>导航</tag>
       </tags>
   </entry>
   <entry>
@@ -152,8 +188,8 @@
         <category>前端</category>
       </categories>
       <tags>
-        <tag>导航</tag>
         <tag>分享</tag>
+        <tag>导航</tag>
       </tags>
   </entry>
   <entry>
@@ -164,8 +200,8 @@
         <category>跨域</category>
       </categories>
       <tags>
-        <tag>导航</tag>
         <tag>分享</tag>
+        <tag>导航</tag>
       </tags>
   </entry>
   <entry>
@@ -176,8 +212,8 @@
         <category>SpringBoot</category>
       </categories>
       <tags>
-        <tag>导航</tag>
         <tag>分享</tag>
+        <tag>导航</tag>
       </tags>
   </entry>
   <entry>
@@ -188,8 +224,8 @@
         <category>SpringBoot</category>
       </categories>
       <tags>
-        <tag>导航</tag>
         <tag>分享</tag>
+        <tag>导航</tag>
       </tags>
   </entry>
   <entry>
@@ -200,8 +236,8 @@
         <category>SpringBoot</category>
       </categories>
       <tags>
-        <tag>导航</tag>
         <tag>分享</tag>
+        <tag>导航</tag>
       </tags>
   </entry>
   <entry>
@@ -212,8 +248,8 @@
         <category>SpringBoot</category>
       </categories>
       <tags>
-        <tag>导航</tag>
         <tag>分享</tag>
+        <tag>导航</tag>
       </tags>
   </entry>
   <entry>
@@ -224,8 +260,8 @@
         <category>SpringBoot</category>
       </categories>
       <tags>
-        <tag>导航</tag>
         <tag>分享</tag>
+        <tag>导航</tag>
       </tags>
   </entry>
   <entry>
@@ -236,8 +272,8 @@
         <category>SpringBoot</category>
       </categories>
       <tags>
-        <tag>导航</tag>
         <tag>分享</tag>
+        <tag>导航</tag>
       </tags>
   </entry>
   <entry>
@@ -248,8 +284,8 @@
         <category>SpringBoot</category>
       </categories>
       <tags>
-        <tag>导航</tag>
         <tag>分享</tag>
+        <tag>导航</tag>
       </tags>
   </entry>
   <entry>
@@ -260,8 +296,8 @@
         <category>http&amp;RPC</category>
       </categories>
       <tags>
-        <tag>导航</tag>
         <tag>分享</tag>
+        <tag>导航</tag>
       </tags>
   </entry>
   <entry>
@@ -272,8 +308,8 @@
         <category>系统架构</category>
       </categories>
       <tags>
-        <tag>导航</tag>
         <tag>分享</tag>
+        <tag>导航</tag>
       </tags>
   </entry>
   <entry>
@@ -284,8 +320,8 @@
         <category>SpringBoot</category>
       </categories>
       <tags>
-        <tag>导航</tag>
         <tag>分享</tag>
+        <tag>导航</tag>
       </tags>
   </entry>
   <entry>
@@ -296,8 +332,8 @@
         <category>SpringBoot</category>
       </categories>
       <tags>
-        <tag>导航</tag>
         <tag>分享</tag>
+        <tag>导航</tag>
       </tags>
   </entry>
   <entry>
@@ -308,8 +344,8 @@
         <category>SpringBoot</category>
       </categories>
       <tags>
-        <tag>导航</tag>
         <tag>分享</tag>
+        <tag>导航</tag>
       </tags>
   </entry>
   <entry>
@@ -320,8 +356,8 @@
         <category>SpringBoot</category>
       </categories>
       <tags>
-        <tag>导航</tag>
         <tag>分享</tag>
+        <tag>导航</tag>
       </tags>
   </entry>
   <entry>
@@ -332,8 +368,8 @@
         <category>SpringBoot</category>
       </categories>
       <tags>
-        <tag>导航</tag>
         <tag>分享</tag>
+        <tag>导航</tag>
       </tags>
   </entry>
   <entry>
@@ -344,8 +380,8 @@
         <category>SpringBoot</category>
       </categories>
       <tags>
-        <tag>导航</tag>
         <tag>分享</tag>
+        <tag>导航</tag>
       </tags>
   </entry>
   <entry>
@@ -356,8 +392,8 @@
         <category>SpringBoot</category>
       </categories>
       <tags>
-        <tag>导航</tag>
         <tag>分享</tag>
+        <tag>导航</tag>
       </tags>
   </entry>
   <entry>
@@ -368,8 +404,8 @@
         <category>SpringBoot</category>
       </categories>
       <tags>
-        <tag>导航</tag>
         <tag>分享</tag>
+        <tag>导航</tag>
       </tags>
   </entry>
   <entry>
@@ -380,8 +416,8 @@
         <category>前端</category>
       </categories>
       <tags>
-        <tag>导航</tag>
         <tag>分享</tag>
+        <tag>导航</tag>
       </tags>
   </entry>
   <entry>
