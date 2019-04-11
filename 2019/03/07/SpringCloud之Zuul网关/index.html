@@ -94,13 +94,13 @@
 <meta property="og:site_name" content="Mkdir">
 <meta property="og:description" content="使用Spring Cloud实现微服务的架构基本成型，大致是这样的: 我们使用Spring Cloud Netflix中的Eureka实现了服务注册中心以及服务注册与发现；而服务间通过Ribbon或Feign实现服务的消费以及均衡负载；通过Spring Cloud Config实现了应用多环境的外部化配置以及版本管理。为了使得服务集群更为健壮，使用Hystrix的融断机制来避免在微服务架构中个别服">
 <meta property="og:locale" content="zh-Hans">
-<meta property="og:image" content="http://yoursite.com/2019/03/07/images/1525674644660.png">
-<meta property="og:image" content="http://yoursite.com/2019/03/07/images/1525675648881.png">
+<meta property="og:image" content="http://yoursite.com/2019/03/07/SpringCloud之Zuul网关/images/1525674644660.png">
+<meta property="og:image" content="http://yoursite.com/2019/03/07/SpringCloud之Zuul网关/images/1525675648881.png">
 <meta property="og:updated_time" content="2019-04-10T15:56:19.015Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="SpringCloud之Zuul网关">
 <meta name="twitter:description" content="使用Spring Cloud实现微服务的架构基本成型，大致是这样的: 我们使用Spring Cloud Netflix中的Eureka实现了服务注册中心以及服务注册与发现；而服务间通过Ribbon或Feign实现服务的消费以及均衡负载；通过Spring Cloud Config实现了应用多环境的外部化配置以及版本管理。为了使得服务集群更为健壮，使用Hystrix的融断机制来避免在微服务架构中个别服">
-<meta name="twitter:image" content="http://yoursite.com/2019/03/07/images/1525674644660.png">
+<meta name="twitter:image" content="http://yoursite.com/2019/03/07/SpringCloud之Zuul网关/images/1525674644660.png">
 
 
 
@@ -431,7 +431,7 @@
       
 
       
-        <p>使用Spring Cloud实现微服务的架构基本成型，大致是这样的:<br><img src="../images/1525674644660.png" alt></p>
+        <p>使用Spring Cloud实现微服务的架构基本成型，大致是这样的:<br><img src="/2019/03/07/SpringCloud之Zuul网关/images/1525674644660.png" alt></p>
 <p>我们使用Spring Cloud Netflix中的Eureka实现了服务注册中心以及服务注册与发现；而服务间通过Ribbon或Feign实现服务的消费以及均衡负载；通过Spring Cloud Config实现了应用多环境的外部化配置以及版本管理。为了使得服务集群更为健壮，使用Hystrix的融断机制来避免在微服务架构中个别服务出现异常时引起的故障蔓延。</p>
 <p>在该架构中，我们的服务集群包含：内部服务Service A和Service B，他们都会注册与订阅服务至Eureka Server，而Open Service是一个对外的服务，通过均衡负载公开至服务调用方。我们把焦点聚集在对外服务这块，直接暴露我们的服务地址，这样的实现是否合理，或者是否有更好的实现方式呢？</p>
 <a id="more"></a>
@@ -450,7 +450,7 @@
 <p>面对类似上面的问题，我们要如何解决呢？答案是：服务网关！</p>
 <p>为了解决上面这些问题，我们需要将权限控制这样的东西从我们的服务单元中抽离出去，而最适合这些逻辑的地方就是处于对外访问最前端的地方，我们需要一个更强大一些的均衡负载器的 服务网关。</p>
 <p>服务网关是微服务架构中一个不可或缺的部分。通过服务网关统一向外系统提供REST API的过程中，除了具备服务路由、均衡负载功能之外，它还具备了权限控制等功能。Spring Cloud Netflix中的Zuul就担任了这样的一个角色，为微服务架构提供了前门保护的作用，同时将权限控制这些较重的非业务逻辑内容迁移到服务路由层面，使得服务集群主体能够具备更高的可复用性和可测试性。</p>
-<p><strong>Zuul加入后的架构</strong><br><img src="../images/1525675648881.png" alt></p>
+<p><strong>Zuul加入后的架构</strong><br><img src="/2019/03/07/SpringCloud之Zuul网关/images/1525675648881.png" alt></p>
 <p>不管是来自于客户端（PC或移动端）的请求，还是服务内部调用。一切对服务的请求都会经过Zuul这个网关，然后再由网关来实现 鉴权、动态路由等等操作。Zuul就是我们服务的统一入口。</p>
 <h2 id="编写启动类"><a href="#编写启动类" class="headerlink" title="编写启动类"></a>编写启动类</h2><p>通过@EnableZuulProxy注解开启Zuul的功能：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">@SpringBootApplication</span><br><span class="line">@EnableZuulProxy // 开启Zuul的网关功能</span><br><span class="line">public class ZuulDemoApplication &#123;</span><br><span class="line"></span><br><span class="line">	public static void main(String[] args) &#123;</span><br><span class="line">		SpringApplication.run(ZuulDemoApplication.class, args);</span><br><span class="line">	&#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
 <h2 id="编写配置"><a href="#编写配置" class="headerlink" title="编写配置"></a>编写配置</h2><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">server:</span><br><span class="line">  port: 10010 #服务端口</span><br><span class="line">spring: </span><br><span class="line">  application:  </span><br><span class="line">    name: api-gateway #指定服务名</span><br></pre></td></tr></table></figure>
@@ -706,7 +706,7 @@ var jiathis_config={
               
                 <a href="/archives/">
               
-                  <span class="site-state-item-count">45</span>
+                  <span class="site-state-item-count">47</span>
                   <span class="site-state-item-name">日志</span>
                 </a>
               </div>
@@ -717,7 +717,7 @@ var jiathis_config={
               
               <div class="site-state-item site-state-categories">
                 <a href="/categories/index.html">
-                  <span class="site-state-item-count">13</span>
+                  <span class="site-state-item-count">15</span>
                   <span class="site-state-item-name">分类</span>
                 </a>
               </div>

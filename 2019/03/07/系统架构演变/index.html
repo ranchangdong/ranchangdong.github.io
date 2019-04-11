@@ -94,16 +94,16 @@
 <meta property="og:site_name" content="Mkdir">
 <meta property="og:description" content="集中式架构当网站流量很小时，只需一个应用，将所有功能都部署在一起，以减少部署节点和成本。此时，用于简化增删改查工作量的数据访问框架(ORM)是影响项目开发的关键">
 <meta property="og:locale" content="zh-Hans">
-<meta property="og:image" content="http://yoursite.com/2019/03/07/images/1525529091749.png">
-<meta property="og:image" content="http://yoursite.com/2019/03/07/images/1525529671801.png">
-<meta property="og:image" content="http://yoursite.com/2019/03/07/images/1525530657919.png">
-<meta property="og:image" content="http://yoursite.com/2019/03/07/images/1525530804753.png">
-<meta property="og:image" content="http://yoursite.com/2019/03/07/images/1526860071166.png">
+<meta property="og:image" content="http://yoursite.com/2019/03/07/系统架构演变/images/1525529091749.png">
+<meta property="og:image" content="http://yoursite.com/2019/03/07/系统架构演变/images/1525529671801.png">
+<meta property="og:image" content="http://yoursite.com/2019/03/07/系统架构演变/images/1525530657919.png">
+<meta property="og:image" content="http://yoursite.com/2019/03/07/系统架构演变/images/1525530804753.png">
+<meta property="og:image" content="http://yoursite.com/2019/03/07/系统架构演变/images/1526860071166.png">
 <meta property="og:updated_time" content="2019-03-07T11:45:43.324Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="系统架构演变">
 <meta name="twitter:description" content="集中式架构当网站流量很小时，只需一个应用，将所有功能都部署在一起，以减少部署节点和成本。此时，用于简化增删改查工作量的数据访问框架(ORM)是影响项目开发的关键">
-<meta name="twitter:image" content="http://yoursite.com/2019/03/07/images/1525529091749.png">
+<meta name="twitter:image" content="http://yoursite.com/2019/03/07/系统架构演变/images/1525529091749.png">
 
 
 
@@ -434,13 +434,13 @@
       
 
       
-        <h2 id="集中式架构"><a href="#集中式架构" class="headerlink" title="集中式架构"></a>集中式架构</h2><p>当网站流量很小时，只需一个应用，将所有功能都部署在一起，以减少部署节点和成本。此时，用于简化增删改查工作量的数据访问框架(ORM)是影响项目开发的关键<br><img src="../images/1525529091749.png" alt="集中式架构"><br><a id="more"></a><br><strong>存在的问题</strong><br> 1.代码耦合，开发维护困难<br> 2.无法针对不同模块进行针对性优化<br> 3.无法水平扩展<br> 4.单点容错率低，并发能力差</p>
-<h2 id="垂直拆分"><a href="#垂直拆分" class="headerlink" title="垂直拆分"></a>垂直拆分</h2><p>当访问量逐渐增大，单一应用无法满足需求，此时为了应对更高的并发和业务需求，我们根据业务功能对系统进行拆分：<br><img src="../images/1525529671801.png" alt="垂直拆分"><br><strong>优点：</strong><br> 1.系统拆分实现了流量分担，解决了并发问题<br> 2.可以针对不同模块进行优化<br> 3.方便水平扩展，负载均衡，容错率提高<br><strong>缺点：</strong><br> 1.系统间相互独立，会有很多重复开发工作，影响开发效率</p>
-<h2 id="分布式服务"><a href="#分布式服务" class="headerlink" title="分布式服务"></a>分布式服务</h2><p>当垂直应用越来越多，应用之间交互不可避免，将核心业务抽取出来，作为独立的服务，逐渐形成稳定的服务中心，使前端应用能更快速的响应多变的市场需求。此时，用于提高业务复用及整合的分布式调用是关键。<br><img src="../images/1525530657919.png" alt="分布式服务"><br><strong>优点：</strong><br>    将基础服务进行了抽取，系统间相互调用，提高了代码复用和开发效率<br><strong>缺点：</strong><br>    系统间耦合度变高，调用关系错综复杂，难以维护</p>
-<h2 id="服务治理（SOA）"><a href="#服务治理（SOA）" class="headerlink" title="服务治理（SOA）"></a>服务治理（SOA）</h2><p>当服务越来越多，容量的评估，小服务资源的浪费等问题逐渐显现，此时需增加一个调度中心基于访问压力实时管理集群容量，提高集群利用率。此时，用于提高机器利用率的资源调度和治理中心(SOA)是关键<br><img src="../images/1525530804753.png" alt="服务治理"><br>以前出现了什么问题？<br>    服务越来越多，需要管理每个服务的地址<br>    调用关系错综复杂，难以理清依赖关系<br>    服务过多，服务状态难以管理，无法根据服务情况动态管理<br>服务治理要做什么？<br>    服务注册中心，实现服务自动注册和发现，无需人为记录服务地址<br>    服务自动订阅，服务列表自动推送，服务调用透明化，无需关心依赖关系<br>    动态监控服务状态监控报告，人为控制服务状态<br><strong>缺点：</strong><br>    服务间会有依赖关系，一旦某个环节出错会影响较大<br>    服务关系复杂，运维、测试部署困难，不符合DevOps思想</p>
+        <h2 id="集中式架构"><a href="#集中式架构" class="headerlink" title="集中式架构"></a>集中式架构</h2><p>当网站流量很小时，只需一个应用，将所有功能都部署在一起，以减少部署节点和成本。此时，用于简化增删改查工作量的数据访问框架(ORM)是影响项目开发的关键<br><img src="/2019/03/07/系统架构演变/images/1525529091749.png" alt="集中式架构"><br><a id="more"></a><br><strong>存在的问题</strong><br> 1.代码耦合，开发维护困难<br> 2.无法针对不同模块进行针对性优化<br> 3.无法水平扩展<br> 4.单点容错率低，并发能力差</p>
+<h2 id="垂直拆分"><a href="#垂直拆分" class="headerlink" title="垂直拆分"></a>垂直拆分</h2><p>当访问量逐渐增大，单一应用无法满足需求，此时为了应对更高的并发和业务需求，我们根据业务功能对系统进行拆分：<br><img src="/2019/03/07/系统架构演变/images/1525529671801.png" alt="垂直拆分"><br><strong>优点：</strong><br> 1.系统拆分实现了流量分担，解决了并发问题<br> 2.可以针对不同模块进行优化<br> 3.方便水平扩展，负载均衡，容错率提高<br><strong>缺点：</strong><br> 1.系统间相互独立，会有很多重复开发工作，影响开发效率</p>
+<h2 id="分布式服务"><a href="#分布式服务" class="headerlink" title="分布式服务"></a>分布式服务</h2><p>当垂直应用越来越多，应用之间交互不可避免，将核心业务抽取出来，作为独立的服务，逐渐形成稳定的服务中心，使前端应用能更快速的响应多变的市场需求。此时，用于提高业务复用及整合的分布式调用是关键。<br><img src="/2019/03/07/系统架构演变/images/1525530657919.png" alt="分布式服务"><br><strong>优点：</strong><br>    将基础服务进行了抽取，系统间相互调用，提高了代码复用和开发效率<br><strong>缺点：</strong><br>    系统间耦合度变高，调用关系错综复杂，难以维护</p>
+<h2 id="服务治理（SOA）"><a href="#服务治理（SOA）" class="headerlink" title="服务治理（SOA）"></a>服务治理（SOA）</h2><p>当服务越来越多，容量的评估，小服务资源的浪费等问题逐渐显现，此时需增加一个调度中心基于访问压力实时管理集群容量，提高集群利用率。此时，用于提高机器利用率的资源调度和治理中心(SOA)是关键<br><img src="/2019/03/07/系统架构演变/images/1525530804753.png" alt="服务治理"><br>以前出现了什么问题？<br>    服务越来越多，需要管理每个服务的地址<br>    调用关系错综复杂，难以理清依赖关系<br>    服务过多，服务状态难以管理，无法根据服务情况动态管理<br>服务治理要做什么？<br>    服务注册中心，实现服务自动注册和发现，无需人为记录服务地址<br>    服务自动订阅，服务列表自动推送，服务调用透明化，无需关心依赖关系<br>    动态监控服务状态监控报告，人为控制服务状态<br><strong>缺点：</strong><br>    服务间会有依赖关系，一旦某个环节出错会影响较大<br>    服务关系复杂，运维、测试部署困难，不符合DevOps思想</p>
 <h2 id="微服务"><a href="#微服务" class="headerlink" title="微服务"></a>微服务</h2><p>前面说的SOA，英文翻译过来是面向服务。微服务，似乎也是服务，都是对系统进行拆分。因此两者非常容易混淆，但其实却有一些差别：<br><strong>微服务的特点：</strong><br>    单一职责：微服务中每一个服务都对应唯一的业务能力，做到单一职责<br>    微：微服务的服务拆分粒度很小，例如一个用户管理就可以作为一个服务。每个服务虽小，但“五脏俱全”。<br>    面向服务：面向服务是说每个服务都要对外暴露服务接口API。并不关心服务的技术实现，做到与平台和语言无关，也不限定用什么技术实现，只要提供Rest的接口即可。<br>    自治：自治是说服务间互相独立，互不干扰<br>        团队独立：每个服务都是一个独立的开发团队，人数不能过多。<br>        技术独立：因为是面向服务，提供Rest接口，使用什么技术没有别人干涉<br>        前后端分离：采用前后端分离开发，提供统一Rest接口，后端不用再为PC、移动段开发不同接口<br>        数据库分离：每个服务都使用自己的数据源</p>
 <pre><code>- - 部署独立，服务间虽然有调用，但要做到服务重启不影响其它服务。有利于持续集成和持续交付。每个服务都是独立的组件，可复用，可替换，降低耦合，易维护
-</code></pre><p><strong>微服务结构图</strong><br><img src="../images/1526860071166.png" alt="微服务结构图"></p>
+</code></pre><p><strong>微服务结构图</strong><br><img src="/2019/03/07/系统架构演变/images/1526860071166.png" alt="微服务结构图"></p>
 
       
     </div>
@@ -630,7 +630,7 @@ var jiathis_config={
               
                 <a href="/archives/">
               
-                  <span class="site-state-item-count">45</span>
+                  <span class="site-state-item-count">47</span>
                   <span class="site-state-item-name">日志</span>
                 </a>
               </div>
@@ -641,7 +641,7 @@ var jiathis_config={
               
               <div class="site-state-item site-state-categories">
                 <a href="/categories/index.html">
-                  <span class="site-state-item-count">13</span>
+                  <span class="site-state-item-count">15</span>
                   <span class="site-state-item-name">分类</span>
                 </a>
               </div>

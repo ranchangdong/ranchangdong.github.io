@@ -94,16 +94,16 @@
 <meta property="og:site_name" content="Mkdir">
 <meta property="og:description" content="Api请求及响应规范为了严格按照接口进行开发，提高效率，对请求及响应格式进行规范化。1、get 请求时，采用key/value格式请求，SpringMVC可采用基本类型的变量接收，也可以采用对象接收。2、Post请求时，可以提交form表单数据（application/x-www-form-urlencoded）和Json数据（ContentType=application/json），文件等多部">
 <meta property="og:locale" content="zh-Hans">
-<meta property="og:image" content="http://yoursite.com/2019/04/11/images/20190411003949.png">
-<meta property="og:image" content="http://yoursite.com/2019/04/11/images/20190411004631.png">
-<meta property="og:image" content="http://yoursite.com/2019/04/11/images/20190411004750.png">
-<meta property="og:image" content="http://yoursite.com/2019/04/11/images/20190411004924.png">
-<meta property="og:image" content="http://yoursite.com/2019/04/11/images/20190411005036.png">
-<meta property="og:updated_time" content="2019-04-10T16:56:06.442Z">
+<meta property="og:image" content="http://yoursite.com/2019/04/11/接口开发规范/20190411003949.png">
+<meta property="og:image" content="http://yoursite.com/2019/04/11/接口开发规范/20190411004631.png">
+<meta property="og:image" content="http://yoursite.com/2019/04/11/接口开发规范/20190411004750.png">
+<meta property="og:image" content="http://yoursite.com/2019/04/11/接口开发规范/20190411004924.png">
+<meta property="og:image" content="http://yoursite.com/2019/04/11/接口开发规范/20190411005036.png">
+<meta property="og:updated_time" content="2019-04-11T11:53:07.998Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="接口开发规范">
 <meta name="twitter:description" content="Api请求及响应规范为了严格按照接口进行开发，提高效率，对请求及响应格式进行规范化。1、get 请求时，采用key/value格式请求，SpringMVC可采用基本类型的变量接收，也可以采用对象接收。2、Post请求时，可以提交form表单数据（application/x-www-form-urlencoded）和Json数据（ContentType=application/json），文件等多部">
-<meta name="twitter:image" content="http://yoursite.com/2019/04/11/images/20190411003949.png">
+<meta name="twitter:image" content="http://yoursite.com/2019/04/11/接口开发规范/20190411003949.png">
 
 
 
@@ -328,7 +328,7 @@
               
                 <span class="post-meta-item-text">发表于</span>
               
-              <time title="创建于" itemprop="dateCreated datePublished" datetime="2019-04-11T00:34:41+08:00">
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2019-04-11T19:48:49+08:00">
                 2019-04-11
               </time>
             
@@ -445,7 +445,7 @@
 <p>在Java类中添加Swagger的注解即可生成Swagger接口，常用Swagger注解如下：</p>
 <p><strong><br>@Api：修饰整个类，描述Controller的作用<br>@ApiOperation：描述一个类的一个方法，或者说一个接口<br>@ApiParam：单个参数描述<br>@ApiModel：用对象来接收参数<br>@ApiModelProperty：用对象接收参数时，描述对象的一个字段<br>@ApiResponse：HTTP响应其中1个描述<br>@ApiResponses：HTTP响应整体描述<br>@ApiIgnore：使用该注解忽略这个API<br>@ApiError ：发生错误返回的信息<br>@ApiImplicitParam：一个请求参数<br>@ApiImplicitParams：多个请求参数<br>@ApiImplicitParam属性：
 </strong></p>
-<p><img src="../images/20190411003949.png" alt></p>
+<p><img src="/2019/04/11/接口开发规范/20190411003949.png" alt></p>
 <p><strong>Swagger接口定义</strong></p>
 <p>修改接口工程中页面查询接口，添加Swagger注解</p>
 <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line">@Api(value=&quot;cms页面管理接口&quot;,description = &quot;cms页面管理接口，提供页面的增、删、改、查&quot;)</span><br><span class="line">public interface CmsPageControllerApi &#123;</span><br><span class="line">@ApiOperation(&quot;分页查询页面列表&quot;)</span><br><span class="line">@ApiImplicitParams(&#123;</span><br><span class="line">@ApiImplicitParam(name=&quot;page&quot;,value = &quot;页</span><br><span class="line">码&quot;,required=true,paramType=&quot;path&quot;,dataType=&quot;int&quot;),</span><br><span class="line">@ApiImplicitParam(name=&quot;size&quot;,value = &quot;每页记录</span><br><span class="line">数&quot;,required=true,paramType=&quot;path&quot;,dataType=&quot;int&quot;)</span><br><span class="line">&#125;)</span><br><span class="line">public QueryResponseResult findList(int page, int size, QueryPageRequest queryPageRequest) ;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
@@ -453,15 +453,15 @@
 <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br></pre></td><td class="code"><pre><span class="line">@Data</span><br><span class="line">public class QueryPageRequest extends RequestData &#123;</span><br><span class="line">//站点id</span><br><span class="line">@ApiModelProperty(&quot;站点id&quot;)</span><br><span class="line">private String siteId;</span><br><span class="line">//页面ID</span><br><span class="line">@ApiModelProperty(&quot;页面ID&quot;)</span><br><span class="line">private String pageId;</span><br><span class="line">//页面名称</span><br><span class="line">@ApiModelProperty(&quot;页面名称&quot;)</span><br><span class="line">private String pageName;</span><br><span class="line">//页面别名</span><br><span class="line">@ApiModelProperty(&quot;页面别名&quot;)</span><br><span class="line">private String pageAliase;</span><br><span class="line">//模版id</span><br><span class="line">@ApiModelProperty(&quot;模版id&quot;)</span><br><span class="line">private String templateId;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 <h2 id="Swagger接口测试"><a href="#Swagger接口测试" class="headerlink" title="Swagger接口测试"></a>Swagger接口测试</h2><p>Swagger接口生成工作原理：<br>1、系统启动，扫描到api工程中的Swagger2Configuration类<br>2、在此类中指定了包路径com.xuecheng，找到在此包下及子包下标记有@RestController注解的controller类<br>3、根据controller类中的Swagger注解生成接口文档。</p>
 <p>启动服务工程，查看接口文档，根据IP和端口查询   这里是请求：<a href="http://localhost:31001/swagger-ui.html" target="_blank" rel="noopener">http://localhost:31001/swagger-ui.html</a></p>
-<p><img src="../images/20190411004631.png" alt></p>
+<p><img src="/2019/04/11/接口开发规范/20190411004631.png" alt></p>
 <p>使用Swagger工具测试服务接口：<br>1.在cms服务接口中打断点<br>2.打开接口文档页面，输入请求参数，点击“Try it out”发起请求</p>
-<p><img src="../images/20190411004750.png" alt></p>
+<p><img src="/2019/04/11/接口开发规范/20190411004750.png" alt></p>
 <h2 id="Postman"><a href="#Postman" class="headerlink" title="Postman"></a>Postman</h2><p>Postman是一款功能强大的http接口测试工具，使用postman可以完成http各种请求的功能测试。<br>官方地址：<a href="https://www.getpostman.com/" target="_blank" rel="noopener">https://www.getpostman.com/</a><br>1、安装Postman<br>本教程使用，双击打开 Postman-win64-6.0.10-Setup.exe<br>新建一个Postman窗口</p>
 <p><strong>使用postman测试http接口</strong></p>
-<p><img src="../images/20190411004924.png" alt></p>
+<p><img src="/2019/04/11/接口开发规范/20190411004924.png" alt></p>
 <p>请求参数设置</p>
 <ol>
-<li>get请求参数设置<br><img src="../images/20190411005036.png" alt></li>
+<li>get请求参数设置<br><img src="/2019/04/11/接口开发规范/20190411005036.png" alt></li>
 </ol>
 <p>form-data：将表单的数据转为键值对，并且可以包括文件<br>x-www-form-urlencoded: content-type为application/x-www-from-urlencoded，将表单的数据转为键值对<br>raw：请求text、json、xml、html，比如如果请求json数据则使用此格式<br>binary：content-type为application/octet-stream，可用于上传文件。</p>
 <h2 id="扩展"><a href="#扩展" class="headerlink" title="扩展"></a>扩展</h2><p>PO：persistent object 持久对象</p>
@@ -564,8 +564,8 @@
         <div class="post-nav">
           <div class="post-nav-next post-nav-item">
             
-              <a href="/2019/04/11/SpringDataMongodb/" rel="next" title="SpringDataMongodb">
-                <i class="fa fa-chevron-left"></i> SpringDataMongodb
+              <a href="/2019/04/11/MongoDB/" rel="next" title="MongoDB">
+                <i class="fa fa-chevron-left"></i> MongoDB
               </a>
             
           </div>
@@ -573,6 +573,10 @@
           <span class="post-nav-divider"></span>
 
           <div class="post-nav-prev post-nav-item">
+            
+              <a href="/2019/04/11/SSI/" rel="prev" title="SSI">
+                SSI <i class="fa fa-chevron-right"></i>
+              </a>
             
           </div>
         </div>
@@ -680,7 +684,7 @@ var jiathis_config={
               
                 <a href="/archives/">
               
-                  <span class="site-state-item-count">45</span>
+                  <span class="site-state-item-count">47</span>
                   <span class="site-state-item-name">日志</span>
                 </a>
               </div>
@@ -691,7 +695,7 @@ var jiathis_config={
               
               <div class="site-state-item site-state-categories">
                 <a href="/categories/index.html">
-                  <span class="site-state-item-count">13</span>
+                  <span class="site-state-item-count">15</span>
                   <span class="site-state-item-name">分类</span>
                 </a>
               </div>

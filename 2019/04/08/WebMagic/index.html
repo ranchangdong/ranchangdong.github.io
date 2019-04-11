@@ -94,18 +94,18 @@
 <meta property="og:site_name" content="Mkdir">
 <meta property="og:description" content="爬虫分类:    通用网络爬虫:互联网上抓取所有数据    聚焦网络爬虫:互联网上只抓取某一种数据    增量式网络爬虫:互联网上只抓取刚刚更新的数据    Deep Web 爬虫:Deep Web 是那些大部分内容不能通过静态链接获取的、隐藏在搜索表单后的，只有用户提交一些关键词才能获得的 Web 页面。 WebMagic的结构分为Downloader、PageProcessor、Schedul">
 <meta property="og:locale" content="zh-Hans">
-<meta property="og:image" content="http://yoursite.com/2019/04/08/images/20190409002802.jpg">
-<meta property="og:image" content="http://yoursite.com/2019/04/08/images/20190409003715.jpg">
-<meta property="og:image" content="http://yoursite.com/2019/04/08/images/20190409011156.png">
-<meta property="og:image" content="http://yoursite.com/2019/04/08/images/20190409005912.png">
-<meta property="og:image" content="http://yoursite.com/2019/04/08/images/20190409010154.png">
-<meta property="og:image" content="http://yoursite.com/2019/04/08/images/20190409010634.png">
-<meta property="og:image" content="http://yoursite.com/2019/04/08/images/20190409010759.png">
+<meta property="og:image" content="http://yoursite.com/2019/04/08/WebMagic/images/20190409002802.jpg">
+<meta property="og:image" content="http://yoursite.com/2019/04/08/WebMagic/images/20190409003715.jpg">
+<meta property="og:image" content="http://yoursite.com/2019/04/08/WebMagic/images/20190409011156.png">
+<meta property="og:image" content="http://yoursite.com/2019/04/08/WebMagic/images/20190409005912.png">
+<meta property="og:image" content="http://yoursite.com/2019/04/08/WebMagic/images/20190409010154.png">
+<meta property="og:image" content="http://yoursite.com/2019/04/08/WebMagic/images/20190409010634.png">
+<meta property="og:image" content="http://yoursite.com/2019/04/08/WebMagic/images/20190409010759.png">
 <meta property="og:updated_time" content="2019-04-08T17:14:26.280Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="WebMagic">
 <meta name="twitter:description" content="爬虫分类:    通用网络爬虫:互联网上抓取所有数据    聚焦网络爬虫:互联网上只抓取某一种数据    增量式网络爬虫:互联网上只抓取刚刚更新的数据    Deep Web 爬虫:Deep Web 是那些大部分内容不能通过静态链接获取的、隐藏在搜索表单后的，只有用户提交一些关键词才能获得的 Web 页面。 WebMagic的结构分为Downloader、PageProcessor、Schedul">
-<meta name="twitter:image" content="http://yoursite.com/2019/04/08/images/20190409002802.jpg">
+<meta name="twitter:image" content="http://yoursite.com/2019/04/08/WebMagic/images/20190409002802.jpg">
 
 
 
@@ -463,27 +463,27 @@
 <p>可是使用:nth-child(n)选择第几个元素，如下选择第一个元素<br>page.getHtml().css(“div#news_div &gt; ul &gt; li:nth-child(1) a”).toString()<br>注意：需要使用&gt;，就是直接子元素才可以选择第几个元素</p>
 <p><strong>正则表达式</strong><br>正则表达式则是一种通用的文本抽取语言。在这里一般用于获取url地址。</p>
 <h2 id="抽取元素API"><a href="#抽取元素API" class="headerlink" title="抽取元素API"></a>抽取元素API</h2><p>Selectable相关的抽取元素链式API是WebMagic的一个核心功能。使用Selectable接口，可以直接完成页面元素的链式抽取，也无需去关心抽取的细节。</p>
-<p>在刚才的例子中可以看到，page.getHtml()返回的是一个Html对象，它实现了Selectable接口。这个接口包含的方法分为两类：抽取部分和获取结果部分<br><img src="../images/20190409002802.jpg" alt></p>
+<p>在刚才的例子中可以看到，page.getHtml()返回的是一个Html对象，它实现了Selectable接口。这个接口包含的方法分为两类：抽取部分和获取结果部分<br><img src="/2019/04/08/WebMagic/images/20190409002802.jpg" alt></p>
 <h2 id="获取结果API"><a href="#获取结果API" class="headerlink" title="获取结果API"></a>获取结果API</h2><p>当链式调用结束时，我们一般都想要拿到一个字符串类型的结果。这时候就需要用到获取结果的API了。</p>
-<p>我们知道，一条抽取规则，无论是XPath、CSS选择器或者正则表达式，总有可能抽取到多条元素。WebMagic对这些进行了统一，可以通过不同的API获取到一个或者多个元素<br><img src="../images/20190409003715.jpg" alt></p>
+<p>我们知道，一条抽取规则，无论是XPath、CSS选择器或者正则表达式，总有可能抽取到多条元素。WebMagic对这些进行了统一，可以通过不同的API获取到一个或者多个元素<br><img src="/2019/04/08/WebMagic/images/20190409003715.jpg" alt></p>
 <p>当有多条数据的时候，使用get()和toString()都是获取第一个url地址<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">String str = page.getHtml()</span><br><span class="line">        .css(&quot;div#news_div&quot;)</span><br><span class="line">        .links().regex(&quot;.*[0-3]$&quot;).toString();</span><br><span class="line"></span><br><span class="line">String get = page.getHtml()</span><br><span class="line">        .css(&quot;div#news_div&quot;)</span><br><span class="line">        .links().regex(&quot;.*[0-3]$&quot;).get();</span><br></pre></td></tr></table></figure></p>
 <p>这里selectable.toString()采用了toString()这个接口，是为了在输出以及和一些框架结合的时候，更加方便。因为一般情况下，我们都只需要选择一个元素！<br>selectable.all()则会获取到所有元素。</p>
 <h2 id="获取链接"><a href="#获取链接" class="headerlink" title="获取链接"></a>获取链接</h2><p>有了处理页面的逻辑，我们的爬虫就接近完工了，但是现在还有一个问题：一个站点的页面是很多的，一开始我们不可能全部列举出来，于是如何发现后续的链接，是一个爬虫不可缺少的一部分。</p>
 <p>下面的例子就是获取<a href="https://www.jd.com/moreSubject.aspx这个页面中" target="_blank" rel="noopener">https://www.jd.com/moreSubject.aspx这个页面中</a><br>所有符合<a href="https://www.jd.com/news.\\w+?.*正则表达式的url地址" target="_blank" rel="noopener">https://www.jd.com/news.\\w+?.*正则表达式的url地址</a><br>并将这些链接加入到待抓取的队列中去。<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line">public void process(Page page) &#123;</span><br><span class="line">    page.addTargetRequests(page.getHtml().links()</span><br><span class="line">            .regex(&quot;(https://www.jd.com/news.\\w+?.*)&quot;).all());</span><br><span class="line">    System.out.println(page.getHtml().css(&quot;div.mt&gt;h1&quot;).all());</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">public static void main(String[] args) &#123;</span><br><span class="line">    Spider.create(new JobProcessor())</span><br><span class="line">            .addUrl(&quot;https://www.jd.com/moreSubject.aspx&quot;)</span><br><span class="line">            .run();</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
 <h2 id="使用Pipeline保存结果"><a href="#使用Pipeline保存结果" class="headerlink" title="使用Pipeline保存结果"></a>使用Pipeline保存结果</h2><p>WebMagic用于保存结果的组件叫做Pipeline。我们现在通过“控制台输出结果”这件事也是通过一个内置的Pipeline完成的，它叫做ConsolePipeline。<br>那么，我现在想要把结果用保存到文件中，怎么做呢？只将Pipeline的实现换成”FilePipeline”就可以了。</p>
-<p><strong>已有的Pipeline</strong><br>WebMagic中就已经提供了控制台输出、保存到文件、保存为JSON格式的文件几种通用的Pipeline。<br><img src="../images/20190409011156.png" alt></p>
+<p><strong>已有的Pipeline</strong><br>WebMagic中就已经提供了控制台输出、保存到文件、保存为JSON格式的文件几种通用的Pipeline。<br><img src="/2019/04/08/WebMagic/images/20190409011156.png" alt></p>
 <p><strong>自定义Pipeline</strong></p>
 <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br></pre></td><td class="code"><pre><span class="line">@Component</span><br><span class="line">public class SpringDataPipeline implements Pipeline &#123;</span><br><span class="line"></span><br><span class="line">    @Autowired</span><br><span class="line">    private JobInfoService jobInfoService;</span><br><span class="line"></span><br><span class="line">    @Override</span><br><span class="line">    public void process(ResultItems resultItems, Task task) &#123;</span><br><span class="line">        //获取需要保存到MySQL的数据</span><br><span class="line">        JobInfo jobInfo = resultItems.get(&quot;jobInfo&quot;);</span><br><span class="line"></span><br><span class="line">        //判断获取到的数据不为空</span><br><span class="line">        if(jobInfo!=null) &#123;</span><br><span class="line">            //如果有值则进行保存</span><br><span class="line">            this.jobInfoService.save(jobInfo);</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 <p>在Processor中修改process()启动的逻辑，添加代码</p>
 <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line">@Autowired</span><br><span class="line">private SpringDataPipeline springDataPipeline;</span><br><span class="line"></span><br><span class="line">public void process() &#123;</span><br><span class="line">    Spider.create(new JobProcessor())</span><br><span class="line">            .addUrl(url)</span><br><span class="line">            .addPipeline(this.springDataPipeline)</span><br><span class="line">            .setScheduler(new QueueScheduler()</span><br><span class="line">                    .setDuplicateRemover(new BloomFilterDuplicateRemover(10000000)))</span><br><span class="line">            .thread(5)</span><br><span class="line">            .run();</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 <h2 id="爬虫的配置、启动和终止"><a href="#爬虫的配置、启动和终止" class="headerlink" title="爬虫的配置、启动和终止"></a>爬虫的配置、启动和终止</h2><p>Spider是爬虫启动的入口。在启动爬虫之前，我们需要使用一个PageProcessor创建一个Spider对象，然后使用run()进行启动。</p>
 <p>同时Spider的其他组件（Downloader、Scheduler、Pipeline）都可以通过set方法来进行设置。</p>
-<p><img src="../images/20190409005912.png" alt></p>
+<p><img src="/2019/04/08/WebMagic/images/20190409005912.png" alt></p>
 <h2 id="爬虫配置Site"><a href="#爬虫配置Site" class="headerlink" title="爬虫配置Site"></a>爬虫配置Site</h2><p>Site.me()可以对爬虫进行一些配置配置，包括编码、抓取间隔、超时时间、重试次数等。在这里我们先简单设置一下：重试次数为3次，抓取间隔为一秒<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">private Site site = Site.me()</span><br><span class="line">        .setCharset(&quot;UTF-8&quot;)//编码</span><br><span class="line">        .setSleepTime(1)//抓取间隔时间</span><br><span class="line">        .setTimeOut(1000*10)//超时时间</span><br><span class="line">        .setRetrySleepTime(3000)//重试时间</span><br><span class="line">        .setRetryTimes(3);//重试次数</span><br></pre></td></tr></table></figure></p>
 <p>站点本身的一些配置信息，例如编码、HTTP头、超时时间、重试策略等、代理等，都可以通过设置Site对象来进行配置。</p>
-<p><img src="../images/20190409010154.png" alt></p>
+<p><img src="/2019/04/08/WebMagic/images/20190409010154.png" alt></p>
 <h2 id="Scheduler组件"><a href="#Scheduler组件" class="headerlink" title="Scheduler组件"></a>Scheduler组件</h2><p>Scheduler是WebMagic中进行URL管理的组件。一般来说，Scheduler包括两个作用：</p>
-<p>对待抓取的URL队列进行管理。<br>对已抓取的URL进行去重。<br>WebMagic内置了几个常用的Scheduler。如果你只是在本地执行规模比较小的爬虫，那么基本无需定制Scheduler，但是了解一下已经提供的几个Scheduler还是有意义的。<br><img src="../images/20190409010634.png" alt><br>去重部分被单独抽象成了一个接口：DuplicateRemover，从而可以为同一个Scheduler选择不同的去重方式，以适应不同的需要，目前提供了两种去重方式。<br><img src="../images/20190409010759.png" alt><br>RedisScheduler是使用Redis的set进行去重，其他的Scheduler默认都使用HashSetDuplicateRemover来进行去重。<br>如果要使用BloomFilter，必须要加入以下依赖：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">&lt;!--WebMagic对布隆过滤器的支持--&gt;</span><br><span class="line">&lt;dependency&gt;</span><br><span class="line">    &lt;groupId&gt;com.google.guava&lt;/groupId&gt;</span><br><span class="line">    &lt;artifactId&gt;guava&lt;/artifactId&gt;</span><br><span class="line">    &lt;version&gt;16.0&lt;/version&gt;</span><br><span class="line">&lt;/dependency&gt;</span><br></pre></td></tr></table></figure></p>
+<p>对待抓取的URL队列进行管理。<br>对已抓取的URL进行去重。<br>WebMagic内置了几个常用的Scheduler。如果你只是在本地执行规模比较小的爬虫，那么基本无需定制Scheduler，但是了解一下已经提供的几个Scheduler还是有意义的。<br><img src="/2019/04/08/WebMagic/images/20190409010634.png" alt><br>去重部分被单独抽象成了一个接口：DuplicateRemover，从而可以为同一个Scheduler选择不同的去重方式，以适应不同的需要，目前提供了两种去重方式。<br><img src="/2019/04/08/WebMagic/images/20190409010759.png" alt><br>RedisScheduler是使用Redis的set进行去重，其他的Scheduler默认都使用HashSetDuplicateRemover来进行去重。<br>如果要使用BloomFilter，必须要加入以下依赖：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">&lt;!--WebMagic对布隆过滤器的支持--&gt;</span><br><span class="line">&lt;dependency&gt;</span><br><span class="line">    &lt;groupId&gt;com.google.guava&lt;/groupId&gt;</span><br><span class="line">    &lt;artifactId&gt;guava&lt;/artifactId&gt;</span><br><span class="line">    &lt;version&gt;16.0&lt;/version&gt;</span><br><span class="line">&lt;/dependency&gt;</span><br></pre></td></tr></table></figure></p>
 <p>添加布隆过滤器</p>
 <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line">public static void main(String[] args) &#123;</span><br><span class="line">    Spider.create(new JobProcessor())</span><br><span class="line">            //初始访问url地址</span><br><span class="line">            .addUrl(&quot;https://www.jd.com/moreSubject.aspx&quot;)</span><br><span class="line">            .addPipeline(new FilePipeline(&quot;D:/webmagic/&quot;))</span><br><span class="line">            .setScheduler(new QueueScheduler()</span><br><span class="line">                    .setDuplicateRemover(new BloomFilterDuplicateRemover(10000000))) //参数设置需要对多少条数据去重</span><br><span class="line">            .thread(1)//设置线程数</span><br><span class="line">            .run();</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 
@@ -565,8 +565,8 @@
 
           <div class="post-nav-prev post-nav-item">
             
-              <a href="/2019/04/10/SSI/" rel="prev" title="SSI">
-                SSI <i class="fa fa-chevron-right"></i>
+              <a href="/2019/04/11/SpringDataMongodb/" rel="prev" title="SpringDataMongodb">
+                SpringDataMongodb <i class="fa fa-chevron-right"></i>
               </a>
             
           </div>
@@ -675,7 +675,7 @@ var jiathis_config={
               
                 <a href="/archives/">
               
-                  <span class="site-state-item-count">45</span>
+                  <span class="site-state-item-count">47</span>
                   <span class="site-state-item-name">日志</span>
                 </a>
               </div>
@@ -686,7 +686,7 @@ var jiathis_config={
               
               <div class="site-state-item site-state-categories">
                 <a href="/categories/index.html">
-                  <span class="site-state-item-count">13</span>
+                  <span class="site-state-item-count">15</span>
                   <span class="site-state-item-name">分类</span>
                 </a>
               </div>

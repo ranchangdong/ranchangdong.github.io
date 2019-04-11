@@ -94,13 +94,13 @@
 <meta property="og:site_name" content="Mkdir">
 <meta property="og:description" content="远程调用方式无论是微服务还是SOA，都面临着服务间的远程调用。那么服务间的远程调用方式有哪些呢？ 常见的远程调用方式有以下几种：    RPC：Remote Produce Call远程过程调用，类似的还有RMI。自定义数据格式，基于原生TCP通信，速度快，效率高。早期的webservice，现在热门的dubbo，都是RPC的典型    Http：http其实是一种网络传输协议，基于TCP，规定了">
 <meta property="og:locale" content="zh-Hans">
-<meta property="og:image" content="http://yoursite.com/2019/03/07/images/1525568965976.png">
-<meta property="og:image" content="http://yoursite.com/2019/03/07/images/1525569352313.png">
+<meta property="og:image" content="http://yoursite.com/2019/03/07/远程调用方式RPC与http/images/1525568965976.png">
+<meta property="og:image" content="http://yoursite.com/2019/03/07/远程调用方式RPC与http/images/1525569352313.png">
 <meta property="og:updated_time" content="2019-03-07T11:54:18.204Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="远程调用方式RPC与http">
 <meta name="twitter:description" content="远程调用方式无论是微服务还是SOA，都面临着服务间的远程调用。那么服务间的远程调用方式有哪些呢？ 常见的远程调用方式有以下几种：    RPC：Remote Produce Call远程过程调用，类似的还有RMI。自定义数据格式，基于原生TCP通信，速度快，效率高。早期的webservice，现在热门的dubbo，都是RPC的典型    Http：http其实是一种网络传输协议，基于TCP，规定了">
-<meta name="twitter:image" content="http://yoursite.com/2019/03/07/images/1525568965976.png">
+<meta name="twitter:image" content="http://yoursite.com/2019/03/07/远程调用方式RPC与http/images/1525568965976.png">
 
 
 
@@ -443,7 +443,7 @@
 两个程序进行通讯，必须约定好数据传输格式。就好比两个人聊天，要用同一种语言，否则无法沟通。所以，我们必须定义好请求和响应的格式。另外，数据在网路中传输需要进行序列化，所以还需要约定统一的序列化的方式。
 像调用本地服务一样调用远程服务
 如果仅仅是远程调用，还不算是RPC，因为RPC强调的是过程调用，调用的过程对用户而言是应该是透明的，用户不应该关心调用的细节，可以像调用本地服务一样调用远程服务。所以RPC一定要对调用的过程进行封装
-</code></pre><p><strong>RPC调用流程图：</strong><br><img src="../images/1525568965976.png" alt="RPC调用流程图"></p>
+</code></pre><p><strong>RPC调用流程图：</strong><br><img src="/2019/03/07/远程调用方式RPC与http/images/1525568965976.png" alt="RPC调用流程图"></p>
 <h2 id="Http"><a href="#Http" class="headerlink" title="Http"></a>Http</h2><pre><code>Http协议：超文本传输协议，是一种应用层协议。规定了网络传输的请求格式、响应格式、资源定位和操作的方式等。但是底层采用什么网络传输协议，并没有规定，不过现在都是采用TCP协议作为底层传输协议。说到这里，大家可能觉得，Http与RPC的远程调用非常像，都是按照某种规定好的数据格式进行网络通信，有请求，有响应。没错，在这点来看，两者非常相似，但是还是有一些细微差别。
 RPC并没有规定数据传输格式，这个格式可以任意指定，不同的RPC协议，数据格式不一定相同。
 Http中还定义了资源定位的路径，RPC中并不需要
@@ -451,7 +451,7 @@ Http中还定义了资源定位的路径，RPC中并不需要
 优点：RPC方式更加透明，对用户更方便。Http方式更灵活，没有规定API和语言，跨语言、跨平台
 缺点：RPC方式需要在API层面进行封装，限制了开发的语言环境。
 例如我们通过浏览器访问网站，就是通过Http协议。只不过浏览器把请求封装，发起请求以及接收响应，解析响应的事情都帮我们做了。如果是不通过浏览器，那么这些事情都需要自己去完成。
-</code></pre><p><img src="../images/1525569352313.png" alt></p>
+</code></pre><p><img src="/2019/03/07/远程调用方式RPC与http/images/1525569352313.png" alt></p>
 <h2 id="如何选择？"><a href="#如何选择？" class="headerlink" title="如何选择？"></a>如何选择？</h2><pre><code>既然两种方式都可以实现远程调用，我们该如何选择呢？
 速度来看，RPC要比http更快，虽然底层都是TCP，但是http协议的信息往往比较臃肿，不过可以采用gzip压缩
 难度来看，RPC实现较为复杂，http相对比较简单
@@ -649,7 +649,7 @@ var jiathis_config={
               
                 <a href="/archives/">
               
-                  <span class="site-state-item-count">45</span>
+                  <span class="site-state-item-count">47</span>
                   <span class="site-state-item-name">日志</span>
                 </a>
               </div>
@@ -660,7 +660,7 @@ var jiathis_config={
               
               <div class="site-state-item site-state-categories">
                 <a href="/categories/index.html">
-                  <span class="site-state-item-count">13</span>
+                  <span class="site-state-item-count">15</span>
                   <span class="site-state-item-name">分类</span>
                 </a>
               </div>
