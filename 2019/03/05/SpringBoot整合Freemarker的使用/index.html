@@ -5,7 +5,7 @@
   
 
 
-<html class="theme-next gemini use-motion" lang="zh-Hans">
+<html class="theme-next muse use-motion" lang="zh-Hans">
 <head><meta name="generator" content="Hexo 3.8.0">
   <meta charset="UTF-8">
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
@@ -75,7 +75,7 @@
 
 
 
-  <meta name="keywords" content="分享,导航,">
+  <meta name="keywords" content="导航,分享,">
 
 
 
@@ -87,14 +87,14 @@
 
 
 <meta name="description" content="模板引擎 Freemarker它是基于模板文件生成其他文本的通用工具FreeMarker是一款用java语言编写的模版引擎，它虽然不是web应用框架，但它很合适作为web应用框架的一个组件。当你使用上述模板引擎中的时候，它们默认的模板配置路径为：src/main/resources/templates 特点：  轻量级模版引擎，不需要Servlet环境就可以很轻松的嵌入到应用程序中  能生成各种文">
-<meta name="keywords" content="分享,导航">
+<meta name="keywords" content="导航,分享">
 <meta property="og:type" content="article">
 <meta property="og:title" content="SpringBoot整合Freemarker的使用">
 <meta property="og:url" content="http://yoursite.com/2019/03/05/SpringBoot整合Freemarker的使用/index.html">
-<meta property="og:site_name" content="Mkdir">
+<meta property="og:site_name" content="森巴">
 <meta property="og:description" content="模板引擎 Freemarker它是基于模板文件生成其他文本的通用工具FreeMarker是一款用java语言编写的模版引擎，它虽然不是web应用框架，但它很合适作为web应用框架的一个组件。当你使用上述模板引擎中的时候，它们默认的模板配置路径为：src/main/resources/templates 特点：  轻量级模版引擎，不需要Servlet环境就可以很轻松的嵌入到应用程序中  能生成各种文">
 <meta property="og:locale" content="zh-Hans">
-<meta property="og:updated_time" content="2019-04-15T13:09:27.062Z">
+<meta property="og:updated_time" content="2019-04-15T13:15:45.071Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="SpringBoot整合Freemarker的使用">
 <meta name="twitter:description" content="模板引擎 Freemarker它是基于模板文件生成其他文本的通用工具FreeMarker是一款用java语言编写的模版引擎，它虽然不是web应用框架，但它很合适作为web应用框架的一个组件。当你使用上述模板引擎中的时候，它们默认的模板配置路径为：src/main/resources/templates 特点：  轻量级模版引擎，不需要Servlet环境就可以很轻松的嵌入到应用程序中  能生成各种文">
@@ -105,7 +105,7 @@
   var NexT = window.NexT || {};
   var CONFIG = {
     root: '/',
-    scheme: 'Gemini',
+    scheme: 'Muse',
     version: '5.1.4',
     sidebar: {"position":"left","display":"post","offset":12,"b2t":false,"scrollpercent":false,"onmobile":false},
     fancybox: true,
@@ -133,7 +133,7 @@
 
 
 
-  <title>SpringBoot整合Freemarker的使用 | Mkdir</title>
+  <title>SpringBoot整合Freemarker的使用 | 森巴</title>
   
 
 
@@ -164,7 +164,7 @@
     <div class="custom-logo-site-title">
       <a href="/" class="brand" rel="start">
         <span class="logo-line-before"><i></i></span>
-        <span class="site-title">Mkdir</span>
+        <span class="site-title">森巴</span>
         <span class="logo-line-after"><i></i></span>
       </a>
     </div>
@@ -302,7 +302,7 @@
     </span>
 
     <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="Mkdir">
+      <meta itemprop="name" content="森巴">
     </span>
 
     
@@ -438,6 +438,7 @@
 <li><p>入门简单，它是用java编写的，很多语法和java相似</p>
 </li>
 </ol>
+<a id="more"></a>
 <h2 id="Freemarker常用指令"><a href="#Freemarker常用指令" class="headerlink" title="Freemarker常用指令"></a>Freemarker常用指令</h2><blockquote>
 <p>关于freemarker的指令需要知道：<br>1、注释，即&lt;#‐‐和‐‐&gt;，介于其之间的内容会被freemarker忽略<br>2、插值（Interpolation）：即${..}部分,freemarker会用真实的值代替${..}<br>3、FTL指令：和HTML标记类似，名字前加#予以区分，Freemarker会解析标签中的表达式或逻辑。<br>4、文本，仅文本信息，这些不是freemarker的注释、插值、FTL指令的内容会被freemarker忽略解析，直接输出内<br>容</p>
 </blockquote>
@@ -468,7 +469,6 @@
 <p>将json字符串转成对象<br>其中用到了 assign标签，assign的作用是定义一个变量。</p>
 <p>&lt;#assign text=”{‘bank’:’工商银行’,’account’:’10101920201920212’}” /&gt;<br>&lt;#assign data=text?eval /&gt;<br>开户行：${data.bank} 账号：${data.account}</p>
 <h2 id="Springboot-freemarker工程配置详解"><a href="#Springboot-freemarker工程配置详解" class="headerlink" title="Springboot-freemarker工程配置详解"></a>Springboot-freemarker工程配置详解</h2><p><strong>pom.xml文件详解 </strong></p>
-<a id="more"></a>
 <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line">&lt;?xml version=&quot;1.0&quot; encoding=&quot;UTF-8&quot;?&gt;</span><br><span class="line">	&lt;project xmlns=&quot;http://maven.apache.org/POM/4.0.0&quot; xmlns:xsi=&quot;http://www.w3.org/2001/XMLSchema-instance&quot;</span><br><span class="line">         xsi:schemaLocation=&quot;http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd&quot;&gt;</span><br><span class="line">		&lt;modelVersion&gt;4.0.0&lt;/modelVersion&gt;</span><br><span class="line">	 </span><br><span class="line">		&lt;groupId&gt;springboot&lt;/groupId&gt;</span><br><span class="line">		&lt;artifactId&gt;springboot-freemarker&lt;/artifactId&gt;</span><br><span class="line">		&lt;version&gt;0.0.1-SNAPSHOT&lt;/version&gt;</span><br><span class="line">		&lt;name&gt;springboot-freemarker :: Spring Boot 集成 FreeMarker 案例&lt;/name&gt;</span><br><span class="line">	 </span><br><span class="line">		&lt;!-- Spring Boot 启动父依赖 --&gt;</span><br><span class="line">		&lt;parent&gt;</span><br><span class="line">			&lt;groupId&gt;org.springframework.boot&lt;/groupId&gt;</span><br><span class="line">			&lt;artifactId&gt;spring-boot-starter-parent&lt;/artifactId&gt;</span><br><span class="line">			&lt;version&gt;1.5.1.RELEASE&lt;/version&gt;</span><br><span class="line">		&lt;/parent&gt;</span><br><span class="line">	 </span><br><span class="line">		&lt;properties&gt;</span><br><span class="line">			&lt;mybatis-spring-boot&gt;1.2.0&lt;/mybatis-spring-boot&gt;</span><br><span class="line">			&lt;mysql-connector&gt;5.1.39&lt;/mysql-connector&gt;</span><br><span class="line">		&lt;/properties&gt;</span><br><span class="line">	 </span><br><span class="line">		&lt;dependencies&gt;</span><br><span class="line">			&lt;!-- Spring Boot Freemarker 依赖 --&gt;</span><br><span class="line">			&lt;dependency&gt;</span><br><span class="line">				&lt;groupId&gt;org.springframework.boot&lt;/groupId&gt;</span><br><span class="line">				&lt;artifactId&gt;spring-boot-starter-freemarker&lt;/artifactId&gt;</span><br><span class="line">			&lt;/dependency&gt;</span><br><span class="line">	 </span><br><span class="line">			&lt;!-- Spring Boot Web 依赖 --&gt;</span><br><span class="line">			&lt;dependency&gt;</span><br><span class="line">				&lt;groupId&gt;org.springframework.boot&lt;/groupId&gt;</span><br><span class="line">				&lt;artifactId&gt;spring-boot-starter-web&lt;/artifactId&gt;</span><br><span class="line">			&lt;/dependency&gt;</span><br><span class="line">	 </span><br><span class="line">			&lt;!-- Spring Boot Test 依赖 --&gt;</span><br><span class="line">			&lt;dependency&gt;</span><br><span class="line">				&lt;groupId&gt;org.springframework.boot&lt;/groupId&gt;</span><br><span class="line">				&lt;artifactId&gt;spring-boot-starter-test&lt;/artifactId&gt;</span><br><span class="line">				&lt;scope&gt;test&lt;/scope&gt;</span><br><span class="line">			&lt;/dependency&gt;</span><br><span class="line">	 </span><br><span class="line">			&lt;!-- Spring Boot Mybatis 依赖 --&gt;</span><br><span class="line">			&lt;dependency&gt;</span><br><span class="line">				&lt;groupId&gt;org.mybatis.spring.boot&lt;/groupId&gt;</span><br><span class="line">				&lt;artifactId&gt;mybatis-spring-boot-starter&lt;/artifactId&gt;</span><br><span class="line">				&lt;version&gt;$&#123;mybatis-spring-boot&#125;&lt;/version&gt;</span><br><span class="line">			&lt;/dependency&gt;</span><br><span class="line">	 </span><br><span class="line">			&lt;!-- MySQL 连接驱动依赖 --&gt;</span><br><span class="line">			&lt;dependency&gt;</span><br><span class="line">				&lt;groupId&gt;mysql&lt;/groupId&gt;</span><br><span class="line">				&lt;artifactId&gt;mysql-connector-java&lt;/artifactId&gt;</span><br><span class="line">				&lt;version&gt;$&#123;mysql-connector&#125;&lt;/version&gt;</span><br><span class="line">			&lt;/dependency&gt;</span><br><span class="line">	 </span><br><span class="line">			&lt;!-- Junit --&gt;</span><br><span class="line">			&lt;dependency&gt;</span><br><span class="line">				&lt;groupId&gt;junit&lt;/groupId&gt;</span><br><span class="line">				&lt;artifactId&gt;junit&lt;/artifactId&gt;</span><br><span class="line">				&lt;version&gt;4.12&lt;/version&gt; </span><br><span class="line">			&lt;/dependency&gt;</span><br><span class="line">		&lt;/dependencies&gt;</span><br><span class="line">	&lt;/project&gt;</span><br></pre></td></tr></table></figure>
 <p> 我们在pom.xml中增加Spring Boot FreeMarker依赖</p>
 <p><strong>配置FreeMarker </strong><br>在application.properties中加入FreeMarker相关配置:<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br></pre></td><td class="code"><pre><span class="line">server:</span><br><span class="line">  port: 8088 # 服务端口</span><br><span class="line">spring:</span><br><span class="line">  application:</span><br><span class="line">    name: test-freemarker</span><br><span class="line">  freemarker:</span><br><span class="line">    cache: false #关闭模板缓存，方便测试</span><br><span class="line">    settings:</span><br><span class="line">        template_update_delay: 0 #检查模板更新延迟时间，设置为0表示立即检查，如果时间大于0会有缓存不方便进行模板测试</span><br><span class="line"></span><br><span class="line">------------------------------------------------</span><br><span class="line">			## Freemarker 配置</span><br><span class="line">			## 文件配置路径</span><br><span class="line">			spring.freemarker.template-loader-path=classpath:/web/</span><br><span class="line">			spring.freemarker.cache=false</span><br><span class="line">			spring.freemarker.charset=UTF-8</span><br><span class="line">			spring.freemarker.check-template-location=true</span><br><span class="line">			spring.freemarker.content-type=text/html</span><br><span class="line">			spring.freemarker.expose-request-attributes=true</span><br><span class="line">			spring.freemarker.expose-session-attributes=true</span><br><span class="line">			spring.freemarker.request-context-attribute=request</span><br><span class="line">			spring.freemarker.suffix=.ftl</span><br></pre></td></tr></table></figure></p>
@@ -530,9 +530,9 @@
       
         <div class="post-tags">
           
-            <a href="/tags/分享/" rel="tag"><i class="fg fg-google"></i> 分享</a>
-          
             <a href="/tags/导航/" rel="tag"><i class="fg fg-google"></i> 导航</a>
+          
+            <a href="/tags/分享/" rel="tag"><i class="fg fg-google"></i> 分享</a>
           
         </div>
       
@@ -665,7 +665,7 @@ var jiathis_config={
               
                 <a href="/archives/">
               
-                  <span class="site-state-item-count">48</span>
+                  <span class="site-state-item-count">53</span>
                   <span class="site-state-item-name">日志</span>
                 </a>
               </div>
@@ -676,7 +676,7 @@ var jiathis_config={
               
               <div class="site-state-item site-state-categories">
                 <a href="/categories/index.html">
-                  <span class="site-state-item-count">15</span>
+                  <span class="site-state-item-count">17</span>
                   <span class="site-state-item-name">分类</span>
                 </a>
               </div>
@@ -687,7 +687,7 @@ var jiathis_config={
               
               <div class="site-state-item site-state-tags">
                 <a href="/tags/index.html">
-                  <span class="site-state-item-count">2</span>
+                  <span class="site-state-item-count">3</span>
                   <span class="site-state-item-name">标签</span>
                 </a>
               </div>
@@ -903,13 +903,6 @@ var jiathis_config={
 
   
   
-
-
-  <script type="text/javascript" src="/js/src/affix.js?v=5.1.4"></script>
-
-  <script type="text/javascript" src="/js/src/schemes/pisces.js?v=5.1.4"></script>
-
-
 
   
   <script type="text/javascript" src="/js/src/scrollspy.js?v=5.1.4"></script>

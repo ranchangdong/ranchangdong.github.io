@@ -1,6 +1,66 @@
 <?xml version="1.0" encoding="utf-8"?>
 <search>
   <entry>
+    <title><![CDATA[ServiceComb-RPC编程开发]]></title>
+    <url>%2F2019%2F05%2F14%2FServiceComb-RPC%E7%BC%96%E7%A8%8B%E5%BC%80%E5%8F%91%2F</url>
+    <content type="text"><![CDATA[在讲ServiceComb-RPC编程开发之前呢 先要扩展一点东西 就是ServiceComb的线程通信模块 还记得在ServiceComb基本了解中讲的 线程通信模型 RPC编程开发 目录结构 父工程 pom文件配置12345678910111213141516171819202122232425262728293031323334&lt;parent&gt; &lt;groupId&gt;org.springframework.boot&lt;/groupId&gt; &lt;artifactId&gt;spring-boot-starter-parent&lt;/artifactId&gt; &lt;version&gt;1.5.12.RELEASE&lt;/version&gt; &lt;relativePath/&gt; &lt;!-- lookup parent from repository --&gt; &lt;/parent&gt; &lt;properties&gt; &lt;project.build.sourceEncoding&gt;UTF-8&lt;/project.build.sourceEncoding&gt; &lt;project.reporting.outputEncoding&gt;UTF-8&lt;/project.reporting.outputEncoding&gt; &lt;java.version&gt;1.8&lt;/java.version&gt; &lt;/properties&gt; &lt;!--实现POM文件的导入--&gt; &lt;dependencyManagement&gt; &lt;dependencies&gt; &lt;dependency&gt; &lt;groupId&gt;org.apache.servicecomb&lt;/groupId&gt; &lt;artifactId&gt;java-chassis-dependencies&lt;/artifactId&gt; &lt;version&gt;1.0.0&lt;/version&gt; &lt;type&gt;pom&lt;/type&gt; &lt;scope&gt;import&lt;/scope&gt; &lt;/dependency&gt; &lt;/dependencies&gt; &lt;/dependencyManagement&gt; &lt;build&gt; &lt;plugins&gt; &lt;plugin&gt; &lt;groupId&gt;org.springframework.boot&lt;/groupId&gt; &lt;artifactId&gt;spring-boot-maven-plugin&lt;/artifactId&gt; &lt;/plugin&gt; &lt;/plugins&gt; &lt;/build&gt; 服务提供者服务方pom文件 提供方配置文件 服务提供者实现类 在实现类中与Rest服务提供者不同 服务消费者 消费者pom文件中比提供者多一个web模块 1234dependency&gt; &lt;groupId&gt;org.springframework.boot&lt;/groupId&gt; &lt;artifactId&gt;spring-boot-starter-web&lt;/artifactId&gt;&lt;/dependency&gt; 消费方配置文件 也与提供方基本相同 只需要修改应用程序名称 和端口 RPC服务消费者 这里的消费者不是用的@Service注解 而是使用@Component注入 对外发布的控制类 启动类参考前面Rest编程开发就行 在消费者服务中添加一个application.properties文件1server.port=8088 然后启动注册中心 再启动服务 在浏览器地址栏 输入 http://localhost:8088/rpc 运行结果 将会在控制台打印 如果这里的讲解不够清晰 我已经将源码上传到geihubhttps://github.com/ranchangdong/RPC-ServiceComb.git]]></content>
+      <categories>
+        <category>ServiceComb</category>
+      </categories>
+      <tags>
+        <tag>导航</tag>
+        <tag>分享</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title><![CDATA[ServiceComb-Rest编程开发]]></title>
+    <url>%2F2019%2F05%2F14%2FServiceComb-Rest%E7%BC%96%E7%A8%8B%E5%BC%80%E5%8F%91%2F</url>
+    <content type="text"><![CDATA[在讲解 Rest编程开发ServiceComb之前 先讲解接一下ServiceComb的配置文件在resources目录下创建 microservice.yaml 文件 （必须这样命名） 配置如下 使用Rest Template方式开发概念阐述 Rest Template是Spring提供的RESTful访问接口，ServiceComb提供该接口的实现类用于服务的调用。 场景描述 用户使用ServiceComb提供的Rest Template实例，可以使用自定义的URL进行服务调用，而不用关心服务的具体地址。 Rest Template实例通过调用RestTemplateBuilder.create()方法获取，再使用该实例通过自定义的URL进行服务调用 ServiceCombRest编程开发目录结构 pom文件配置父工程配置 服务方配置 服务提供者服务者提供方只需要将接口服务实现 注意： @RestSchema(schemaId = “hello”) 这个注解代表将你注册到注册中心给其他的消费者调用 schemaId不能重复 服务消费者 消费者服务接口实现类 cse ：服务注册中心 提供的一种协议 URL : ces:// 微服务名称 + 具体某个微服务访问路径 消费者controller类 启动类不管是提供方 还是 消费方 它们启动类都是差不多 注意：@EnableServiceComb 这个注解是代表启动ServiceComb框架 Rest编程开发ServiceComb总结 如果这里的讲解不够清晰 我已经将源码上传到geihubhttps://github.com/ranchangdong/Rest-ServiceComb.git]]></content>
+      <categories>
+        <category>ServiceComb</category>
+      </categories>
+      <tags>
+        <tag>导航</tag>
+        <tag>分享</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title><![CDATA[ServiceComb基本了解]]></title>
+    <url>%2F2019%2F05%2F14%2FServiceComb%E5%9F%BA%E6%9C%AC%E4%BA%86%E8%A7%A3%2F</url>
+    <content type="text"><![CDATA[ServiceComb概述Apache ServiceComb Java Chassis 给开发者提供一个快速构建微服务的JAVA SDK。它包含如下特性： 多种开发风格，REST(JAX-RS、Spring MVC）和RPC多种通信协议, HTTP over Vert.x、Http Over Servlet、Highway等统一一致的服务提供者、服务消费者处理链，以及基于契约的开箱即用的服务治理能力 Apache ServiceComb 是业界第一个Apache微服务顶级项目， 是一个开源微服务解决方案。致力于帮助企业、用户和开发者将企业应用轻松微服务化上云，并实现对微服务应用的高效运维管理。其提供一站式开源微服务解决方案，融合SDK框架级、0侵入ServiceMesh场景并支持多语言。ServiceComb目前拥有三个主要的子项目，分别为： Java chassis https://github.com/apache/servicecomb-java-chassis 开箱即用Java语言 微服务SDK，含服务契约、编程模型、运行模型与通信模型四个部分，具备负载均衡、容错熔断、限流降级、调用链追踪等全面微服务治理能力，服务治理能力与业务逻辑隔离。 Service Center—服务注册中心 https://github.com/apache/servicecomb-service-center 基于Etcd的高性能、高可用、无状态的Golang版分布式服务注册与发现中心，可实时服务实例注册、实时服务实例推送和服务间契约测试等。 Saga—分布式事务解决方案 https://github.com/apache/servicecomb-saga ServiceComb Saga是提供了分布式事务最终一致性解决方案，用户只需要通过注解方式定义事务的执行方法以及撤销方法，Saga框架会自动保证分布式事务执行的最终一致性。 2018年10月24日， Apache软件基金会宣布Apache ServiceComb 毕业成为Apache顶级项目： Java Chassis系统架构 简单理解 Java Chassis系统架构图设计理念 编程模型 通信模型 运行模型 服务注册中心CSE : Cloud Service Engine 云服务引擎可以轻松的将为服务发布到云平台 华为云Paas平台用ServiceComb开发为服务 再借用华为云Paas平台实现为服务治理 服务提供者: 提供为服务功能 服务注册中心: 注册微服务 ，实现微服务的管理 服务消费者: 调用微服务 逻辑关系 1.服务提供者向CSE注册中心注册一个微服务 2.服务消费者就可以向CSE注册中心服务发现 3.如果CSE注册中心找到了要调用的微服务就可以发送一个微服务的实力给微服务的实例给服务消费者 4.心跳：通过心跳的消息实现微服务状态检测 主要设计意图1.编程模型和通信模型分离，不同的编程模型可以灵活组合不同的通信模型。应用开发者在开发阶段只关注接口开发，部署阶段灵活切换通信方式；支持legacy系统的切换，legacy系统只需要修改服务发布的配置文件（或者annotation），而不需要修改代码。 现阶段支持SpringMVC、JAX-RS和透明RPC三种开发方式。 2.内建API-first支持。通过契约规范化微服务开发，实现跨语言的通信，并支持配套的软件工具链（契约生成代码、代码生成契约等）开发，构建完整的开发生态。 3.定义了常用的微服务运行模型，将微服务从发现到交互过程中的各种容错手段都封装起来。该运行模型支持自定义和扩展。 ServiceComb 快速开发脚手架 SERVICECOMB SPRING INITIALIZRhttp://start.servicecomb.io/ 点击 Genterate Project 就会创建一个ServiceComb的Demo工程的压缩包 解压 然后用IDEA打开 这是Demo工程的目录 运行工程之前 需要将 ervice Center 服务注册中心打开 这个需要在Apache ServiceComb 官网去下载 然后解压 双击启动就行 然后运行Demo工程 在浏览器地址连输入 http://localhost:9080/hello 这样基于的ServiceComb的微服务就成功运行了]]></content>
+      <categories>
+        <category>ServiceComb</category>
+      </categories>
+      <tags>
+        <tag>导航</tag>
+        <tag>分享</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title><![CDATA[SpringBoot整合RibbitMQ]]></title>
+    <url>%2F2019%2F04%2F17%2FSpringBoot%E6%95%B4%E5%90%88RibbitMQ%2F</url>
+    <content type="text"><![CDATA[搭建SpringBoot环境我们选择基于Spring-Rabbit去操作RabbitMQ使用spring-boot-starter-amqp会自动添加spring-rabbit依赖，如下123456789101112&lt;dependency&gt; &lt;groupId&gt;org.springframework.boot&lt;/groupId&gt; &lt;artifactId&gt;spring‐boot‐starter‐amqp&lt;/artifactId&gt;&lt;/dependency&gt;&lt;dependency&gt; &lt;groupId&gt;org.springframework.boot&lt;/groupId&gt; &lt;artifactId&gt;spring‐boot‐starter‐test&lt;/artifactId&gt;&lt;/dependency&gt;&lt;dependency&gt; &lt;groupId&gt;org.springframework.boot&lt;/groupId&gt; &lt;artifactId&gt;spring‐boot‐starter‐logging&lt;/artifactId&gt;&lt;/dependency&gt; 配置配置application.yml 配置连接rabbitmq的参数1234567891011server: port: 44000spring: application: name: test‐rabbitmq‐producer rabbitmq: host: 127.0.0.1 port: 5672 username: guest password: guest virtualHost: / 定义RabbitmqConfig类，配置Exchange、Queue、及绑定交换机本例配置Topic交换机。123456789101112131415161718192021222324252627282930313233343536373839404142434445@Configurationpublic class RabbitmqConfig &#123; public static final String QUEUE_INFORM_EMAIL = &quot;queue_inform_email&quot;; public static final String QUEUE_INFORM_SMS = &quot;queue_inform_sms&quot;; public static final String EXCHANGE_TOPICS_INFORM=&quot;exchange_topics_inform&quot;; public static final String ROUTINGKEY_EMAIL=&quot;inform.#.email.#&quot;; public static final String ROUTINGKEY_SMS=&quot;inform.#.sms.#&quot;; //声明交换机 @Bean(EXCHANGE_TOPICS_INFORM) public Exchange EXCHANGE_TOPICS_INFORM()&#123; //durable(true) 持久化 mq重启之后还在 return ExchangeBuilder.topicExchange(EXCHANGE_TOPICS_INFORM).durable(true).build(); &#125; //声明队列 @Bean(QUEUE_INFORM_EMAIL) public Queue QUEUE_INFORM_EMAIL()&#123; return new Queue(QUEUE_INFORM_EMAIL); &#125; @Bean(QUEUE_INFORM_SMS) public Queue QUEUE_INFORM_SMS()&#123; return new Queue(QUEUE_INFORM_SMS); &#125; //邮件队列绑定交换机 指定routingKey with(ROUTINGKEY_EMAIL) @Bean public Binding BINDING_QUEUE_INFORM_EMAIL(@Qualifier(QUEUE_INFORM_EMAIL) Queue queue, @Qualifier(EXCHANGE_TOPICS_INFORM) Exchange exchange)&#123; return BindingBuilder.bind(queue).to(exchange).with(ROUTINGKEY_EMAIL).noargs(); &#125; //短信队列绑定交换机 指定routingKey with(ROUTINGKEY_EMAIL) @Bean public Binding BINDING_QUEUE_INFORM_SMS(@Qualifier(QUEUE_INFORM_SMS) Queue queue, @Qualifier(EXCHANGE_TOPICS_INFORM) Exchange exchange)&#123; return BindingBuilder.bind(queue).to(exchange).with(ROUTINGKEY_SMS).noargs(); &#125;&#125; 生产端使用RarbbitTemplate发送消息12345678910111213141516171819202122@SpringBootTest@RunWith(SpringRunner.class)public class Produer05_SpringBoot &#123; @Autowired private RabbitTemplate rabbitTemplate; //使用rabbitTemplate发送消息 @Test public void testSendEamil()&#123; String message = &quot;SpringBoot 发送消息了&quot;; /** * 参数： * 1.交换机名称 * 2.routingKey * 3.消息内容 */ rabbitTemplate.convertAndSend(RabbitmqConfig.EXCHANGE_TOPICS_INFORM,&quot;inform.email&quot;,message); &#125;&#125; 消费端 创建消费端工程，添加依赖 参照生产端依赖即可 123456789@Componentpublic class ReceiveHandler &#123; @RabbitListener(queues = &#123;RabbitmqConfig.QUEUE_INFORM_EMAIL&#125;) public void email(String mes, Message message, Channel channel)&#123; System.out.println(&quot;接收到消息：&quot;+mes); &#125;&#125; 最后先进行测试]]></content>
+      <categories>
+        <category>SpringBoot</category>
+      </categories>
+      <tags>
+        <tag>导航</tag>
+        <tag>分项</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title><![CDATA[RabbitMQ]]></title>
+    <url>%2F2019%2F04%2F17%2FRabbitMQ%2F</url>
+    <content type="text"><![CDATA[介绍RabbitMQ: MQ全称为Message Queue，即消息队列， RabbitMQ是由erlang语言开发，基于AMQP（Advanced MessageQueue 高级消息队列协议）协议实现的消息队列，它是一种应用程序之间的通信方法，消息队列在分布式系统开发中应用非常广泛。RabbitMQ官方地址：http://www.rabbitmq.com/ 开发中消息队列通常有如下应用场景：1、任务异步处理。将不需要同步处理的并且耗时长的操作由消息队列通知消息接收方进行异步处理。提高了应用程序的响应时间。2、应用程序解耦合MQ相当于一个中介，生产方通过MQ与消费方交互，它将应用程序进行解耦合。 市场上还有哪些消息队列？ActiveMQ，RabbitMQ，ZeroMQ，Kafka，MetaMQ，RocketMQ、Redis 为什么使用RabbitMQ呢？1、使得简单，功能强大。2、基于AMQP协议。3、社区活跃，文档完善。4、高并发性能好，这主要得益于Erlang语言。5、Spring Boot默认已集成RabbitMQ AMQP是什么 ？AMQP是一套公开的消息队列协议，最早在2003年被提出，它旨在从协议层定义消息通信数据的标准格式，为的就是解决MQ市场上协议不统一的问题。RabbitMQ就是遵循AMQP标准协议开发的MQ服务。 JMS是什么 ？JMS是java提供的一套消息服务API标准，其目的是为所有的java应用程序提供统一的消息通信的标准，类似java的jdbc，只要遵循jms标准的应用程序之间都可以进行消息通信。它和AMQP有什么 不同，jms是java语言专属的消息服务标准，它是在api层定义标准，并且只能用于java应用；而AMQP是在协议层定义的标准，是跨语言的 RabbitMQ的工作原理组成部分说明如下： Broker：消息队列服务进程，此进程包括两个部分：Exchange和Queue。 Exchange：消息队列交换机，按一定的规则将消息路由转发到某个队列，对消息进行过虑。 Queue：消息队列，存储消息的队列，消息到达队列并转发给指定的消费方。 Producer：消息生产者，即生产方客户端，生产方客户端将消息发送到MQ。 Consumer：消息消费者，即消费方客户端，接收MQ转发的消息。消息发布接收流程：—–发送消息—– 1、生产者和Broker建立TCP连接。 2、生产者和Broker建立通道。 3、生产者通过通道消息发送给Broker，由Exchange将消息进行转发。 4、Exchange将消息转发到指定的Queue（队列）—-接收消息—– 1、消费者和Broker建立TCP连接 2、消费者和Broker建立通道 3、消费者监听指定的Queue（队列） 4、当有消息到达Queue时Broker默认将消息推送给消费者。 5、消费者接收到消息。 RabbitMQ入门程序创建两个工程生产者和消费者text-rabbitmq-producer : 生产者工程text-rabbitmq-consumer ：消费者工程 12345678910&lt;dependency&gt; &lt;groupId&gt;com.com.test.rabbitmq.config.rabbitmq&lt;/groupId&gt; &lt;artifactId&gt;amqp-client&lt;/artifactId&gt; &lt;version&gt;5.5.0&lt;/version&gt; &lt;/dependency&gt; &lt;dependency&gt; &lt;groupId&gt;org.springframework.boot&lt;/groupId&gt; &lt;artifactId&gt;spring‐boot‐starter‐logging&lt;/artifactId&gt; &lt;/dependency&gt; 代码编写： 生产者1234567891011121314151617181920212223242526272829303132333435363738394041424344454647484950515253545556575859606162636465666768697071727374757677787980/** * RabbitMQ入门程序 生产者 * */public class producer01 &#123; //队列 private static final String QUEUE = &quot;HELLO&quot;; public static void main(String args[]) &#123; //通过连接工厂对象创建新的连接和mq建立连接 ConnectionFactory connectionFactory = new ConnectionFactory(); //设置RabbitMQ连接地址 connectionFactory.setHost(&quot;127.0.0.1&quot;); //设置连接的端口 connectionFactory.setPort(5672); //登陆RabbitMQ需要用到的用户名和密码 connectionFactory.setUsername(&quot;guest&quot;); connectionFactory.setPassword(&quot;guest&quot;); //设置虚拟机,一个mq服务可以设置多个虚拟机 每个虚拟机都相当于独立的mq connectionFactory.setVirtualHost(&quot;/&quot;); //建立新连接 Connection connection = null; Channel channel = null; try &#123; connection = connectionFactory.newConnection(); //创建会话通道,生产者和mq服务所有通信都在channel通道中完成 channel = connection.createChannel(); //声明队列 如果队列在mq中 没有则要创建 //String queue, boolean durable, boolean exclusive, boolean autoDelete, Map&lt;String, Object&gt; arguments /** * 参数的明细 * 1.queue 队列名称 * 2.durable 是否持久化，如果持久化mq重启后队列还在 * 3.exclusive 是否独占连接 队列只允许在连接中访问，如果Connection连接关闭队列则自动删除 如果将参数设置true可用于临时队列的创建 * 4.autoDelete 自动删除 队列不再使用时是否自动删除此队列 如果将此参数和exclusive参数设置微true就可以实现临时队列（队列不用了就自动删除） * 5.arguments 参数 可以设置一个队列的扩展参数 比如设置存活时间 */ channel.queueDeclare(QUEUE,true,false,false,null); //发送消息 /** * String exchange, String routingKey, BasicProperties props, byte[] body\ * 参数明细： * \1、exchange: 交换机 如果不指定将使用MQ的默认交换机(设置为”“) * 2、routingKey：路由key，交换机根据路由key来将消息转发到指定的队列 如果使用默认交换机，routingKey设置为队列名称 * \3、props：消息属性 * 4、body：消息内容 * */ String message=&quot;Hello Word 小胖&quot;; channel.basicPublish(&quot;&quot;,QUEUE,null,message.getBytes()); System.out.println(&quot;send to mq&quot;+message); &#125; catch (Exception e) &#123; e.printStackTrace(); &#125;finally &#123; try &#123; channel.close(); &#125; catch (IOException e) &#123; e.printStackTrace(); &#125; catch (TimeoutException e) &#123; e.printStackTrace(); &#125; try &#123; connection.close(); &#125; catch (IOException e) &#123; e.printStackTrace(); &#125; &#125; &#125;&#125; 消费者：123456789101112131415161718192021222324252627282930313233343536373839404142434445464748495051525354555657585960616263646566676869707172737475767778798081828384/** * RabbitMQ入门程序 消费者 * */public class Consumer01 &#123; //队列 private static final String QUEUE = &quot;HELLO&quot;; public static void main(String args[]) &#123; //通过连接工厂对象创建新的连接和mq建立连接 ConnectionFactory connectionFactory = new ConnectionFactory(); //设置RabbitMQ连接地址 connectionFactory.setHost(&quot;127.0.0.1&quot;); //设置连接的端口 connectionFactory.setPort(5672); //登陆RabbitMQ需要用到的用户名和密码 connectionFactory.setUsername(&quot;guest&quot;); connectionFactory.setPassword(&quot;guest&quot;); //设置虚拟机,一个mq服务可以设置多个虚拟机 每个虚拟机都相当于独立的mq connectionFactory.setVirtualHost(&quot;/&quot;); //建立新连接 Connection connection = null; try &#123; connection = connectionFactory.newConnection(); //创建会话通道,生产者和mq服务所有通信都在channel通道中完成 Channel channel = connection.createChannel(); //监听队列 //声明队列 如果队列在mq中 没有则要创建 //String queue, boolean durable, boolean exclusive, boolean autoDelete, Map&lt;String, Object&gt; arguments /** * 参数的明细 * 1.queue 队列名称 * 2.durable 是否持久化，如果持久化mq重启后队列还在 * 3.exclusive 是否独占连接 队列只允许在连接中访问，如果Connection连接关闭队列则自动删除 如果将参数设置true可用于临时队列的创建 * 4.autoDelete 自动删除 队列不再使用时是否自动删除此队列 如果将此参数和exclusive参数设置微true就可以实现临时队列（队列不用了就自动删除） * 5.arguments 参数 可以设置一个队列的扩展参数 比如设置存活时间 */ channel.queueDeclare(QUEUE,true,false,false,null); //实现消费方法 DefaultConsumer defaultConsumer = new DefaultConsumer(channel)&#123; /** * 当接收到消息后此方法将被调用 * @param consumerTag 消费者标签 用来标识消费者的 ，在监听队列的时候设置 * @param envelope 信封 通过envelope * @param properties 消息属性 * @param body * @throws IOException */ @Override public void handleDelivery(String consumerTag, Envelope envelope, AMQP.BasicProperties properties, byte[] body) throws IOException &#123; //交换机 String exchange = envelope.getExchange(); //消息ID mq在channel中用来表示消息的ID 可用于确认消息已接受 long deliveryTag = envelope.getDeliveryTag(); //消息内容 String message = new String(body,&quot;UTF-8&quot;); System.out.println(&quot;接收到消息 message:&quot;+message); &#125; &#125;; //监听队列 /** * 参数 ：String queue, boolean autoAck, Consumer callback * * 1、queue：队列名称 * 2、autoAck：自动回复 当前消费者接收到消息后要告诉mq消息也接收 如果将此参数设置为true表示会自动回复mq 如果设置为false要通过编程来实现回复 * 3、callback：消费方法，当消费者接受到消息要执行的方法 * */ channel.basicConsume(QUEUE,true,defaultConsumer); &#125; catch (Exception e) &#123; e.printStackTrace(); &#125;finally &#123; &#125; &#125;&#125; 工作模式 Publish/subscribe 发布订阅模式：1、每个消费者监听自己的队列。2、生产者将消息发给broker，由交换机将消息转发到绑定此交换机的每个队列，每个绑定交换机的队列都将接收到消息123456789101112131415161718192021222324252627282930313233343536373839404142434445464748495051525354555657585960616263646566676869707172737475767778798081828384public class Producer02_publish &#123; //队列 private static final String QUEUE_INFORM_EMAIL = &quot;queue_inform_email&quot;; private static final String QUEUE_INFORM_SMS = &quot;queue_inform_sms&quot;; private static final String EXCHANGE_FANOUT_INFORM=&quot;exchange_fanout_inform&quot;; public static void main(String args[]) &#123; //通过连接工厂对象创建新的连接和mq建立连接 ConnectionFactory connectionFactory = new ConnectionFactory(); //设置RabbitMQ连接地址 connectionFactory.setHost(&quot;127.0.0.1&quot;); //设置连接的端口 connectionFactory.setPort(5672); //登陆RabbitMQ需要用到的用户名和密码 connectionFactory.setUsername(&quot;guest&quot;); connectionFactory.setPassword(&quot;guest&quot;); //设置虚拟机,一个mq服务可以设置多个虚拟机 每个虚拟机都相当于独立的mq connectionFactory.setVirtualHost(&quot;/&quot;); //建立新连接 Connection connection = null; Channel channel = null; try &#123; connection = connectionFactory.newConnection(); //创建会话通道,生产者和mq服务所有通信都在channel通道中完成 channel = connection.createChannel(); //声明交换机 channel.exchangeDeclare(EXCHANGE_FANOUT_INFORM, BuiltinExchangeType.FANOUT); //声明队列 如果队列在mq中 没有则要创建 //String queue, boolean durable, boolean exclusive, boolean autoDelete, Map&lt;String, Object&gt; arguments /** * 参数的明细 * 1.queue 队列名称 * 2.durable 是否持久化，如果持久化mq重启后队列还在 * 3.exclusive 是否独占连接 队列只允许在连接中访问，如果Connection连接关闭队列则自动删除 如果将参数设置true可用于临时队列的创建 * 4.autoDelete 自动删除 队列不再使用时是否自动删除此队列 如果将此参数和exclusive参数设置微true就可以实现临时队列（队列不用了就自动删除） * 5.arguments 参数 可以设置一个队列的扩展参数 比如设置存活时间 */ channel.queueDeclare(QUEUE_INFORM_EMAIL,true,false,false,null); channel.queueDeclare(QUEUE_INFORM_SMS,true,false,false,null); channel.queueBind(QUEUE_INFORM_EMAIL,EXCHANGE_FANOUT_INFORM,&quot;&quot;); channel.queueBind(QUEUE_INFORM_SMS,EXCHANGE_FANOUT_INFORM,&quot;&quot;); //发送消息 /** * String exchange, String routingKey, BasicProperties props, byte[] body\ * 参数明细： * \1、exchange: 交换机 如果不指定将使用MQ的默认交换机(设置为”“) * 2、routingKey：路由key，交换机根据路由key来将消息转发到指定的队列 如果使用默认交换机，routingKey设置为队列名称 * \3、props：消息属性 * 4、body：消息内容 * */ String message1=&quot;Hello Word 小胖&quot;; channel.basicPublish(EXCHANGE_FANOUT_INFORM,&quot;&quot;,null,message1.getBytes()); System.out.println(&quot;send to mq&quot;+message1); &#125; catch (Exception e) &#123; e.printStackTrace(); &#125;finally &#123; try &#123; channel.close(); &#125; catch (IOException e) &#123; e.printStackTrace(); &#125; catch (TimeoutException e) &#123; e.printStackTrace(); &#125; try &#123; connection.close(); &#125; catch (IOException e) &#123; e.printStackTrace(); &#125; &#125; &#125;&#125; 1234567891011121314151617181920212223242526272829303132333435363738394041424344454647484950515253545556575859606162636465666768697071727374757677787980818283848586878889909192939495969798public class Consumer02_subscribe_email &#123; //队列名称 private static final String QUEUE_INFORM_EMAIL = &quot;inform_queue_email&quot;; private static final String EXCHANGE_FANOUT_INFORM=&quot;exchange_fanout_inform&quot;; public static void main(String args[]) &#123; //通过连接工厂对象创建新的连接和mq建立连接 ConnectionFactory connectionFactory = new ConnectionFactory(); //设置RabbitMQ连接地址 connectionFactory.setHost(&quot;127.0.0.1&quot;); //设置连接的端口 connectionFactory.setPort(5672); //登陆RabbitMQ需要用到的用户名和密码 connectionFactory.setUsername(&quot;guest&quot;); connectionFactory.setPassword(&quot;guest&quot;); //设置虚拟机,一个mq服务可以设置多个虚拟机 每个虚拟机都相当于独立的mq connectionFactory.setVirtualHost(&quot;/&quot;); //建立新连接 Connection connection = null; try &#123; connection = connectionFactory.newConnection(); //创建会话通道,生产者和mq服务所有通信都在channel通道中完成 Channel channel = connection.createChannel(); //声明交换机 channel.exchangeDeclare(EXCHANGE_FANOUT_INFORM,BuiltinExchangeType.FANOUT); //监听队列 //声明队列 如果队列在mq中 没有则要创建 //String queue, boolean durable, boolean exclusive, boolean autoDelete, Map&lt;String, Object&gt; arguments /** * 参数的明细 * 1.queue 队列名称 * 2.durable 是否持久化，如果持久化mq重启后队列还在 * 3.exclusive 是否独占连接 队列只允许在连接中访问，如果Connection连接关闭队列则自动删除 如果将参数设置true可用于临时队列的创建 * 4.autoDelete 自动删除 队列不再使用时是否自动删除此队列 如果将此参数和exclusive参数设置微true就可以实现临时队列（队列不用了就自动删除） * 5.arguments 参数 可以设置一个队列的扩展参数 比如设置存活时间 */ channel.queueDeclare(QUEUE_INFORM_EMAIL,true,false,false,null); //交换机和队列绑定 /** * 参数明细 * 1、队列名称 * 2、交换机名称 * 3、路由key */ channel.queueBind(QUEUE_INFORM_EMAIL,EXCHANGE_FANOUT_INFORM,&quot;&quot;); //实现消费方法 DefaultConsumer defaultConsumer = new DefaultConsumer(channel)&#123; /** * 当接收到消息后此方法将被调用 * @param consumerTag 消费者标签 用来标识消费者的 ，在监听队列的时候设置 * @param envelope 信封 通过envelope * @param properties 消息属性 * @param body * @throws IOException */ @Override public void handleDelivery(String consumerTag, Envelope envelope, AMQP.BasicProperties properties, byte[] body) throws IOException &#123; //交换机 String exchange = envelope.getExchange(); //消息ID mq在channel中用来表示消息的ID 可用于确认消息已接受 long deliveryTag = envelope.getDeliveryTag(); //消息内容 String message = new String(body,&quot;UTF-8&quot;); System.out.println(&quot;邮件接收到消息 message:&quot;+message); &#125; &#125;; //监听队列 /** * 参数 ：String queue, boolean autoAck, Consumer callback * * 1、queue：队列名称 * 2、autoAck：自动回复 当前消费者接收到消息后要告诉mq消息也接收 如果将此参数设置为true表示会自动回复mq 如果设置为false要通过编程来实现回复 * 3、callback：消费方法，当消费者接受到消息要执行的方法 * */ channel.basicConsume(QUEUE_INFORM_EMAIL,true,defaultConsumer); &#125; catch (Exception e) &#123; e.printStackTrace(); &#125;finally &#123; &#125; &#125;&#125; Consumer02_subscribe_sms 短信消费者和邮件代码一样 publish/subscribe与work queues有什么区别。区别：1.work queues不用定义交换机，而publish/subscribe需要定义交换机。2.publish/subscribe的生产方是面向交换机发送消息，work queues的生产方是面向队列发送消息(底层使用默认交换机)。3.publish/subscribe需要设置队列和交换机的绑定，work queues不需要设置，实质上work queues会将队列绑定到默认的交换机 。相同点：所以两者实现的发布/订阅的效果是一样的，多个消费端监听同一个队列不会重复消费消息。 2、实质工作用什么 publish/subscribe还是work queues。建议使用 publish/subscribe，发布订阅模式比工作队列模式更强大，并且发布订阅模式可以指定自己专用的交换机。 Routing路由模式：1、每个消费者监听自己的队列，并且设置routingkey。2、生产者将消息发给交换机，由交换机根据routingkey来转发消息到指定的队列 123456789101112131415161718192021222324252627282930313233343536373839404142434445464748495051525354555657585960616263646566676869707172737475767778798081828384858687888990919293public class Producer03_routing &#123; //队列 private static final String QUEUE_INFORM_EMAIL = &quot;queue_inform_email&quot;; private static final String QUEUE_INFORM_SMS = &quot;queue_inform_sms&quot;; private static final String EXCHANGE_ROUTING_INFORM=&quot;exchange_routing_inform&quot;; public static void main(String args[]) &#123; //通过连接工厂对象创建新的连接和mq建立连接 ConnectionFactory connectionFactory = new ConnectionFactory(); //设置RabbitMQ连接地址 connectionFactory.setHost(&quot;127.0.0.1&quot;); //设置连接的端口 connectionFactory.setPort(5672); //登陆RabbitMQ需要用到的用户名和密码 connectionFactory.setUsername(&quot;guest&quot;); connectionFactory.setPassword(&quot;guest&quot;); //设置虚拟机,一个mq服务可以设置多个虚拟机 每个虚拟机都相当于独立的mq connectionFactory.setVirtualHost(&quot;/&quot;); //建立新连接 Connection connection = null; Channel channel = null; try &#123; connection = connectionFactory.newConnection(); //创建会话通道,生产者和mq服务所有通信都在channel通道中完成 channel = connection.createChannel(); //声明交换机 channel.exchangeDeclare(EXCHANGE_ROUTING_INFORM, BuiltinExchangeType.DIRECT); //声明队列 如果队列在mq中 没有则要创建 //String queue, boolean durable, boolean exclusive, boolean autoDelete, Map&lt;String, Object&gt; arguments /** * 参数的明细 * 1.queue 队列名称 * 2.durable 是否持久化，如果持久化mq重启后队列还在 * 3.exclusive 是否独占连接 队列只允许在连接中访问，如果Connection连接关闭队列则自动删除 如果将参数设置true可用于临时队列的创建 * 4.autoDelete 自动删除 队列不再使用时是否自动删除此队列 如果将此参数和exclusive参数设置微true就可以实现临时队列（队列不用了就自动删除） * 5.arguments 参数 可以设置一个队列的扩展参数 比如设置存活时间 */ channel.queueDeclare(QUEUE_INFORM_EMAIL,true,false,false,null); channel.queueDeclare(QUEUE_INFORM_SMS,true,false,false,null); //交换机和队列绑定String queue, String exchange, String routingKey /** * 参数明细 * 1、队列名称 * 2、交换机名称 * 3、路由key */ channel.queueBind(QUEUE_INFORM_EMAIL,EXCHANGE_ROUTING_INFORM,QUEUE_INFORM_EMAIL); channel.queueBind(QUEUE_INFORM_SMS,EXCHANGE_ROUTING_INFORM,QUEUE_INFORM_SMS); //发送消息 /** * String exchange, String routingKey, BasicProperties props, byte[] body\ * 参数明细： * \1、exchange: 交换机 如果不指定将使用MQ的默认交换机(设置为”“) * 2、routingKey：路由key，交换机根据路由key来将消息转发到指定的队列 如果使用默认交换机，routingKey设置为队列名称 * \3、props：消息属性 * 4、body：消息内容 * */ String message1=&quot;Hello Word 小胖&quot;; channel.basicPublish(EXCHANGE_ROUTING_INFORM,QUEUE_INFORM_EMAIL,null,message1.getBytes()); channel.basicPublish(EXCHANGE_ROUTING_INFORM,QUEUE_INFORM_SMS,null,message1.getBytes()); System.out.println(&quot;send to mq&quot;+message1); &#125; catch (Exception e) &#123; e.printStackTrace(); &#125;finally &#123; try &#123; channel.close(); &#125; catch (IOException e) &#123; e.printStackTrace(); &#125; catch (TimeoutException e) &#123; e.printStackTrace(); &#125; try &#123; connection.close(); &#125; catch (IOException e) &#123; e.printStackTrace(); &#125; &#125; &#125;&#125; 1234567891011121314151617181920212223242526272829303132333435363738394041424344454647484950515253545556575859606162636465666768697071727374757677787980818283848586878889909192939495969798public class Consumer03_routing_email &#123; //队列名称 private static final String QUEUE_INFORM_EMAIL = &quot;queue_inform_email&quot;; private static final String EXCHANGE_ROUTING_INFORM=&quot;exchange_routing_inform&quot;; public static void main(String args[]) &#123; //通过连接工厂对象创建新的连接和mq建立连接 ConnectionFactory connectionFactory = new ConnectionFactory(); //设置RabbitMQ连接地址 connectionFactory.setHost(&quot;127.0.0.1&quot;); //设置连接的端口 connectionFactory.setPort(5672); //登陆RabbitMQ需要用到的用户名和密码 connectionFactory.setUsername(&quot;guest&quot;); connectionFactory.setPassword(&quot;guest&quot;); //设置虚拟机,一个mq服务可以设置多个虚拟机 每个虚拟机都相当于独立的mq connectionFactory.setVirtualHost(&quot;/&quot;); //建立新连接 Connection connection = null; try &#123; connection = connectionFactory.newConnection(); //创建会话通道,生产者和mq服务所有通信都在channel通道中完成 Channel channel = connection.createChannel(); //声明交换机 channel.exchangeDeclare(EXCHANGE_ROUTING_INFORM, BuiltinExchangeType.DIRECT); //监听队列 //声明队列 如果队列在mq中 没有则要创建 //String queue, boolean durable, boolean exclusive, boolean autoDelete, Map&lt;String, Object&gt; arguments /** * 参数的明细 * 1.queue 队列名称 * 2.durable 是否持久化，如果持久化mq重启后队列还在 * 3.exclusive 是否独占连接 队列只允许在连接中访问，如果Connection连接关闭队列则自动删除 如果将参数设置true可用于临时队列的创建 * 4.autoDelete 自动删除 队列不再使用时是否自动删除此队列 如果将此参数和exclusive参数设置微true就可以实现临时队列（队列不用了就自动删除） * 5.arguments 参数 可以设置一个队列的扩展参数 比如设置存活时间 */ channel.queueDeclare(QUEUE_INFORM_EMAIL, true, false, false, null); //交换机和队列绑定 /** * 参数明细 * 1、队列名称 * 2、交换机名称 * 3、路由key */ channel.queueBind(QUEUE_INFORM_EMAIL, EXCHANGE_ROUTING_INFORM, QUEUE_INFORM_EMAIL); //实现消费方法 DefaultConsumer defaultConsumer = new DefaultConsumer(channel) &#123; /** * 当接收到消息后此方法将被调用 * @param consumerTag 消费者标签 用来标识消费者的 ，在监听队列的时候设置 * @param envelope 信封 通过envelope * @param properties 消息属性 * @param body * @throws IOException */ @Override public void handleDelivery(String consumerTag, Envelope envelope, AMQP.BasicProperties properties, byte[] body) throws IOException &#123; //交换机 String exchange = envelope.getExchange(); //消息ID mq在channel中用来表示消息的ID 可用于确认消息已接受 long deliveryTag = envelope.getDeliveryTag(); //消息内容 String message = new String(body, &quot;UTF-8&quot;); System.out.println(&quot;邮件接收到消息 message:&quot; + message); &#125; &#125;; //监听队列 /** * 参数 ：String queue, boolean autoAck, Consumer callback * * 1、queue：队列名称 * 2、autoAck：自动回复 当前消费者接收到消息后要告诉mq消息也接收 如果将此参数设置为true表示会自动回复mq 如果设置为false要通过编程来实现回复 * 3、callback：消费方法，当消费者接受到消息要执行的方法 * */ channel.basicConsume(QUEUE_INFORM_EMAIL, true, defaultConsumer); &#125; catch (Exception e) &#123; e.printStackTrace(); &#125; finally &#123; &#125; &#125;&#125; Routing模式和Publish/subscibe有啥区别？Routing模式要求队列在绑定交换机时要指定routingkey，消息会转发到符合routingkey的队列。 Topics 路由模式：1、每个消费者监听自己的队列，并且设置带统配符的routingkey。2、生产者将消息发给broker，由交换机根据routingkey来转发消息到指定的队列。 生产者声明交换机，指定topic类型： 123456789101112/*** 声明交换机* param1：交换机名称* param2:交换机类型 四种交换机类型：direct、fanout、topic、headers*/channel.exchangeDeclare(EXCHANGE_TOPICS_INFORM, BuiltinExchangeType.TOPIC);//Email通知channel.basicPublish(EXCHANGE_TOPICS_INFORM, &quot;inform.email&quot;, null, message.getBytes());//sms通知channel.basicPublish(EXCHANGE_TOPICS_INFORM, &quot;inform.sms&quot;, null, message.getBytes());//两种都通知channel.basicPublish(EXCHANGE_TOPICS_INFORM, &quot;inform.sms.email&quot;, null, message.getBytes()); 消费端队列绑定交换机指定通配符：统配符规则：中间以“.”分隔。符号#可以匹配多个词，符号*可以匹配一个词语。123456789//声明队列channel.queueDeclare(QUEUE_INFORM_EMAIL, true, false, false, null);channel.queueDeclare(QUEUE_INFORM_SMS, true, false, false, null);//声明交换机channel.exchangeDeclare(EXCHANGE_TOPICS_INFORM, BuiltinExchangeType.TOPIC);//绑定email通知队列channel.queueBind(QUEUE_INFORM_EMAIL,EXCHANGE_TOPICS_INFORM,&quot;inform.#.email.#&quot;);//绑定sms通知队列channel.queueBind(QUEUE_INFORM_SMS,EXCHANGE_TOPICS_INFORM,&quot;inform.#.sms.#&quot;); 使用生产者发送若干条消息，交换机根据routingkey统配符匹配并转发消息到指定的队列。 使用Routing模式也可以实现本案例，共设置三个 routingkey，分别是email、sms、all，email队列绑定email和all，sms队列绑定sms和all，这样就可以实现上边案例的功能，实现过程比topics复杂。Topic模式更多加强大，它可以实现Routing、publish/subscirbe模式的功能 Header模式header模式与routing不同的地方在于，header模式取消routingkey，使用header中的 key/value（键值对）匹配队列。 生产者队列与交换机绑定的代码与之前不同， 123456Map&lt;String, Object&gt; headers_email = new Hashtable&lt;String, Object&gt;();headers_email.put(&quot;inform_type&quot;, &quot;email&quot;);Map&lt;String, Object&gt; headers_sms = new Hashtable&lt;String, Object&gt;();headers_sms.put(&quot;inform_type&quot;, &quot;sms&quot;);channel.queueBind(QUEUE_INFORM_EMAIL,EXCHANGE_HEADERS_INFORM,&quot;&quot;,headers_email);channel.queueBind(QUEUE_INFORM_SMS,EXCHANGE_HEADERS_INFORM,&quot;&quot;,headers_sms); 通知：12345678String message = &quot;email inform to user&quot;+i;Map&lt;String,Object&gt; headers = new Hashtable&lt;String, Object&gt;();headers.put(&quot;inform_type&quot;, &quot;email&quot;);//匹配email通知消费者绑定的header//headers.put(&quot;inform_type&quot;, &quot;sms&quot;);//匹配sms通知消费者绑定的headerAMQP.BasicProperties.Builder properties = new AMQP.BasicProperties.Builder();properties.headers(headers);//Email通知channel.basicPublish(EXCHANGE_HEADERS_INFORM, &quot;&quot;, properties.build(), message.getBytes()); 发送邮件消费者1234567channel.exchangeDeclare(EXCHANGE_HEADERS_INFORM, BuiltinExchangeType.HEADERS);Map&lt;String, Object&gt; headers_email = new Hashtable&lt;String, Object&gt;();headers_email.put(&quot;inform_email&quot;, &quot;email&quot;);//交换机和队列绑定channel.queueBind(QUEUE_INFORM_EMAIL,EXCHANGE_HEADERS_INFORM,&quot;&quot;,headers_email);//指定消费队列channel.basicConsume(QUEUE_INFORM_EMAIL, true, consumer) RPC RPC即客户端远程调用服务端的方法 ，使用MQ可以实现RPC的异步调用，基于Direct交换机实现，流程如下：1、客户端即是生产者就是消费者，向RPC请求队列发送RPC调用消息，同时监听RPC响应队列。2、服务端监听RPC请求队列的消息，收到消息后执行服务端的方法，得到方法返回的结果3、服务端将RPC方法 的结果发送到RPC响应队列4、客户端（RPC调用方）监听RPC响应队列，接收到RPC调用结果。]]></content>
+      <categories>
+        <category>消息队列</category>
+      </categories>
+      <tags>
+        <tag>导航</tag>
+        <tag>分享</tag>
+      </tags>
+  </entry>
+  <entry>
     <title><![CDATA[GridFS研究]]></title>
     <url>%2F2019%2F04%2F15%2FGridFS%E7%A0%94%E7%A9%B6%2F</url>
     <content type="text"><![CDATA[GridFS介绍GridFS是MongoDB提供的用于持久化存储文件的模块，CMS使用MongoDB存储数据，使用GridFS可以快速集成开发 GridFS工作原理：在GridFS存储文件是将文件分块存储，文件会按照256KB的大小分割成多个块进行存储，GridFS使用两个集合（collection）存储文件，一个集合是chunks, 用于存储文件的二进制数据；一个集合是files，用于存储文件的元数据信息（文件名称、块大小、上传时间等信息）。从GridFS中读取文件要对文件的各各块进行组装、合并。 这是MongoDB数据库中默认存储文件的两个集合 GridFS存取文件测试存文件123456789101112131415@Autowired private GridFsTemplate gridFsTemplate; @Test public void testStore() throws Exception &#123; //要存储的文件 File file = new File(&quot;d:/index_banner.ftl&quot;); //定义输入流 FileInputStream inputStram = new FileInputStream(file); //向GridFS存储文件 ObjectId objectId = gridFsTemplate.store(inputStram, &quot;index_banner.ftl&quot;); //得到文件ID String fileId = objectId.toString(); System.out.println(fileId); &#125; 存储原理说明：文件存储成功得到一个文件id此文件id是fs.files集合中的主键。可以通过文件id查询fs.chunks表中的记录，得到文件的内容 取文件在config包中定义Mongodb的配置类，如下：GridFSBucket用于打开下载流对象1234567891011121314@Configurationpublic class MongoConfig &#123; //MongoDB数据库名 @Value(&quot;$&#123;spring.data.mongodb.database&#125;&quot;) String db; @Bean public GridFSBucket getGridFSBucket(MongoClient mongoClient)&#123; MongoDatabase database = mongoClient.getDatabase(db); GridFSBucket bucket = GridFSBuckets.create(database); return bucket; &#125;&#125; 测试取文件代码：1234567891011121314151617 @Test public void queryFile() throws IOException &#123; //根据文件id查询文件 findOne表示查询单个文件 GridFSFile gridFSFile = gridFsTemplate.findOne(Query.query(Criteria.where(&quot;_id&quot;).is(&quot;5a7719d76abb5042987eec3a&quot;)));//打开一个下载流对象 GridFSDownloadStream gridFSDownloadStream = gridFSBucket.openDownloadStream(gridFSFile.getObjectId());//创建GridFsResource对象，获取流 GridFsResource gridFsResource = new GridFsResource(gridFSFile, gridFSDownloadStream);//从流中获取文件数据 String s = IOUtils.toString(gridFsResource.getInputStream(), &quot;UTF-8&quot;);//打印数据 System.out.println(s); &#125;]]></content>
@@ -8,8 +68,8 @@
         <category>文件存储</category>
       </categories>
       <tags>
-        <tag>分享</tag>
         <tag>导航</tag>
+        <tag>分享</tag>
       </tags>
   </entry>
   <entry>
@@ -20,8 +80,8 @@
         <category>基本框架</category>
       </categories>
       <tags>
-        <tag>分享</tag>
         <tag>导航</tag>
+        <tag>分享</tag>
       </tags>
   </entry>
   <entry>
@@ -32,8 +92,8 @@
         <category>跨域</category>
       </categories>
       <tags>
-        <tag>分享</tag>
         <tag>导航</tag>
+        <tag>分享</tag>
       </tags>
   </entry>
   <entry>
@@ -44,8 +104,8 @@
         <category>前端</category>
       </categories>
       <tags>
-        <tag>分享</tag>
         <tag>导航</tag>
+        <tag>分享</tag>
       </tags>
   </entry>
   <entry>
@@ -56,8 +116,8 @@
         <category>接口</category>
       </categories>
       <tags>
-        <tag>分享</tag>
         <tag>导航</tag>
+        <tag>分享</tag>
       </tags>
   </entry>
   <entry>
@@ -68,8 +128,8 @@
         <category>数据库</category>
       </categories>
       <tags>
-        <tag>分享</tag>
         <tag>导航</tag>
+        <tag>分享</tag>
       </tags>
   </entry>
   <entry>
@@ -80,8 +140,8 @@
         <category>SpringData</category>
       </categories>
       <tags>
-        <tag>分享</tag>
         <tag>导航</tag>
+        <tag>分享</tag>
       </tags>
   </entry>
   <entry>
@@ -92,8 +152,8 @@
         <category>crawler</category>
       </categories>
       <tags>
-        <tag>分享</tag>
         <tag>导航</tag>
+        <tag>分享</tag>
       </tags>
   </entry>
   <entry>
@@ -104,8 +164,8 @@
         <category>crawler</category>
       </categories>
       <tags>
-        <tag>分享</tag>
         <tag>导航</tag>
+        <tag>分享</tag>
       </tags>
   </entry>
   <entry>
@@ -116,8 +176,8 @@
         <category>crawler</category>
       </categories>
       <tags>
-        <tag>分享</tag>
         <tag>导航</tag>
+        <tag>分享</tag>
       </tags>
   </entry>
   <entry>
@@ -128,8 +188,8 @@
         <category>SpringData</category>
       </categories>
       <tags>
-        <tag>分享</tag>
         <tag>导航</tag>
+        <tag>分享</tag>
       </tags>
   </entry>
   <entry>
@@ -140,8 +200,8 @@
         <category>SpringData</category>
       </categories>
       <tags>
-        <tag>分享</tag>
         <tag>导航</tag>
+        <tag>分享</tag>
       </tags>
   </entry>
   <entry>
@@ -152,8 +212,8 @@
         <category>进阶</category>
       </categories>
       <tags>
-        <tag>分享</tag>
         <tag>导航</tag>
+        <tag>分享</tag>
       </tags>
   </entry>
   <entry>
@@ -164,8 +224,8 @@
         <category>进阶</category>
       </categories>
       <tags>
-        <tag>分享</tag>
         <tag>导航</tag>
+        <tag>分享</tag>
       </tags>
   </entry>
   <entry>
@@ -176,8 +236,8 @@
         <category>进阶</category>
       </categories>
       <tags>
-        <tag>分享</tag>
         <tag>导航</tag>
+        <tag>分享</tag>
       </tags>
   </entry>
   <entry>
@@ -188,8 +248,8 @@
         <category>基础</category>
       </categories>
       <tags>
-        <tag>分享</tag>
         <tag>导航</tag>
+        <tag>分享</tag>
       </tags>
   </entry>
   <entry>
@@ -200,8 +260,8 @@
         <category>基础</category>
       </categories>
       <tags>
-        <tag>分享</tag>
         <tag>导航</tag>
+        <tag>分享</tag>
       </tags>
   </entry>
   <entry>
@@ -212,8 +272,8 @@
         <category>基础</category>
       </categories>
       <tags>
-        <tag>分享</tag>
         <tag>导航</tag>
+        <tag>分享</tag>
       </tags>
   </entry>
   <entry>
@@ -224,8 +284,8 @@
         <category>基础</category>
       </categories>
       <tags>
-        <tag>分享</tag>
         <tag>导航</tag>
+        <tag>分享</tag>
       </tags>
   </entry>
   <entry>
@@ -236,8 +296,8 @@
         <category>基础</category>
       </categories>
       <tags>
-        <tag>分享</tag>
         <tag>导航</tag>
+        <tag>分享</tag>
       </tags>
   </entry>
   <entry>
@@ -248,8 +308,8 @@
         <category>基础</category>
       </categories>
       <tags>
-        <tag>分享</tag>
         <tag>导航</tag>
+        <tag>分享</tag>
       </tags>
   </entry>
   <entry>
@@ -260,8 +320,8 @@
         <category>基础</category>
       </categories>
       <tags>
-        <tag>分享</tag>
         <tag>导航</tag>
+        <tag>分享</tag>
       </tags>
   </entry>
   <entry>
@@ -272,8 +332,8 @@
         <category>基础</category>
       </categories>
       <tags>
-        <tag>分享</tag>
         <tag>导航</tag>
+        <tag>分享</tag>
       </tags>
   </entry>
   <entry>
@@ -284,8 +344,8 @@
         <category>基础</category>
       </categories>
       <tags>
-        <tag>分享</tag>
         <tag>导航</tag>
+        <tag>分享</tag>
       </tags>
   </entry>
   <entry>
@@ -296,8 +356,8 @@
         <category>基础</category>
       </categories>
       <tags>
-        <tag>分享</tag>
         <tag>导航</tag>
+        <tag>分享</tag>
       </tags>
   </entry>
   <entry>
@@ -308,8 +368,8 @@
         <category>基础</category>
       </categories>
       <tags>
-        <tag>分享</tag>
         <tag>导航</tag>
+        <tag>分享</tag>
       </tags>
   </entry>
   <entry>
@@ -320,8 +380,8 @@
         <category>工具类</category>
       </categories>
       <tags>
-        <tag>分享</tag>
         <tag>导航</tag>
+        <tag>分享</tag>
       </tags>
   </entry>
   <entry>
@@ -332,8 +392,8 @@
         <category>前端</category>
       </categories>
       <tags>
-        <tag>分享</tag>
         <tag>导航</tag>
+        <tag>分享</tag>
       </tags>
   </entry>
   <entry>
@@ -344,8 +404,8 @@
         <category>跨域</category>
       </categories>
       <tags>
-        <tag>分享</tag>
         <tag>导航</tag>
+        <tag>分享</tag>
       </tags>
   </entry>
   <entry>
@@ -356,8 +416,8 @@
         <category>SpringBoot</category>
       </categories>
       <tags>
-        <tag>分享</tag>
         <tag>导航</tag>
+        <tag>分享</tag>
       </tags>
   </entry>
   <entry>
@@ -368,8 +428,8 @@
         <category>SpringCloud</category>
       </categories>
       <tags>
-        <tag>分享</tag>
         <tag>导航</tag>
+        <tag>分享</tag>
       </tags>
   </entry>
   <entry>
@@ -380,8 +440,8 @@
         <category>SpringCloud</category>
       </categories>
       <tags>
-        <tag>分享</tag>
         <tag>导航</tag>
+        <tag>分享</tag>
       </tags>
   </entry>
   <entry>
@@ -392,8 +452,8 @@
         <category>SpringCloud</category>
       </categories>
       <tags>
-        <tag>分享</tag>
         <tag>导航</tag>
+        <tag>分享</tag>
       </tags>
   </entry>
   <entry>
@@ -404,8 +464,8 @@
         <category>SpringCloud</category>
       </categories>
       <tags>
-        <tag>分享</tag>
         <tag>导航</tag>
+        <tag>分享</tag>
       </tags>
   </entry>
   <entry>
@@ -416,8 +476,8 @@
         <category>SpringCloud</category>
       </categories>
       <tags>
-        <tag>分享</tag>
         <tag>导航</tag>
+        <tag>分享</tag>
       </tags>
   </entry>
   <entry>
@@ -428,8 +488,8 @@
         <category>SpringBoot</category>
       </categories>
       <tags>
-        <tag>分享</tag>
         <tag>导航</tag>
+        <tag>分享</tag>
       </tags>
   </entry>
   <entry>
@@ -440,8 +500,8 @@
         <category>http&amp;RPC</category>
       </categories>
       <tags>
-        <tag>分享</tag>
         <tag>导航</tag>
+        <tag>分享</tag>
       </tags>
   </entry>
   <entry>
@@ -452,8 +512,8 @@
         <category>系统架构</category>
       </categories>
       <tags>
-        <tag>分享</tag>
         <tag>导航</tag>
+        <tag>分享</tag>
       </tags>
   </entry>
   <entry>
@@ -464,8 +524,8 @@
         <category>SpringBoot</category>
       </categories>
       <tags>
-        <tag>分享</tag>
         <tag>导航</tag>
+        <tag>分享</tag>
       </tags>
   </entry>
   <entry>
@@ -476,8 +536,8 @@
         <category>SpringBoot</category>
       </categories>
       <tags>
-        <tag>分享</tag>
         <tag>导航</tag>
+        <tag>分享</tag>
       </tags>
   </entry>
   <entry>
@@ -488,8 +548,8 @@
         <category>SpringBoot</category>
       </categories>
       <tags>
-        <tag>分享</tag>
         <tag>导航</tag>
+        <tag>分享</tag>
       </tags>
   </entry>
   <entry>
@@ -500,8 +560,8 @@
         <category>SpringBoot</category>
       </categories>
       <tags>
-        <tag>分享</tag>
         <tag>导航</tag>
+        <tag>分享</tag>
       </tags>
   </entry>
   <entry>
@@ -512,8 +572,8 @@
         <category>SpringBoot</category>
       </categories>
       <tags>
-        <tag>分享</tag>
         <tag>导航</tag>
+        <tag>分享</tag>
       </tags>
   </entry>
   <entry>
@@ -524,8 +584,8 @@
         <category>SpringBoot</category>
       </categories>
       <tags>
-        <tag>分享</tag>
         <tag>导航</tag>
+        <tag>分享</tag>
       </tags>
   </entry>
   <entry>
@@ -536,8 +596,8 @@
         <category>SpringBoot</category>
       </categories>
       <tags>
-        <tag>分享</tag>
         <tag>导航</tag>
+        <tag>分享</tag>
       </tags>
   </entry>
   <entry>
@@ -548,8 +608,8 @@
         <category>SpringBoot</category>
       </categories>
       <tags>
-        <tag>分享</tag>
         <tag>导航</tag>
+        <tag>分享</tag>
       </tags>
   </entry>
   <entry>
@@ -560,8 +620,8 @@
         <category>前端</category>
       </categories>
       <tags>
-        <tag>分享</tag>
         <tag>导航</tag>
+        <tag>分享</tag>
       </tags>
   </entry>
   <entry>

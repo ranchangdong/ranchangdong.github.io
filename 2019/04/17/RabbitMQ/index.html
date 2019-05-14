@@ -1,0 +1,1336 @@
+<!DOCTYPE html>
+
+
+
+  
+
+
+<html class="theme-next muse use-motion" lang="zh-Hans">
+<head><meta name="generator" content="Hexo 3.8.0">
+  <meta charset="UTF-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+<meta name="theme-color" content="#222">
+
+
+
+  
+  
+    
+    
+  <script src="/lib/pace/pace.min.js?v=1.0.2"></script>
+  <link href="/lib/pace/pace-theme-loading-bar.min.css?v=1.0.2" rel="stylesheet">
+
+
+
+
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform">
+<meta http-equiv="Cache-Control" content="no-siteapp">
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+  <link href="/lib/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css">
+
+
+
+
+
+
+
+<link href="/lib/font-awesome/css/font-awesome.min.css?v=4.6.2" rel="stylesheet" type="text/css">
+
+<link href="/css/main.css?v=5.1.4" rel="stylesheet" type="text/css">
+
+
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png?v=5.1.4">
+
+
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png?v=5.1.4">
+
+
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png?v=5.1.4">
+
+
+  <link rel="mask-icon" href="/images/logo.svg?v=5.1.4" color="#222">
+
+
+
+
+
+  <meta name="keywords" content="导航,分享,">
+
+
+
+
+
+
+
+
+
+
+<meta name="description" content="介绍RabbitMQ:  MQ全称为Message Queue，即消息队列， RabbitMQ是由erlang语言开发，基于AMQP（Advanced MessageQueue 高级消息队列协议）协议实现的消息队列，它是一种应用程序之间的通信方法，消息队列在分布式系统开发中应用非常广泛。RabbitMQ官方地址：http://www.rabbitmq.com/ 开发中消息队列通常有如下应用场景：1">
+<meta name="keywords" content="导航,分享">
+<meta property="og:type" content="article">
+<meta property="og:title" content="RabbitMQ">
+<meta property="og:url" content="http://yoursite.com/2019/04/17/RabbitMQ/index.html">
+<meta property="og:site_name" content="森巴">
+<meta property="og:description" content="介绍RabbitMQ:  MQ全称为Message Queue，即消息队列， RabbitMQ是由erlang语言开发，基于AMQP（Advanced MessageQueue 高级消息队列协议）协议实现的消息队列，它是一种应用程序之间的通信方法，消息队列在分布式系统开发中应用非常广泛。RabbitMQ官方地址：http://www.rabbitmq.com/ 开发中消息队列通常有如下应用场景：1">
+<meta property="og:locale" content="zh-Hans">
+<meta property="og:image" content="http://yoursite.com/2019/04/17/RabbitMQ/20190417111757.png">
+<meta property="og:image" content="http://yoursite.com/2019/04/17/RabbitMQ/20190417113632.png">
+<meta property="og:image" content="http://yoursite.com/2019/04/17/RabbitMQ/20190417113854.png">
+<meta property="og:image" content="http://yoursite.com/2019/04/17/RabbitMQ/20190417114326.png">
+<meta property="og:image" content="http://yoursite.com/2019/04/17/RabbitMQ/20190417115017.png">
+<meta property="og:image" content="http://yoursite.com/2019/04/17/RabbitMQ/20190417115433.png">
+<meta property="og:updated_time" content="2019-04-17T03:55:15.247Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="RabbitMQ">
+<meta name="twitter:description" content="介绍RabbitMQ:  MQ全称为Message Queue，即消息队列， RabbitMQ是由erlang语言开发，基于AMQP（Advanced MessageQueue 高级消息队列协议）协议实现的消息队列，它是一种应用程序之间的通信方法，消息队列在分布式系统开发中应用非常广泛。RabbitMQ官方地址：http://www.rabbitmq.com/ 开发中消息队列通常有如下应用场景：1">
+<meta name="twitter:image" content="http://yoursite.com/2019/04/17/RabbitMQ/20190417111757.png">
+
+
+
+<script type="text/javascript" id="hexo.configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    root: '/',
+    scheme: 'Muse',
+    version: '5.1.4',
+    sidebar: {"position":"left","display":"post","offset":12,"b2t":false,"scrollpercent":false,"onmobile":false},
+    fancybox: true,
+    tabs: true,
+    motion: {"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},
+    duoshuo: {
+      userId: '0',
+      author: '博主'
+    },
+    algolia: {
+      applicationID: '',
+      apiKey: '',
+      indexName: '',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
+    }
+  };
+</script>
+
+
+
+  <link rel="canonical" href="http://yoursite.com/2019/04/17/RabbitMQ/">
+
+
+
+
+
+  <title>RabbitMQ | 森巴</title>
+  
+
+
+
+
+
+
+
+
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans">
+
+  
+  
+    
+  
+
+  <div class="container sidebar-position-left page-post-detail">
+    <div class="headband"></div>
+	<a href="https://github.com/ranchangdong" class="github-corner" aria-label="View source on GitHub"><svg width="80" height="80" viewbox="0 0 250 250" style="fill:#151513; color:#fff; position: absolute; top: 0; border: 0; left: 0; transform: scale(-1, 1);" aria-hidden="true"><path d="M0,0 L115,115 L130,115 L142,142 L250,250 L250,0 Z"/><path d="M128.3,109.0 C113.8,99.7 119.0,89.6 119.0,89.6 C122.0,82.7 120.5,78.6 120.5,78.6 C119.2,72.0 123.4,76.3 123.4,76.3 C127.3,80.9 125.5,87.3 125.5,87.3 C122.9,97.6 130.6,101.9 134.4,103.2" fill="currentColor" style="transform-origin: 130px 106px;" class="octo-arm"/><path d="M115.0,115.0 C114.9,115.1 118.7,116.5 119.8,115.4 L133.7,101.6 C136.9,99.2 139.9,98.4 142.2,98.6 C133.8,88.0 127.5,74.4 143.8,58.0 C148.5,53.4 154.0,51.2 159.7,51.0 C160.3,49.4 163.2,43.6 171.4,40.1 C171.4,40.1 176.1,42.5 178.8,56.2 C183.1,58.6 187.2,61.8 190.9,65.4 C194.5,69.0 197.7,73.2 200.1,77.6 C213.8,80.2 216.3,84.9 216.3,84.9 C212.7,93.1 206.9,96.0 205.4,96.6 C205.1,102.4 203.0,107.8 198.3,112.5 C181.9,128.9 168.3,122.5 157.7,114.1 C157.9,116.9 156.7,120.9 152.7,124.9 L141.0,136.5 C139.8,137.7 141.6,141.9 141.8,141.8 Z" fill="currentColor" class="octo-body"/></svg><style>.github-corner:hover .octo-arm{animation:octocat-wave 560ms ease-in-out}@keyframes octocat-wave{0%,100%{transform:rotate(0)}20%,60%{transform:rotate(-25deg)}40%,80%{transform:rotate(10deg)}}@media (max-width:500px){.github-corner:hover .octo-arm{animation:none}.github-corner .octo-arm{animation:octocat-wave 560ms ease-in-out}}</style></a>
+
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-wrapper">
+  <div class="site-meta ">
+    
+
+    <div class="custom-logo-site-title">
+      <a href="/" class="brand" rel="start">
+        <span class="logo-line-before"><i></i></span>
+        <span class="site-title">森巴</span>
+        <span class="logo-line-after"><i></i></span>
+      </a>
+    </div>
+      
+        <p class="site-subtitle"></p>
+      
+  </div>
+
+  <div class="site-nav-toggle">
+    <button>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+    </button>
+  </div>
+</div>
+
+<nav class="site-nav">
+  
+
+  
+    <ul id="menu" class="menu">
+      
+        
+        <li class="menu-item menu-item-home">
+          <a href="/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-home"></i> <br>
+            
+            首页
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-tags">
+          <a href="/tags/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-tags"></i> <br>
+            
+            标签
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-categories">
+          <a href="/categories/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-th"></i> <br>
+            
+            分类
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-archives">
+          <a href="/archives/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-archive"></i> <br>
+            
+            归档
+          </a>
+        </li>
+      
+
+      
+        <li class="menu-item menu-item-search">
+          
+            <a href="javascript:;" class="popup-trigger">
+          
+            
+              <i class="menu-item-icon fa fa-search fa-fw"></i> <br>
+            
+            搜索
+          </a>
+        </li>
+      
+    </ul>
+  
+
+  
+    <div class="site-search">
+      
+  <div class="popup search-popup local-search-popup">
+  <div class="local-search-header clearfix">
+    <span class="search-icon">
+      <i class="fa fa-search"></i>
+    </span>
+    <span class="popup-btn-close">
+      <i class="fa fa-times-circle"></i>
+    </span>
+    <div class="local-search-input-wrapper">
+      <input autocomplete="off" placeholder="搜索..." spellcheck="false" type="text" id="local-search-input">
+    </div>
+  </div>
+  <div id="local-search-result"></div>
+</div>
+
+
+
+    </div>
+  
+</nav>
+
+
+
+ </div>
+    </header>
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2019/04/17/RabbitMQ/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="森巴">
+      <meta itemprop="description" content>
+      <meta itemprop="image" content="/images/avatar.gif">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="森巴">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">RabbitMQ</h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2019-04-17T11:08:55+08:00">
+                2019-04-17
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+            <span class="post-category">
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/消息队列/" itemprop="url" rel="index">
+                    <span itemprop="name">消息队列</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+              <span class="post-comments-count">
+                <span class="post-meta-divider">|</span>
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-comment-o"></i>
+                </span>
+                <a href="/2019/04/17/RabbitMQ/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count valine-comment-count" data-xid="/2019/04/17/RabbitMQ/" itemprop="commentCount"></span>
+                </a>
+              </span>
+            
+          
+
+          
+          
+
+          
+            <span class="post-meta-divider">|</span>
+            <span class="page-pv">本文总阅读量 <i class="fa fa-file-o"></i>
+            <span class="busuanzi-value" id="busuanzi_value_page_pv"></span>次
+            </span>
+          
+
+          
+            <div class="post-wordcount">
+              
+                
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-file-word-o"></i>
+                </span>
+                
+                  <span class="post-meta-item-text">字数统计&#58;</span>
+                
+                <span title="字数统计">
+                  5.8k
+                </span>
+              
+
+              
+                <span class="post-meta-divider">|</span>
+              
+
+              
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-clock-o"></i>
+                </span>
+                
+                  <span class="post-meta-item-text">阅读时长 &asymp;</span>
+                
+                <span title="阅读时长">
+                  24
+                </span>
+              
+            </div>
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <h2 id="介绍"><a href="#介绍" class="headerlink" title="介绍"></a>介绍</h2><p><strong>RabbitMQ:</strong>  MQ全称为Message Queue，即消息队列， RabbitMQ是由erlang语言开发，基于AMQP（Advanced Message<br>Queue 高级消息队列协议）协议实现的消息队列，它是一种应用程序之间的通信方法，消息队列在分布式系统开<br>发中应用非常广泛。RabbitMQ官方地址：<a href="http://www.rabbitmq.com/" target="_blank" rel="noopener">http://www.rabbitmq.com/</a></p>
+<p>开发中消息队列通常有如下应用场景：<br>1、任务异步处理。<br>将不需要同步处理的并且耗时长的操作由消息队列通知消息接收方进行异步处理。提高了应用程序的响应时间。<br>2、应用程序解耦合<br>MQ相当于一个中介，生产方通过MQ与消费方交互，它将应用程序进行解耦合。</p>
+<p>市场上还有哪些消息队列？<br>ActiveMQ，RabbitMQ，ZeroMQ，Kafka，MetaMQ，RocketMQ、Redis</p>
+<a id="more"></a>
+<p>为什么使用RabbitMQ呢？<br>1、使得简单，功能强大。<br>2、基于AMQP协议。<br>3、社区活跃，文档完善。<br>4、高并发性能好，这主要得益于Erlang语言。<br>5、Spring Boot默认已集成RabbitMQ </p>
+<p><strong>AMQP是什么 ？</strong><br>AMQP是一套公开的消息队列协议，最早在2003年被提出，它旨在从协议层定义消息通信数据的标准格式，<br>为的就是解决MQ市场上协议不统一的问题。RabbitMQ就是遵循AMQP标准协议开发的MQ服务。</p>
+<p><strong>JMS是什么 ？</strong><br>JMS是java提供的一套消息服务API标准，其目的是为所有的java应用程序提供统一的消息通信的标准，类似java的<br>jdbc，只要遵循jms标准的应用程序之间都可以进行消息通信。它和AMQP有什么 不同，jms是java语言专属的消<br>息服务标准，它是在api层定义标准，并且只能用于java应用；而AMQP是在协议层定义的标准，是跨语言的</p>
+<h2 id="RabbitMQ的工作原理"><a href="#RabbitMQ的工作原理" class="headerlink" title="RabbitMQ的工作原理"></a>RabbitMQ的工作原理</h2><p><img src="/2019/04/17/RabbitMQ/20190417111757.png" alt><br>组成部分说明如下：<br>    Broker：消息队列服务进程，此进程包括两个部分：Exchange和Queue。<br>    Exchange：消息队列交换机，按一定的规则将消息路由转发到某个队列，对消息进行过虑。<br>    Queue：消息队列，存储消息的队列，消息到达队列并转发给指定的消费方。<br>    Producer：消息生产者，即生产方客户端，生产方客户端将消息发送到MQ。<br>    Consumer：消息消费者，即消费方客户端，接收MQ转发的消息。<br>消息发布接收流程：<br>—–发送消息—–<br>    1、生产者和Broker建立TCP连接。<br>    2、生产者和Broker建立通道。<br>    3、生产者通过通道消息发送给Broker，由Exchange将消息进行转发。<br>    4、Exchange将消息转发到指定的Queue（队列）<br>—-接收消息—–<br>    1、消费者和Broker建立TCP连接<br>    2、消费者和Broker建立通道<br>    3、消费者监听指定的Queue（队列）<br>    4、当有消息到达Queue时Broker默认将消息推送给消费者。<br>    5、消费者接收到消息。</p>
+<h2 id="RabbitMQ入门程序"><a href="#RabbitMQ入门程序" class="headerlink" title="RabbitMQ入门程序"></a>RabbitMQ入门程序</h2><p>创建两个工程生产者和消费者<br>text-rabbitmq-producer : 生产者工程<br>text-rabbitmq-consumer ：消费者工程</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line">&lt;dependency&gt;</span><br><span class="line">          &lt;groupId&gt;com.com.test.rabbitmq.config.rabbitmq&lt;/groupId&gt;</span><br><span class="line">          &lt;artifactId&gt;amqp-client&lt;/artifactId&gt;</span><br><span class="line">          &lt;version&gt;5.5.0&lt;/version&gt;</span><br><span class="line">      &lt;/dependency&gt;</span><br><span class="line"></span><br><span class="line"> &lt;dependency&gt;</span><br><span class="line">          &lt;groupId&gt;org.springframework.boot&lt;/groupId&gt;</span><br><span class="line">          &lt;artifactId&gt;spring‐boot‐starter‐logging&lt;/artifactId&gt;</span><br><span class="line">      &lt;/dependency&gt;</span><br></pre></td></tr></table></figure>
+<p>代码编写：</p>
+<p>生产者<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br><span class="line">75</span><br><span class="line">76</span><br><span class="line">77</span><br><span class="line">78</span><br><span class="line">79</span><br><span class="line">80</span><br></pre></td><td class="code"><pre><span class="line">/**</span><br><span class="line"> * RabbitMQ入门程序   生产者</span><br><span class="line"> *</span><br><span class="line"> */</span><br><span class="line"></span><br><span class="line">public class producer01 &#123;</span><br><span class="line"></span><br><span class="line">    //队列</span><br><span class="line">    private static final String QUEUE = &quot;HELLO&quot;;</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">    public static void main(String args[]) &#123;</span><br><span class="line">        //通过连接工厂对象创建新的连接和mq建立连接</span><br><span class="line">        ConnectionFactory connectionFactory = new ConnectionFactory();</span><br><span class="line">        //设置RabbitMQ连接地址</span><br><span class="line">        connectionFactory.setHost(&quot;127.0.0.1&quot;);</span><br><span class="line">        //设置连接的端口</span><br><span class="line">        connectionFactory.setPort(5672);</span><br><span class="line">        //登陆RabbitMQ需要用到的用户名和密码</span><br><span class="line">        connectionFactory.setUsername(&quot;guest&quot;);</span><br><span class="line">        connectionFactory.setPassword(&quot;guest&quot;);</span><br><span class="line">        //设置虚拟机,一个mq服务可以设置多个虚拟机 每个虚拟机都相当于独立的mq</span><br><span class="line">        connectionFactory.setVirtualHost(&quot;/&quot;);</span><br><span class="line">        //建立新连接</span><br><span class="line">        Connection connection = null;</span><br><span class="line">        Channel channel = null;</span><br><span class="line">        try &#123;</span><br><span class="line">            connection = connectionFactory.newConnection();</span><br><span class="line">            //创建会话通道,生产者和mq服务所有通信都在channel通道中完成</span><br><span class="line">            channel = connection.createChannel();</span><br><span class="line">            //声明队列  如果队列在mq中 没有则要创建</span><br><span class="line">            //String queue, boolean durable, boolean exclusive, boolean autoDelete, Map&lt;String, Object&gt; arguments</span><br><span class="line">            /**</span><br><span class="line">             * 参数的明细</span><br><span class="line">             *  1.queue 队列名称</span><br><span class="line">             *  2.durable 是否持久化，如果持久化mq重启后队列还在</span><br><span class="line">             *  3.exclusive 是否独占连接 队列只允许在连接中访问，如果Connection连接关闭队列则自动删除 如果将参数设置true可用于临时队列的创建</span><br><span class="line">             *  4.autoDelete 自动删除 队列不再使用时是否自动删除此队列 如果将此参数和exclusive参数设置微true就可以实现临时队列（队列不用了就自动删除）</span><br><span class="line">             *  5.arguments 参数 可以设置一个队列的扩展参数 比如设置存活时间</span><br><span class="line">             */</span><br><span class="line"></span><br><span class="line">            channel.queueDeclare(QUEUE,true,false,false,null);</span><br><span class="line">            //发送消息</span><br><span class="line">            /**</span><br><span class="line">             * String exchange, String routingKey, BasicProperties props, byte[] body\</span><br><span class="line">             *  参数明细：</span><br><span class="line">             * \1、exchange: 交换机  如果不指定将使用MQ的默认交换机(设置为”“)</span><br><span class="line">             *  2、routingKey：路由key，交换机根据路由key来将消息转发到指定的队列 如果使用默认交换机，routingKey设置为队列名称</span><br><span class="line">             * \3、props：消息属性</span><br><span class="line">             *  4、body：消息内容</span><br><span class="line">             *</span><br><span class="line">             */</span><br><span class="line">            String message=&quot;Hello Word 小胖&quot;;</span><br><span class="line"></span><br><span class="line">            channel.basicPublish(&quot;&quot;,QUEUE,null,message.getBytes());</span><br><span class="line">             System.out.println(&quot;send to mq&quot;+message);</span><br><span class="line"></span><br><span class="line">        &#125; catch (Exception e) &#123;</span><br><span class="line">            e.printStackTrace();</span><br><span class="line">        &#125;finally &#123;</span><br><span class="line">            try &#123;</span><br><span class="line">                channel.close();</span><br><span class="line">            &#125; catch (IOException e) &#123;</span><br><span class="line">                e.printStackTrace();</span><br><span class="line">            &#125; catch (TimeoutException e) &#123;</span><br><span class="line">                e.printStackTrace();</span><br><span class="line">            &#125;</span><br><span class="line"></span><br><span class="line">            try &#123;</span><br><span class="line">                connection.close();</span><br><span class="line">            &#125; catch (IOException e) &#123;</span><br><span class="line">                e.printStackTrace();</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
+<p>消费者：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br><span class="line">75</span><br><span class="line">76</span><br><span class="line">77</span><br><span class="line">78</span><br><span class="line">79</span><br><span class="line">80</span><br><span class="line">81</span><br><span class="line">82</span><br><span class="line">83</span><br><span class="line">84</span><br></pre></td><td class="code"><pre><span class="line">/**</span><br><span class="line"> * RabbitMQ入门程序   消费者</span><br><span class="line"> *</span><br><span class="line"> */</span><br><span class="line"></span><br><span class="line">public class Consumer01 &#123;</span><br><span class="line"></span><br><span class="line">    //队列</span><br><span class="line">    private static final String QUEUE = &quot;HELLO&quot;;</span><br><span class="line"></span><br><span class="line">    public static void main(String args[]) &#123;</span><br><span class="line">        //通过连接工厂对象创建新的连接和mq建立连接</span><br><span class="line">        ConnectionFactory connectionFactory = new ConnectionFactory();</span><br><span class="line">        //设置RabbitMQ连接地址</span><br><span class="line">        connectionFactory.setHost(&quot;127.0.0.1&quot;);</span><br><span class="line">        //设置连接的端口</span><br><span class="line">        connectionFactory.setPort(5672);</span><br><span class="line">        //登陆RabbitMQ需要用到的用户名和密码</span><br><span class="line">        connectionFactory.setUsername(&quot;guest&quot;);</span><br><span class="line">        connectionFactory.setPassword(&quot;guest&quot;);</span><br><span class="line">        //设置虚拟机,一个mq服务可以设置多个虚拟机 每个虚拟机都相当于独立的mq</span><br><span class="line">        connectionFactory.setVirtualHost(&quot;/&quot;);</span><br><span class="line">        //建立新连接</span><br><span class="line">        Connection connection = null;</span><br><span class="line">        try &#123;</span><br><span class="line">            connection = connectionFactory.newConnection();</span><br><span class="line">            //创建会话通道,生产者和mq服务所有通信都在channel通道中完成</span><br><span class="line">            Channel channel = connection.createChannel();</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">            //监听队列</span><br><span class="line">            //声明队列  如果队列在mq中 没有则要创建</span><br><span class="line">            //String queue, boolean durable, boolean exclusive, boolean autoDelete, Map&lt;String, Object&gt; arguments</span><br><span class="line">            /**</span><br><span class="line">             * 参数的明细</span><br><span class="line">             *  1.queue 队列名称</span><br><span class="line">             *  2.durable 是否持久化，如果持久化mq重启后队列还在</span><br><span class="line">             *  3.exclusive 是否独占连接 队列只允许在连接中访问，如果Connection连接关闭队列则自动删除 如果将参数设置true可用于临时队列的创建</span><br><span class="line">             *  4.autoDelete 自动删除 队列不再使用时是否自动删除此队列 如果将此参数和exclusive参数设置微true就可以实现临时队列（队列不用了就自动删除）</span><br><span class="line">             *  5.arguments 参数 可以设置一个队列的扩展参数 比如设置存活时间</span><br><span class="line">             */</span><br><span class="line"></span><br><span class="line">            channel.queueDeclare(QUEUE,true,false,false,null);</span><br><span class="line"></span><br><span class="line">            //实现消费方法</span><br><span class="line">            DefaultConsumer defaultConsumer = new DefaultConsumer(channel)&#123;</span><br><span class="line">                /**</span><br><span class="line">                 * 当接收到消息后此方法将被调用</span><br><span class="line">                 * @param consumerTag 消费者标签 用来标识消费者的 ，在监听队列的时候设置</span><br><span class="line">                 * @param envelope 信封 通过envelope</span><br><span class="line">                 * @param properties  消息属性</span><br><span class="line">                 * @param body</span><br><span class="line">                 * @throws IOException</span><br><span class="line">                 */</span><br><span class="line">                @Override</span><br><span class="line">                public void handleDelivery(String consumerTag, Envelope envelope, AMQP.BasicProperties properties, byte[] body) throws IOException &#123;</span><br><span class="line">                    //交换机</span><br><span class="line">                    String exchange = envelope.getExchange();</span><br><span class="line">                    //消息ID mq在channel中用来表示消息的ID 可用于确认消息已接受</span><br><span class="line">                    long deliveryTag = envelope.getDeliveryTag();</span><br><span class="line">                    //消息内容</span><br><span class="line">                    String message = new String(body,&quot;UTF-8&quot;);</span><br><span class="line">                     System.out.println(&quot;接收到消息   message:&quot;+message);</span><br><span class="line">                &#125;</span><br><span class="line">            &#125;;</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"></span><br><span class="line">            //监听队列</span><br><span class="line">            /**</span><br><span class="line">             * 参数 ：String queue, boolean autoAck, Consumer callback</span><br><span class="line">             *</span><br><span class="line">             * 1、queue：队列名称</span><br><span class="line">             * 2、autoAck：自动回复 当前消费者接收到消息后要告诉mq消息也接收 如果将此参数设置为true表示会自动回复mq 如果设置为false要通过编程来实现回复</span><br><span class="line">             * 3、callback：消费方法，当消费者接受到消息要执行的方法</span><br><span class="line">             *</span><br><span class="line">             */</span><br><span class="line">            channel.basicConsume(QUEUE,true,defaultConsumer);</span><br><span class="line">        &#125; catch (Exception e) &#123;</span><br><span class="line">            e.printStackTrace();</span><br><span class="line">        &#125;finally &#123;</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
+<h2 id="工作模式"><a href="#工作模式" class="headerlink" title="工作模式"></a>工作模式</h2><p><img src="/2019/04/17/RabbitMQ/20190417113632.png" alt></p>
+<h2 id="Publish-subscribe"><a href="#Publish-subscribe" class="headerlink" title="Publish/subscribe"></a>Publish/subscribe</h2><p><img src="/2019/04/17/RabbitMQ/20190417113854.png" alt></p>
+<p>发布订阅模式：<br>1、每个消费者监听自己的队列。<br>2、生产者将消息发给broker，由交换机将消息转发到绑定此交换机的每个队列，每个绑定交换机的队列都将接收<br>到消息<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br><span class="line">75</span><br><span class="line">76</span><br><span class="line">77</span><br><span class="line">78</span><br><span class="line">79</span><br><span class="line">80</span><br><span class="line">81</span><br><span class="line">82</span><br><span class="line">83</span><br><span class="line">84</span><br></pre></td><td class="code"><pre><span class="line">public class Producer02_publish &#123;</span><br><span class="line"></span><br><span class="line">    //队列</span><br><span class="line">    private static final String QUEUE_INFORM_EMAIL = &quot;queue_inform_email&quot;;</span><br><span class="line">    private static final String QUEUE_INFORM_SMS = &quot;queue_inform_sms&quot;;</span><br><span class="line">    private static final String EXCHANGE_FANOUT_INFORM=&quot;exchange_fanout_inform&quot;;</span><br><span class="line"></span><br><span class="line">    public static void main(String args[]) &#123;</span><br><span class="line">        //通过连接工厂对象创建新的连接和mq建立连接</span><br><span class="line">        ConnectionFactory connectionFactory = new ConnectionFactory();</span><br><span class="line">        //设置RabbitMQ连接地址</span><br><span class="line">        connectionFactory.setHost(&quot;127.0.0.1&quot;);</span><br><span class="line">        //设置连接的端口</span><br><span class="line">        connectionFactory.setPort(5672);</span><br><span class="line">        //登陆RabbitMQ需要用到的用户名和密码</span><br><span class="line">        connectionFactory.setUsername(&quot;guest&quot;);</span><br><span class="line">        connectionFactory.setPassword(&quot;guest&quot;);</span><br><span class="line">        //设置虚拟机,一个mq服务可以设置多个虚拟机 每个虚拟机都相当于独立的mq</span><br><span class="line">        connectionFactory.setVirtualHost(&quot;/&quot;);</span><br><span class="line">        //建立新连接</span><br><span class="line">        Connection connection = null;</span><br><span class="line">        Channel channel = null;</span><br><span class="line">        try &#123;</span><br><span class="line">            connection = connectionFactory.newConnection();</span><br><span class="line">            //创建会话通道,生产者和mq服务所有通信都在channel通道中完成</span><br><span class="line">            channel = connection.createChannel();</span><br><span class="line"></span><br><span class="line">            //声明交换机</span><br><span class="line">            channel.exchangeDeclare(EXCHANGE_FANOUT_INFORM, BuiltinExchangeType.FANOUT);</span><br><span class="line">            //声明队列  如果队列在mq中 没有则要创建</span><br><span class="line">            //String queue, boolean durable, boolean exclusive, boolean autoDelete, Map&lt;String, Object&gt; arguments</span><br><span class="line">            /**</span><br><span class="line">             * 参数的明细</span><br><span class="line">             *  1.queue 队列名称</span><br><span class="line">             *  2.durable 是否持久化，如果持久化mq重启后队列还在</span><br><span class="line">             *  3.exclusive 是否独占连接 队列只允许在连接中访问，如果Connection连接关闭队列则自动删除 如果将参数设置true可用于临时队列的创建</span><br><span class="line">             *  4.autoDelete 自动删除 队列不再使用时是否自动删除此队列 如果将此参数和exclusive参数设置微true就可以实现临时队列（队列不用了就自动删除）</span><br><span class="line">             *  5.arguments 参数 可以设置一个队列的扩展参数 比如设置存活时间</span><br><span class="line">             */</span><br><span class="line"></span><br><span class="line">            channel.queueDeclare(QUEUE_INFORM_EMAIL,true,false,false,null);</span><br><span class="line">            channel.queueDeclare(QUEUE_INFORM_SMS,true,false,false,null);</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"></span><br><span class="line">            channel.queueBind(QUEUE_INFORM_EMAIL,EXCHANGE_FANOUT_INFORM,&quot;&quot;);</span><br><span class="line">            channel.queueBind(QUEUE_INFORM_SMS,EXCHANGE_FANOUT_INFORM,&quot;&quot;);</span><br><span class="line">            //发送消息</span><br><span class="line">            /**</span><br><span class="line">             * String exchange, String routingKey, BasicProperties props, byte[] body\</span><br><span class="line">             *  参数明细：</span><br><span class="line">             * \1、exchange: 交换机  如果不指定将使用MQ的默认交换机(设置为”“)</span><br><span class="line">             *  2、routingKey：路由key，交换机根据路由key来将消息转发到指定的队列 如果使用默认交换机，routingKey设置为队列名称</span><br><span class="line">             * \3、props：消息属性</span><br><span class="line">             *  4、body：消息内容</span><br><span class="line">             *</span><br><span class="line">             */</span><br><span class="line">            String message1=&quot;Hello Word 小胖&quot;;</span><br><span class="line"></span><br><span class="line">            channel.basicPublish(EXCHANGE_FANOUT_INFORM,&quot;&quot;,null,message1.getBytes());</span><br><span class="line">            System.out.println(&quot;send to mq&quot;+message1);</span><br><span class="line"></span><br><span class="line">        &#125; catch (Exception e) &#123;</span><br><span class="line">            e.printStackTrace();</span><br><span class="line">        &#125;finally &#123;</span><br><span class="line">            try &#123;</span><br><span class="line">                channel.close();</span><br><span class="line">            &#125; catch (IOException e) &#123;</span><br><span class="line">                e.printStackTrace();</span><br><span class="line">            &#125; catch (TimeoutException e) &#123;</span><br><span class="line">                e.printStackTrace();</span><br><span class="line">            &#125;</span><br><span class="line"></span><br><span class="line">            try &#123;</span><br><span class="line">                connection.close();</span><br><span class="line">            &#125; catch (IOException e) &#123;</span><br><span class="line">                e.printStackTrace();</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br><span class="line">75</span><br><span class="line">76</span><br><span class="line">77</span><br><span class="line">78</span><br><span class="line">79</span><br><span class="line">80</span><br><span class="line">81</span><br><span class="line">82</span><br><span class="line">83</span><br><span class="line">84</span><br><span class="line">85</span><br><span class="line">86</span><br><span class="line">87</span><br><span class="line">88</span><br><span class="line">89</span><br><span class="line">90</span><br><span class="line">91</span><br><span class="line">92</span><br><span class="line">93</span><br><span class="line">94</span><br><span class="line">95</span><br><span class="line">96</span><br><span class="line">97</span><br><span class="line">98</span><br></pre></td><td class="code"><pre><span class="line">public class Consumer02_subscribe_email &#123;</span><br><span class="line"></span><br><span class="line">    //队列名称</span><br><span class="line">    private static final String QUEUE_INFORM_EMAIL = &quot;inform_queue_email&quot;;</span><br><span class="line">    private static final String EXCHANGE_FANOUT_INFORM=&quot;exchange_fanout_inform&quot;;</span><br><span class="line"></span><br><span class="line">    public static void main(String args[]) &#123;</span><br><span class="line">        //通过连接工厂对象创建新的连接和mq建立连接</span><br><span class="line">        ConnectionFactory connectionFactory = new ConnectionFactory();</span><br><span class="line">        //设置RabbitMQ连接地址</span><br><span class="line">        connectionFactory.setHost(&quot;127.0.0.1&quot;);</span><br><span class="line">        //设置连接的端口</span><br><span class="line">        connectionFactory.setPort(5672);</span><br><span class="line">        //登陆RabbitMQ需要用到的用户名和密码</span><br><span class="line">        connectionFactory.setUsername(&quot;guest&quot;);</span><br><span class="line">        connectionFactory.setPassword(&quot;guest&quot;);</span><br><span class="line">        //设置虚拟机,一个mq服务可以设置多个虚拟机 每个虚拟机都相当于独立的mq</span><br><span class="line">        connectionFactory.setVirtualHost(&quot;/&quot;);</span><br><span class="line">        //建立新连接</span><br><span class="line">        Connection connection = null;</span><br><span class="line">        try &#123;</span><br><span class="line">            connection = connectionFactory.newConnection();</span><br><span class="line">            //创建会话通道,生产者和mq服务所有通信都在channel通道中完成</span><br><span class="line">            Channel channel = connection.createChannel();</span><br><span class="line"></span><br><span class="line">            //声明交换机</span><br><span class="line">            channel.exchangeDeclare(EXCHANGE_FANOUT_INFORM,BuiltinExchangeType.FANOUT);</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">            //监听队列</span><br><span class="line">            //声明队列  如果队列在mq中 没有则要创建</span><br><span class="line">            //String queue, boolean durable, boolean exclusive, boolean autoDelete, Map&lt;String, Object&gt; arguments</span><br><span class="line">            /**</span><br><span class="line">             * 参数的明细</span><br><span class="line">             *  1.queue 队列名称</span><br><span class="line">             *  2.durable 是否持久化，如果持久化mq重启后队列还在</span><br><span class="line">             *  3.exclusive 是否独占连接 队列只允许在连接中访问，如果Connection连接关闭队列则自动删除 如果将参数设置true可用于临时队列的创建</span><br><span class="line">             *  4.autoDelete 自动删除 队列不再使用时是否自动删除此队列 如果将此参数和exclusive参数设置微true就可以实现临时队列（队列不用了就自动删除）</span><br><span class="line">             *  5.arguments 参数 可以设置一个队列的扩展参数 比如设置存活时间</span><br><span class="line">             */</span><br><span class="line"></span><br><span class="line">            channel.queueDeclare(QUEUE_INFORM_EMAIL,true,false,false,null);</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">            //交换机和队列绑定</span><br><span class="line">            /**</span><br><span class="line">             * 参数明细</span><br><span class="line">             * 1、队列名称</span><br><span class="line">             * 2、交换机名称</span><br><span class="line">             * 3、路由key</span><br><span class="line">             */</span><br><span class="line">            channel.queueBind(QUEUE_INFORM_EMAIL,EXCHANGE_FANOUT_INFORM,&quot;&quot;);</span><br><span class="line"></span><br><span class="line">            //实现消费方法</span><br><span class="line">            DefaultConsumer defaultConsumer = new DefaultConsumer(channel)&#123;</span><br><span class="line">                /**</span><br><span class="line">                 * 当接收到消息后此方法将被调用</span><br><span class="line">                 * @param consumerTag 消费者标签 用来标识消费者的 ，在监听队列的时候设置</span><br><span class="line">                 * @param envelope 信封 通过envelope</span><br><span class="line">                 * @param properties  消息属性</span><br><span class="line">                 * @param body</span><br><span class="line">                 * @throws IOException</span><br><span class="line">                 */</span><br><span class="line">                @Override</span><br><span class="line">                public void handleDelivery(String consumerTag, Envelope envelope, AMQP.BasicProperties properties, byte[] body) throws IOException &#123;</span><br><span class="line">                    //交换机</span><br><span class="line">                    String exchange = envelope.getExchange();</span><br><span class="line">                    //消息ID mq在channel中用来表示消息的ID 可用于确认消息已接受</span><br><span class="line">                    long deliveryTag = envelope.getDeliveryTag();</span><br><span class="line">                    //消息内容</span><br><span class="line">                    String message = new String(body,&quot;UTF-8&quot;);</span><br><span class="line">                    System.out.println(&quot;邮件接收到消息   message:&quot;+message);</span><br><span class="line">                &#125;</span><br><span class="line">            &#125;;</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"></span><br><span class="line">            //监听队列</span><br><span class="line">            /**</span><br><span class="line">             * 参数 ：String queue, boolean autoAck, Consumer callback</span><br><span class="line">             *</span><br><span class="line">             * 1、queue：队列名称</span><br><span class="line">             * 2、autoAck：自动回复 当前消费者接收到消息后要告诉mq消息也接收 如果将此参数设置为true表示会自动回复mq 如果设置为false要通过编程来实现回复</span><br><span class="line">             * 3、callback：消费方法，当消费者接受到消息要执行的方法</span><br><span class="line">             *</span><br><span class="line">             */</span><br><span class="line">            channel.basicConsume(QUEUE_INFORM_EMAIL,true,defaultConsumer);</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">        &#125; catch (Exception e) &#123;</span><br><span class="line">            e.printStackTrace();</span><br><span class="line">        &#125;finally &#123;</span><br><span class="line"></span><br><span class="line">        &#125;</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>Consumer02_subscribe_sms 短信消费者和邮件代码一样</p>
+<p>publish/subscribe与work queues有什么区别。<br>区别：<br>1.work queues不用定义交换机，而publish/subscribe需要定义交换机。<br>2.publish/subscribe的生产方是面向交换机发送消息，work queues的生产方是面向队列发送消息(底层使用默认<br>交换机)。<br>3.publish/subscribe需要设置队列和交换机的绑定，work queues不需要设置，实质上work queues会将队列绑<br>定到默认的交换机 。<br>相同点：<br>所以两者实现的发布/订阅的效果是一样的，多个消费端监听同一个队列不会重复消费消息。</p>
+<p>2、实质工作用什么 publish/subscribe还是work queues。<br>建议使用 publish/subscribe，发布订阅模式比工作队列模式更强大，并且发布订阅模式可以指定自己专用的交换<br>机。</p>
+<h2 id="Routing"><a href="#Routing" class="headerlink" title="Routing"></a>Routing</h2><p><img src="/2019/04/17/RabbitMQ/20190417114326.png" alt><br>路由模式：<br>1、每个消费者监听自己的队列，并且设置routingkey。<br>2、生产者将消息发给交换机，由交换机根据routingkey来转发消息到指定的队列</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br><span class="line">75</span><br><span class="line">76</span><br><span class="line">77</span><br><span class="line">78</span><br><span class="line">79</span><br><span class="line">80</span><br><span class="line">81</span><br><span class="line">82</span><br><span class="line">83</span><br><span class="line">84</span><br><span class="line">85</span><br><span class="line">86</span><br><span class="line">87</span><br><span class="line">88</span><br><span class="line">89</span><br><span class="line">90</span><br><span class="line">91</span><br><span class="line">92</span><br><span class="line">93</span><br></pre></td><td class="code"><pre><span class="line">public class Producer03_routing &#123;</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">    //队列</span><br><span class="line">    private static final String QUEUE_INFORM_EMAIL = &quot;queue_inform_email&quot;;</span><br><span class="line">    private static final String QUEUE_INFORM_SMS = &quot;queue_inform_sms&quot;;</span><br><span class="line">    private static final String EXCHANGE_ROUTING_INFORM=&quot;exchange_routing_inform&quot;;</span><br><span class="line"></span><br><span class="line">    public static void main(String args[]) &#123;</span><br><span class="line">        //通过连接工厂对象创建新的连接和mq建立连接</span><br><span class="line">        ConnectionFactory connectionFactory = new ConnectionFactory();</span><br><span class="line">        //设置RabbitMQ连接地址</span><br><span class="line">        connectionFactory.setHost(&quot;127.0.0.1&quot;);</span><br><span class="line">        //设置连接的端口</span><br><span class="line">        connectionFactory.setPort(5672);</span><br><span class="line">        //登陆RabbitMQ需要用到的用户名和密码</span><br><span class="line">        connectionFactory.setUsername(&quot;guest&quot;);</span><br><span class="line">        connectionFactory.setPassword(&quot;guest&quot;);</span><br><span class="line">        //设置虚拟机,一个mq服务可以设置多个虚拟机 每个虚拟机都相当于独立的mq</span><br><span class="line">        connectionFactory.setVirtualHost(&quot;/&quot;);</span><br><span class="line">        //建立新连接</span><br><span class="line">        Connection connection = null;</span><br><span class="line">        Channel channel = null;</span><br><span class="line">        try &#123;</span><br><span class="line">            connection = connectionFactory.newConnection();</span><br><span class="line">            //创建会话通道,生产者和mq服务所有通信都在channel通道中完成</span><br><span class="line">            channel = connection.createChannel();</span><br><span class="line"></span><br><span class="line">            //声明交换机</span><br><span class="line">            channel.exchangeDeclare(EXCHANGE_ROUTING_INFORM, BuiltinExchangeType.DIRECT);</span><br><span class="line">            //声明队列  如果队列在mq中 没有则要创建</span><br><span class="line">            //String queue, boolean durable, boolean exclusive, boolean autoDelete, Map&lt;String, Object&gt; arguments</span><br><span class="line">            /**</span><br><span class="line">             * 参数的明细</span><br><span class="line">             *  1.queue 队列名称</span><br><span class="line">             *  2.durable 是否持久化，如果持久化mq重启后队列还在</span><br><span class="line">             *  3.exclusive 是否独占连接 队列只允许在连接中访问，如果Connection连接关闭队列则自动删除 如果将参数设置true可用于临时队列的创建</span><br><span class="line">             *  4.autoDelete 自动删除 队列不再使用时是否自动删除此队列 如果将此参数和exclusive参数设置微true就可以实现临时队列（队列不用了就自动删除）</span><br><span class="line">             *  5.arguments 参数 可以设置一个队列的扩展参数 比如设置存活时间</span><br><span class="line">             */</span><br><span class="line"></span><br><span class="line">            channel.queueDeclare(QUEUE_INFORM_EMAIL,true,false,false,null);</span><br><span class="line">            channel.queueDeclare(QUEUE_INFORM_SMS,true,false,false,null);</span><br><span class="line"></span><br><span class="line">            //交换机和队列绑定String queue, String exchange, String routingKey</span><br><span class="line">            /**</span><br><span class="line">             * 参数明细</span><br><span class="line">             * 1、队列名称</span><br><span class="line">             * 2、交换机名称</span><br><span class="line">             * 3、路由key</span><br><span class="line">             */</span><br><span class="line">            channel.queueBind(QUEUE_INFORM_EMAIL,EXCHANGE_ROUTING_INFORM,QUEUE_INFORM_EMAIL);</span><br><span class="line">            channel.queueBind(QUEUE_INFORM_SMS,EXCHANGE_ROUTING_INFORM,QUEUE_INFORM_SMS);</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">            //发送消息</span><br><span class="line">            /**</span><br><span class="line">             * String exchange, String routingKey, BasicProperties props, byte[] body\</span><br><span class="line">             *  参数明细：</span><br><span class="line">             * \1、exchange: 交换机  如果不指定将使用MQ的默认交换机(设置为”“)</span><br><span class="line">             *  2、routingKey：路由key，交换机根据路由key来将消息转发到指定的队列 如果使用默认交换机，routingKey设置为队列名称</span><br><span class="line">             * \3、props：消息属性</span><br><span class="line">             *  4、body：消息内容</span><br><span class="line">             *</span><br><span class="line">             */</span><br><span class="line">            String message1=&quot;Hello Word 小胖&quot;;</span><br><span class="line"></span><br><span class="line">            channel.basicPublish(EXCHANGE_ROUTING_INFORM,QUEUE_INFORM_EMAIL,null,message1.getBytes());</span><br><span class="line">            channel.basicPublish(EXCHANGE_ROUTING_INFORM,QUEUE_INFORM_SMS,null,message1.getBytes());</span><br><span class="line">            System.out.println(&quot;send to mq&quot;+message1);</span><br><span class="line"></span><br><span class="line">        &#125; catch (Exception e) &#123;</span><br><span class="line">            e.printStackTrace();</span><br><span class="line">        &#125;finally &#123;</span><br><span class="line">            try &#123;</span><br><span class="line">                channel.close();</span><br><span class="line">            &#125; catch (IOException e) &#123;</span><br><span class="line">                e.printStackTrace();</span><br><span class="line">            &#125; catch (TimeoutException e) &#123;</span><br><span class="line">                e.printStackTrace();</span><br><span class="line">            &#125;</span><br><span class="line"></span><br><span class="line">            try &#123;</span><br><span class="line">                connection.close();</span><br><span class="line">            &#125; catch (IOException e) &#123;</span><br><span class="line">                e.printStackTrace();</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br><span class="line">75</span><br><span class="line">76</span><br><span class="line">77</span><br><span class="line">78</span><br><span class="line">79</span><br><span class="line">80</span><br><span class="line">81</span><br><span class="line">82</span><br><span class="line">83</span><br><span class="line">84</span><br><span class="line">85</span><br><span class="line">86</span><br><span class="line">87</span><br><span class="line">88</span><br><span class="line">89</span><br><span class="line">90</span><br><span class="line">91</span><br><span class="line">92</span><br><span class="line">93</span><br><span class="line">94</span><br><span class="line">95</span><br><span class="line">96</span><br><span class="line">97</span><br><span class="line">98</span><br></pre></td><td class="code"><pre><span class="line">public class Consumer03_routing_email &#123;</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">    //队列名称</span><br><span class="line">    private static final String QUEUE_INFORM_EMAIL = &quot;queue_inform_email&quot;;</span><br><span class="line">    private static final String EXCHANGE_ROUTING_INFORM=&quot;exchange_routing_inform&quot;;</span><br><span class="line"></span><br><span class="line">    public static void main(String args[]) &#123;</span><br><span class="line">        //通过连接工厂对象创建新的连接和mq建立连接</span><br><span class="line">        ConnectionFactory connectionFactory = new ConnectionFactory();</span><br><span class="line">        //设置RabbitMQ连接地址</span><br><span class="line">        connectionFactory.setHost(&quot;127.0.0.1&quot;);</span><br><span class="line">        //设置连接的端口</span><br><span class="line">        connectionFactory.setPort(5672);</span><br><span class="line">        //登陆RabbitMQ需要用到的用户名和密码</span><br><span class="line">        connectionFactory.setUsername(&quot;guest&quot;);</span><br><span class="line">        connectionFactory.setPassword(&quot;guest&quot;);</span><br><span class="line">        //设置虚拟机,一个mq服务可以设置多个虚拟机 每个虚拟机都相当于独立的mq</span><br><span class="line">        connectionFactory.setVirtualHost(&quot;/&quot;);</span><br><span class="line">        //建立新连接</span><br><span class="line">        Connection connection = null;</span><br><span class="line">        try &#123;</span><br><span class="line">            connection = connectionFactory.newConnection();</span><br><span class="line">            //创建会话通道,生产者和mq服务所有通信都在channel通道中完成</span><br><span class="line">            Channel channel = connection.createChannel();</span><br><span class="line"></span><br><span class="line">            //声明交换机</span><br><span class="line">            channel.exchangeDeclare(EXCHANGE_ROUTING_INFORM, BuiltinExchangeType.DIRECT);</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">            //监听队列</span><br><span class="line">            //声明队列  如果队列在mq中 没有则要创建</span><br><span class="line">            //String queue, boolean durable, boolean exclusive, boolean autoDelete, Map&lt;String, Object&gt; arguments</span><br><span class="line">            /**</span><br><span class="line">             * 参数的明细</span><br><span class="line">             *  1.queue 队列名称</span><br><span class="line">             *  2.durable 是否持久化，如果持久化mq重启后队列还在</span><br><span class="line">             *  3.exclusive 是否独占连接 队列只允许在连接中访问，如果Connection连接关闭队列则自动删除 如果将参数设置true可用于临时队列的创建</span><br><span class="line">             *  4.autoDelete 自动删除 队列不再使用时是否自动删除此队列 如果将此参数和exclusive参数设置微true就可以实现临时队列（队列不用了就自动删除）</span><br><span class="line">             *  5.arguments 参数 可以设置一个队列的扩展参数 比如设置存活时间</span><br><span class="line">             */</span><br><span class="line"></span><br><span class="line">            channel.queueDeclare(QUEUE_INFORM_EMAIL, true, false, false, null);</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">            //交换机和队列绑定</span><br><span class="line">            /**</span><br><span class="line">             * 参数明细</span><br><span class="line">             * 1、队列名称</span><br><span class="line">             * 2、交换机名称</span><br><span class="line">             * 3、路由key</span><br><span class="line">             */</span><br><span class="line">            channel.queueBind(QUEUE_INFORM_EMAIL, EXCHANGE_ROUTING_INFORM, QUEUE_INFORM_EMAIL);</span><br><span class="line"></span><br><span class="line">            //实现消费方法</span><br><span class="line">            DefaultConsumer defaultConsumer = new DefaultConsumer(channel) &#123;</span><br><span class="line">                /**</span><br><span class="line">                 * 当接收到消息后此方法将被调用</span><br><span class="line">                 * @param consumerTag 消费者标签 用来标识消费者的 ，在监听队列的时候设置</span><br><span class="line">                 * @param envelope 信封 通过envelope</span><br><span class="line">                 * @param properties  消息属性</span><br><span class="line">                 * @param body</span><br><span class="line">                 * @throws IOException</span><br><span class="line">                 */</span><br><span class="line">                @Override</span><br><span class="line">                public void handleDelivery(String consumerTag, Envelope envelope, AMQP.BasicProperties properties, byte[] body) throws IOException &#123;</span><br><span class="line">                    //交换机</span><br><span class="line">                    String exchange = envelope.getExchange();</span><br><span class="line">                    //消息ID mq在channel中用来表示消息的ID 可用于确认消息已接受</span><br><span class="line">                    long deliveryTag = envelope.getDeliveryTag();</span><br><span class="line">                    //消息内容</span><br><span class="line">                    String message = new String(body, &quot;UTF-8&quot;);</span><br><span class="line">                    System.out.println(&quot;邮件接收到消息   message:&quot; + message);</span><br><span class="line">                &#125;</span><br><span class="line">            &#125;;</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">            //监听队列</span><br><span class="line">            /**</span><br><span class="line">             * 参数 ：String queue, boolean autoAck, Consumer callback</span><br><span class="line">             *</span><br><span class="line">             * 1、queue：队列名称</span><br><span class="line">             * 2、autoAck：自动回复 当前消费者接收到消息后要告诉mq消息也接收 如果将此参数设置为true表示会自动回复mq 如果设置为false要通过编程来实现回复</span><br><span class="line">             * 3、callback：消费方法，当消费者接受到消息要执行的方法</span><br><span class="line">             *</span><br><span class="line">             */</span><br><span class="line">            channel.basicConsume(QUEUE_INFORM_EMAIL, true, defaultConsumer);</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">        &#125; catch (Exception e) &#123;</span><br><span class="line">            e.printStackTrace();</span><br><span class="line">        &#125; finally &#123;</span><br><span class="line"></span><br><span class="line">        &#125;</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>Routing模式和Publish/subscibe有啥区别？<br>Routing模式要求队列在绑定交换机时要指定routingkey，消息会转发到符合routingkey的队列。</p>
+<h2 id="Topics"><a href="#Topics" class="headerlink" title="Topics"></a>Topics</h2><p><img src="/2019/04/17/RabbitMQ/20190417115017.png" alt></p>
+<p>路由模式：<br>1、每个消费者监听自己的队列，并且设置带统配符的routingkey。<br>2、生产者将消息发给broker，由交换机根据routingkey来转发消息到指定的队列。</p>
+<p>生产者<br>声明交换机，指定topic类型：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line">/**</span><br><span class="line">* 声明交换机</span><br><span class="line">* param1：交换机名称</span><br><span class="line">* param2:交换机类型 四种交换机类型：direct、fanout、topic、headers</span><br><span class="line">*/</span><br><span class="line">channel.exchangeDeclare(EXCHANGE_TOPICS_INFORM, BuiltinExchangeType.TOPIC);</span><br><span class="line">//Email通知</span><br><span class="line">channel.basicPublish(EXCHANGE_TOPICS_INFORM, &quot;inform.email&quot;, null, message.getBytes());</span><br><span class="line">//sms通知</span><br><span class="line">channel.basicPublish(EXCHANGE_TOPICS_INFORM, &quot;inform.sms&quot;, null, message.getBytes());</span><br><span class="line">//两种都通知</span><br><span class="line">channel.basicPublish(EXCHANGE_TOPICS_INFORM, &quot;inform.sms.email&quot;, null, message.getBytes());</span><br></pre></td></tr></table></figure>
+<p>消费端<br>队列绑定交换机指定通配符：<br>统配符规则：<br>中间以“.”分隔。<br>符号#可以匹配多个词，符号*可以匹配一个词语。<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">//声明队列</span><br><span class="line">channel.queueDeclare(QUEUE_INFORM_EMAIL, true, false, false, null);</span><br><span class="line">channel.queueDeclare(QUEUE_INFORM_SMS, true, false, false, null);</span><br><span class="line">//声明交换机</span><br><span class="line">channel.exchangeDeclare(EXCHANGE_TOPICS_INFORM, BuiltinExchangeType.TOPIC);</span><br><span class="line">//绑定email通知队列</span><br><span class="line">channel.queueBind(QUEUE_INFORM_EMAIL,EXCHANGE_TOPICS_INFORM,&quot;inform.#.email.#&quot;);</span><br><span class="line">//绑定sms通知队列</span><br><span class="line">channel.queueBind(QUEUE_INFORM_SMS,EXCHANGE_TOPICS_INFORM,&quot;inform.#.sms.#&quot;);</span><br></pre></td></tr></table></figure></p>
+<p>使用生产者发送若干条消息，交换机根据routingkey统配符匹配并转发消息到指定的队列。</p>
+<p>使用Routing模式也可以实现本案例，共设置三个 routingkey，分别是email、sms、all，email队列绑定email和<br>all，sms队列绑定sms和all，这样就可以实现上边案例的功能，实现过程比topics复杂。<br>Topic模式更多加强大，它可以实现Routing、publish/subscirbe模式的功能</p>
+<h2 id="Header模式"><a href="#Header模式" class="headerlink" title="Header模式"></a>Header模式</h2><p>header模式与routing不同的地方在于，header模式取消routingkey，使用header中的 key/value（键值对）匹配<br>队列。</p>
+<p>生产者<br>队列与交换机绑定的代码与之前不同，</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">Map&lt;String, Object&gt; headers_email = new Hashtable&lt;String, Object&gt;();</span><br><span class="line">headers_email.put(&quot;inform_type&quot;, &quot;email&quot;);</span><br><span class="line">Map&lt;String, Object&gt; headers_sms = new Hashtable&lt;String, Object&gt;();</span><br><span class="line">headers_sms.put(&quot;inform_type&quot;, &quot;sms&quot;);</span><br><span class="line">channel.queueBind(QUEUE_INFORM_EMAIL,EXCHANGE_HEADERS_INFORM,&quot;&quot;,headers_email);</span><br><span class="line">channel.queueBind(QUEUE_INFORM_SMS,EXCHANGE_HEADERS_INFORM,&quot;&quot;,headers_sms);</span><br></pre></td></tr></table></figure>
+<p>通知：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">String message = &quot;email inform to user&quot;+i;</span><br><span class="line">Map&lt;String,Object&gt; headers = new Hashtable&lt;String, Object&gt;();</span><br><span class="line">headers.put(&quot;inform_type&quot;, &quot;email&quot;);//匹配email通知消费者绑定的header</span><br><span class="line">//headers.put(&quot;inform_type&quot;, &quot;sms&quot;);//匹配sms通知消费者绑定的header</span><br><span class="line">AMQP.BasicProperties.Builder properties = new AMQP.BasicProperties.Builder();</span><br><span class="line">properties.headers(headers);</span><br><span class="line">//Email通知</span><br><span class="line">channel.basicPublish(EXCHANGE_HEADERS_INFORM, &quot;&quot;, properties.build(), message.getBytes());</span><br></pre></td></tr></table></figure></p>
+<p>发送邮件消费者<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">channel.exchangeDeclare(EXCHANGE_HEADERS_INFORM, BuiltinExchangeType.HEADERS);</span><br><span class="line">Map&lt;String, Object&gt; headers_email = new Hashtable&lt;String, Object&gt;();</span><br><span class="line">headers_email.put(&quot;inform_email&quot;, &quot;email&quot;);</span><br><span class="line">//交换机和队列绑定</span><br><span class="line">channel.queueBind(QUEUE_INFORM_EMAIL,EXCHANGE_HEADERS_INFORM,&quot;&quot;,headers_email);</span><br><span class="line">//指定消费队列</span><br><span class="line">channel.basicConsume(QUEUE_INFORM_EMAIL, true, consumer)</span><br></pre></td></tr></table></figure></p>
+<h2 id="RPC"><a href="#RPC" class="headerlink" title="RPC"></a>RPC</h2><p><img src="/2019/04/17/RabbitMQ/20190417115433.png" alt></p>
+<p>RPC即客户端远程调用服务端的方法 ，使用MQ可以实现RPC的异步调用，基于Direct交换机实现，流程如下：<br>1、客户端即是生产者就是消费者，向RPC请求队列发送RPC调用消息，同时监听RPC响应队列。<br>2、服务端监听RPC请求队列的消息，收到消息后执行服务端的方法，得到方法返回的结果<br>3、服务端将RPC方法 的结果发送到RPC响应队列<br>4、客户端（RPC调用方）监听RPC响应队列，接收到RPC调用结果。</p>
+
+      
+    </div>
+    
+    
+    
+
+    
+      <div>
+        <div id="wechat_subscriber" style="display: block; padding: 10px 0; margin: 20px auto; width: 100%; text-align: center">
+    <img id="wechat_subscriber_qcode" src="/path/to/your/wechatqcode ex. /uploads/wechat-qcode.jpg" alt="森巴 wechat" style="width: 200px; max-width: 100%;">
+    <div>扫一扫二维码 可以进行关注</div>
+</div>
+
+      </div>
+    
+
+    
+      <div>
+        <div style="padding: 10px 0; margin: 20px auto; width: 90%; text-align: center;">
+  <div>你可以对我进行打赏！</div>
+  <button id="rewardButton" disable="enable" onclick="var qr = document.getElementById('QR'); if (qr.style.display === 'none') {qr.style.display='block';} else {qr.style.display='none'}">
+    <span>打赏</span>
+  </button>
+  <div id="QR" style="display: none;">
+
+    
+      <div id="wechat" style="display: inline-block">
+        <img id="wechat_qr" src="/images/wechatpay.png" alt="森巴 微信支付">
+        <p>微信支付</p>
+      </div>
+    
+
+    
+      <div id="alipay" style="display: inline-block">
+        <img id="alipay_qr" src="/images/alipay.png" alt="森巴 支付宝">
+        <p>支付宝</p>
+      </div>
+    
+
+    
+
+  </div>
+</div>
+
+      </div>
+    
+
+    
+
+    <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/tags/导航/" rel="tag"><i class="fg fg-google"></i> 导航</a>
+          
+            <a href="/tags/分享/" rel="tag"><i class="fg fg-google"></i> 分享</a>
+          
+        </div>
+      
+
+      
+      
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2019/04/15/GridFS研究/" rel="next" title="GridFS研究">
+                <i class="fa fa-chevron-left"></i> GridFS研究
+              </a>
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+            
+              <a href="/2019/04/17/SpringBoot整合RibbitMQ/" rel="prev" title="SpringBoot整合RibbitMQ">
+                SpringBoot整合RibbitMQ <i class="fa fa-chevron-right"></i>
+              </a>
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+
+    <div class="post-spread">
+      
+        <!-- JiaThis Button BEGIN -->
+<div class="jiathis_style">
+<span class="jiathis_txt">分享到：</span>
+<a class="jiathis_button_fav">收藏夹</a>
+<a class="jiathis_button_copy">复制网址</a>
+<a class="jiathis_button_email">邮件</a>
+<a class="jiathis_button_weixin">微信</a>
+<a class="jiathis_button_qzone">QQ空间</a>
+<a class="jiathis_button_tqq">腾讯微博</a>
+<a class="jiathis_button_douban">豆瓣</a>
+<a class="jiathis_button_share">一键分享</a>
+
+<a href="http://www.jiathis.com/share?uid=2140465" class="jiathis jiathis_txt jiathis_separator jtico jtico_jiathis" target="_blank">更多</a>
+<a class="jiathis_counter_style"></a>
+</div>
+<script type="text/javascript">
+var jiathis_config={
+  data_track_clickback:true,
+  summary:"",
+  shortUrl:false,
+  hideMore:false
+}
+</script>
+<script type="text/javascript" src="http://v3.jiathis.com/code/jia.js?uid=" charset="utf-8"></script>
+<!-- JiaThis Button END -->
+      
+    </div>
+  </div>
+
+
+          </div>
+          
+
+
+          
+
+  
+    <div class="comments" id="comments">
+    </div>
+  
+
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap">
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview-wrap">
+            站点概览
+          </li>
+        </ul>
+      
+
+      <section class="site-overview-wrap sidebar-panel">
+        <div class="site-overview">
+          <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+            
+              <img class="site-author-image" itemprop="image" src="/images/avatar.gif" alt="森巴">
+            
+              <p class="site-author-name" itemprop="name">森巴</p>
+              <p class="site-description motion-element" itemprop="description"></p>
+          </div>
+
+          <nav class="site-state motion-element">
+
+            
+              <div class="site-state-item site-state-posts">
+              
+                <a href="/archives/">
+              
+                  <span class="site-state-item-count">53</span>
+                  <span class="site-state-item-name">日志</span>
+                </a>
+              </div>
+            
+
+            
+              
+              
+              <div class="site-state-item site-state-categories">
+                <a href="/categories/index.html">
+                  <span class="site-state-item-count">17</span>
+                  <span class="site-state-item-name">分类</span>
+                </a>
+              </div>
+            
+
+            
+              
+              
+              <div class="site-state-item site-state-tags">
+                <a href="/tags/index.html">
+                  <span class="site-state-item-count">3</span>
+                  <span class="site-state-item-name">标签</span>
+                </a>
+              </div>
+            
+
+          </nav>
+
+          
+
+          
+            <div class="links-of-author motion-element">
+                
+                  <span class="links-of-author-item">
+                    <a href="https://github.com/ranchangdong" target="_blank" title="GitHub">
+                      
+                        <i class="fa fa-fw fa-github"></i>GitHub</a>
+                  </span>
+                
+                  <span class="links-of-author-item">
+                    <a href="mailto:yourname@gmail.com" target="_blank" title="E-Mail">
+                      
+                        <i class="fa fa-fw fa-envelope"></i>E-Mail</a>
+                  </span>
+                
+            </div>
+          
+
+          
+          
+
+          
+          
+
+          
+
+        </div>
+      </section>
+
+      
+      <!--noindex-->
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+              
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#介绍"><span class="nav-number">1.</span> <span class="nav-text">介绍</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#RabbitMQ的工作原理"><span class="nav-number">2.</span> <span class="nav-text">RabbitMQ的工作原理</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#RabbitMQ入门程序"><span class="nav-number">3.</span> <span class="nav-text">RabbitMQ入门程序</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#工作模式"><span class="nav-number">4.</span> <span class="nav-text">工作模式</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Publish-subscribe"><span class="nav-number">5.</span> <span class="nav-text">Publish/subscribe</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Routing"><span class="nav-number">6.</span> <span class="nav-text">Routing</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Topics"><span class="nav-number">7.</span> <span class="nav-text">Topics</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Header模式"><span class="nav-number">8.</span> <span class="nav-text">Header模式</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#RPC"><span class="nav-number">9.</span> <span class="nav-text">RPC</span></a></li></ol></div>
+            
+
+          </div>
+        </section>
+      <!--/noindex-->
+      
+
+      
+
+    </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright">&copy; <span itemprop="copyrightYear">2019</span>
+  <span class="with-love">
+    <i class="fa fa-user"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">森巴</span>
+
+  
+</div>
+
+
+
+
+
+        
+<div class="busuanzi-count">
+  <script async src="https://busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+
+  
+    <span class="site-uv">
+      本站访客数 <i class="fa fa-user"></i>
+      <span class="busuanzi-value" id="busuanzi_value_site_uv"></span>
+      人次
+    </span>
+  
+
+  
+    <span class="site-pv">
+      本站总访问量 <i class="fa fa-eye"></i>
+      <span class="busuanzi-value" id="busuanzi_value_site_pv"></span>
+      次
+    </span>
+  
+</div>
+
+
+
+
+
+
+
+
+        
+      </div>
+    </footer>
+
+    
+      <div class="back-to-top">
+        <i class="fa fa-arrow-up"></i>
+        
+      </div>
+    
+
+    
+
+  </div>
+
+  
+
+<script type="text/javascript">
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+  
+
+
+  
+
+
+
+  
+  
+
+
+
+
+
+
+
+
+
+  
+  
+    <script type="text/javascript" src="/lib/jquery/index.js?v=2.1.3"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/velocity/velocity.min.js?v=1.2.1"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/fancybox/source/jquery.fancybox.pack.js?v=2.1.5"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/canvas-nest/canvas-nest.min.js"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/three/three.min.js"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/three/three-waves.min.js"></script>
+  
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/utils.js?v=5.1.4"></script>
+
+  <script type="text/javascript" src="/js/src/motion.js?v=5.1.4"></script>
+
+
+
+  
+  
+
+  
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.1.4"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=5.1.4"></script>
+
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/bootstrap.js?v=5.1.4"></script>
+
+
+
+  
+
+
+  
+
+
+
+
+	
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+  <script src="//cdn1.lncld.net/static/js/3.0.4/av-min.js"></script>
+  <script src="//unpkg.com/valine/dist/Valine.min.js"></script>
+  
+  <script type="text/javascript">
+    var GUEST = ['nick','mail','link'];
+    var guest = 'nick,mail,link';
+    guest = guest.split(',').filter(item=>{
+      return GUEST.indexOf(item)>-1;
+    });
+    new Valine({
+        el: '#comments' ,
+        verify: false,
+        notify: false,
+        appId: 'PDLiftcSkXJUx95ICcqElEcA-gzGzoHsz',
+        appKey: 'd9tVggA4HVGTQUVpmk4fIm7Q',
+        placeholder: 'Just go go',
+        avatar:'mm',
+        guest_info:guest,
+        pageSize:'10' || 10,
+    });
+  </script>
+
+
+
+  
+
+  <script type="text/javascript">
+    // Popup Window;
+    var isfetched = false;
+    var isXml = true;
+    // Search DB path;
+    var search_path = "search.xml";
+    if (search_path.length === 0) {
+      search_path = "search.xml";
+    } else if (/json$/i.test(search_path)) {
+      isXml = false;
+    }
+    var path = "/" + search_path;
+    // monitor main search box;
+
+    var onPopupClose = function (e) {
+      $('.popup').hide();
+      $('#local-search-input').val('');
+      $('.search-result-list').remove();
+      $('#no-result').remove();
+      $(".local-search-pop-overlay").remove();
+      $('body').css('overflow', '');
+    }
+
+    function proceedsearch() {
+      $("body")
+        .append('<div class="search-popup-overlay local-search-pop-overlay"></div>')
+        .css('overflow', 'hidden');
+      $('.search-popup-overlay').click(onPopupClose);
+      $('.popup').toggle();
+      var $localSearchInput = $('#local-search-input');
+      $localSearchInput.attr("autocapitalize", "none");
+      $localSearchInput.attr("autocorrect", "off");
+      $localSearchInput.focus();
+    }
+
+    // search function;
+    var searchFunc = function(path, search_id, content_id) {
+      'use strict';
+
+      // start loading animation
+      $("body")
+        .append('<div class="search-popup-overlay local-search-pop-overlay">' +
+          '<div id="search-loading-icon">' +
+          '<i class="fa fa-spinner fa-pulse fa-5x fa-fw"></i>' +
+          '</div>' +
+          '</div>')
+        .css('overflow', 'hidden');
+      $("#search-loading-icon").css('margin', '20% auto 0 auto').css('text-align', 'center');
+
+      $.ajax({
+        url: path,
+        dataType: isXml ? "xml" : "json",
+        async: true,
+        success: function(res) {
+          // get the contents from search data
+          isfetched = true;
+          $('.popup').detach().appendTo('.header-inner');
+          var datas = isXml ? $("entry", res).map(function() {
+            return {
+              title: $("title", this).text(),
+              content: $("content",this).text(),
+              url: $("url" , this).text()
+            };
+          }).get() : res;
+          var input = document.getElementById(search_id);
+          var resultContent = document.getElementById(content_id);
+          var inputEventFunction = function() {
+            var searchText = input.value.trim().toLowerCase();
+            var keywords = searchText.split(/[\s\-]+/);
+            if (keywords.length > 1) {
+              keywords.push(searchText);
+            }
+            var resultItems = [];
+            if (searchText.length > 0) {
+              // perform local searching
+              datas.forEach(function(data) {
+                var isMatch = false;
+                var hitCount = 0;
+                var searchTextCount = 0;
+                var title = data.title.trim();
+                var titleInLowerCase = title.toLowerCase();
+                var content = data.content.trim().replace(/<[^>]+>/g,"");
+                var contentInLowerCase = content.toLowerCase();
+                var articleUrl = decodeURIComponent(data.url);
+                var indexOfTitle = [];
+                var indexOfContent = [];
+                // only match articles with not empty titles
+                if(title != '') {
+                  keywords.forEach(function(keyword) {
+                    function getIndexByWord(word, text, caseSensitive) {
+                      var wordLen = word.length;
+                      if (wordLen === 0) {
+                        return [];
+                      }
+                      var startPosition = 0, position = [], index = [];
+                      if (!caseSensitive) {
+                        text = text.toLowerCase();
+                        word = word.toLowerCase();
+                      }
+                      while ((position = text.indexOf(word, startPosition)) > -1) {
+                        index.push({position: position, word: word});
+                        startPosition = position + wordLen;
+                      }
+                      return index;
+                    }
+
+                    indexOfTitle = indexOfTitle.concat(getIndexByWord(keyword, titleInLowerCase, false));
+                    indexOfContent = indexOfContent.concat(getIndexByWord(keyword, contentInLowerCase, false));
+                  });
+                  if (indexOfTitle.length > 0 || indexOfContent.length > 0) {
+                    isMatch = true;
+                    hitCount = indexOfTitle.length + indexOfContent.length;
+                  }
+                }
+
+                // show search results
+
+                if (isMatch) {
+                  // sort index by position of keyword
+
+                  [indexOfTitle, indexOfContent].forEach(function (index) {
+                    index.sort(function (itemLeft, itemRight) {
+                      if (itemRight.position !== itemLeft.position) {
+                        return itemRight.position - itemLeft.position;
+                      } else {
+                        return itemLeft.word.length - itemRight.word.length;
+                      }
+                    });
+                  });
+
+                  // merge hits into slices
+
+                  function mergeIntoSlice(text, start, end, index) {
+                    var item = index[index.length - 1];
+                    var position = item.position;
+                    var word = item.word;
+                    var hits = [];
+                    var searchTextCountInSlice = 0;
+                    while (position + word.length <= end && index.length != 0) {
+                      if (word === searchText) {
+                        searchTextCountInSlice++;
+                      }
+                      hits.push({position: position, length: word.length});
+                      var wordEnd = position + word.length;
+
+                      // move to next position of hit
+
+                      index.pop();
+                      while (index.length != 0) {
+                        item = index[index.length - 1];
+                        position = item.position;
+                        word = item.word;
+                        if (wordEnd > position) {
+                          index.pop();
+                        } else {
+                          break;
+                        }
+                      }
+                    }
+                    searchTextCount += searchTextCountInSlice;
+                    return {
+                      hits: hits,
+                      start: start,
+                      end: end,
+                      searchTextCount: searchTextCountInSlice
+                    };
+                  }
+
+                  var slicesOfTitle = [];
+                  if (indexOfTitle.length != 0) {
+                    slicesOfTitle.push(mergeIntoSlice(title, 0, title.length, indexOfTitle));
+                  }
+
+                  var slicesOfContent = [];
+                  while (indexOfContent.length != 0) {
+                    var item = indexOfContent[indexOfContent.length - 1];
+                    var position = item.position;
+                    var word = item.word;
+                    // cut out 100 characters
+                    var start = position - 20;
+                    var end = position + 80;
+                    if(start < 0){
+                      start = 0;
+                    }
+                    if (end < position + word.length) {
+                      end = position + word.length;
+                    }
+                    if(end > content.length){
+                      end = content.length;
+                    }
+                    slicesOfContent.push(mergeIntoSlice(content, start, end, indexOfContent));
+                  }
+
+                  // sort slices in content by search text's count and hits' count
+
+                  slicesOfContent.sort(function (sliceLeft, sliceRight) {
+                    if (sliceLeft.searchTextCount !== sliceRight.searchTextCount) {
+                      return sliceRight.searchTextCount - sliceLeft.searchTextCount;
+                    } else if (sliceLeft.hits.length !== sliceRight.hits.length) {
+                      return sliceRight.hits.length - sliceLeft.hits.length;
+                    } else {
+                      return sliceLeft.start - sliceRight.start;
+                    }
+                  });
+
+                  // select top N slices in content
+
+                  var upperBound = parseInt('1');
+                  if (upperBound >= 0) {
+                    slicesOfContent = slicesOfContent.slice(0, upperBound);
+                  }
+
+                  // highlight title and content
+
+                  function highlightKeyword(text, slice) {
+                    var result = '';
+                    var prevEnd = slice.start;
+                    slice.hits.forEach(function (hit) {
+                      result += text.substring(prevEnd, hit.position);
+                      var end = hit.position + hit.length;
+                      result += '<b class="search-keyword">' + text.substring(hit.position, end) + '</b>';
+                      prevEnd = end;
+                    });
+                    result += text.substring(prevEnd, slice.end);
+                    return result;
+                  }
+
+                  var resultItem = '';
+
+                  if (slicesOfTitle.length != 0) {
+                    resultItem += "<li><a href='" + articleUrl + "' class='search-result-title'>" + highlightKeyword(title, slicesOfTitle[0]) + "</a>";
+                  } else {
+                    resultItem += "<li><a href='" + articleUrl + "' class='search-result-title'>" + title + "</a>";
+                  }
+
+                  slicesOfContent.forEach(function (slice) {
+                    resultItem += "<a href='" + articleUrl + "'>" +
+                      "<p class=\"search-result\">" + highlightKeyword(content, slice) +
+                      "...</p>" + "</a>";
+                  });
+
+                  resultItem += "</li>";
+                  resultItems.push({
+                    item: resultItem,
+                    searchTextCount: searchTextCount,
+                    hitCount: hitCount,
+                    id: resultItems.length
+                  });
+                }
+              })
+            };
+            if (keywords.length === 1 && keywords[0] === "") {
+              resultContent.innerHTML = '<div id="no-result"><i class="fa fa-search fa-5x" /></div>'
+            } else if (resultItems.length === 0) {
+              resultContent.innerHTML = '<div id="no-result"><i class="fa fa-frown-o fa-5x" /></div>'
+            } else {
+              resultItems.sort(function (resultLeft, resultRight) {
+                if (resultLeft.searchTextCount !== resultRight.searchTextCount) {
+                  return resultRight.searchTextCount - resultLeft.searchTextCount;
+                } else if (resultLeft.hitCount !== resultRight.hitCount) {
+                  return resultRight.hitCount - resultLeft.hitCount;
+                } else {
+                  return resultRight.id - resultLeft.id;
+                }
+              });
+              var searchResultList = '<ul class=\"search-result-list\">';
+              resultItems.forEach(function (result) {
+                searchResultList += result.item;
+              })
+              searchResultList += "</ul>";
+              resultContent.innerHTML = searchResultList;
+            }
+          }
+
+          if ('auto' === 'auto') {
+            input.addEventListener('input', inputEventFunction);
+          } else {
+            $('.search-icon').click(inputEventFunction);
+            input.addEventListener('keypress', function (event) {
+              if (event.keyCode === 13) {
+                inputEventFunction();
+              }
+            });
+          }
+
+          // remove loading animation
+          $(".local-search-pop-overlay").remove();
+          $('body').css('overflow', '');
+
+          proceedsearch();
+        }
+      });
+    }
+
+    // handle and trigger popup window;
+    $('.popup-trigger').click(function(e) {
+      e.stopPropagation();
+      if (isfetched === false) {
+        searchFunc(path, 'local-search-input', 'local-search-result');
+      } else {
+        proceedsearch();
+      };
+    });
+
+    $('.popup-btn-close').click(onPopupClose);
+    $('.popup').click(function(e){
+      e.stopPropagation();
+    });
+    $(document).on('keyup', function (event) {
+      var shouldDismissSearchPopup = event.which === 27 &&
+        $('.search-popup').is(':visible');
+      if (shouldDismissSearchPopup) {
+        onPopupClose();
+      }
+    });
+  </script>
+
+
+
+
+
+  
+
+  
+
+  
+<script>
+(function(){
+    var bp = document.createElement('script');
+    var curProtocol = window.location.protocol.split(':')[0];
+    if (curProtocol === 'https') {
+        bp.src = 'https://zz.bdstatic.com/linksubmit/push.js';        
+    }
+    else {
+        bp.src = 'http://push.zhanzhang.baidu.com/push.js';
+    }
+    var s = document.getElementsByTagName("script")[0];
+    s.parentNode.insertBefore(bp, s);
+})();
+</script>
+
+
+  
+  
+
+  
+
+  
+
+  
+
+  
+  
+  
+  
+   <canvas class="fireworks" style="position: fixed;left: 0;top: 0;z-index: 1; pointer-events: none;"></canvas> 
+   <script type="text/javascript" src="//cdn.bootcss.com/animejs/2.2.0/anime.min.js"></script> 
+   <script type="text/javascript" src="/js/src/fireworks.js"></script>
+
+ 
+
+</body>
+</html>
