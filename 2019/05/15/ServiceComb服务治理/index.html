@@ -86,20 +86,30 @@
 
 
 
-<meta name="description" content="为什么要使用proxyTable很简单，两个字，跨域。在平时项目的开发环境中，经常会遇到跨域的问题，尤其是使用vue-cli这种脚手架工具开发时，由于项目本身启动本地服务是需要占用一个端口的，所以必然会产生跨域的问题。当然跨域有多种解决方式，这里就不一一例举，下次弄篇文章单独讲，在使用webpack做构建工具的项目中使用proxyTable代理实现跨域是一种比较方便的选择。 如何使用proxyTa">
+<meta name="description" content="ServiceComb服务治理本指南将以一个简单的 体质指数(BMI) 应用开展微服务之旅。体质指数主要用于衡量人体胖瘦程度。该应用主要包含两个微服务： 体质指数计算器：负责处理运算事务。 体质指数界面：提供用户界面及网关服务 网关及路由规则网关服务主要用到了业界有名的Netflix Zuul来实现">
 <meta name="keywords" content="导航,分享">
 <meta property="og:type" content="article">
-<meta property="og:title" content="webpack之proxyTable设置跨域">
-<meta property="og:url" content="http://yoursite.com/2019/04/11/webpack之proxyTable设置跨域/index.html">
+<meta property="og:title" content="ServiceComb服务治理">
+<meta property="og:url" content="http://yoursite.com/2019/05/15/ServiceComb服务治理/index.html">
 <meta property="og:site_name" content="森巴">
-<meta property="og:description" content="为什么要使用proxyTable很简单，两个字，跨域。在平时项目的开发环境中，经常会遇到跨域的问题，尤其是使用vue-cli这种脚手架工具开发时，由于项目本身启动本地服务是需要占用一个端口的，所以必然会产生跨域的问题。当然跨域有多种解决方式，这里就不一一例举，下次弄篇文章单独讲，在使用webpack做构建工具的项目中使用proxyTable代理实现跨域是一种比较方便的选择。 如何使用proxyTa">
+<meta property="og:description" content="ServiceComb服务治理本指南将以一个简单的 体质指数(BMI) 应用开展微服务之旅。体质指数主要用于衡量人体胖瘦程度。该应用主要包含两个微服务： 体质指数计算器：负责处理运算事务。 体质指数界面：提供用户界面及网关服务 网关及路由规则网关服务主要用到了业界有名的Netflix Zuul来实现">
 <meta property="og:locale" content="zh-Hans">
-<meta property="og:image" content="http://yoursite.com/2019/04/11/webpack之proxyTable设置跨域/20190411200743.png">
-<meta property="og:updated_time" content="2019-04-11T12:13:07.206Z">
+<meta property="og:image" content="https://raw.githubusercontent.com/ranchangdong/cloudimg/master/data/网关以及路由规则所需的依赖.png">
+<meta property="og:image" content="https://raw.githubusercontent.com/ranchangdong/cloudimg/master/data/网管.png">
+<meta property="og:image" content="https://raw.githubusercontent.com/ranchangdong/cloudimg/master/data/配置.png">
+<meta property="og:image" content="https://raw.githubusercontent.com/ranchangdong/cloudimg/master/data/运行流程.png">
+<meta property="og:image" content="https://raw.githubusercontent.com/ranchangdong/cloudimg/master/data/流量控制pom依赖.png">
+<meta property="og:image" content="https://raw.githubusercontent.com/ranchangdong/cloudimg/master/data/流量控制配置.png">
+<meta property="og:image" content="https://raw.githubusercontent.com/ranchangdong/cloudimg/master/data/服务治理pom文件.png">
+<meta property="og:image" content="https://raw.githubusercontent.com/ranchangdong/cloudimg/master/data/指定熔断和容错策略.png">
+<meta property="og:image" content="https://raw.githubusercontent.com/ranchangdong/cloudimg/master/data/分布式调用链追踪.png">
+<meta property="og:image" content="https://raw.githubusercontent.com/ranchangdong/cloudimg/master/data/分布式追踪的处理链配置.png">
+<meta property="og:image" content="https://raw.githubusercontent.com/ranchangdong/cloudimg/master/data/生成demo工程.png">
+<meta property="og:updated_time" content="2019-05-15T07:22:08.743Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="webpack之proxyTable设置跨域">
-<meta name="twitter:description" content="为什么要使用proxyTable很简单，两个字，跨域。在平时项目的开发环境中，经常会遇到跨域的问题，尤其是使用vue-cli这种脚手架工具开发时，由于项目本身启动本地服务是需要占用一个端口的，所以必然会产生跨域的问题。当然跨域有多种解决方式，这里就不一一例举，下次弄篇文章单独讲，在使用webpack做构建工具的项目中使用proxyTable代理实现跨域是一种比较方便的选择。 如何使用proxyTa">
-<meta name="twitter:image" content="http://yoursite.com/2019/04/11/webpack之proxyTable设置跨域/20190411200743.png">
+<meta name="twitter:title" content="ServiceComb服务治理">
+<meta name="twitter:description" content="ServiceComb服务治理本指南将以一个简单的 体质指数(BMI) 应用开展微服务之旅。体质指数主要用于衡量人体胖瘦程度。该应用主要包含两个微服务： 体质指数计算器：负责处理运算事务。 体质指数界面：提供用户界面及网关服务 网关及路由规则网关服务主要用到了业界有名的Netflix Zuul来实现">
+<meta name="twitter:image" content="https://raw.githubusercontent.com/ranchangdong/cloudimg/master/data/网关以及路由规则所需的依赖.png">
 
 
 
@@ -129,13 +139,13 @@
 
 
 
-  <link rel="canonical" href="http://yoursite.com/2019/04/11/webpack之proxyTable设置跨域/">
+  <link rel="canonical" href="http://yoursite.com/2019/05/15/ServiceComb服务治理/">
 
 
 
 
 
-  <title>webpack之proxyTable设置跨域 | 森巴</title>
+  <title>ServiceComb服务治理 | 森巴</title>
   
 
 
@@ -295,7 +305,7 @@
   
   
   <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2019/04/11/webpack之proxyTable设置跨域/">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2019/05/15/ServiceComb服务治理/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="name" content="森巴">
@@ -312,7 +322,7 @@
 
         
         
-          <h1 class="post-title" itemprop="name headline">webpack之proxyTable设置跨域</h1>
+          <h1 class="post-title" itemprop="name headline">ServiceComb服务治理</h1>
         
 
         <div class="post-meta">
@@ -324,8 +334,8 @@
               
                 <span class="post-meta-item-text">发表于</span>
               
-              <time title="创建于" itemprop="dateCreated datePublished" datetime="2019-04-11T19:59:10+08:00">
-                2019-04-11
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2019-05-15T11:01:15+08:00">
+                2019-05-15
               </time>
             
 
@@ -347,8 +357,8 @@
               
               
                 <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/跨域/" itemprop="url" rel="index">
-                    <span itemprop="name">跨域</span>
+                  <a href="/categories/ServiceComb/" itemprop="url" rel="index">
+                    <span itemprop="name">ServiceComb</span>
                   </a>
                 </span>
 
@@ -365,8 +375,8 @@
                 <span class="post-meta-item-icon">
                   <i class="fa fa-comment-o"></i>
                 </span>
-                <a href="/2019/04/11/webpack之proxyTable设置跨域/#comments" itemprop="discussionUrl">
-                  <span class="post-comments-count valine-comment-count" data-xid="/2019/04/11/webpack之proxyTable设置跨域/" itemprop="commentCount"></span>
+                <a href="/2019/05/15/ServiceComb服务治理/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count valine-comment-count" data-xid="/2019/05/15/ServiceComb服务治理/" itemprop="commentCount"></span>
                 </a>
               </span>
             
@@ -393,7 +403,7 @@
                   <span class="post-meta-item-text">字数统计&#58;</span>
                 
                 <span title="字数统计">
-                  465
+                  797
                 </span>
               
 
@@ -409,7 +419,7 @@
                   <span class="post-meta-item-text">阅读时长 &asymp;</span>
                 
                 <span title="阅读时长">
-                  1
+                  2
                 </span>
               
             </div>
@@ -430,18 +440,37 @@
       
 
       
-        <h2 id="为什么要使用proxyTable"><a href="#为什么要使用proxyTable" class="headerlink" title="为什么要使用proxyTable"></a>为什么要使用proxyTable</h2><p>很简单，两个字，跨域。<br>在平时项目的开发环境中，经常会遇到跨域的问题，尤其是使用vue-cli这种脚手架工具开发时，由于项目本身启动本地服务是需要占用一个端口的，所以必然会产生跨域的问题。当然跨域有多种解决方式，这里就不一一例举，下次弄篇文章单独讲，在使用webpack做构建工具的项目中使用proxyTable代理实现跨域是一种比较方便的选择。</p>
-<h2 id="如何使用proxyTable"><a href="#如何使用proxyTable" class="headerlink" title="如何使用proxyTable"></a>如何使用proxyTable</h2><p>拿之前使用过的vue-cli举例。我们首先要在项目目录中找到根目录下config文件夹下的index.js文件。由于我们是在开发环境下使用，自然而然是要配置在dev里面</p>
-<p><img src="/2019/04/11/webpack之proxyTable设置跨域/20190411200743.png" alt></p>
-<p>上面这段代码的效果就是将本地11001端口的一个请求代理到了<a href="http://localhost:31001这一域名下：" target="_blank" rel="noopener">http://localhost:31001这一域名下：</a></p>
+        <h2 id="ServiceComb服务治理"><a href="#ServiceComb服务治理" class="headerlink" title="ServiceComb服务治理"></a>ServiceComb服务治理</h2><p>本指南将以一个简单的 体质指数(BMI) 应用开展微服务之旅。体质指数主要用于衡量人体胖瘦程度。该应用主要包含两个微服务：</p>
+<p>体质指数计算器：负责处理运算事务。</p>
+<p>体质指数界面：提供用户界面及网关服务</p>
+<h2 id="网关及路由规则"><a href="#网关及路由规则" class="headerlink" title="网关及路由规则"></a>网关及路由规则</h2><p>网关服务主要用到了业界有名的Netflix Zuul来实现</p>
+<a id="more"></a>
+<p>引入依赖<br><img src="https://raw.githubusercontent.com/ranchangdong/cloudimg/master/data/网关以及路由规则所需的依赖.png" alt></p>
 <blockquote>
-<p>‘<a href="http://localhost:11001/api/cms&#39;" target="_blank" rel="noopener">http://localhost:11001/api/cms&#39;</a> ===&gt; <a href="http://localhost:31001/cms" target="_blank" rel="noopener">http://localhost:31001/cms</a></p>
+<p>ServiceComb从0.4.0-SNAPSHOT版本之后新增了spring-cloud-zuul模块使能提供对zuul的兼容</p>
 </blockquote>
-<h2 id="关于proxyTable的原理"><a href="#关于proxyTable的原理" class="headerlink" title="关于proxyTable的原理"></a>关于proxyTable的原理</h2><p>这个代理实际上是利用http-proxy-middleware这个插件完成的，具体到这个插件的运行机制，由于是英文再加上能力有限就没深究了。但我想探究的是这种代理方式实际上是如何做到的，实际上就是我们的本地服务器将请求转发给了目标服务器。之所以出现跨域是因为浏览器有同源策略的限制，但服务器是没有的，所以这种代理方式能够实现的机制大体就是：</p>
-<blockquote>
-<p>本地服务器 –》 代理 –》目标服务器 –》拿到数据后通过代理伪装成本地服务请求的返回值 —》然后浏览器就顺利收到了我们想要的数据</p>
-</blockquote>
-<p>这是我的简单理解</p>
+<p>在 application.yaml 文件中配置路由规则及服务端口信息：<br><img src="https://raw.githubusercontent.com/ranchangdong/cloudimg/master/data/网管.png" alt></p>
+<p>在 microservice.yaml 文件中配置网关服务的信息和服务注册中心的地址<br><img src="https://raw.githubusercontent.com/ranchangdong/cloudimg/master/data/配置.png" alt></p>
+<p>此处将服务注册中心和Zuul相结合使其能发现服务。</p>
+<h3 id="负载均衡策略"><a href="#负载均衡策略" class="headerlink" title="负载均衡策略"></a>负载均衡策略</h3><p>当对体质指数计算器进行水平扩展时，需要将请求均衡地分发到多个体质指数计算器上。本指南将展示如何在 体质指数 应用中使用 ServiceComb 提供的负载均衡能力</p>
+<p>其运行流程为：<br><img src="https://raw.githubusercontent.com/ranchangdong/cloudimg/master/data/运行流程.png" alt></p>
+<p>其中，虚线表示服务注册及服务发现的过程</p>
+<p><strong>开启</strong><br>默认情况下会使用内置的一个简单的负载均衡的实现，不需要额外的配置。</p>
+<p>可以使用IDEA 新增一个运行实例 就可以实现负载均衡效果</p>
+<h3 id="限流策略"><a href="#限流策略" class="headerlink" title="限流策略"></a>限流策略</h3><p>流量控制机制通过控制数据传输速率来避免微服务过载运行。本指南将展示如何在 体质指数 应用中使用 ServiceComb 提供的流量控制能力。</p>
+<p><strong>开启</strong><br>pom.xml 文件中添加依赖项：<br><img src="https://raw.githubusercontent.com/ranchangdong/cloudimg/master/data/流量控制pom依赖.png" alt></p>
+<p>microservice.yaml 文件中指明使用流量控制的处理链及指定流控策略：<br><img src="https://raw.githubusercontent.com/ranchangdong/cloudimg/master/data/流量控制配置.png" alt></p>
+<p><strong>验证</strong><br>在地址栏输入链接 快速进行多次访问 就会出现<strong>由于流控受限而请求被拒</strong>的信息</p>
+<h3 id="熔断机制"><a href="#熔断机制" class="headerlink" title="熔断机制"></a>熔断机制</h3><p>服务治理主要用于解决或缓解服务雪崩的情况，即个别微服务表现异常时，系统能对其进行容错处理，从而避免资源的耗尽。本指南将会展示如何在 体质指数 应用中使用 ServiceComb 提供的服务治理能力。</p>
+<p>pom.xml 文件中添加依赖项：<br><img src="https://raw.githubusercontent.com/ranchangdong/cloudimg/master/data/服务治理pom文件.png" alt></p>
+<p>microservice.yaml 文件中指明使用服务治理的处理链及指定熔断和容错策略：<br><img src="https://raw.githubusercontent.com/ranchangdong/cloudimg/master/data/指定熔断和容错策略.png" alt></p>
+<h3 id="分布式调用链追踪"><a href="#分布式调用链追踪" class="headerlink" title="分布式调用链追踪"></a>分布式调用链追踪</h3><p>分布式调用链追踪用于有效地监控微服务的网络延时并可视化微服务中的数据流转。本指南将展示如何在 体质指数 应用中使用 ServiceComb 提供的分布式调用链追踪能力。</p>
+<p><strong>启用</strong><br>pom.xml 文件中添加依赖项：<br><img src="https://raw.githubusercontent.com/ranchangdong/cloudimg/master/data/分布式调用链追踪.png" alt><br>简称：日志追踪</p>
+<p>microservice.yaml 文件中添加分布式追踪的处理链：<br><img src="https://raw.githubusercontent.com/ranchangdong/cloudimg/master/data/分布式追踪的处理链配置.png" alt></p>
+<h3 id="测试案例"><a href="#测试案例" class="headerlink" title="测试案例"></a>测试案例</h3><p>在浏览器访问 <a href="http://start.servicecomb.io/" target="_blank" rel="noopener">http://start.servicecomb.io/</a> 会出现以下界面<br><img src="https://raw.githubusercontent.com/ranchangdong/cloudimg/master/data/生成demo工程.png" alt></p>
+<p>注意：黄色矩形中的选项一定要勾选 否则就没有限流、熔断、日志的依赖</p>
+<p>然后点击确认即可</p>
+<p>下载好的文件 解压后  使用IDEA打开运行即可 </p>
 
       
     </div>
@@ -511,8 +540,8 @@
         <div class="post-nav">
           <div class="post-nav-next post-nav-item">
             
-              <a href="/2019/04/11/SSI/" rel="next" title="SSI">
-                <i class="fa fa-chevron-left"></i> SSI
+              <a href="/2019/05/14/ServiceComb-RPC编程开发/" rel="next" title="ServiceComb-RPC编程开发">
+                <i class="fa fa-chevron-left"></i> ServiceComb-RPC编程开发
               </a>
             
           </div>
@@ -520,10 +549,6 @@
           <span class="post-nav-divider"></span>
 
           <div class="post-nav-prev post-nav-item">
-            
-              <a href="/2019/04/11/SpringMVC/" rel="prev" title="SpringMVC">
-                SpringMVC <i class="fa fa-chevron-right"></i>
-              </a>
             
           </div>
         </div>
@@ -702,7 +727,7 @@ var jiathis_config={
             
 
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#为什么要使用proxyTable"><span class="nav-number">1.</span> <span class="nav-text">为什么要使用proxyTable</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#如何使用proxyTable"><span class="nav-number">2.</span> <span class="nav-text">如何使用proxyTable</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#关于proxyTable的原理"><span class="nav-number">3.</span> <span class="nav-text">关于proxyTable的原理</span></a></li></ol></div>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#ServiceComb服务治理"><span class="nav-number">1.</span> <span class="nav-text">ServiceComb服务治理</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#网关及路由规则"><span class="nav-number">2.</span> <span class="nav-text">网关及路由规则</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#负载均衡策略"><span class="nav-number">2.1.</span> <span class="nav-text">负载均衡策略</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#限流策略"><span class="nav-number">2.2.</span> <span class="nav-text">限流策略</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#熔断机制"><span class="nav-number">2.3.</span> <span class="nav-text">熔断机制</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#分布式调用链追踪"><span class="nav-number">2.4.</span> <span class="nav-text">分布式调用链追踪</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#测试案例"><span class="nav-number">2.5.</span> <span class="nav-text">测试案例</span></a></li></ol></li></ol></div>
             
 
           </div>
