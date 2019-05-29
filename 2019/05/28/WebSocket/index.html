@@ -75,7 +75,7 @@
 
 
 
-  <meta name="keywords" content="导航,分享,">
+  <meta name="keywords" content="导航,分项,">
 
 
 
@@ -86,20 +86,23 @@
 
 
 
-<meta name="description" content="原理图Eureka：就是服务注册中心（可以是一个集群），对外暴露自己的地址提供者：启动后向Eureka注册自己信息（地址，提供什么服务）消费者：向Eureka订阅服务，Eureka会将对应服务的所有提供者地址列表发送给消费者，并且定期更新心跳(续约)：提供者定期通过http方式向Eureka刷新自己的状态 pom.xml文件">
-<meta name="keywords" content="导航,分享">
+<meta name="description" content="WebSocket&amp;nbsp; &amp;nbsp; &amp;nbsp; &amp;nbsp; WebSocket是一种在单个TCP连接上进行全双工通信的协议。WebSocket通信协议于2011年被IETF定为标准RFC 6455，并由RFC7936补充规范。WebSocket API也被W3C定为标准。 &amp;nbsp; &amp;nbsp; &amp;nbsp; &amp;nbsp; WebSocket使得客户端和服务器之间的数据交换变得更">
+<meta name="keywords" content="导航,分项">
 <meta property="og:type" content="article">
-<meta property="og:title" content="SpringCloud之Eureka注册中心">
-<meta property="og:url" content="http://yoursite.com/2019/03/07/SpringCloud之Eureka注册中心/index.html">
+<meta property="og:title" content="WebSocket">
+<meta property="og:url" content="http://yoursite.com/2019/05/28/WebSocket/index.html">
 <meta property="og:site_name" content="森巴">
-<meta property="og:description" content="原理图Eureka：就是服务注册中心（可以是一个集群），对外暴露自己的地址提供者：启动后向Eureka注册自己信息（地址，提供什么服务）消费者：向Eureka订阅服务，Eureka会将对应服务的所有提供者地址列表发送给消费者，并且定期更新心跳(续约)：提供者定期通过http方式向Eureka刷新自己的状态 pom.xml文件">
+<meta property="og:description" content="WebSocket&amp;nbsp; &amp;nbsp; &amp;nbsp; &amp;nbsp; WebSocket是一种在单个TCP连接上进行全双工通信的协议。WebSocket通信协议于2011年被IETF定为标准RFC 6455，并由RFC7936补充规范。WebSocket API也被W3C定为标准。 &amp;nbsp; &amp;nbsp; &amp;nbsp; &amp;nbsp; WebSocket使得客户端和服务器之间的数据交换变得更">
 <meta property="og:locale" content="zh-Hans">
-<meta property="og:image" content="http://yoursite.com/2019/03/07/SpringCloud之Eureka注册中心/images/1525597885059.png">
-<meta property="og:updated_time" content="2019-04-10T15:54:10.800Z">
+<meta property="og:image" content="https://raw.githubusercontent.com/ranchangdong/cloudimg/master/data/WebSocket运行流程图.png">
+<meta property="og:image" content="https://raw.githubusercontent.com/ranchangdong/cloudimg/master/data/WebSocket属性.png">
+<meta property="og:image" content="https://raw.githubusercontent.com/ranchangdong/cloudimg/master/data/WebSocket事件.png">
+<meta property="og:image" content="https://raw.githubusercontent.com/ranchangdong/cloudimg/master/data/WebSocket 方法.png">
+<meta property="og:updated_time" content="2019-05-29T15:40:52.083Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="SpringCloud之Eureka注册中心">
-<meta name="twitter:description" content="原理图Eureka：就是服务注册中心（可以是一个集群），对外暴露自己的地址提供者：启动后向Eureka注册自己信息（地址，提供什么服务）消费者：向Eureka订阅服务，Eureka会将对应服务的所有提供者地址列表发送给消费者，并且定期更新心跳(续约)：提供者定期通过http方式向Eureka刷新自己的状态 pom.xml文件">
-<meta name="twitter:image" content="http://yoursite.com/2019/03/07/SpringCloud之Eureka注册中心/images/1525597885059.png">
+<meta name="twitter:title" content="WebSocket">
+<meta name="twitter:description" content="WebSocket&amp;nbsp; &amp;nbsp; &amp;nbsp; &amp;nbsp; WebSocket是一种在单个TCP连接上进行全双工通信的协议。WebSocket通信协议于2011年被IETF定为标准RFC 6455，并由RFC7936补充规范。WebSocket API也被W3C定为标准。 &amp;nbsp; &amp;nbsp; &amp;nbsp; &amp;nbsp; WebSocket使得客户端和服务器之间的数据交换变得更">
+<meta name="twitter:image" content="https://raw.githubusercontent.com/ranchangdong/cloudimg/master/data/WebSocket运行流程图.png">
 
 
 
@@ -129,13 +132,13 @@
 
 
 
-  <link rel="canonical" href="http://yoursite.com/2019/03/07/SpringCloud之Eureka注册中心/">
+  <link rel="canonical" href="http://yoursite.com/2019/05/28/WebSocket/">
 
 
 
 
 
-  <title>SpringCloud之Eureka注册中心 | 森巴</title>
+  <title>WebSocket | 森巴</title>
   
 
 
@@ -305,7 +308,7 @@
   
   
   <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2019/03/07/SpringCloud之Eureka注册中心/">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2019/05/28/WebSocket/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="name" content="森巴">
@@ -322,7 +325,7 @@
 
         
         
-          <h1 class="post-title" itemprop="name headline">SpringCloud之Eureka注册中心</h1>
+          <h1 class="post-title" itemprop="name headline">WebSocket</h1>
         
 
         <div class="post-meta">
@@ -334,8 +337,8 @@
               
                 <span class="post-meta-item-text">发表于</span>
               
-              <time title="创建于" itemprop="dateCreated datePublished" datetime="2019-03-07T20:02:02+08:00">
-                2019-03-07
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2019-05-28T10:48:05+08:00">
+                2019-05-28
               </time>
             
 
@@ -357,8 +360,8 @@
               
               
                 <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/SpringCloud/" itemprop="url" rel="index">
-                    <span itemprop="name">SpringCloud</span>
+                  <a href="/categories/SpringBoot/" itemprop="url" rel="index">
+                    <span itemprop="name">SpringBoot</span>
                   </a>
                 </span>
 
@@ -375,8 +378,8 @@
                 <span class="post-meta-item-icon">
                   <i class="fa fa-comment-o"></i>
                 </span>
-                <a href="/2019/03/07/SpringCloud之Eureka注册中心/#comments" itemprop="discussionUrl">
-                  <span class="post-comments-count valine-comment-count" data-xid="/2019/03/07/SpringCloud之Eureka注册中心/" itemprop="commentCount"></span>
+                <a href="/2019/05/28/WebSocket/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count valine-comment-count" data-xid="/2019/05/28/WebSocket/" itemprop="commentCount"></span>
                 </a>
               </span>
             
@@ -403,7 +406,7 @@
                   <span class="post-meta-item-text">字数统计&#58;</span>
                 
                 <span title="字数统计">
-                  2.7k
+                  1.9k
                 </span>
               
 
@@ -419,7 +422,7 @@
                   <span class="post-meta-item-text">阅读时长 &asymp;</span>
                 
                 <span title="阅读时长">
-                  10
+                  7
                 </span>
               
             </div>
@@ -440,74 +443,40 @@
       
 
       
-        <h2 id="原理图"><a href="#原理图" class="headerlink" title="原理图"></a>原理图</h2><p><img src="/2019/03/07/SpringCloud之Eureka注册中心/images/1525597885059.png" alt><br>Eureka：就是服务注册中心（可以是一个集群），对外暴露自己的地址<br>提供者：启动后向Eureka注册自己信息（地址，提供什么服务）<br>消费者：向Eureka订阅服务，Eureka会将对应服务的所有提供者地址列表发送给消费者，并且定期更新<br>心跳(续约)：提供者定期通过http方式向Eureka刷新自己的状态</p>
-<p><strong>pom.xml文件</strong><br><a id="more"></a><br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line">&lt;parent&gt;</span><br><span class="line">	&lt;groupId&gt;org.springframework.boot&lt;/groupId&gt;</span><br><span class="line">	&lt;artifactId&gt;spring-boot-starter-parent&lt;/artifactId&gt;</span><br><span class="line">	&lt;version&gt;2.0.1.RELEASE&lt;/version&gt;</span><br><span class="line">	&lt;relativePath/&gt; &lt;!-- lookup parent from repository --&gt;</span><br><span class="line">&lt;/parent&gt;</span><br><span class="line"></span><br><span class="line">	&lt;!-- Eureka服务端 --&gt;</span><br><span class="line">	&lt;dependency&gt;</span><br><span class="line">		&lt;groupId&gt;org.springframework.cloud&lt;/groupId&gt;</span><br><span class="line">		&lt;artifactId&gt;spring-cloud-starter-netflix-eureka-server&lt;/artifactId&gt;</span><br><span class="line">	&lt;/dependency&gt;</span><br><span class="line">	</span><br><span class="line">	 &lt;!-- SpringCloud依赖，一定要放到dependencyManagement中，起到管理版本的作用即可 --&gt;</span><br><span class="line">		&lt;dependency&gt;</span><br><span class="line">			&lt;groupId&gt;org.springframework.cloud&lt;/groupId&gt;</span><br><span class="line">			&lt;artifactId&gt;spring-cloud-dependencies&lt;/artifactId&gt;</span><br><span class="line">			&lt;version&gt;$&#123;spring-cloud.version&#125;&lt;/version&gt;</span><br><span class="line">			&lt;type&gt;pom&lt;/type&gt;</span><br><span class="line">			&lt;scope&gt;import&lt;/scope&gt;</span><br><span class="line">		&lt;/dependency&gt;</span><br></pre></td></tr></table></figure></p>
-<p>根据需要导入依赖即可</p>
-<p><strong>编写启动类：</strong><br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line">@SpringBootApplication</span><br><span class="line">@EnableEurekaServer // 声明这个应用是一个EurekaServer</span><br><span class="line">public class EurekaDemoApplication &#123;</span><br><span class="line"></span><br><span class="line">	public static void main(String[] args) &#123;</span><br><span class="line">		SpringApplication.run(EurekaDemoApplication.class, args);</span><br><span class="line">	&#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
-<p><strong>编写配置：以yml文件的方式配置</strong><br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line">server:</span><br><span class="line">  port: 10086 # 端口</span><br><span class="line">spring:</span><br><span class="line">  application:</span><br><span class="line">    name: eureka-server # 应用名称，会在Eureka中显示</span><br><span class="line">eureka:</span><br><span class="line">  client:</span><br><span class="line">    register-with-eureka: false # 是否注册自己的信息到EurekaServer，默认是true</span><br><span class="line">    fetch-registry: false # 是否拉取其它服务的信息，默认是true</span><br><span class="line">    service-url: # EurekaServer的地址，现在是自己的地址，如果是集群，需要加上其它Server的地址。</span><br><span class="line">      defaultZone: http://127.0.0.1:10086/eureka</span><br></pre></td></tr></table></figure></p>
-<p>启动服务，并访问：<a href="http://127.0.0.1:10086/eureka" target="_blank" rel="noopener">http://127.0.0.1:10086/eureka</a></p>
-<h2 id="将user-service注册到Eureka"><a href="#将user-service注册到Eureka" class="headerlink" title="将user-service注册到Eureka"></a>将user-service注册到Eureka</h2><p>注册服务，就是在服务上添加Eureka的客户端依赖，客户端代码会自动把服务注册到EurekaServer中。<br>先添加SpringCloud依赖：<br>然后是Eureka客户端：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">&lt;!-- Eureka客户端 --&gt;</span><br><span class="line">&lt;dependency&gt;</span><br><span class="line">    &lt;groupId&gt;org.springframework.cloud&lt;/groupId&gt;</span><br><span class="line">    &lt;artifactId&gt;spring-cloud-starter-netflix-eureka-client&lt;/artifactId&gt;</span><br><span class="line">&lt;/dependency&gt;</span><br></pre></td></tr></table></figure></p>
-<p>在启动类上开启Eureka客户端功能<br>通过添加@EnableDiscoveryClient来开启Eureka客户端功能</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">@SpringBootApplication</span><br><span class="line">@EnableDiscoveryClient // 开启EurekaClient功能</span><br><span class="line">public class UserServiceDemoApplication &#123;</span><br><span class="line">	public static void main(String[] args) &#123;</span><br><span class="line">		SpringApplication.run(UserServiceDemoApplication.class, args);</span><br><span class="line">	&#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<p>编写配置<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br></pre></td><td class="code"><pre><span class="line">server:</span><br><span class="line">  port: 8081</span><br><span class="line">spring:</span><br><span class="line">  datasource:</span><br><span class="line">    url: jdbc:mysql://localhost:3306/mydb01</span><br><span class="line">    username: root</span><br><span class="line">    password: 123</span><br><span class="line">    hikari:</span><br><span class="line">      maximum-pool-size: 20</span><br><span class="line">      minimum-idle: 10</span><br><span class="line">  application:</span><br><span class="line">    name: user-service # 应用名称</span><br><span class="line">mybatis:</span><br><span class="line">  type-aliases-package: com.leyou.userservice.pojo</span><br><span class="line">eureka:</span><br><span class="line">  client:</span><br><span class="line">    service-url: # EurekaServer地址</span><br><span class="line">      defaultZone: http://127.0.0.1:10086/eureka</span><br><span class="line">  instance:</span><br><span class="line">    prefer-ip-address: true # 当调用getHostname获取实例的hostname时，返回ip而不是host名称</span><br><span class="line">    ip-address: 127.0.0.1 # 指定自己的ip信息，不指定的话会自己寻找</span><br></pre></td></tr></table></figure></p>
-<p><strong>注意：</strong><br>这里我们添加了spring.application.name属性来指定应用名称，将来会作为应用的id使用。<br>不用指定register-with-eureka和fetch-registry，因为默认是true</p>
-<p>重启项目，访问Eureka监控页面查看，看见有 user-service 大写的名称就说明服务注册成功了<br>消费者从Eureka获取服务</p>
-<p>方法与消费者类似，只需要在项目中添加EurekaClient依赖，就可以通过服务名称来获取信息了！、<br>先添加SpringCloud依赖：<br>然后是Eureka客户端：<br>和之前的依赖是一样的<br>在启动类开启Eureka客户端<br>修改配置： </p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line">server:</span><br><span class="line">  port: 8080</span><br><span class="line">spring:</span><br><span class="line">  application:</span><br><span class="line">    name: consumer # 应用名称</span><br><span class="line">eureka:</span><br><span class="line">  client:</span><br><span class="line">    service-url: # EurekaServer地址</span><br><span class="line">      defaultZone: http://127.0.0.1:10086/eureka</span><br><span class="line">  instance:</span><br><span class="line">    prefer-ip-address: true # 当其它服务获取地址时提供ip而不是hostname</span><br><span class="line">    ip-address: 127.0.0.1 # 指定自己的ip信息，不指定的话会自己寻找</span><br></pre></td></tr></table></figure>
-<p>修改代码，用DiscoveryClient类的方法，根据服务名称，获取服务实例：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br></pre></td><td class="code"><pre><span class="line">@Service</span><br><span class="line">public class UserService &#123;</span><br><span class="line"></span><br><span class="line">    @Autowired</span><br><span class="line">    private RestTemplate restTemplate;</span><br><span class="line"></span><br><span class="line">    @Autowired</span><br><span class="line">    private DiscoveryClient discoveryClient;// Eureka客户端，可以获取到服务实例信息</span><br><span class="line"></span><br><span class="line">    public List&lt;User&gt; queryUserByIds(List&lt;Long&gt; ids) &#123;</span><br><span class="line">        List&lt;User&gt; users = new ArrayList&lt;&gt;();</span><br><span class="line">        // String baseUrl = &quot;http://localhost:8081/user/&quot;;</span><br><span class="line">        // 根据服务名称，获取服务实例</span><br><span class="line">        List&lt;ServiceInstance&gt; instances = discoveryClient.getInstances(&quot;user-service&quot;);</span><br><span class="line">        // 因为只有一个UserService,因此我们直接get(0)获取</span><br><span class="line">        ServiceInstance instance = instances.get(0);</span><br><span class="line">        // 获取ip和端口信息</span><br><span class="line">        String baseUrl = &quot;http://&quot;+instance.getHost() + &quot;:&quot; + instance.getPort()+&quot;/user/&quot;;</span><br><span class="line">        </span><br><span class="line">            users.add(this.restTemplate.getForObject(baseUrl + id, User.class));</span><br><span class="line"></span><br><span class="line">        return users;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
-<p>最后根据你的路径访问，查看数据 </p>
-<h2 id="Eureka详解"><a href="#Eureka详解" class="headerlink" title="Eureka详解"></a>Eureka详解</h2><h3 id="基础架构"><a href="#基础架构" class="headerlink" title="基础架构"></a>基础架构</h3><p>Eureka架构中的三个核心角色：</p>
-<ul>
-<li>服务注册中心<br>Eureka的服务端应用，提供服务注册和发现功能，就是刚刚我们建立的eureka-demo</li>
-<li>服务提供者<br>提供服务的应用，可以是SpringBoot应用，也可以是其它任意技术实现，只要对外提供的是Rest风格服务即可。本例中就是我们实现的user-service-demo</li>
-<li>服务消费者<br>消费应用从注册中心获取服务列表，从而得知每个服务方的信息，知道去哪里调用服务方。本例中就是我们实现的consumer-demo</li>
-</ul>
-<h2 id="高可用的Eureka-Server"><a href="#高可用的Eureka-Server" class="headerlink" title="高可用的Eureka Server"></a>高可用的Eureka Server</h2><p>Eureka Server即服务的注册中心，在刚才的案例中，我们只有一个EurekaServer，事实上EurekaServer也可以是一个集群，形成高可用的Eureka中心。</p>
+        <h2 id="WebSocket"><a href="#WebSocket" class="headerlink" title="WebSocket"></a>WebSocket</h2><p>&nbsp; &nbsp; &nbsp; &nbsp; <strong>WebSocket</strong>是一种在单个TCP连接上进行全双工通信的协议。WebSocket通信协议于2011年被IETF定为标准RFC 6455，并由RFC7936补充规范。WebSocket API也被W3C定为标准。</p>
+<p>&nbsp; &nbsp; &nbsp; &nbsp; <strong>WebSocket</strong>使得客户端和服务器之间的数据交换变得更加简单，允许服务端主动向客户端推送数据。在WebSocket API中，浏览器和服务器只需要完成一次握手，两者之间就直接可以创建持久性的连接，并进行双向数据传输。<br><a id="more"></a></p>
+<h2 id="概述"><a href="#概述" class="headerlink" title="概述"></a>概述</h2><p>&nbsp; &nbsp; &nbsp; &nbsp; <strong>WebSocket</strong>是一种在单个TCP连接上进行全双工通信的协议。WebSocket通信协议于2011年被IETF定为标准RFC 6455，并由RFC7936补充规范。WebSocketAPI也被W3C定为标准。</p>
+<p> &nbsp; &nbsp; &nbsp; &nbsp; <strong>WebSocket</strong>使得客户端和服务器之间的数据交换变得更加简单，允许服务端主动向客户端推送数据。在WebSocket API中，浏览器和服务器只需要完成一次握手，两者之间就直接可以创建持久性的连接，并进行双向数据传输</p>
+<h2 id="背景"><a href="#背景" class="headerlink" title="背景"></a>背景</h2><p> &nbsp; &nbsp; &nbsp; &nbsp; <strong>WebSocket</strong> 现在，很多网站为了实现推送技术，所用的技术都是轮询。轮询是在特定的的时间间隔（如每1秒），由浏览器对服务器发出HTTP请求，然后由服务器返回最新的数据给客户端的浏览器。这种传统的模式带来很明显的缺点，即浏览器需要不断的向服务器发出请求，然而HTTP请求可能包含较长的头部，其中真正有效的数据可能只是很小的一部分，显然这样会浪费很多的带宽等资源。</p>
+<p> &nbsp; &nbsp; &nbsp; &nbsp; <strong>WebSocket</strong> 而比较新的技术去做轮询的效果是Comet。这种技术虽然可以双向通信，但依然需要反复发出请求。而且在Comet中，普遍采用的长链接，也会消耗服务器资源。</p>
+<p> &nbsp; &nbsp; &nbsp; &nbsp; <strong>WebSocket</strong> 在这种情况下，HTML5定义了WebSocket协议，能更好的节省服务器资源和带宽，并且能够更实时地进行通讯。</p>
+<h2 id="优点"><a href="#优点" class="headerlink" title="优点"></a>优点</h2><p>&nbsp; &nbsp; &nbsp; &nbsp;较少的控制开销。在连接创建后，服务器和客户端之间交换数据时，用于协议控制的数据包头部相对较小。在不包含扩展的情况下，对于服务器到客户端的内容，此头部大小只有2至10字节（和数据包长度有关）；对于客户端到服务器的内容，此头部还需要加上额外的4字节的掩码。相对于HTTP请求每次都要携带完整的头部，此项开销显著减少了。</p>
+<p>&nbsp; &nbsp; &nbsp; &nbsp;更强的实时性。由于协议是全双工的，所以服务器可以随时主动给客户端下发数据。相对于HTTP请求需要等待客户端发起请求服务端才能响应，延迟明显更少；即使是和Comet等类似的长轮询比较，其也能在短时间内更多次地传递数据。</p>
+<p>&nbsp; &nbsp; &nbsp; &nbsp;保持连接状态。与HTTP不同的是，Websocket需要先创建连接，这就使得其成为一种有状态的协议，之后通信时可以省略部分状态信息。而HTTP请求可能需要在每个请求都携带状态信息（如身份认证等）。</p>
+<p>&nbsp; &nbsp; &nbsp; &nbsp;更好的二进制支持。Websocket定义了二进制帧，相对HTTP，可以更轻松地处理二进制内容。</p>
+<p>&nbsp; &nbsp; &nbsp; &nbsp;可以支持扩展。Websocket定义了扩展，用户可以扩展协议、实现部分自定义的子协议。如部分浏览器支持压缩等。</p>
+<p>&nbsp; &nbsp; &nbsp; &nbsp;更好的压缩效果。相对于HTTP压缩，Websocket在适当的扩展支持下，可以沿用之前内容的上下文，在传递类似的数据时，可以显著地提高压缩率。</p>
+<h2 id="握手协议"><a href="#握手协议" class="headerlink" title="握手协议"></a>握手协议</h2><p>&nbsp; &nbsp; &nbsp; &nbsp; WebSocket 是独立的、创建在 TCP 上的协议。</p>
+<p>&nbsp; &nbsp; &nbsp; &nbsp;Websocket 通过HTTP/1.1 协议的101状态码进行握手。</p>
+<p>&nbsp; &nbsp; &nbsp; &nbsp; 为了创建Websocket连接，需要通过浏览器发出请求，之后服务器进行回应，这个过程通常称为“握手”（handshaking）。</p>
+<h2 id="HTML5-WebSocket"><a href="#HTML5-WebSocket" class="headerlink" title="HTML5 WebSocket"></a>HTML5 WebSocket</h2><p>&nbsp; &nbsp; &nbsp; &nbsp; HTML5 定义的 WebSocket 协议，能更好的节省服务器资源和带宽，并且能够更实时地进行通讯。</p>
+<p><strong>WebSocket运行流程图</strong><br><img src="https://raw.githubusercontent.com/ranchangdong/cloudimg/master/data/WebSocket运行流程图.png" alt></p>
+<p>浏览器通过 JavaScript 向服务器发出建立 WebSocket 连接的请求，连接建立以后，客户端和服务器端就可以通过 TCP 连接直接交换数据。</p>
+<p>当你获取 Web Socket 连接后，你可以通过 send() 方法来向服务器发送数据，并通过 onmessage 事件来接收服务器返回的数据。</p>
+<p>以下 API 用于创建 WebSocket 对象。</p>
 <blockquote>
-<p>服务同步</p>
+<p>var Socket = new WebSocket(url, [protocol] );</p>
 </blockquote>
-<p>多个Eureka Server之间也会互相注册为服务，当服务提供者注册到Eureka Server集群中的某个节点时，该节点会把服务的信息同步给集群中的每个节点，从而实现数据同步。因此，无论客户端访问到Eureka Server集群中的任意一个节点，都可以获取到完整的服务列表信息</p>
-<blockquote>
-<p>动手搭建高可用的EurekaServer</p>
-</blockquote>
-<p>我们假设要搭建两条EurekaServer的集群，端口分别为：10086和10087<br>我们修改原来的EurekaServer配置：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">server:</span><br><span class="line">  port: 10086 # 端口</span><br><span class="line">spring:</span><br><span class="line">  application:</span><br><span class="line">    name: eureka-server # 应用名称，会在Eureka中显示</span><br><span class="line">eureka:</span><br><span class="line">  client:</span><br><span class="line">    service-url: # 配置其他Eureka服务的地址，而不是自己，比如10087</span><br><span class="line">      defaultZone: http://127.0.0.1:10087/eureka</span><br></pre></td></tr></table></figure></p>
-<p>所谓的高可用注册中心，其实就是把EurekaServer自己也作为一个服务进行注册，这样多个EurekaServer之间就能互相发现对方，从而形成集群。因此我们做了以下修改：</p>
-<ul>
-<li>删除了register-with-eureka=false和fetch-registry=false两个配置。因为默认值是true，这样就会吧自己注册到注册中心了。</li>
-<li>把service-url的值改成了另外一台EurekaServer的地址，而不是自己</li>
-</ul>
-<p>另外一台配置恰好相反：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">server:</span><br><span class="line">  port: 10087 # 端口</span><br><span class="line">spring:</span><br><span class="line">  application:</span><br><span class="line">    name: eureka-server # 应用名称，会在Eureka中显示</span><br><span class="line">eureka:</span><br><span class="line">  client:</span><br><span class="line">    service-url: # 配置其他Eureka服务的地址，而不是自己，比如10087</span><br><span class="line">      defaultZone: http://127.0.0.1:10086/eureka</span><br></pre></td></tr></table></figure></p>
-<blockquote>
-<p>注意：idea中一个应用不能启动两次，我们需要重新配置一个启动器：</p>
-</blockquote>
-<p>然后启动即可。</p>
-<p>客户端注册服务到集群</p>
-<p>因为EurekaServer不止一个，因此注册服务的时候，service-url参数需要变化：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">eureka:</span><br><span class="line">  client:</span><br><span class="line">    service-url: # EurekaServer地址,多个地址以&apos;,&apos;隔开</span><br><span class="line">      defaultZone: http://127.0.0.1:10086/eureka,http://127.0.0.1:10087/eureka</span><br></pre></td></tr></table></figure></p>
-<h2 id="服务提供者"><a href="#服务提供者" class="headerlink" title="服务提供者"></a>服务提供者</h2><p>服务提供者要向EurekaServer注册服务，并且完成服务续约等工作。</p>
-<blockquote>
-<p>服务注册<br>服务提供者在启动时，会检测配置属性中的：eureka.client.register-with-erueka=true参数是否正确，事实上默认就是true。如果值确实为true，则会向EurekaServer发起一个Rest请求，并携带自己的元数据信息，Eureka Server会把这些信息保存到一个双层Map结构中。第一层Map的Key就是服务名称，第二层Map的key是服务的实例id。<br>服务续约<br>在注册服务完成以后，服务提供者会维持一个心跳（定时向EurekaServer发起Rest请求），告诉EurekaServer：“我还活着”。这个我们称为服务的续约（renew）；</p>
-</blockquote>
-<p>有两个重要参数可以修改服务续约的行为：</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">eureka:</span><br><span class="line">  instance:</span><br><span class="line">    lease-expiration-duration-in-seconds: 90</span><br><span class="line">    lease-renewal-interval-in-seconds: 30</span><br></pre></td></tr></table></figure>
-<ul>
-<li>lease-renewal-interval-in-seconds：服务续约(renew)的间隔，默认为30秒</li>
-<li>lease-expiration-duration-in-seconds：服务失效时间，默认值90秒</li>
-</ul>
-<p>也就是说，默认情况下每个30秒服务会向注册中心发送一次心跳，证明自己还活着。如果超过90秒没有发送心跳，EurekaServer就会认为该服务宕机，会从服务列表中移除，这两个值在生产环境不要修改，默认即可。</p>
-<p>但是在开发时，这个值有点太长了，经常我们关掉一个服务，会发现Eureka依然认为服务在活着。所以我们在开发阶段可以适当调小。</p>
-<h2 id="服务消费者"><a href="#服务消费者" class="headerlink" title="服务消费者"></a>服务消费者</h2><blockquote>
-<p>获取服务列表<br>当服务消费者启动是，会检测eureka.client.fetch-registry=true参数的值，如果为true，则会从Eureka Server服务的列表只读备份，然后缓存在本地。并且每隔30秒会重新获取并更新数据。我们可以通过下面的参数来修改：</p>
-</blockquote>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">eureka:</span><br><span class="line">  client:</span><br><span class="line">    registry-fetch-interval-seconds: 5</span><br></pre></td></tr></table></figure>
-<p>生产环境中，我们不需要修改这个值。</p>
-<h2 id="失效剔除和自我保护"><a href="#失效剔除和自我保护" class="headerlink" title="失效剔除和自我保护"></a>失效剔除和自我保护</h2><p>失效剔除<br>有些时候，我们的服务提供方并不一定会正常下线，可能因为内存溢出、网络故障等原因导致服务无法正常工作。Eureka Server需要将这样的服务剔除出服务列表。因此它会开启一个定时任务，每隔60秒对所有失效的服务（超过90秒未响应）进行剔除。<br>可以通过eureka.server.eviction-interval-timer-in-ms参数对其进行修改，单位是毫秒，生成环境不要修改。</p>
-<p>这个会对我们开发带来极大的不变，你对服务重启，隔了60秒Eureka才反应过来。开发阶段可以适当调整，比如10S</p>
-<blockquote>
-<p>自我保护</p>
-</blockquote>
-<p>我们关停一个服务，就会在Eureka面板看到一条警告：<br>这是触发了Eureka的自我保护机制。当一个服务未按时进行心跳续约时，Eureka会统计最近15分钟心跳失败的服务实例的比例是否超过了85%。在生产环境下，因为网络延迟等原因，心跳失败实例的比例很有可能超标，但是此时就把服务剔除列表并不妥当，因为服务可能没有宕机。Eureka就会把当前实例的注册信息保护起来，不予剔除。生产环境下这很有效，保证了大多数服务依然可用。</p>
-<p>但是这给我们的开发带来了麻烦， 因此开发阶段我们都会关闭自我保护模式：</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">eureka:</span><br><span class="line">  server:</span><br><span class="line">    enable-self-preservation: false # 关闭自我保护模式（缺省为打开）</span><br><span class="line">    eviction-interval-timer-in-ms: 1000 # 扫描失效服务的间隔时间（缺省为60*1000ms）</span><br></pre></td></tr></table></figure>
+<p>以上代码中的第一个参数 url, 指定连接的 URL。第二个参数 protocol 是可选的，指定了可接受的子协议。</p>
+<h3 id="WebSocket-属性"><a href="#WebSocket-属性" class="headerlink" title="WebSocket 属性"></a>WebSocket 属性</h3><p>以下是 WebSocket 对象的属性。假定我们使用了以上代码创建了 Socket 对象<br><img src="https://raw.githubusercontent.com/ranchangdong/cloudimg/master/data/WebSocket属性.png" alt></p>
+<h3 id="WebSocket-事件"><a href="#WebSocket-事件" class="headerlink" title="WebSocket 事件"></a>WebSocket 事件</h3><p>以下是 WebSocket 对象的相关事件。假定我们使用了以上代码创建了 Socket 对象：<br><img src="https://raw.githubusercontent.com/ranchangdong/cloudimg/master/data/WebSocket事件.png" alt></p>
+<h3 id="WebSocket-方法"><a href="#WebSocket-方法" class="headerlink" title="WebSocket 方法"></a>WebSocket 方法</h3><p>以下是 WebSocket 对象的相关方法。假定我们使用了以上代码创建了 Socket 对象：<br><img src="https://raw.githubusercontent.com/ranchangdong/cloudimg/master/data/WebSocket 方法.png" alt></p>
+<h3 id="WebSocket-实例"><a href="#WebSocket-实例" class="headerlink" title="WebSocket 实例"></a>WebSocket 实例</h3><p>WebSocket 协议本质上是一个基于 TCP 的协议。</p>
+<p>为了建立一个 WebSocket 连接，客户端浏览器首先要向服务器发起一个 HTTP 请求，这个请求和通常的 HTTP 请求不同，包含了一些附加头信息，其中附加头信息”Upgrade: WebSocket”表明这是一个申请协议升级的 HTTP 请求，服务器端解析这些附加的头信息然后产生应答信息返回给客户端，客户端和服务器端的 WebSocket 连接就建立起来了，双方就可以通过这个连接通道自由的传递信息，并且这个连接会持续存在直到客户端或者服务器端的某一方主动的关闭连接。</p>
+<p><strong>客户端的 HTML 和 JavaScript</strong><br>目前大部分浏览器支持 WebSocket() 接口，你可以在以下浏览器中尝试实例： Chrome, Mozilla, Opera 和 Safari。<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br></pre></td><td class="code"><pre><span class="line">&lt;!DOCTYPE HTML&gt;</span><br><span class="line">&lt;html&gt;</span><br><span class="line">   &lt;head&gt;</span><br><span class="line">   &lt;meta charset=&quot;utf-8&quot;&gt;</span><br><span class="line">   &lt;title&gt;菜鸟教程(runoob.com)&lt;/title&gt;</span><br><span class="line"></span><br><span class="line">      &lt;script type=&quot;text/javascript&quot;&gt;</span><br><span class="line">         function WebSocketTest()</span><br><span class="line">         &#123;</span><br><span class="line">            if (&quot;WebSocket&quot; in window)</span><br><span class="line">            &#123;</span><br><span class="line">               alert(&quot;您的浏览器支持 WebSocket!&quot;);</span><br><span class="line"></span><br><span class="line">               // 打开一个 web socket</span><br><span class="line">               var ws = new WebSocket(&quot;ws://localhost:9998/echo&quot;);</span><br><span class="line"></span><br><span class="line">               ws.onopen = function()</span><br><span class="line">               &#123;</span><br><span class="line">                  // Web Socket 已连接上，使用 send() 方法发送数据</span><br><span class="line">                  ws.send(&quot;发送数据&quot;);</span><br><span class="line">                  alert(&quot;数据发送中...&quot;);</span><br><span class="line">               &#125;;</span><br><span class="line"></span><br><span class="line">               ws.onmessage = function (evt)</span><br><span class="line">               &#123;</span><br><span class="line">                  var received_msg = evt.data;</span><br><span class="line">                  alert(&quot;数据已接收...&quot;);</span><br><span class="line">               &#125;;</span><br><span class="line"></span><br><span class="line">               ws.onclose = function()</span><br><span class="line">               &#123;</span><br><span class="line">                  // 关闭 websocket</span><br><span class="line">                  alert(&quot;连接已关闭...&quot;);</span><br><span class="line">               &#125;;</span><br><span class="line">            &#125;</span><br><span class="line"></span><br><span class="line">            else</span><br><span class="line">            &#123;</span><br><span class="line">               // 浏览器不支持 WebSocket</span><br><span class="line">               alert(&quot;您的浏览器不支持 WebSocket!&quot;);</span><br><span class="line">            &#125;</span><br><span class="line">         &#125;</span><br><span class="line">      &lt;/script&gt;</span><br><span class="line"></span><br><span class="line">   &lt;/head&gt;</span><br><span class="line">   &lt;body&gt;</span><br><span class="line"></span><br><span class="line">      &lt;div id=&quot;sse&quot;&gt;</span><br><span class="line">         &lt;a href=&quot;javascript:WebSocketTest()&quot;&gt;运行 WebSocket&lt;/a&gt;</span><br><span class="line">      &lt;/div&gt;</span><br><span class="line"></span><br><span class="line">   &lt;/body&gt;</span><br><span class="line">&lt;/html&gt;</span><br></pre></td></tr></table></figure></p>
+<p>服务端的WebSocket的实现方式有两种，这里就不一一说明了，我已经将实现方式的代码上传到github中，需要的话可以下载下来,仔细阅读代码会发现 实现方式其实并不难</p>
+<p>使用WebSocket 由服务器主动推送消息到前台<br><a href="https://github.com/ranchangdong/service-websocket.git" target="_blank" rel="noopener">https://github.com/ranchangdong/service-websocket.git</a></p>
+<p>使用WebSocket 网页模拟聊天室 （需要在开发者工具查看接收的消息）<br><a href="https://github.com/ranchangdong/text-websocket.git" target="_blank" rel="noopener">https://github.com/ranchangdong/text-websocket.git</a></p>
 
       
     </div>
@@ -564,7 +533,7 @@
           
             <a href="/tags/导航/" rel="tag"><i class="fg fg-google"></i> 导航</a>
           
-            <a href="/tags/分享/" rel="tag"><i class="fg fg-google"></i> 分享</a>
+            <a href="/tags/分项/" rel="tag"><i class="fg fg-google"></i> 分项</a>
           
         </div>
       
@@ -577,8 +546,8 @@
         <div class="post-nav">
           <div class="post-nav-next post-nav-item">
             
-              <a href="/2019/03/07/Spring的RestTemplate/" rel="next" title="Spring的RestTemplate">
-                <i class="fa fa-chevron-left"></i> Spring的RestTemplate
+              <a href="/2019/05/15/ServiceComb服务治理/" rel="next" title="ServiceComb服务治理">
+                <i class="fa fa-chevron-left"></i> ServiceComb服务治理
               </a>
             
           </div>
@@ -587,8 +556,8 @@
 
           <div class="post-nav-prev post-nav-item">
             
-              <a href="/2019/03/07/SpringCloud之负载均衡Robbin/" rel="prev" title="SpringCloud之负载均衡Robbin">
-                SpringCloud之负载均衡Robbin <i class="fa fa-chevron-right"></i>
+              <a href="/2019/05/29/fastDFS研究/" rel="prev" title="fastDFS研究">
+                fastDFS研究 <i class="fa fa-chevron-right"></i>
               </a>
             
           </div>
