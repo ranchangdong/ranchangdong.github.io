@@ -1,0 +1,1394 @@
+<!DOCTYPE html>
+
+
+
+  
+
+
+<html class="theme-next muse use-motion" lang="zh-Hans">
+<head><meta name="generator" content="Hexo 3.8.0">
+  <meta charset="UTF-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+<meta name="theme-color" content="#222">
+
+
+
+  
+  
+    
+    
+  <script src="/lib/pace/pace.min.js?v=1.0.2"></script>
+  <link href="/lib/pace/pace-theme-loading-bar.min.css?v=1.0.2" rel="stylesheet">
+
+
+
+
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform">
+<meta http-equiv="Cache-Control" content="no-siteapp">
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+  <link href="/lib/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css">
+
+
+
+
+
+
+
+<link href="/lib/font-awesome/css/font-awesome.min.css?v=4.6.2" rel="stylesheet" type="text/css">
+
+<link href="/css/main.css?v=5.1.4" rel="stylesheet" type="text/css">
+
+
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png?v=5.1.4">
+
+
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png?v=5.1.4">
+
+
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png?v=5.1.4">
+
+
+  <link rel="mask-icon" href="/images/logo.svg?v=5.1.4" color="#222">
+
+
+
+
+
+  <meta name="keywords" content="分项,导航,">
+
+
+
+
+
+
+
+
+
+
+<meta name="description" content="ES快速入门&amp;nbsp; &amp;nbsp; &amp;nbsp; &amp;nbsp; ES作为一个索引及搜索服务，对外提供丰富的REST接口，快速入门部分的实例使用head插件来测试，目的是对ES的使用方法及流程有个初步的认识。 创建索引库ES的索引库是一个逻辑概念，它包括了分词列表及文档列表，同一个索引库中存储了相同类型的文档。它就相当于MySQL中的表，或相当于Mongodb中的集合。 关于索引这个语: 索引（">
+<meta name="keywords" content="分项,导航">
+<meta property="og:type" content="article">
+<meta property="og:title" content="elasticsearch入门">
+<meta property="og:url" content="http://yoursite.com/2019/05/30/elasticsearch入门/index.html">
+<meta property="og:site_name" content="森巴">
+<meta property="og:description" content="ES快速入门&amp;nbsp; &amp;nbsp; &amp;nbsp; &amp;nbsp; ES作为一个索引及搜索服务，对外提供丰富的REST接口，快速入门部分的实例使用head插件来测试，目的是对ES的使用方法及流程有个初步的认识。 创建索引库ES的索引库是一个逻辑概念，它包括了分词列表及文档列表，同一个索引库中存储了相同类型的文档。它就相当于MySQL中的表，或相当于Mongodb中的集合。 关于索引这个语: 索引（">
+<meta property="og:locale" content="zh-Hans">
+<meta property="og:image" content="https://raw.githubusercontent.com/ranchangdong/cloudimg/master/data/创建索引请求.png">
+<meta property="og:image" content="https://raw.githubusercontent.com/ranchangdong/cloudimg/master/data/创建索引成功.png">
+<meta property="og:image" content="https://raw.githubusercontent.com/ranchangdong/cloudimg/master/data/查看创建索引.png">
+<meta property="og:image" content="https://raw.githubusercontent.com/ranchangdong/cloudimg/master/data/创建映射.png">
+<meta property="og:image" content="https://raw.githubusercontent.com/ranchangdong/cloudimg/master/data/创建映射成功.png">
+<meta property="og:image" content="https://raw.githubusercontent.com/ranchangdong/cloudimg/master/data/创建文档成功.png">
+<meta property="og:image" content="https://raw.githubusercontent.com/ranchangdong/cloudimg/master/data/添加成功.png">
+<meta property="og:image" content="https://raw.githubusercontent.com/ranchangdong/cloudimg/master/data/获取文档.png">
+<meta property="og:image" content="https://raw.githubusercontent.com/ranchangdong/cloudimg/master/data/查询结果解析.png">
+<meta property="og:image" content="https://raw.githubusercontent.com/ranchangdong/cloudimg/master/data/分词结果.png">
+<meta property="og:image" content="https://raw.githubusercontent.com/ranchangdong/cloudimg/master/data/自定义词库.png">
+<meta property="og:image" content="https://raw.githubusercontent.com/ranchangdong/cloudimg/master/data/词典.png">
+<meta property="og:image" content="https://raw.githubusercontent.com/ranchangdong/cloudimg/master/data/数值类型.png">
+<meta property="og:updated_time" content="2019-05-30T07:22:11.069Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="elasticsearch入门">
+<meta name="twitter:description" content="ES快速入门&amp;nbsp; &amp;nbsp; &amp;nbsp; &amp;nbsp; ES作为一个索引及搜索服务，对外提供丰富的REST接口，快速入门部分的实例使用head插件来测试，目的是对ES的使用方法及流程有个初步的认识。 创建索引库ES的索引库是一个逻辑概念，它包括了分词列表及文档列表，同一个索引库中存储了相同类型的文档。它就相当于MySQL中的表，或相当于Mongodb中的集合。 关于索引这个语: 索引（">
+<meta name="twitter:image" content="https://raw.githubusercontent.com/ranchangdong/cloudimg/master/data/创建索引请求.png">
+
+
+
+<script type="text/javascript" id="hexo.configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    root: '/',
+    scheme: 'Muse',
+    version: '5.1.4',
+    sidebar: {"position":"left","display":"post","offset":12,"b2t":false,"scrollpercent":false,"onmobile":false},
+    fancybox: true,
+    tabs: true,
+    motion: {"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},
+    duoshuo: {
+      userId: '0',
+      author: '博主'
+    },
+    algolia: {
+      applicationID: '',
+      apiKey: '',
+      indexName: '',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
+    }
+  };
+</script>
+
+
+
+  <link rel="canonical" href="http://yoursite.com/2019/05/30/elasticsearch入门/">
+
+
+
+
+
+  <title>elasticsearch入门 | 森巴</title>
+  
+
+
+
+
+
+
+
+
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans">
+
+  
+  
+    
+  
+
+  <div class="container sidebar-position-left page-post-detail">
+    <div class="headband"></div>
+	<a href="https://github.com/ranchangdong" class="github-corner" aria-label="View source on GitHub"><svg width="80" height="80" viewbox="0 0 250 250" style="fill:#151513; color:#fff; position: absolute; top: 0; border: 0; left: 0; transform: scale(-1, 1);" aria-hidden="true"><path d="M0,0 L115,115 L130,115 L142,142 L250,250 L250,0 Z"/><path d="M128.3,109.0 C113.8,99.7 119.0,89.6 119.0,89.6 C122.0,82.7 120.5,78.6 120.5,78.6 C119.2,72.0 123.4,76.3 123.4,76.3 C127.3,80.9 125.5,87.3 125.5,87.3 C122.9,97.6 130.6,101.9 134.4,103.2" fill="currentColor" style="transform-origin: 130px 106px;" class="octo-arm"/><path d="M115.0,115.0 C114.9,115.1 118.7,116.5 119.8,115.4 L133.7,101.6 C136.9,99.2 139.9,98.4 142.2,98.6 C133.8,88.0 127.5,74.4 143.8,58.0 C148.5,53.4 154.0,51.2 159.7,51.0 C160.3,49.4 163.2,43.6 171.4,40.1 C171.4,40.1 176.1,42.5 178.8,56.2 C183.1,58.6 187.2,61.8 190.9,65.4 C194.5,69.0 197.7,73.2 200.1,77.6 C213.8,80.2 216.3,84.9 216.3,84.9 C212.7,93.1 206.9,96.0 205.4,96.6 C205.1,102.4 203.0,107.8 198.3,112.5 C181.9,128.9 168.3,122.5 157.7,114.1 C157.9,116.9 156.7,120.9 152.7,124.9 L141.0,136.5 C139.8,137.7 141.6,141.9 141.8,141.8 Z" fill="currentColor" class="octo-body"/></svg><style>.github-corner:hover .octo-arm{animation:octocat-wave 560ms ease-in-out}@keyframes octocat-wave{0%,100%{transform:rotate(0)}20%,60%{transform:rotate(-25deg)}40%,80%{transform:rotate(10deg)}}@media (max-width:500px){.github-corner:hover .octo-arm{animation:none}.github-corner .octo-arm{animation:octocat-wave 560ms ease-in-out}}</style></a>
+
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-wrapper">
+  <div class="site-meta ">
+    
+
+    <div class="custom-logo-site-title">
+      <a href="/" class="brand" rel="start">
+        <span class="logo-line-before"><i></i></span>
+        <span class="site-title">森巴</span>
+        <span class="logo-line-after"><i></i></span>
+      </a>
+    </div>
+      
+        <p class="site-subtitle"></p>
+      
+  </div>
+
+  <div class="site-nav-toggle">
+    <button>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+    </button>
+  </div>
+</div>
+
+<nav class="site-nav">
+  
+
+  
+    <ul id="menu" class="menu">
+      
+        
+        <li class="menu-item menu-item-home">
+          <a href="/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-home"></i> <br>
+            
+            首页
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-about">
+          <a href="/about/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-user"></i> <br>
+            
+            关于
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-tags">
+          <a href="/tags/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-tags"></i> <br>
+            
+            标签
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-categories">
+          <a href="/categories/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-th"></i> <br>
+            
+            分类
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-archives">
+          <a href="/archives/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-archive"></i> <br>
+            
+            归档
+          </a>
+        </li>
+      
+
+      
+        <li class="menu-item menu-item-search">
+          
+            <a href="javascript:;" class="popup-trigger">
+          
+            
+              <i class="menu-item-icon fa fa-search fa-fw"></i> <br>
+            
+            搜索
+          </a>
+        </li>
+      
+    </ul>
+  
+
+  
+    <div class="site-search">
+      
+  <div class="popup search-popup local-search-popup">
+  <div class="local-search-header clearfix">
+    <span class="search-icon">
+      <i class="fa fa-search"></i>
+    </span>
+    <span class="popup-btn-close">
+      <i class="fa fa-times-circle"></i>
+    </span>
+    <div class="local-search-input-wrapper">
+      <input autocomplete="off" placeholder="搜索..." spellcheck="false" type="text" id="local-search-input">
+    </div>
+  </div>
+  <div id="local-search-result"></div>
+</div>
+
+
+
+    </div>
+  
+</nav>
+
+
+
+ </div>
+    </header>
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2019/05/30/elasticsearch入门/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="森巴">
+      <meta itemprop="description" content>
+      <meta itemprop="image" content="/images/avatar.gif">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="森巴">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">elasticsearch入门</h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2019-05-30T13:52:34+08:00">
+                2019-05-30
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+            <span class="post-category">
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/全文检索/" itemprop="url" rel="index">
+                    <span itemprop="name">全文检索</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+              <span class="post-comments-count">
+                <span class="post-meta-divider">|</span>
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-comment-o"></i>
+                </span>
+                <a href="/2019/05/30/elasticsearch入门/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count valine-comment-count" data-xid="/2019/05/30/elasticsearch入门/" itemprop="commentCount"></span>
+                </a>
+              </span>
+            
+          
+
+          
+          
+
+          
+            <span class="post-meta-divider">|</span>
+            <span class="page-pv">本文总阅读量 <i class="fa fa-file-o"></i>
+            <span class="busuanzi-value" id="busuanzi_value_page_pv"></span>次
+            </span>
+          
+
+          
+            <div class="post-wordcount">
+              
+                
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-file-word-o"></i>
+                </span>
+                
+                  <span class="post-meta-item-text">字数统计&#58;</span>
+                
+                <span title="字数统计">
+                  3.1k
+                </span>
+              
+
+              
+                <span class="post-meta-divider">|</span>
+              
+
+              
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-clock-o"></i>
+                </span>
+                
+                  <span class="post-meta-item-text">阅读时长 &asymp;</span>
+                
+                <span title="阅读时长">
+                  13
+                </span>
+              
+            </div>
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <h2 id="ES快速入门"><a href="#ES快速入门" class="headerlink" title="ES快速入门"></a>ES快速入门</h2><p>&nbsp; &nbsp; &nbsp; &nbsp; ES作为一个索引及搜索服务，对外提供丰富的REST接口，快速入门部分的实例使用head插件来测试，目的是对ES<br>的使用方法及流程有个初步的认识。</p>
+<h2 id="创建索引库"><a href="#创建索引库" class="headerlink" title="创建索引库"></a>创建索引库</h2><p>ES的索引库是一个逻辑概念，它包括了分词列表及文档列表，同一个索引库中存储了相同类型的文档。它就相当于<br>MySQL中的表，或相当于Mongodb中的集合。</p>
+<p>关于索引这个语:</p>
+<p>索引（名词）：ES是基于Lucene构建的一个搜索服务，它要从索引库搜索符合条件索引数据。</p>
+<p>索引（动词）：索引库刚创建起来是空的，将数据添加到索引库的过程称为索引。</p>
+<p>下边介绍两种创建索引库的方法，它们的工作原理是相同的，都是客户端向ES服务发送命令</p>
+<a id="more"></a>
+<p>使用postman或curl这样的工具创建</p>
+<p>put <a href="http://localhost:9200/索引库名称" target="_blank" rel="noopener">http://localhost:9200/索引库名称</a></p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">&#123;</span><br><span class="line">  &quot;settings&quot;:&#123;</span><br><span class="line">    &quot;index&quot;:&#123;</span><br><span class="line">      &quot;number_of_shards&quot;:1,</span><br><span class="line">      &quot;number_of_replicas&quot;:0</span><br><span class="line">    &#125;</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>number_of_shards：设置分片的数量，在集群中通常设置多个分片，表示一个索引库将拆分成多片分别存储不同<br>的结点，提高了ES的处理能力和高可用性，入门程序使用单机环境，这里设置为1</p>
+<p>number_of_replicas：设置副本的数量，设置副本是为了提高ES的高可靠性，单机环境设置为0.</p>
+<p>如下是创建的例子，创建xc_course索引库，共1个分片，0个副本<br><img src="https://raw.githubusercontent.com/ranchangdong/cloudimg/master/data/创建索引请求.png" alt></p>
+<p><img src="https://raw.githubusercontent.com/ranchangdong/cloudimg/master/data/创建索引成功.png" alt></p>
+<p><img src="https://raw.githubusercontent.com/ranchangdong/cloudimg/master/data/查看创建索引.png" alt></p>
+<h2 id="创建映射"><a href="#创建映射" class="headerlink" title="创建映射"></a>创建映射</h2><p><strong>概念说明</strong><br>在索引中每个文档都包括了一个或多个field，创建映射就是向索引库中创建field的过程，下边是document和field<br>与关系数据库的概念的类比：</p>
+<p>文档（Document）—————-Row记录</p>
+<p>字段（Field）——————-Columns 列</p>
+<p>注意：6.0之前的版本有type（类型）概念，type相当于关系数据库的表，ES官方将在ES9.0版本中彻底删除type。<br>上边讲的创建索引库相当于关系数据库中的数据库还是表？</p>
+<p>1、如果相当于数据库就表示一个索引库可以创建很多不同类型的文档，这在ES中也是允许的。</p>
+<p>2、如果相当于表就表示一个索引库只能存储相同类型的文档，ES官方建议 在一个索引库中只存储相同类型的文档</p>
+<p><strong>创建映射</strong><br>我们要把课程信息存储到ES中，这里我们创建课程信息的映射，先来一个简单的映射，如下：</p>
+<p>发送：post <a href="http://localhost:9200/索引库名称/类型名称/_mapping" target="_blank" rel="noopener">http://localhost:9200/索引库名称/类型名称/_mapping</a></p>
+<p>创建类型为xc_course的映射，共包括三个字段：name、description、studymondel</p>
+<p>由于ES6.0版本还没有将type彻底删除，所以暂时把type起一个没有特殊意义的名字</p>
+<p>post 请求：<a href="http://localhost:9200/xc_course/doc/_mapping" target="_blank" rel="noopener">http://localhost:9200/xc_course/doc/_mapping</a><br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line">&#123;</span><br><span class="line">	&quot;properties&quot;: &#123;</span><br><span class="line">		&quot;name&quot;: &#123;</span><br><span class="line">			&quot;type&quot;: &quot;text&quot;</span><br><span class="line">			&#125;,</span><br><span class="line">		&quot;description&quot;: &#123;</span><br><span class="line">			&quot;type&quot;: &quot;text&quot;</span><br><span class="line">			&#125;,</span><br><span class="line">		&quot;studymodel&quot;: &#123;</span><br><span class="line">			&quot;type&quot;: &quot;keyword&quot;</span><br><span class="line">			&#125;</span><br><span class="line">	&#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
+<p>表示：在xc_course索引库下的doc类型下创建映射。doc是类型名，可以自定义，在ES6.0中要弱化类型的概念，<br>给它起一个没有具体业务意义的名称。<br><img src="https://raw.githubusercontent.com/ranchangdong/cloudimg/master/data/创建映射.png" alt><br><img src="https://raw.githubusercontent.com/ranchangdong/cloudimg/master/data/创建映射成功.png" alt></p>
+<p><strong>创建文档</strong></p>
+<p>ES中的文档相当于MySQL数据库表中的记录<br>发送：put 或Post <a href="http://localhost:9200/xc_course/doc/id值" target="_blank" rel="noopener">http://localhost:9200/xc_course/doc/id值</a><br>（如果不指定id值ES会自动生成ID）</p>
+<p><a href="http://localhost:9200/xc_course/doc/4028e58161bcf7f40161bcf8b77c0000" target="_blank" rel="noopener">http://localhost:9200/xc_course/doc/4028e58161bcf7f40161bcf8b77c0000</a><br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">&#123;</span><br><span class="line">&quot;name&quot;:&quot;Bootstrap开发框架&quot;,</span><br><span class="line">&quot;description&quot;:&quot;Bootstrap是由Twitter推出的一个前台页面开发框架，在行业之中使用较为广泛。此开发框架包含了大量的CSS、JS程序代码，可以帮助开发者（尤其是不擅长页面开发的程序人员）轻松的实现一个不受浏览器限制的精美界面效果。&quot;,</span><br><span class="line">&quot;studymodel&quot;:&quot;201001&quot;</span><br><span class="line">&#125;</span><br><span class="line">`</span><br></pre></td></tr></table></figure></p>
+<p>使用postman测试：<br><img src="https://raw.githubusercontent.com/ranchangdong/cloudimg/master/data/创建文档成功.png" alt></p>
+<p><img src="https://raw.githubusercontent.com/ranchangdong/cloudimg/master/data/添加成功.png" alt></p>
+<p><strong>搜索文档</strong><br>根据id查询文档</p>
+<p>发送：get <a href="http://localhost:9200/xc_course/doc/4028e58161bcf7f40161bcf8b77c0000" target="_blank" rel="noopener">http://localhost:9200/xc_course/doc/4028e58161bcf7f40161bcf8b77c0000</a></p>
+<p>使用postman测试：<br><img src="https://raw.githubusercontent.com/ranchangdong/cloudimg/master/data/获取文档.png" alt></p>
+<p>查询所有记录<br>发送 get <a href="http://localhost:9200/xc_course/doc/_search" target="_blank" rel="noopener">http://localhost:9200/xc_course/doc/_search</a></p>
+<p>查询名称中包括spring 关键字的的记录<br>发送：get <a href="http://localhost:9200/xc_course/doc/_search?q=name:bootstrap" target="_blank" rel="noopener">http://localhost:9200/xc_course/doc/_search?q=name:bootstrap</a></p>
+<p>查询学习模式为201001的记录<br>发送 get <a href="http://localhost:9200/xc_course/doc/_search?q=studymodel:201001" target="_blank" rel="noopener">http://localhost:9200/xc_course/doc/_search?q=studymodel:201001</a></p>
+<p><strong>查询结果解析</strong><br><img src="https://raw.githubusercontent.com/ranchangdong/cloudimg/master/data/查询结果解析.png" alt></p>
+<p>took：本次操作花费的时间，单位为毫秒。</p>
+<p>timed_out：请求是否超时</p>
+<p>_shards：说明本次操作共搜索了哪些分片</p>
+<p>hits：搜索命中的记录</p>
+<p>hits.total ： 符合条件的文档总数 hits.hits ：匹配度较高的前N个文档</p>
+<p>hits.max_score：文档匹配得分，这里为最高分</p>
+<p>_score：每个文档都有一个匹配度得分，按照降序排列。</p>
+<p>_source：显示了文档的原始内容。</p>
+<p><strong>ik分词器</strong><br>发送 POST请求 <a href="http://localhost:9200/_analyze" target="_blank" rel="noopener">http://localhost:9200/_analyze</a></p>
+<blockquote>
+<p>{“text”:”测试分词器，后边是测试内容：spring cloud实战”,”analyzer”:”ik_max_word” }</p>
+</blockquote>
+<p><img src="https://raw.githubusercontent.com/ranchangdong/cloudimg/master/data/分词结果.png" alt></p>
+<p><strong>自定义词库</strong><br>如果要让分词器支持一些专有词语，可以自定义词库。<br>iK分词器自带一个main.dic的文件，此文件为词库文件<br><img src="https://raw.githubusercontent.com/ranchangdong/cloudimg/master/data/自定义词库.png" alt></p>
+<p>在上边的目录中新建一个my.dic文件（注意文件格式为utf-8（不要选择utf-8 BOM））<br>可以在其中自定义词汇：<br>比如定义：<br>配置文件中配置my.dic<br><img src="https://raw.githubusercontent.com/ranchangdong/cloudimg/master/data/词典.png" alt><br>重启ES</p>
+<p><strong>映射维护方法</strong></p>
+<p>查询所有索引的映射：<br>GET： <a href="http://localhost:9200/_mapping" target="_blank" rel="noopener">http://localhost:9200/_mapping</a></p>
+<p>创建映射:<br>post 请求：<a href="http://localhost:9200/xc_course/doc/_mapping" target="_blank" rel="noopener">http://localhost:9200/xc_course/doc/_mapping</a></p>
+<p>一个例子：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line">&#123;</span><br><span class="line">  &quot;properties&quot;: &#123;</span><br><span class="line">    &quot;name&quot;: &#123;</span><br><span class="line">    &quot;type&quot;: &quot;text&quot;</span><br><span class="line">    &#125;,</span><br><span class="line">  &quot;description&quot;: &#123;</span><br><span class="line">    &quot;type&quot;: &quot;text&quot;</span><br><span class="line">    &#125;,</span><br><span class="line">  &quot;studymodel&quot;: &#123;</span><br><span class="line">    &quot;type&quot;: &quot;keyword&quot;</span><br><span class="line">    &#125;</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
+<p>更新映射:<br>映射创建成功可以添加新字段，已有字段不允许更新。</p>
+<p>删除映射:<br>通过删除索引来删除映射。</p>
+<p><strong>常用映射类型</strong></p>
+<p>字符串包括text和keyword两种类型：<br><strong>text</strong><br><strong>analyzer</strong></p>
+<p>通过analyzer属性指定分词器<br>下边指定name的字段类型为text，使用ik分词器的ik_max_word分词模式<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">&quot;name&quot;: &#123;</span><br><span class="line">    &quot;type&quot;: &quot;text&quot;,</span><br><span class="line">    &quot;analyzer&quot;:&quot;ik_max_word&quot;</span><br><span class="line">  &#125;</span><br></pre></td></tr></table></figure></p>
+<p>上边指定了analyzer是指在索引和搜索都使用ik_max_word，如果单独想定义搜索时使用的分词器则可以通过<br>search_analyzer属性</p>
+<p>对于ik分词器建议是索引时使用ik_max_word将搜索内容进行细粒度分词，搜索时使用ik_smart提高搜索精确性。</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">&quot;name&quot;: &#123;</span><br><span class="line">  &quot;type&quot;: &quot;text&quot;,</span><br><span class="line">  &quot;analyzer&quot;:&quot;ik_max_word&quot;,</span><br><span class="line">  &quot;search_analyzer&quot;:&quot;ik_smart&quot;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p><strong>index</strong></p>
+<p>通过index属性指定是否索引。</p>
+<p>默认为index=true，即要进行索引，只有进行索引才可以从索引库搜索到。</p>
+<p>但是也有一些内容不需要索引，比如：商品图片地址只被用来展示图片，不进行搜索图片，此时可以将index设置为false。</p>
+<p>删除索引，重新创建映射，将pic的index设置为false，尝试根据pic去搜索，结果搜索不到数据<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">&quot;pic&quot;: &#123;</span><br><span class="line">&quot;type&quot;: &quot;text&quot;,</span><br><span class="line">&quot;index&quot;:false</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
+<p><strong>store</strong></p>
+<p>是否在source之外存储，每个文档索引后会在 ES中保存一份原始文档，存放在”_source”中，一般情况下不需要设置<br>store为true，因为在_source中已经有一份原始文档了</p>
+<p><strong>测试</strong></p>
+<p>删除xc_course/doc下的映射<br>创建新映射：Post <a href="http://localhost:9200/xc_course/doc/_mapping" target="_blank" rel="noopener">http://localhost:9200/xc_course/doc/_mapping</a></p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br></pre></td><td class="code"><pre><span class="line">&#123;</span><br><span class="line">  &quot;properties&quot;: &#123;</span><br><span class="line">    &quot;name&quot;: &#123;</span><br><span class="line">      &quot;type&quot;: &quot;text&quot;,</span><br><span class="line">      &quot;analyzer&quot;:&quot;ik_max_word&quot;,</span><br><span class="line">      &quot;search_analyzer&quot;:&quot;ik_smart&quot;</span><br><span class="line">      &#125;,</span><br><span class="line">      &quot;description&quot;: &#123;</span><br><span class="line">      &quot;type&quot;: &quot;text&quot;,</span><br><span class="line">      &quot;analyzer&quot;:&quot;ik_max_word&quot;,</span><br><span class="line">      &quot;search_analyzer&quot;:&quot;ik_smart&quot;</span><br><span class="line">      &#125;,</span><br><span class="line">      &quot;pic&quot;:&#123;</span><br><span class="line">      &quot;type&quot;:&quot;text&quot;,</span><br><span class="line">      &quot;index&quot;:false</span><br><span class="line">      &#125;,</span><br><span class="line">      &quot;studymodel&quot;:&#123;</span><br><span class="line">      &quot;type&quot;:&quot;text&quot;</span><br><span class="line">      &#125;</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>插入文档：</p>
+<p><a href="http://localhost:9200/xc_course/doc/4028e58161bcf7f40161bcf8b77c0000" target="_blank" rel="noopener">http://localhost:9200/xc_course/doc/4028e58161bcf7f40161bcf8b77c0000</a></p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">&#123;</span><br><span class="line">&quot;name&quot;:&quot;Bootstrap开发框架&quot;,</span><br><span class="line">&quot;description&quot;:&quot;Bootstrap是由Twitter推出的一个前台页面开发框架，在行业之中使用较为广泛。此开发框架包</span><br><span class="line">含了大量的CSS、JS程序代码，可以帮助开发者（尤其是不擅长页面开发的程序人员）轻松的实现一个不受浏览器限制的</span><br><span class="line">精美界面效果。&quot;,</span><br><span class="line">&quot;pic&quot;:&quot;group1/M00/00/01/wKhlQFqO4MmAOP53AAAcwDwm6SU490.jpg&quot;,</span><br><span class="line">&quot;studymodel&quot;:&quot;201002&quot;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>查询测试：<br>Get <a href="http://localhost:9200/xc_course/_search?q=name:开发" target="_blank" rel="noopener">http://localhost:9200/xc_course/_search?q=name:开发</a><br>Get <a href="http://localhost:9200/xc_course/_search?q=description:开发" target="_blank" rel="noopener">http://localhost:9200/xc_course/_search?q=description:开发</a><br>Get <a href="http://localhost:9200/xc_course/_search" target="_blank" rel="noopener">http://localhost:9200/xc_course/_search</a>?<br>q=pic:group1/M00/00/01/wKhlQFqO4MmAOP53AAAcwDwm6SU490.jpg<br>Get <a href="http://localhost:9200/xc_course/_search?q=studymodel:201002" target="_blank" rel="noopener">http://localhost:9200/xc_course/_search?q=studymodel:201002</a><br>通过测试发现：name和description都支持全文检索，pic不可作为查询条件。</p>
+<p><strong>keyword关键字字段</strong></p>
+<p>上边介绍的text文本字段在映射时要设置分词器，keyword字段为关键字字段，通常搜索keyword是按照整体搜<br>索，所以创建keyword字段的索引时是不进行分词的，比如：邮政编码、手机号码、身份证等。keyword字段通常<br>用于过虑、排序、聚合等。</p>
+<p>更改映射：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line">&#123;</span><br><span class="line">  &quot;properties&quot;: &#123;</span><br><span class="line">    &quot;studymodel&quot;:&#123;</span><br><span class="line">    &quot;type&quot;:&quot;keyword&quot;</span><br><span class="line">    &#125;,</span><br><span class="line">  &quot;name&quot;:&#123;</span><br><span class="line">    &quot;type&quot;:&quot;keyword&quot;</span><br><span class="line">    &#125;</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
+<p>插入文档：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">&#123;</span><br><span class="line">  &quot;name&quot;: &quot;java编程基础&quot;,</span><br><span class="line">  &quot;description&quot;: &quot;java语言是世界第一编程语言，在软件开发领域使用人数最多。&quot;,</span><br><span class="line">  &quot;pic&quot;:&quot;group1/M00/00/01/wKhlQFqO4MmAOP53AAAcwDwm6SU490.jpg&quot;,</span><br><span class="line">  &quot;studymodel&quot;: &quot;201001&quot;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>根据studymodel查询文档<br>搜索：<a href="http://localhost:9200/xc_course/_search?q=name:java" target="_blank" rel="noopener">http://localhost:9200/xc_course/_search?q=name:java</a><br>name是keyword类型，所以查询方式是精确查询。</p>
+<p><strong>date日期类型</strong></p>
+<p>日期类型不用设置分词器。<br>通常日期类型的字段用于排序。</p>
+<p><strong>format</strong><br>通过format设置日期格式</p>
+<p>下边的设置允许date字段存储年月日时分秒、年月日及毫秒三种格式<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">&#123;</span><br><span class="line">  &quot;properties&quot;: &#123;</span><br><span class="line">    &quot;timestamp&quot;: &#123;</span><br><span class="line">      &quot;type&quot;: &quot;date&quot;,</span><br><span class="line">      &quot;format&quot;: &quot;yyyy‐MM‐dd HH:mm:ss||yyyy‐MM‐dd&quot;</span><br><span class="line">    &#125;</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
+<p>插入文档：<br>Post :<a href="http://localhost:9200/xc_course/doc/3" target="_blank" rel="noopener">http://localhost:9200/xc_course/doc/3</a><br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">&#123;</span><br><span class="line">  &quot;name&quot;: &quot;spring开发基础&quot;,</span><br><span class="line">  &quot;description&quot;: &quot;spring 在java领域非常流行，java程序员都在用。&quot;,</span><br><span class="line">  &quot;studymodel&quot;: &quot;201001&quot;,</span><br><span class="line">  &quot;pic&quot;:&quot;group1/M00/00/01/wKhlQFqO4MmAOP53AAAcwDwm6SU490.jpg&quot;,</span><br><span class="line">  &quot;timestamp&quot;:&quot;2018‐07‐04 18:28:58&quot;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
+<p><strong>数值类型</strong></p>
+<p>尽量选择范围小的类型，提高搜索效率</p>
+<p>对于浮点数尽量用比例因子，比如一个价格字段，单位为元，我们将比例因子设置为100这在ES中会按 分 存<br>储，映射如下：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">&quot;price&quot;: &#123;</span><br><span class="line">  &quot;type&quot;: &quot;scaled_float&quot;,</span><br><span class="line">  &quot;scaling_factor&quot;: 100</span><br><span class="line">&#125;,</span><br></pre></td></tr></table></figure>
+<p>由于比例因子为100，如果我们输入的价格是23.45则ES中会将23.45乘以100存储在ES中。</p>
+<p>如果输入的价格是23.456，ES会将23.456乘以100再取一个接近原始值的数，得出2346。</p>
+<p>使用比例因子的好处是整型比浮点型更易压缩，节省磁盘空间。</p>
+<p>如果比例因子不适合，则从下表选择范围小的去用：<br><img src="https://raw.githubusercontent.com/ranchangdong/cloudimg/master/data/数值类型.png" alt></p>
+<p>更新已有映射，并插入文档：<a href="http://localhost:9200/xc_course/doc/3" target="_blank" rel="noopener">http://localhost:9200/xc_course/doc/3</a></p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">&#123;</span><br><span class="line">  &quot;name&quot;: &quot;spring开发基础&quot;,</span><br><span class="line">  &quot;description&quot;: &quot;spring 在java领域非常流行，java程序员都在用。&quot;,</span><br><span class="line">  &quot;studymodel&quot;: &quot;201001&quot;,</span><br><span class="line">  &quot;pic&quot;:&quot;group1/M00/00/01/wKhlQFqO4MmAOP53AAAcwDwm6SU490.jpg&quot;,</span><br><span class="line">  &quot;timestamp&quot;:&quot;2018‐07‐04 18:28:58&quot;,</span><br><span class="line">  &quot;price&quot;:38.6</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p><strong>综合例子</strong></p>
+<p>创建如下映射<br>post：<a href="http://localhost:9200/xc_course/doc/_mapping" target="_blank" rel="noopener">http://localhost:9200/xc_course/doc/_mapping</a><br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br></pre></td><td class="code"><pre><span class="line">&#123;</span><br><span class="line">  &quot;properties&quot;: &#123;</span><br><span class="line">    &quot;description&quot;: &#123;</span><br><span class="line">      &quot;type&quot;: &quot;text&quot;,</span><br><span class="line">      &quot;analyzer&quot;: &quot;ik_max_word&quot;,</span><br><span class="line">      &quot;search_analyzer&quot;: &quot;ik_smart&quot;</span><br><span class="line">    &#125;,</span><br><span class="line">    &quot;name&quot;: &#123;</span><br><span class="line">      &quot;type&quot;: &quot;text&quot;,</span><br><span class="line">      &quot;analyzer&quot;: &quot;ik_max_word&quot;,</span><br><span class="line">      &quot;search_analyzer&quot;: &quot;ik_smart&quot;</span><br><span class="line">    &#125;,</span><br><span class="line">    &quot;pic&quot;:&#123;</span><br><span class="line">      &quot;type&quot;:&quot;text&quot;,</span><br><span class="line">      &quot;index&quot;:false</span><br><span class="line">    &#125;,</span><br><span class="line">    &quot;price&quot;: &#123;</span><br><span class="line">      &quot;type&quot;: &quot;float&quot;</span><br><span class="line">    &#125;,</span><br><span class="line">    &quot;studymodel&quot;: &#123;</span><br><span class="line">      &quot;type&quot;: &quot;keyword&quot;</span><br><span class="line">    &#125;,</span><br><span class="line">    &quot;timestamp&quot;: &#123;</span><br><span class="line">      &quot;type&quot;: &quot;date&quot;,</span><br><span class="line">      &quot;format&quot;: &quot;yyyy‐MM‐dd HH:mm:ss||yyyy‐MM‐dd||epoch_millis&quot;</span><br><span class="line">    &#125;</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
+<p>插入文档: Post: <a href="http://localhost:9200/xc_course/doc/1" target="_blank" rel="noopener">http://localhost:9200/xc_course/doc/1</a><br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">&#123;</span><br><span class="line">	&quot;name&quot;: &quot;Bootstrap开发&quot;,</span><br><span class="line">	&quot;description&quot;: &quot;Bootstrap是由Twitter推出的一个前台页面开发框架， 是一个非常流行的开发框架， 此框架集成了多种页面效果。 此开发框架包含了大量的CSS、 JS程序代码， 可以帮助开发者（ 尤其是不擅长页面开发的程序人员） 轻松的实现一个不受浏览器限制的精美界面效果。 &quot;,</span><br><span class="line">	&quot;studymodel &quot;: &quot;201002 &quot;,</span><br><span class="line">	&quot;price &quot;: 38.6,</span><br><span class="line">	&quot;timestamp &quot;: &quot;2018 - 04 - 25 19: 11: 35 &quot;,</span><br><span class="line">	&quot;pic&quot;: &quot;group1/M00/00/00/wKhlQFs6RCeAY0pHAAJx5ZjNDEM428.jpg&quot;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
+
+      
+    </div>
+    
+    
+    
+
+    
+      <div>
+        <div id="wechat_subscriber" style="display: block; padding: 10px 0; margin: 20px auto; width: 100%; text-align: center">
+    <img id="wechat_subscriber_qcode" src="/path/to/your/wechatqcode ex. /uploads/wechat-qcode.jpg" alt="森巴 wechat" style="width: 200px; max-width: 100%;">
+    <div>扫一扫二维码 可以进行关注</div>
+</div>
+
+      </div>
+    
+
+    
+      <div>
+        <div style="padding: 10px 0; margin: 20px auto; width: 90%; text-align: center;">
+  <div>你可以对我进行打赏！</div>
+  <button id="rewardButton" disable="enable" onclick="var qr = document.getElementById('QR'); if (qr.style.display === 'none') {qr.style.display='block';} else {qr.style.display='none'}">
+    <span>打赏</span>
+  </button>
+  <div id="QR" style="display: none;">
+
+    
+      <div id="wechat" style="display: inline-block">
+        <img id="wechat_qr" src="/images/wechatpay.png" alt="森巴 微信支付">
+        <p>微信支付</p>
+      </div>
+    
+
+    
+      <div id="alipay" style="display: inline-block">
+        <img id="alipay_qr" src="/images/alipay.png" alt="森巴 支付宝">
+        <p>支付宝</p>
+      </div>
+    
+
+    
+
+  </div>
+</div>
+
+      </div>
+    
+
+    
+
+    <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/tags/分项/" rel="tag"><i class="fg fg-google"></i> 分项</a>
+          
+            <a href="/tags/导航/" rel="tag"><i class="fg fg-google"></i> 导航</a>
+          
+        </div>
+      
+
+      
+      
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2019/05/30/elasticsearch安装/" rel="next" title="elasticsearch安装">
+                <i class="fa fa-chevron-left"></i> elasticsearch安装
+              </a>
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+            
+              <a href="/2019/05/30/ES客户端-RestClient/" rel="prev" title="ES客户端-RestClient">
+                ES客户端-RestClient <i class="fa fa-chevron-right"></i>
+              </a>
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+
+    <div class="post-spread">
+      
+        <!-- JiaThis Button BEGIN -->
+<div class="jiathis_style">
+<span class="jiathis_txt">分享到：</span>
+<a class="jiathis_button_fav">收藏夹</a>
+<a class="jiathis_button_copy">复制网址</a>
+<a class="jiathis_button_email">邮件</a>
+<a class="jiathis_button_weixin">微信</a>
+<a class="jiathis_button_qzone">QQ空间</a>
+<a class="jiathis_button_tqq">腾讯微博</a>
+<a class="jiathis_button_douban">豆瓣</a>
+<a class="jiathis_button_share">一键分享</a>
+
+<a href="http://www.jiathis.com/share?uid=2140465" class="jiathis jiathis_txt jiathis_separator jtico jtico_jiathis" target="_blank">更多</a>
+<a class="jiathis_counter_style"></a>
+</div>
+<script type="text/javascript">
+var jiathis_config={
+  data_track_clickback:true,
+  summary:"",
+  shortUrl:false,
+  hideMore:false
+}
+</script>
+<script type="text/javascript" src="http://v3.jiathis.com/code/jia.js?uid=" charset="utf-8"></script>
+<!-- JiaThis Button END -->
+      
+    </div>
+  </div>
+
+
+          </div>
+          
+
+
+          
+
+  
+    <div class="comments" id="comments">
+    </div>
+  
+
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    
+    <div class="sidebar-inner">
+
+      
+
+      
+
+      <section class="site-overview-wrap sidebar-panel sidebar-panel-active">
+        <div class="site-overview">
+          <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+            
+              <img class="site-author-image" itemprop="image" src="/images/avatar.gif" alt="森巴">
+            
+              <p class="site-author-name" itemprop="name">森巴</p>
+              <p class="site-description motion-element" itemprop="description"></p>
+          </div>
+
+          <nav class="site-state motion-element">
+
+            
+              <div class="site-state-item site-state-posts">
+              
+                <a href="/archives/">
+              
+                  <span class="site-state-item-count">60</span>
+                  <span class="site-state-item-name">日志</span>
+                </a>
+              </div>
+            
+
+            
+              
+              
+              <div class="site-state-item site-state-categories">
+                <a href="/categories/index.html">
+                  <span class="site-state-item-count">18</span>
+                  <span class="site-state-item-name">分类</span>
+                </a>
+              </div>
+            
+
+            
+              
+              
+              <div class="site-state-item site-state-tags">
+                <a href="/tags/index.html">
+                  <span class="site-state-item-count">3</span>
+                  <span class="site-state-item-name">标签</span>
+                </a>
+              </div>
+            
+
+          </nav>
+
+          
+
+          
+            <div class="links-of-author motion-element">
+                
+                  <span class="links-of-author-item">
+                    <a href="https://github.com/ranchangdong" target="_blank" title="GitHub">
+                      
+                        <i class="fa fa-fw fa-github"></i>GitHub</a>
+                  </span>
+                
+                  <span class="links-of-author-item">
+                    <a href="mailto:yourname@gmail.com" target="_blank" title="E-Mail">
+                      
+                        <i class="fa fa-fw fa-envelope"></i>E-Mail</a>
+                  </span>
+                
+            </div>
+          
+
+          
+          
+
+          
+          
+
+          
+
+        </div>
+      </section>
+
+      
+
+      
+
+    </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright">&copy; <span itemprop="copyrightYear">2019</span>
+  <span class="with-love">
+    <i class="fa fa-user"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">森巴</span>
+
+  
+</div>
+
+
+
+
+
+        
+<div class="busuanzi-count">
+  <script async src="https://busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+
+  
+    <span class="site-uv">
+      本站访客数 <i class="fa fa-user"></i>
+      <span class="busuanzi-value" id="busuanzi_value_site_uv"></span>
+      人次
+    </span>
+  
+
+  
+    <span class="site-pv">
+      本站总访问量 <i class="fa fa-eye"></i>
+      <span class="busuanzi-value" id="busuanzi_value_site_pv"></span>
+      次
+    </span>
+  
+</div>
+
+
+
+
+
+
+
+
+        
+      </div>
+    </footer>
+
+    
+      <div class="back-to-top">
+        <i class="fa fa-arrow-up"></i>
+        
+      </div>
+    
+
+    
+
+  </div>
+
+  
+
+<script type="text/javascript">
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+  
+
+
+  
+
+
+
+  
+  
+
+
+
+
+
+
+
+
+
+  
+  
+    <script type="text/javascript" src="/lib/jquery/index.js?v=2.1.3"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/velocity/velocity.min.js?v=1.2.1"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/fancybox/source/jquery.fancybox.pack.js?v=2.1.5"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/canvas-nest/canvas-nest.min.js"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/three/three.min.js"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/three/three-waves.min.js"></script>
+  
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/utils.js?v=5.1.4"></script>
+
+  <script type="text/javascript" src="/js/src/motion.js?v=5.1.4"></script>
+
+
+
+  
+  
+
+  
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.1.4"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=5.1.4"></script>
+
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/bootstrap.js?v=5.1.4"></script>
+
+
+
+  
+
+
+  
+
+
+
+
+	
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+  <script src="//cdn1.lncld.net/static/js/3.0.4/av-min.js"></script>
+  <script src="//unpkg.com/valine/dist/Valine.min.js"></script>
+  
+  <script type="text/javascript">
+    var GUEST = ['nick','mail','link'];
+    var guest = 'nick,mail,link';
+    guest = guest.split(',').filter(item=>{
+      return GUEST.indexOf(item)>-1;
+    });
+    new Valine({
+        el: '#comments' ,
+        verify: false,
+        notify: false,
+        appId: 'PDLiftcSkXJUx95ICcqElEcA-gzGzoHsz',
+        appKey: 'd9tVggA4HVGTQUVpmk4fIm7Q',
+        placeholder: 'Just go go',
+        avatar:'mm',
+        guest_info:guest,
+        pageSize:'10' || 10,
+    });
+  </script>
+
+
+
+  
+
+  <script type="text/javascript">
+    // Popup Window;
+    var isfetched = false;
+    var isXml = true;
+    // Search DB path;
+    var search_path = "search.xml";
+    if (search_path.length === 0) {
+      search_path = "search.xml";
+    } else if (/json$/i.test(search_path)) {
+      isXml = false;
+    }
+    var path = "/" + search_path;
+    // monitor main search box;
+
+    var onPopupClose = function (e) {
+      $('.popup').hide();
+      $('#local-search-input').val('');
+      $('.search-result-list').remove();
+      $('#no-result').remove();
+      $(".local-search-pop-overlay").remove();
+      $('body').css('overflow', '');
+    }
+
+    function proceedsearch() {
+      $("body")
+        .append('<div class="search-popup-overlay local-search-pop-overlay"></div>')
+        .css('overflow', 'hidden');
+      $('.search-popup-overlay').click(onPopupClose);
+      $('.popup').toggle();
+      var $localSearchInput = $('#local-search-input');
+      $localSearchInput.attr("autocapitalize", "none");
+      $localSearchInput.attr("autocorrect", "off");
+      $localSearchInput.focus();
+    }
+
+    // search function;
+    var searchFunc = function(path, search_id, content_id) {
+      'use strict';
+
+      // start loading animation
+      $("body")
+        .append('<div class="search-popup-overlay local-search-pop-overlay">' +
+          '<div id="search-loading-icon">' +
+          '<i class="fa fa-spinner fa-pulse fa-5x fa-fw"></i>' +
+          '</div>' +
+          '</div>')
+        .css('overflow', 'hidden');
+      $("#search-loading-icon").css('margin', '20% auto 0 auto').css('text-align', 'center');
+
+      $.ajax({
+        url: path,
+        dataType: isXml ? "xml" : "json",
+        async: true,
+        success: function(res) {
+          // get the contents from search data
+          isfetched = true;
+          $('.popup').detach().appendTo('.header-inner');
+          var datas = isXml ? $("entry", res).map(function() {
+            return {
+              title: $("title", this).text(),
+              content: $("content",this).text(),
+              url: $("url" , this).text()
+            };
+          }).get() : res;
+          var input = document.getElementById(search_id);
+          var resultContent = document.getElementById(content_id);
+          var inputEventFunction = function() {
+            var searchText = input.value.trim().toLowerCase();
+            var keywords = searchText.split(/[\s\-]+/);
+            if (keywords.length > 1) {
+              keywords.push(searchText);
+            }
+            var resultItems = [];
+            if (searchText.length > 0) {
+              // perform local searching
+              datas.forEach(function(data) {
+                var isMatch = false;
+                var hitCount = 0;
+                var searchTextCount = 0;
+                var title = data.title.trim();
+                var titleInLowerCase = title.toLowerCase();
+                var content = data.content.trim().replace(/<[^>]+>/g,"");
+                var contentInLowerCase = content.toLowerCase();
+                var articleUrl = decodeURIComponent(data.url);
+                var indexOfTitle = [];
+                var indexOfContent = [];
+                // only match articles with not empty titles
+                if(title != '') {
+                  keywords.forEach(function(keyword) {
+                    function getIndexByWord(word, text, caseSensitive) {
+                      var wordLen = word.length;
+                      if (wordLen === 0) {
+                        return [];
+                      }
+                      var startPosition = 0, position = [], index = [];
+                      if (!caseSensitive) {
+                        text = text.toLowerCase();
+                        word = word.toLowerCase();
+                      }
+                      while ((position = text.indexOf(word, startPosition)) > -1) {
+                        index.push({position: position, word: word});
+                        startPosition = position + wordLen;
+                      }
+                      return index;
+                    }
+
+                    indexOfTitle = indexOfTitle.concat(getIndexByWord(keyword, titleInLowerCase, false));
+                    indexOfContent = indexOfContent.concat(getIndexByWord(keyword, contentInLowerCase, false));
+                  });
+                  if (indexOfTitle.length > 0 || indexOfContent.length > 0) {
+                    isMatch = true;
+                    hitCount = indexOfTitle.length + indexOfContent.length;
+                  }
+                }
+
+                // show search results
+
+                if (isMatch) {
+                  // sort index by position of keyword
+
+                  [indexOfTitle, indexOfContent].forEach(function (index) {
+                    index.sort(function (itemLeft, itemRight) {
+                      if (itemRight.position !== itemLeft.position) {
+                        return itemRight.position - itemLeft.position;
+                      } else {
+                        return itemLeft.word.length - itemRight.word.length;
+                      }
+                    });
+                  });
+
+                  // merge hits into slices
+
+                  function mergeIntoSlice(text, start, end, index) {
+                    var item = index[index.length - 1];
+                    var position = item.position;
+                    var word = item.word;
+                    var hits = [];
+                    var searchTextCountInSlice = 0;
+                    while (position + word.length <= end && index.length != 0) {
+                      if (word === searchText) {
+                        searchTextCountInSlice++;
+                      }
+                      hits.push({position: position, length: word.length});
+                      var wordEnd = position + word.length;
+
+                      // move to next position of hit
+
+                      index.pop();
+                      while (index.length != 0) {
+                        item = index[index.length - 1];
+                        position = item.position;
+                        word = item.word;
+                        if (wordEnd > position) {
+                          index.pop();
+                        } else {
+                          break;
+                        }
+                      }
+                    }
+                    searchTextCount += searchTextCountInSlice;
+                    return {
+                      hits: hits,
+                      start: start,
+                      end: end,
+                      searchTextCount: searchTextCountInSlice
+                    };
+                  }
+
+                  var slicesOfTitle = [];
+                  if (indexOfTitle.length != 0) {
+                    slicesOfTitle.push(mergeIntoSlice(title, 0, title.length, indexOfTitle));
+                  }
+
+                  var slicesOfContent = [];
+                  while (indexOfContent.length != 0) {
+                    var item = indexOfContent[indexOfContent.length - 1];
+                    var position = item.position;
+                    var word = item.word;
+                    // cut out 100 characters
+                    var start = position - 20;
+                    var end = position + 80;
+                    if(start < 0){
+                      start = 0;
+                    }
+                    if (end < position + word.length) {
+                      end = position + word.length;
+                    }
+                    if(end > content.length){
+                      end = content.length;
+                    }
+                    slicesOfContent.push(mergeIntoSlice(content, start, end, indexOfContent));
+                  }
+
+                  // sort slices in content by search text's count and hits' count
+
+                  slicesOfContent.sort(function (sliceLeft, sliceRight) {
+                    if (sliceLeft.searchTextCount !== sliceRight.searchTextCount) {
+                      return sliceRight.searchTextCount - sliceLeft.searchTextCount;
+                    } else if (sliceLeft.hits.length !== sliceRight.hits.length) {
+                      return sliceRight.hits.length - sliceLeft.hits.length;
+                    } else {
+                      return sliceLeft.start - sliceRight.start;
+                    }
+                  });
+
+                  // select top N slices in content
+
+                  var upperBound = parseInt('1');
+                  if (upperBound >= 0) {
+                    slicesOfContent = slicesOfContent.slice(0, upperBound);
+                  }
+
+                  // highlight title and content
+
+                  function highlightKeyword(text, slice) {
+                    var result = '';
+                    var prevEnd = slice.start;
+                    slice.hits.forEach(function (hit) {
+                      result += text.substring(prevEnd, hit.position);
+                      var end = hit.position + hit.length;
+                      result += '<b class="search-keyword">' + text.substring(hit.position, end) + '</b>';
+                      prevEnd = end;
+                    });
+                    result += text.substring(prevEnd, slice.end);
+                    return result;
+                  }
+
+                  var resultItem = '';
+
+                  if (slicesOfTitle.length != 0) {
+                    resultItem += "<li><a href='" + articleUrl + "' class='search-result-title'>" + highlightKeyword(title, slicesOfTitle[0]) + "</a>";
+                  } else {
+                    resultItem += "<li><a href='" + articleUrl + "' class='search-result-title'>" + title + "</a>";
+                  }
+
+                  slicesOfContent.forEach(function (slice) {
+                    resultItem += "<a href='" + articleUrl + "'>" +
+                      "<p class=\"search-result\">" + highlightKeyword(content, slice) +
+                      "...</p>" + "</a>";
+                  });
+
+                  resultItem += "</li>";
+                  resultItems.push({
+                    item: resultItem,
+                    searchTextCount: searchTextCount,
+                    hitCount: hitCount,
+                    id: resultItems.length
+                  });
+                }
+              })
+            };
+            if (keywords.length === 1 && keywords[0] === "") {
+              resultContent.innerHTML = '<div id="no-result"><i class="fa fa-search fa-5x" /></div>'
+            } else if (resultItems.length === 0) {
+              resultContent.innerHTML = '<div id="no-result"><i class="fa fa-frown-o fa-5x" /></div>'
+            } else {
+              resultItems.sort(function (resultLeft, resultRight) {
+                if (resultLeft.searchTextCount !== resultRight.searchTextCount) {
+                  return resultRight.searchTextCount - resultLeft.searchTextCount;
+                } else if (resultLeft.hitCount !== resultRight.hitCount) {
+                  return resultRight.hitCount - resultLeft.hitCount;
+                } else {
+                  return resultRight.id - resultLeft.id;
+                }
+              });
+              var searchResultList = '<ul class=\"search-result-list\">';
+              resultItems.forEach(function (result) {
+                searchResultList += result.item;
+              })
+              searchResultList += "</ul>";
+              resultContent.innerHTML = searchResultList;
+            }
+          }
+
+          if ('auto' === 'auto') {
+            input.addEventListener('input', inputEventFunction);
+          } else {
+            $('.search-icon').click(inputEventFunction);
+            input.addEventListener('keypress', function (event) {
+              if (event.keyCode === 13) {
+                inputEventFunction();
+              }
+            });
+          }
+
+          // remove loading animation
+          $(".local-search-pop-overlay").remove();
+          $('body').css('overflow', '');
+
+          proceedsearch();
+        }
+      });
+    }
+
+    // handle and trigger popup window;
+    $('.popup-trigger').click(function(e) {
+      e.stopPropagation();
+      if (isfetched === false) {
+        searchFunc(path, 'local-search-input', 'local-search-result');
+      } else {
+        proceedsearch();
+      };
+    });
+
+    $('.popup-btn-close').click(onPopupClose);
+    $('.popup').click(function(e){
+      e.stopPropagation();
+    });
+    $(document).on('keyup', function (event) {
+      var shouldDismissSearchPopup = event.which === 27 &&
+        $('.search-popup').is(':visible');
+      if (shouldDismissSearchPopup) {
+        onPopupClose();
+      }
+    });
+  </script>
+
+
+
+
+
+  
+
+  
+
+  
+<script>
+(function(){
+    var bp = document.createElement('script');
+    var curProtocol = window.location.protocol.split(':')[0];
+    if (curProtocol === 'https') {
+        bp.src = 'https://zz.bdstatic.com/linksubmit/push.js';        
+    }
+    else {
+        bp.src = 'http://push.zhanzhang.baidu.com/push.js';
+    }
+    var s = document.getElementsByTagName("script")[0];
+    s.parentNode.insertBefore(bp, s);
+})();
+</script>
+
+
+  
+  
+
+  
+
+  
+
+  
+
+  
+  
+  
+  
+   <canvas class="fireworks" style="position: fixed;left: 0;top: 0;z-index: 1; pointer-events: none;"></canvas> 
+   <script type="text/javascript" src="//cdn.bootcss.com/animejs/2.2.0/anime.min.js"></script> 
+   <script type="text/javascript" src="/js/src/fireworks.js"></script>
+
+ 
+
+</body>
+</html>
