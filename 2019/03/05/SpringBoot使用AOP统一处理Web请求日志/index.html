@@ -75,7 +75,7 @@
 
 
 
-  <meta name="keywords" content="导航,分享,">
+  <meta name="keywords" content="分享,导航,">
 
 
 
@@ -87,14 +87,14 @@
 
 
 <meta name="description" content="首先添加aop依赖123456&amp;lt;!-- AOP --&amp;gt;        &amp;lt;dependency&amp;gt;			&amp;lt;groupId&amp;gt;org.springframework.boot&amp;lt;/groupId&amp;gt;			&amp;lt;artifactId&amp;gt;spring-boot-starter-aop&amp;lt;/artifactId&amp;gt;		&amp;lt;/dependency&amp;gt">
-<meta name="keywords" content="导航,分享">
+<meta name="keywords" content="分享,导航">
 <meta property="og:type" content="article">
 <meta property="og:title" content="SpringBoot使用AOP统一处理Web请求日志">
 <meta property="og:url" content="http://yoursite.com/2019/03/05/SpringBoot使用AOP统一处理Web请求日志/index.html">
 <meta property="og:site_name" content="森巴">
 <meta property="og:description" content="首先添加aop依赖123456&amp;lt;!-- AOP --&amp;gt;        &amp;lt;dependency&amp;gt;			&amp;lt;groupId&amp;gt;org.springframework.boot&amp;lt;/groupId&amp;gt;			&amp;lt;artifactId&amp;gt;spring-boot-starter-aop&amp;lt;/artifactId&amp;gt;		&amp;lt;/dependency&amp;gt">
 <meta property="og:locale" content="zh-Hans">
-<meta property="og:updated_time" content="2019-03-05T13:26:23.691Z">
+<meta property="og:updated_time" content="2019-09-09T08:23:57.106Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="SpringBoot使用AOP统一处理Web请求日志">
 <meta name="twitter:description" content="首先添加aop依赖123456&amp;lt;!-- AOP --&amp;gt;        &amp;lt;dependency&amp;gt;			&amp;lt;groupId&amp;gt;org.springframework.boot&amp;lt;/groupId&amp;gt;			&amp;lt;artifactId&amp;gt;spring-boot-starter-aop&amp;lt;/artifactId&amp;gt;		&amp;lt;/dependency&amp;gt">
@@ -440,7 +440,7 @@
       
         <h2 id="首先添加aop依赖"><a href="#首先添加aop依赖" class="headerlink" title="首先添加aop依赖"></a>首先添加aop依赖</h2><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line">&lt;!-- AOP --&gt;</span><br><span class="line">        &lt;dependency&gt;</span><br><span class="line">			&lt;groupId&gt;org.springframework.boot&lt;/groupId&gt;</span><br><span class="line">			&lt;artifactId&gt;spring-boot-starter-aop&lt;/artifactId&gt;</span><br><span class="line">		&lt;/dependency&gt;</span><br></pre></td></tr></table></figure>
 <a id="more"></a>
-<h2 id="写一个切面类"><a href="#写一个切面类" class="headerlink" title="写一个切面类"></a>写一个切面类</h2><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line">package com.gyf.aop;</span><br><span class="line"></span><br><span class="line">import java.util.Enumeration;</span><br><span class="line"></span><br><span class="line">import javax.servlet.http.HttpServletRequest;</span><br><span class="line"></span><br><span class="line">import org.apache.log4j.Logger;</span><br><span class="line">import org.aspectj.lang.JoinPoint;</span><br><span class="line">import org.aspectj.lang.annotation.AfterReturning;</span><br><span class="line">import org.aspectj.lang.annotation.Aspect;</span><br><span class="line">import org.aspectj.lang.annotation.Before;</span><br><span class="line">import org.aspectj.lang.annotation.Pointcut;</span><br><span class="line">import org.springframework.stereotype.Component;</span><br><span class="line">import org.springframework.web.context.request.RequestContextHolder;</span><br><span class="line">import org.springframework.web.context.request.ServletRequestAttributes;</span><br><span class="line">@Aspect</span><br><span class="line">@Component</span><br><span class="line">public class WebLogAspect &#123;</span><br><span class="line">	private Logger logger = Logger.getLogger(getClass());</span><br><span class="line">	</span><br><span class="line">	@Pointcut(&quot;execution(public * com.gyf.controller..*.*(..))&quot;)</span><br><span class="line">	public void webLog() &#123;</span><br><span class="line">	</span><br><span class="line">	&#125;</span><br><span class="line">	</span><br><span class="line">	@Before(&quot;webLog()&quot;)</span><br><span class="line">	public void doBefore(JoinPoint joinPoint) throws Throwable &#123;</span><br><span class="line">		// 接收到请求，记录请求内容</span><br><span class="line">		ServletRequestAttributes attributes = (ServletRequestAttributes) RequestContextHolder.getRequestAttributes();</span><br><span class="line">		HttpServletRequest request = attributes.getRequest();</span><br><span class="line">		// 记录下请求内容</span><br><span class="line">		logger.info(&quot;---------------request----------------&quot;);</span><br><span class="line">		logger.info(&quot;URL : &quot; + request.getRequestURL().toString());</span><br><span class="line">		logger.info(&quot;HTTP_METHOD : &quot; + request.getMethod());</span><br><span class="line">		logger.info(&quot;IP : &quot; + request.getRemoteAddr());</span><br><span class="line">		Enumeration&lt;String&gt; enu = request.getParameterNames();</span><br><span class="line">		while (enu.hasMoreElements()) &#123;</span><br><span class="line">			String name = (String) enu.nextElement();</span><br><span class="line">			logger.info(&quot;name:&quot; + name + &quot;value&quot; + request.getParameter(name));</span><br><span class="line">		&#125;</span><br><span class="line">	&#125;</span><br><span class="line">	@AfterReturning(returning = &quot;ret&quot;, pointcut = &quot;webLog()&quot;)</span><br><span class="line">	public void doAfterReturning(Object ret) throws Throwable &#123;</span><br><span class="line">		logger.info(&quot;---------------response----------------&quot;);</span><br><span class="line">		// 处理完请求，返回内容</span><br><span class="line">		logger.info(&quot;RESPONSE : &quot; + ret);</span><br><span class="line">	&#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h2 id="写一个切面类"><a href="#写一个切面类" class="headerlink" title="写一个切面类"></a>写一个切面类</h2><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line">package com.gyf.aop;</span><br><span class="line"></span><br><span class="line">import java.util.Enumeration;</span><br><span class="line"></span><br><span class="line">import javax.servlet.http.HttpServletRequest;</span><br><span class="line"></span><br><span class="line">import org.apache.log4j.Logger;</span><br><span class="line">import org.aspectj.lang.JoinPoint;</span><br><span class="line">import org.aspectj.lang.annotation.AfterReturning;</span><br><span class="line">import org.aspectj.lang.annotation.Aspect;</span><br><span class="line">import org.aspectj.lang.annotation.Before;</span><br><span class="line">import org.aspectj.lang.annotation.Pointcut;</span><br><span class="line">import org.springframework.stereotype.Component;</span><br><span class="line">import org.springframework.web.context.request.RequestContextHolder;</span><br><span class="line">import org.springframework.web.context.request.ServletRequestAttributes;</span><br><span class="line">@Aspect</span><br><span class="line">@Component</span><br><span class="line">public class WebLogAspect &#123;</span><br><span class="line">	private Logger logger = Logger.getLogger(getClass());</span><br><span class="line"></span><br><span class="line">	@Pointcut(&quot;execution(public * com.gyf.controller..*.*(..))&quot;)</span><br><span class="line">	public void webLog() &#123;</span><br><span class="line"></span><br><span class="line">	&#125;</span><br><span class="line"></span><br><span class="line">	@Before(&quot;webLog()&quot;)</span><br><span class="line">	public void doBefore(JoinPoint joinPoint) throws Throwable &#123;</span><br><span class="line">		// 接收到请求，记录请求内容</span><br><span class="line">		ServletRequestAttributes attributes = (ServletRequestAttributes) RequestContextHolder.getRequestAttributes();</span><br><span class="line">		HttpServletRequest request = attributes.getRequest();</span><br><span class="line">		// 记录下请求内容</span><br><span class="line">		logger.info(&quot;---------------request----------------&quot;);</span><br><span class="line">		logger.info(&quot;URL : &quot; + request.getRequestURL().toString());</span><br><span class="line">		logger.info(&quot;HTTP_METHOD : &quot; + request.getMethod());</span><br><span class="line">		logger.info(&quot;IP : &quot; + request.getRemoteAddr());</span><br><span class="line">		Enumeration&lt;String&gt; enu = request.getParameterNames();</span><br><span class="line">		while (enu.hasMoreElements()) &#123;</span><br><span class="line">			String name = (String) enu.nextElement();</span><br><span class="line">			logger.info(&quot;name:&quot; + name + &quot;value&quot; + request.getParameter(name));</span><br><span class="line">		&#125;</span><br><span class="line">	&#125;</span><br><span class="line">	@AfterReturning(returning = &quot;ret&quot;, pointcut = &quot;webLog()&quot;)</span><br><span class="line">	public void doAfterReturning(Object ret) throws Throwable &#123;</span><br><span class="line">		logger.info(&quot;---------------response----------------&quot;);</span><br><span class="line">		// 处理完请求，返回内容</span><br><span class="line">		logger.info(&quot;RESPONSE : &quot; + ret);</span><br><span class="line">	&#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 <p>@Aspect:作用是把当前类标识为一个切面供容器读取<br>Aspect的意思是面向切面编程，一个类前面加上@Aspect说明这个类使用了这个技术，很有可能是在进行声明式事务处理</p>
 <p>1.这里的可以把这里public void webLog() {}方法理解成具体pointcut（切入点）的声明，<br>实际对应的切入点是“execution(public * com.cc.springboot.controller…(..))”；</p>
 <p>2.@AfterReturning，是在具体业务方法返回后的操作（比如下面IndexController类中的getUserName()方法），<br>所以returning=”ret”对应的是业务方法 的返回值，不是切入点声明的返回值，<br>也就是returning=”ret”的“ret”就是具体的方法(public * com.cc.springboot.controller…(..))的返回值，<br>对应public void afterReturning(ret returnValue) 的方法参数，名称一定要对应，在方法返回后，可以进行一些操作，<br>比如输出返回值或者根据返回值进行一些操作。</p>
@@ -499,9 +499,9 @@
       
         <div class="post-tags">
           
-            <a href="/tags/导航/" rel="tag"><i class="fg fg-google"></i> 导航</a>
-          
             <a href="/tags/分享/" rel="tag"><i class="fg fg-google"></i> 分享</a>
+          
+            <a href="/tags/导航/" rel="tag"><i class="fg fg-google"></i> 导航</a>
           
         </div>
       
@@ -625,7 +625,7 @@ var jiathis_config={
               
                 <a href="/archives/">
               
-                  <span class="site-state-item-count">60</span>
+                  <span class="site-state-item-count">62</span>
                   <span class="site-state-item-name">日志</span>
                 </a>
               </div>
@@ -636,7 +636,7 @@ var jiathis_config={
               
               <div class="site-state-item site-state-categories">
                 <a href="/categories/index.html">
-                  <span class="site-state-item-count">18</span>
+                  <span class="site-state-item-count">19</span>
                   <span class="site-state-item-name">分类</span>
                 </a>
               </div>
@@ -647,7 +647,7 @@ var jiathis_config={
               
               <div class="site-state-item site-state-tags">
                 <a href="/tags/index.html">
-                  <span class="site-state-item-count">3</span>
+                  <span class="site-state-item-count">2</span>
                   <span class="site-state-item-name">标签</span>
                 </a>
               </div>

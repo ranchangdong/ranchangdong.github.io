@@ -1,6 +1,30 @@
 <?xml version="1.0" encoding="utf-8"?>
 <search>
   <entry>
+    <title><![CDATA[JAVA基础]]></title>
+    <url>%2F2019%2F09%2F09%2FJAVA%E5%9F%BA%E7%A1%80%2F</url>
+    <content type="text"><![CDATA[Java是一门面向对象编程语言，不仅吸收了C++语言的各种优点，还摒弃了C++里难以理解的多继承、指针等概念，因此Java语言具有功能强大和简单易用两个特征。Java语言作为静态面向对象编程语言的代表，极好地实现了面向对象理论，允许程序员以优雅的思维方式进行复杂的编程 Java具有简单性、面对对象、分布式、健壮性、安全性、平台独立与可移植性、多线程、动态性等桌面应用程序、Web应用程序、分布式系统和嵌入系统应用程序等。 面向对象的特征：封装、继承、多态 final,finally,finalize的区别final：用于声明属性，方法和类。分别表示属性不可变，方法不可覆盖，类不可继承finally：是异常处理语句结构的一部分，表示总是执行finalize：是Object类的一个方法，在垃圾收集器执行的时候会调用被回收对象的此方法，可以覆盖此方法提供垃圾收集时的其他资源回收，例如关闭文件等. JVM不保证此方法总被调用. int 和 Integer 有什么区别int 是 Java 提供的 8 种原始数据类型之一。Java 为每个原始类型提供了封装类，Integer 是 Java 为 int 提供的封装类。 int 的默认值为 0，而 Integer 的默认值为 null，是引用类型，即 Integer 可以区分出未赋值和值为 0 的区别，int 则无法表达出未赋值的情况， Java 中 int 和 Integer 关系是比较微妙的。关系如下：int 是基本的数据类型；Integer 是 int 的封装类；int 和 Integer 都可以表示某一个数值；int 和 Integer 不能够互用，因为他们两种不同的数据类型； 重载和重写的区别重载 Overload：表示同一个类中可以有多个名称相同的方法，但这些方法的参数列表各不相同（即参数个数或类型不同）重写 Override：表示子类中的方法可以与父类中的某个方法的名称和参数完全相同，通过子类创建的实例对象调用这个方法时，将调用子类中的定义方法，这相当于把父类中定义的那个完全相同的方法给覆盖了，这也是面向对象编程的多态性的一种表现。子类覆盖父类的方法时，只能比父类抛出更少的异常，或者是抛出父类抛出的异常的子异常，因为子类可以解决父类的一些问题，不能比父类有更多的问题。子类方法的访问权限只能比父类的更大，不能更小。如果父类的方法是private类型，那么，子类则不存在覆盖的限制，相当于子类中增加了一个全新的方法。 反射的用途及实现反射的用途：Java 反射机制是一个非常强大的功能，在很多的项目比如 Spring，MyBatis 都都可以看到反射的身影。通过反射机制，我们可以在运行期间获取对象的类型信息。利用这一点我们可以实现工厂模式和代理模式等设计模式，同时也可以解决 Java 泛型擦除等令人苦恼的问题 反射的实现：获取一个对象对应的反射类，在 Java 中有下列方法可以获取一个对象的反射类1、通过 getClass() 方法2、通过 Class.forName() 方法3、使用 类.class4、通过类加载器实现，getClassLoader() 自定义注解的场景及实现登陆、权限拦截、日志处理，以及各种 Java 框架，如 Spring，Hibernate，JUnit 提到注解就不能不说反射，Java 自定义注解是通过运行时靠反射获取注解。实际开发中，例如我们要获取某个方法的调用日志，可以通过 AOP（动态代理机制）给方法添加切面，通过反射来获取方法包含的注解，如果包含日志注解，就进行日志记录。反射的实现在 Java 应用层面上讲，是通过对 Class 对象的操作实现的，Class 对象为我们提供了一系列方法对类进行操作。在 JVM 这个角度来说，Class 文件是一组以 8 位字节为基础单位的二进制流，各个数据项目按严格的顺序紧凑的排列在 Class 文件中，里面包含了类、方法、字段等等相关数据。通过对 Class 数据流的处理我们即可得到字段、方法等数据。 HTTP 请求的 GET 与 POST 方式的区别根据 HTTP 规范，GET 用于信息获取，而且应该是安全的和幂等的。根据 HTTP 规范，POST 表示可能修改变服务器上的资源的请求。首先是 “GET 方式提交的数据最多只能是 1024 字节”，因为 GET 是通过 URL 提交数据，那么 GET 可提交的数据量就跟 URL 的长度有直接关系了。而实际上，URL 不存在参数上限的问题，HTTP 协议规范没有对 URL 长度进行限制。这个限制是特定的浏览器及服务器对它的限制。IE 对 URL 长度的限制是 2083 字节(2K+35)。对于其他浏览器，如 Netscape、FireFox 等，理论上没有长度限制，其限制取决于操作系统的支持。注意这是限制是整个 URL 长度，而不仅仅是你的参数值数据长度。POST 是没有大小限制的，HTTP 协议规范也没有进行大小限制。]]></content>
+      <categories>
+        <category>java</category>
+      </categories>
+      <tags>
+        <tag>分享</tag>
+        <tag>导航</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title><![CDATA[Nuxt.js入门]]></title>
+    <url>%2F2019%2F05%2F31%2FNuxt-js%E5%85%A5%E9%97%A8%2F</url>
+    <content type="text"><![CDATA[在说Nuxt.js之前呢 先了解一下 SEO 什么是SEO？ 简单 来说就是 搜索引擎优化 SEO是网站为了提高自已的网站排名，获得更多的流量，对网站的结构及内容进行调整优化，以便搜索引擎（百度，google等）更好抓取到更优质的网站的内容 对url链接的规范化，多用restful风格的url，多用静态资源url；注意title、keywords的设置由于spider对javascript支持不好，对于网页跳转用href标签 服务端渲染和客户端渲染采用什么技术有利于SEO？要解答这个问题需要理解服务端渲染和客户端渲染。 什么是服务端渲染? 我们用传统的servlet开发来举例：浏览器请求servlet，servlet在服务端生成html响应给浏览器，浏览器展示html的内容，这个过程就是服务端渲染，如下图：服务端渲染的特点 在服务端生成html网页的dom元素。客户端（浏览器）只负责显示dom元素内容。 客户端渲染的特点： 在服务端只是给客户端响应的了数据，而不是html网页客户端（浏览器）负责获取服务端的数据生成Dom元素 两种方式各有什么优缺点？ 客户端渲染： 缺点:不利于网站进行SEO，因为网站大量使用javascript技术，不利于spider抓取网页 优点:客户端负责渲染，用户体验性好，服务端只提供数据不用关心用户界面的内容，有利于提高服务端的开发效率 适用场景: 对SEO没有要求的系统，比如后台管理类的系统，如电商后台管理，用户管理等 服务端渲染： 优点:有利于SEO，网站通过href的url将spider直接引到服务端，服务端提供优质的网页内容给spider。 缺点:服务端完成一部分客户端的工作，通常完成一个需求需要修改客户端和服务端的代码，开发效率低，不利于系统的稳定性。 适用场景:对SEO有要求的系统，比如：门户首页、商品详情页面等。 Nuxt.js介绍移动互联网的兴起促进了web前后端分离开发模式的发展，服务端只专注业务，前端只专注用户体验，前端大量运用的前端渲染技术，比如流行的vue.js、react框架都实现了功能强大的前端渲染。 但是，对于有SEO需求的网页如果使用前端渲染技术去开发就不利于SEO了，有没有一种即使用vue.js、react的前端技术也实现服务端渲染的技术呢？其实，对于服务端渲染的需求，vue.js、react这样流行的前端框架提供了服务端渲染的解决方案。 react框架提供next.js实现服务端渲染。 vue.js框架提供Nuxt.js实现服务端渲染。 Nuxt.js工作原理 1、用户打开浏览器，输入网址请求到Node.js 2、部署在Node.js的应用Nuxt.js接收浏览器请求，并请求服务端获取数据 3、Nuxt.js获取到数据后进行服务端渲染 4、Nuxt.js将html网页响应给浏览器 Nuxt.js基本使用nuxt.js有标准的目录结构，官方提供了模板工程，可以模板工程快速创建nuxt项目 模板工程地址：https://github.com/nuxt-community/starter-template/archive/master.zip 路由基础路由Nuxt.js 依据 pages 目录结构自动生成 vue-router 模块的路由配置。 Nuxt.js根据pages的目录结构及页面名称定义规范来生成路由，下边是一个基础路由的例子： 假设 pages 的目录结构如下：1234pages/‐‐| user/‐‐‐‐‐| index.vue‐‐‐‐‐| one.vue 那么，Nuxt.js 自动生成的路由配置如下：1234567891011121314outer: &#123; routes: [ &#123; name: &apos;user&apos;, path: &apos;/user&apos;, component: &apos;pages/user/index.vue&apos; &#125;, &#123; name: &apos;user‐one&apos;, path: &apos;/user/one&apos;, component: &apos;pages/user/one.vue&apos; &#125; ]&#125; index.vue代码如下123456789101112&lt;template&gt; &lt;div&gt; 用户管理首页 &lt;/div&gt;&lt;/template&gt;&lt;script&gt; export default&#123; layout:&quot;test&quot; &#125;&lt;/script&gt;&lt;style&gt;&lt;/style&gt; one.vue代码如下： 123456789101112&lt;template&gt; &lt;div&gt; one页面 &lt;/div&gt;&lt;/template&gt;&lt;script&gt; export default&#123; layout:&quot;test&quot; &#125;&lt;/script&gt;&lt;style&gt;&lt;/style&gt; 分别访问如下链接进行测试：http://localhost:10000/user http://localhost:10000/user/one 嵌套路由你可以通过 vue-router 的子路由创建 Nuxt.js 应用的嵌套路由。 创建内嵌子路由，你需要添加一个 Vue 文件，同时添加一个与该文件同名的目录用来存放子视图组件。 别忘了在父级 Vue 文件内增加 用于显示子视图内容。 假设文件结构如：12345pages/‐‐| user/‐‐‐‐‐| _id.vue‐‐‐‐‐| index.vue‐‐| user.vue Nuxt.js 自动生成的路由配置如下：1234567891011121314151617181920router: &#123; routes: [ &#123; path: &apos;/user&apos;, component: &apos;pages/user.vue&apos;, children: [ &#123; path: &apos;&apos;, component: &apos;pages/user/index.vue&apos;, name: &apos;user&apos; &#125;, &#123; path: &apos;:id&apos;, component: &apos;pages/user/_id.vue&apos;, name: &apos;user‐id&apos; &#125; ] &#125; ]&#125; 将user.vue文件创建到与user目录的父目录下，即和user目录保持平级12345678910111213&lt;template&gt; &lt;div&gt; 用户管理导航，&lt;nuxt‐link :to=&quot;&apos;/user/101&apos;&quot;&gt;修改&lt;/nuxt‐link&gt; &lt;nuxt‐child/&gt; &lt;/div&gt;&lt;/template&gt;&lt;script&gt; export default&#123; layout:&quot;test&quot; &#125;&lt;/script&gt;&lt;style&gt;&lt;/style&gt; _id.vue页面实现了向页面传入id参数，页面内容如下：123456789101112131415161718192021&lt;template&gt; &lt;div&gt; 修改用户信息&#123;&#123;id&#125;&#125; &lt;/div&gt;&lt;/template&gt;&lt;script&gt; export default&#123; layout:&quot;test&quot;, data()&#123; return &#123; id:&apos;&apos; &#125; &#125;, mounted()&#123; this.id = this.$route.params.id; console.log(this.id) &#125;&#125;&lt;/script&gt;&lt;style&gt;&lt;/style&gt; 测试：http://localhost:10000/use 获取数据asyncData 方法Nuxt.js 扩展了 Vue.js，增加了一个叫 asyncData 的方法， asyncData 方法会在组件（限于页面组件）每次加载之前被调用。它可以在服务端或路由更新之前被调用。 在这个方法被调用的时候，第一个参数被设定为当前页面的上下文对象，你可以利用 asyncData 方法来获取数据，Nuxt.js 会将 asyncData 返回的数据融合组件 data 方法返回的数据一并返回给当前组件 注意：由于 asyncData 方法是在组件 初始化 前被调用的，所以在方法内是没有办法通过 this 来引用组件的实例对象。 在上边例子中的user/_id.vue中添加，页面代码如下：123456789101112131415161718192021222324252627&lt;template&gt; &lt;div&gt; 修改用户信息&#123;&#123;id&#125;&#125;,名称：&#123;&#123;name&#125;&#125; &lt;/div&gt;&lt;/template&gt;&lt;script&gt; export default&#123; layout:&apos;test&apos;, //根据id查询用户信息 asyncData()&#123; console.log(&quot;async方法&quot;) return &#123; name:&apos;程序员&apos; &#125; &#125;, data()&#123; return &#123; id:&apos;&apos; &#125; &#125;, mounted()&#123; this.id = this.$route.params.id; &#125;&#125;&lt;/script&gt;&lt;style&gt;&lt;/style&gt; 此方法在服务端被执行，观察服务端控制台打印输出“async方法”。此方法返回data模型数据，在服务端被渲染，最后响应给前端，刷新此页面查看页面源代码可以看到name模型数据已在页面源代码中显示 async /await方法 使用async 和 await配合promise也可以实现同步调用，nuxt.js中使用async/await实现同步调用效果。 先测试异步调用，增加a、b两个方法，并在mounted中调用1234567891011121314151617181920212223242526methods:&#123; a()&#123; return new Promise(function(resolve,reject)&#123; setTimeout(function () &#123; resolve(1) &#125;,2000) &#125;) &#125;, b()&#123; return new Promise(function(resolve,reject)&#123; setTimeout(function () &#123; resolve(2) &#125;,1000) &#125;) &#125; &#125;, mounted()&#123; this.a().then(res=&gt;&#123; alert(res) console.log(res) &#125;) this.b().then(res=&gt;&#123; alert(res) console.log(res) &#125;)&#125; 观察客户端，并没有按照方法执行的顺序输出，使用Promise实现了异步调用。 使用async/await完成同步调用123456789101112131415161718async asyncData(&#123; store, route &#125;) &#123; console.log(&quot;async方法&quot;) var a = await new Promise(function (resolve, reject) &#123; setTimeout(function () &#123; console.log(&quot;1&quot;) resolve(1) &#125;,2000) &#125;); var a = await new Promise(function (resolve, reject) &#123; setTimeout(function () &#123; console.log(&quot;2&quot;) resolve(2) &#125;,1000) &#125;); return &#123; name:&apos;程序员&apos; &#125;&#125;, 观察服务端控制台发现是按照a、b方法的调用顺序输出1、2，实现了使用async/await完成同步调用。]]></content>
+      <categories>
+        <category>前端</category>
+      </categories>
+      <tags>
+        <tag>分享</tag>
+        <tag>导航</tag>
+      </tags>
+  </entry>
+  <entry>
     <title><![CDATA[ES客户端-DSL搜索]]></title>
     <url>%2F2019%2F05%2F31%2FES%E5%AE%A2%E6%88%B7%E7%AB%AF-DSL%E6%90%9C%E7%B4%A2%2F</url>
     <content type="text"><![CDATA[简单搜索简单搜索就是通过url进行查询，以get方式请求ES。 格式：get ../_search?q=….. q：搜索字符串 例子：?q=name:spring 搜索name中包括spring的文档。 DSL搜索DSL(Domain Specific Language)是ES提出的基于json的搜索方式，在搜索时传入特定的json格式的数据来完成不同的搜索需求 DSL比URI搜索方式功能强大，在项目中建议使用DSL方式来完成搜索 准备环境 创建索引库 创建映射12345678910111213141516171819202122232425262728&#123; &quot;properties&quot;: &#123; &quot;description&quot;: &#123; &quot;type&quot;: &quot;text&quot;, &quot;analyzer&quot;: &quot;ik_max_word&quot;, &quot;search_analyzer&quot;: &quot;ik_smart&quot; &#125;, &quot;name&quot;: &#123; &quot;type&quot;: &quot;text&quot;, &quot;analyzer&quot;: &quot;ik_max_word&quot;, &quot;search_analyzer&quot;: &quot;ik_smart&quot; &#125;, &quot;pic&quot;:&#123; &quot;type&quot;:&quot;text&quot;, &quot;index&quot;:false &#125;, &quot;price&quot;: &#123; &quot;type&quot;: &quot;float&quot; &#125;, &quot;studymodel&quot;: &#123; &quot;type&quot;: &quot;keyword&quot; &#125;, &quot;timestamp&quot;: &#123; &quot;type&quot;: &quot;date&quot;, &quot;format&quot;: &quot;yyyy‐MM‐dd HH:mm:ss||yyyy‐MM‐dd||epoch_millis&quot; &#125; &#125;&#125; 插入原始数据12345678910111213141516171819202122232425262728&#123;&quot;name&quot;: &quot;Bootstrap开发&quot;,&quot;description&quot;: &quot;Bootstrap是由Twitter推出的一个前台页面开发框架，是一个非常流行的开发框架，此框架集成了多种页面效果。此开发框架包含了大量的CSS、JS程序代码，可以帮助开发者（尤其是不擅长页面开发的程序人员）轻松的实现一个不受浏览器限制的精美界面效果。&quot;,&quot;studymodel&quot;: &quot;201002&quot;,&quot;price&quot;:38.6,&quot;timestamp&quot;:&quot;2018‐04‐25 19:11:35&quot;,&quot;pic&quot;:&quot;group1/M00/00/00/wKhlQFs6RCeAY0pHAAJx5ZjNDEM428.jpg&quot;&#125;&#123;&quot;name&quot;: &quot;java编程基础&quot;,&quot;description&quot;: &quot;java语言是世界第一编程语言，在软件开发领域使用人数最多。&quot;,&quot;studymodel&quot;: &quot;201001&quot;,&quot;price&quot;:68.6,&quot;timestamp&quot;:&quot;2018‐03‐25 19:11:35&quot;,&quot;pic&quot;:&quot;group1/M00/00/00/wKhlQFs6RCeAY0pHAAJx5ZjNDEM428.jpg&quot;&#125;&#123;&quot;name&quot;: &quot;spring开发基础&quot;,&quot;description&quot;: &quot;spring 在java领域非常流行，java程序员都在用。&quot;,&quot;studymodel&quot;: &quot;201001&quot;,&quot;price&quot;:88.6,&quot;timestamp&quot;:&quot;2018‐02‐24 19:11:35&quot;,&quot;pic&quot;:&quot;group1/M00/00/00/wKhlQFs6RCeAY0pHAAJx5ZjNDEM428.jpg&quot;&#125; 查询所有文档 12SearchSourceBuilder searchSourceBuilder = new SearchSourceBuilder();searchSourceBuilder.query(QueryBuilders.matchAllQuery()); 分页查询 12345SearchSourceBuilder searchSourceBuilder = new SearchSourceBuilder();//从第1条开始searchSourceBuilder.from(0);//每次一共返回两条数据searchSourceBuilder.size(2); 精确查询Term Query为精确查询，在搜索时会整体匹配关键字，不再将关键字分词。 12SearchSourceBuilder searchSourceBuilder = new SearchSourceBuilder();searchSourceBuilder.query(QueryBuilders.termsQuery(&quot;name&quot;,&quot;spring&quot;)); 全文检索match Querymatch Query即全文检索，它的搜索方式是先将搜索字符串分词，再使用各各词条从索引中搜索match query与Term query区别是match query在搜索前先将搜索关键字分词，再拿各各词语去索引中搜索 12SearchSourceBuilder searchSourceBuilder = new SearchSourceBuilder();searchSourceBuilder.query(QueryBuilders.matchQuery(&quot;description&quot;,&quot;spring开发&quot;).operator(Operator.OR)); 按占比查询minimum_should_match minimum_should_match”: “80% 表示，三个词在文档的匹配占比为80%，即3*0.8=2.4，向上取整得2，表示至少有两个词在文档中要匹配成功。 12SearchSourceBuilder searchSourceBuilder = new SearchSourceBuilder();&gt; searchSourceBuilder.query(QueryBuilders.multiMatchQuery(&quot;spring框架&quot;, &quot;name&quot;,&quot;description&quot;).minimumShouldMatch(&quot;50%&quot;).field(&quot;name&quot;,10)); 布尔查询布尔查询对应于Lucene的BooleanQuery查询，实现将多个查询组合起来三个参数：must：文档必须匹配must所包括的查询条件，相当于 “AND”should：文档应该匹配should所包括的查询条件其中的一个或多个，相当于 “OR”must_not：文档不能匹配must_not所包括的该查询条件，相当于“NOT”分别使用must、should、must_not测试下边的查询 123BoolQueryBuilder boolQueryBuilder = QueryBuilders.boolQuery();boolQueryBuilder.must(multiMatchQueryBuilder);boolQueryBuilder.must(termsQueryBuilder); 过滤器过虑是针对搜索的结果进行过虑，过虑器主要判断的是文档是否匹配，不去计算和判断文档的匹配度得分，所以过虑器性能比查询要高，且方便缓存，推荐尽量使用过虑器去实现查询或者过虑器和查询共同使用。 123BoolQueryBuilder boolQueryBuilder = QueryBuilders.boolQuery();boolQueryBuilder.filter(QueryBuilders.termQuery(&quot;studymodel&quot;, &quot;201001&quot;));boolQueryBuilder.filter(QueryBuilders.rangeQuery(&quot;pricec&quot;).gte(0).lte(100)); 排序可以在字段上添加一个或多个排序，支持在keyword、date、float等类型上添加，text类型的字段上不允许添加排序。 12SearchSourceBuilder searchSourceBuilder = new SearchSourceBuilder();searchSourceBuilder.sort(new FieldSortBuilder(&quot;studymodel&quot;).order(SortOrder.DESC)); 高亮显示高亮显示可以将搜索结果一个或多个字突出显示，以便向用户展示匹配关键字的位置 123456789SearchSourceBuilder searchSourceBuilder = new SearchSourceBuilder();HighlightBuilder highlightBuilder = new HighlightBuilder();highlightBuilder.preTags(&quot;&lt;font style=&apos;color:red;&apos;&gt;&quot;); //前缀highlightBuilder.postTags(&quot;&lt;/font&gt;&quot;); //后缀//设置高亮显示的字段highlightBuilder.fields().add(new HighlightBuilder.Field(&quot;name&quot;));highlightBuilder.fields().add(new HighlightBuilder.Field(&quot;description&quot;));searchSourceBuilder.highlighter(highlightBuilder); 这是DSL搜索 RestClient 的一些操作 如果有需要可以从github上下载https://github.com/ranchangdong/restclient-elasticsearch.git]]></content>
@@ -8,7 +32,7 @@
         <category>全文检索</category>
       </categories>
       <tags>
-        <tag>分项</tag>
+        <tag>分享</tag>
         <tag>导航</tag>
       </tags>
   </entry>
@@ -20,7 +44,7 @@
         <category>全文检索</category>
       </categories>
       <tags>
-        <tag>分项</tag>
+        <tag>分享</tag>
         <tag>导航</tag>
       </tags>
   </entry>
@@ -32,7 +56,7 @@
         <category>全文检索</category>
       </categories>
       <tags>
-        <tag>分项</tag>
+        <tag>分享</tag>
         <tag>导航</tag>
       </tags>
   </entry>
@@ -44,7 +68,7 @@
         <category>全文检索</category>
       </categories>
       <tags>
-        <tag>分项</tag>
+        <tag>分享</tag>
         <tag>导航</tag>
       </tags>
   </entry>
@@ -56,7 +80,7 @@
         <category>文件存储</category>
       </categories>
       <tags>
-        <tag>分项</tag>
+        <tag>分享</tag>
         <tag>导航</tag>
       </tags>
   </entry>
@@ -68,7 +92,7 @@
         <category>SpringBoot</category>
       </categories>
       <tags>
-        <tag>分项</tag>
+        <tag>分享</tag>
         <tag>导航</tag>
       </tags>
   </entry>
@@ -80,8 +104,8 @@
         <category>ServiceComb</category>
       </categories>
       <tags>
-        <tag>导航</tag>
         <tag>分享</tag>
+        <tag>导航</tag>
       </tags>
   </entry>
   <entry>
@@ -92,8 +116,8 @@
         <category>ServiceComb</category>
       </categories>
       <tags>
-        <tag>导航</tag>
         <tag>分享</tag>
+        <tag>导航</tag>
       </tags>
   </entry>
   <entry>
@@ -104,8 +128,8 @@
         <category>ServiceComb</category>
       </categories>
       <tags>
-        <tag>导航</tag>
         <tag>分享</tag>
+        <tag>导航</tag>
       </tags>
   </entry>
   <entry>
@@ -116,8 +140,8 @@
         <category>ServiceComb</category>
       </categories>
       <tags>
-        <tag>导航</tag>
         <tag>分享</tag>
+        <tag>导航</tag>
       </tags>
   </entry>
   <entry>
@@ -128,7 +152,7 @@
         <category>SpringBoot</category>
       </categories>
       <tags>
-        <tag>分项</tag>
+        <tag>分享</tag>
         <tag>导航</tag>
       </tags>
   </entry>
@@ -140,8 +164,8 @@
         <category>消息队列</category>
       </categories>
       <tags>
-        <tag>导航</tag>
         <tag>分享</tag>
+        <tag>导航</tag>
       </tags>
   </entry>
   <entry>
@@ -152,8 +176,8 @@
         <category>文件存储</category>
       </categories>
       <tags>
-        <tag>导航</tag>
         <tag>分享</tag>
+        <tag>导航</tag>
       </tags>
   </entry>
   <entry>
@@ -164,8 +188,8 @@
         <category>基本框架</category>
       </categories>
       <tags>
-        <tag>导航</tag>
         <tag>分享</tag>
+        <tag>导航</tag>
       </tags>
   </entry>
   <entry>
@@ -176,8 +200,8 @@
         <category>跨域</category>
       </categories>
       <tags>
-        <tag>导航</tag>
         <tag>分享</tag>
+        <tag>导航</tag>
       </tags>
   </entry>
   <entry>
@@ -188,8 +212,8 @@
         <category>前端</category>
       </categories>
       <tags>
-        <tag>导航</tag>
         <tag>分享</tag>
+        <tag>导航</tag>
       </tags>
   </entry>
   <entry>
@@ -200,8 +224,8 @@
         <category>接口</category>
       </categories>
       <tags>
-        <tag>导航</tag>
         <tag>分享</tag>
+        <tag>导航</tag>
       </tags>
   </entry>
   <entry>
@@ -212,8 +236,8 @@
         <category>数据库</category>
       </categories>
       <tags>
-        <tag>导航</tag>
         <tag>分享</tag>
+        <tag>导航</tag>
       </tags>
   </entry>
   <entry>
@@ -224,8 +248,8 @@
         <category>SpringData</category>
       </categories>
       <tags>
-        <tag>导航</tag>
         <tag>分享</tag>
+        <tag>导航</tag>
       </tags>
   </entry>
   <entry>
@@ -236,8 +260,8 @@
         <category>crawler</category>
       </categories>
       <tags>
-        <tag>导航</tag>
         <tag>分享</tag>
+        <tag>导航</tag>
       </tags>
   </entry>
   <entry>
@@ -248,8 +272,8 @@
         <category>crawler</category>
       </categories>
       <tags>
-        <tag>导航</tag>
         <tag>分享</tag>
+        <tag>导航</tag>
       </tags>
   </entry>
   <entry>
@@ -260,8 +284,8 @@
         <category>crawler</category>
       </categories>
       <tags>
-        <tag>导航</tag>
         <tag>分享</tag>
+        <tag>导航</tag>
       </tags>
   </entry>
   <entry>
@@ -272,8 +296,8 @@
         <category>SpringData</category>
       </categories>
       <tags>
-        <tag>导航</tag>
         <tag>分享</tag>
+        <tag>导航</tag>
       </tags>
   </entry>
   <entry>
@@ -284,8 +308,8 @@
         <category>SpringData</category>
       </categories>
       <tags>
-        <tag>导航</tag>
         <tag>分享</tag>
+        <tag>导航</tag>
       </tags>
   </entry>
   <entry>
@@ -296,8 +320,8 @@
         <category>进阶</category>
       </categories>
       <tags>
-        <tag>导航</tag>
         <tag>分享</tag>
+        <tag>导航</tag>
       </tags>
   </entry>
   <entry>
@@ -308,8 +332,8 @@
         <category>进阶</category>
       </categories>
       <tags>
-        <tag>导航</tag>
         <tag>分享</tag>
+        <tag>导航</tag>
       </tags>
   </entry>
   <entry>
@@ -320,8 +344,8 @@
         <category>进阶</category>
       </categories>
       <tags>
-        <tag>导航</tag>
         <tag>分享</tag>
+        <tag>导航</tag>
       </tags>
   </entry>
   <entry>
@@ -332,8 +356,8 @@
         <category>基础</category>
       </categories>
       <tags>
-        <tag>导航</tag>
         <tag>分享</tag>
+        <tag>导航</tag>
       </tags>
   </entry>
   <entry>
@@ -344,8 +368,8 @@
         <category>基础</category>
       </categories>
       <tags>
-        <tag>导航</tag>
         <tag>分享</tag>
+        <tag>导航</tag>
       </tags>
   </entry>
   <entry>
@@ -356,8 +380,8 @@
         <category>基础</category>
       </categories>
       <tags>
-        <tag>导航</tag>
         <tag>分享</tag>
+        <tag>导航</tag>
       </tags>
   </entry>
   <entry>
@@ -368,8 +392,8 @@
         <category>基础</category>
       </categories>
       <tags>
-        <tag>导航</tag>
         <tag>分享</tag>
+        <tag>导航</tag>
       </tags>
   </entry>
   <entry>
@@ -380,8 +404,8 @@
         <category>基础</category>
       </categories>
       <tags>
-        <tag>导航</tag>
         <tag>分享</tag>
+        <tag>导航</tag>
       </tags>
   </entry>
   <entry>
@@ -392,8 +416,8 @@
         <category>基础</category>
       </categories>
       <tags>
-        <tag>导航</tag>
         <tag>分享</tag>
+        <tag>导航</tag>
       </tags>
   </entry>
   <entry>
@@ -404,8 +428,8 @@
         <category>基础</category>
       </categories>
       <tags>
-        <tag>导航</tag>
         <tag>分享</tag>
+        <tag>导航</tag>
       </tags>
   </entry>
   <entry>
@@ -416,8 +440,8 @@
         <category>基础</category>
       </categories>
       <tags>
-        <tag>导航</tag>
         <tag>分享</tag>
+        <tag>导航</tag>
       </tags>
   </entry>
   <entry>
@@ -428,8 +452,8 @@
         <category>基础</category>
       </categories>
       <tags>
-        <tag>导航</tag>
         <tag>分享</tag>
+        <tag>导航</tag>
       </tags>
   </entry>
   <entry>
@@ -440,8 +464,8 @@
         <category>基础</category>
       </categories>
       <tags>
-        <tag>导航</tag>
         <tag>分享</tag>
+        <tag>导航</tag>
       </tags>
   </entry>
   <entry>
@@ -452,8 +476,8 @@
         <category>基础</category>
       </categories>
       <tags>
-        <tag>导航</tag>
         <tag>分享</tag>
+        <tag>导航</tag>
       </tags>
   </entry>
   <entry>
@@ -464,8 +488,8 @@
         <category>工具类</category>
       </categories>
       <tags>
-        <tag>导航</tag>
         <tag>分享</tag>
+        <tag>导航</tag>
       </tags>
   </entry>
   <entry>
@@ -476,8 +500,8 @@
         <category>前端</category>
       </categories>
       <tags>
-        <tag>导航</tag>
         <tag>分享</tag>
+        <tag>导航</tag>
       </tags>
   </entry>
   <entry>
@@ -488,8 +512,8 @@
         <category>跨域</category>
       </categories>
       <tags>
-        <tag>导航</tag>
         <tag>分享</tag>
+        <tag>导航</tag>
       </tags>
   </entry>
   <entry>
@@ -500,8 +524,8 @@
         <category>SpringBoot</category>
       </categories>
       <tags>
-        <tag>导航</tag>
         <tag>分享</tag>
+        <tag>导航</tag>
       </tags>
   </entry>
   <entry>
@@ -512,8 +536,8 @@
         <category>SpringCloud</category>
       </categories>
       <tags>
-        <tag>导航</tag>
         <tag>分享</tag>
+        <tag>导航</tag>
       </tags>
   </entry>
   <entry>
@@ -524,8 +548,8 @@
         <category>SpringCloud</category>
       </categories>
       <tags>
-        <tag>导航</tag>
         <tag>分享</tag>
+        <tag>导航</tag>
       </tags>
   </entry>
   <entry>
@@ -536,8 +560,8 @@
         <category>SpringCloud</category>
       </categories>
       <tags>
-        <tag>导航</tag>
         <tag>分享</tag>
+        <tag>导航</tag>
       </tags>
   </entry>
   <entry>
@@ -548,8 +572,8 @@
         <category>SpringCloud</category>
       </categories>
       <tags>
-        <tag>导航</tag>
         <tag>分享</tag>
+        <tag>导航</tag>
       </tags>
   </entry>
   <entry>
@@ -560,8 +584,8 @@
         <category>SpringCloud</category>
       </categories>
       <tags>
-        <tag>导航</tag>
         <tag>分享</tag>
+        <tag>导航</tag>
       </tags>
   </entry>
   <entry>
@@ -572,8 +596,8 @@
         <category>SpringBoot</category>
       </categories>
       <tags>
-        <tag>导航</tag>
         <tag>分享</tag>
+        <tag>导航</tag>
       </tags>
   </entry>
   <entry>
@@ -584,8 +608,8 @@
         <category>http&amp;RPC</category>
       </categories>
       <tags>
-        <tag>导航</tag>
         <tag>分享</tag>
+        <tag>导航</tag>
       </tags>
   </entry>
   <entry>
@@ -596,8 +620,8 @@
         <category>系统架构</category>
       </categories>
       <tags>
-        <tag>导航</tag>
         <tag>分享</tag>
+        <tag>导航</tag>
       </tags>
   </entry>
   <entry>
@@ -608,8 +632,8 @@
         <category>SpringBoot</category>
       </categories>
       <tags>
-        <tag>导航</tag>
         <tag>分享</tag>
+        <tag>导航</tag>
       </tags>
   </entry>
   <entry>
@@ -620,8 +644,8 @@
         <category>SpringBoot</category>
       </categories>
       <tags>
-        <tag>导航</tag>
         <tag>分享</tag>
+        <tag>导航</tag>
       </tags>
   </entry>
   <entry>
@@ -632,8 +656,8 @@
         <category>SpringBoot</category>
       </categories>
       <tags>
-        <tag>导航</tag>
         <tag>分享</tag>
+        <tag>导航</tag>
       </tags>
   </entry>
   <entry>
@@ -644,8 +668,8 @@
         <category>SpringBoot</category>
       </categories>
       <tags>
-        <tag>导航</tag>
         <tag>分享</tag>
+        <tag>导航</tag>
       </tags>
   </entry>
   <entry>
@@ -656,8 +680,8 @@
         <category>SpringBoot</category>
       </categories>
       <tags>
-        <tag>导航</tag>
         <tag>分享</tag>
+        <tag>导航</tag>
       </tags>
   </entry>
   <entry>
@@ -668,8 +692,8 @@
         <category>SpringBoot</category>
       </categories>
       <tags>
-        <tag>导航</tag>
         <tag>分享</tag>
+        <tag>导航</tag>
       </tags>
   </entry>
   <entry>
@@ -680,8 +704,8 @@
         <category>SpringBoot</category>
       </categories>
       <tags>
-        <tag>导航</tag>
         <tag>分享</tag>
+        <tag>导航</tag>
       </tags>
   </entry>
   <entry>
@@ -692,8 +716,8 @@
         <category>SpringBoot</category>
       </categories>
       <tags>
-        <tag>导航</tag>
         <tag>分享</tag>
+        <tag>导航</tag>
       </tags>
   </entry>
   <entry>
@@ -704,8 +728,8 @@
         <category>前端</category>
       </categories>
       <tags>
-        <tag>导航</tag>
         <tag>分享</tag>
+        <tag>导航</tag>
       </tags>
   </entry>
   <entry>
