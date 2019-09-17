@@ -86,18 +86,18 @@
 
 
 
-<meta name="description" content="系统之间调用Spring提供了一个RestTemplate模板工具类，对基于Http的客户端进行了封装，并且实现了对象与json的序列化和反序列化，非常方便。RestTemplate并没有限定Http的客户端类型，而是进行了抽象，目前常用的3种都有支持：1.HttpClient2.OkHttp3.JDK原生的URLConnection（默认的）首先在项目中注册一个RestTemplate对象，可以">
+<meta name="description" content="说说线程安全问题线程安全是多线程领域的问题，线程安全可以简单理解为一个方法或者一个实例可以在多线程环境中使用而不会出现问题。在 Java 多线程编程当中，提供了多种实现 Java 线程安全的方式：1、最简单的方式，使用 Synchronization 关键字2、使用 java.util.concurrent.atomic 包中的原子类，例如 AtomicInteger3、使用 java.util.">
 <meta name="keywords" content="分享,导航">
 <meta property="og:type" content="article">
-<meta property="og:title" content="Spring的RestTemplate">
-<meta property="og:url" content="http://yoursite.com/2019/03/07/Spring的RestTemplate/index.html">
+<meta property="og:title" content="Java锁机制">
+<meta property="og:url" content="http://yoursite.com/2019/09/17/Java锁机制/index.html">
 <meta property="og:site_name" content="森巴">
-<meta property="og:description" content="系统之间调用Spring提供了一个RestTemplate模板工具类，对基于Http的客户端进行了封装，并且实现了对象与json的序列化和反序列化，非常方便。RestTemplate并没有限定Http的客户端类型，而是进行了抽象，目前常用的3种都有支持：1.HttpClient2.OkHttp3.JDK原生的URLConnection（默认的）首先在项目中注册一个RestTemplate对象，可以">
+<meta property="og:description" content="说说线程安全问题线程安全是多线程领域的问题，线程安全可以简单理解为一个方法或者一个实例可以在多线程环境中使用而不会出现问题。在 Java 多线程编程当中，提供了多种实现 Java 线程安全的方式：1、最简单的方式，使用 Synchronization 关键字2、使用 java.util.concurrent.atomic 包中的原子类，例如 AtomicInteger3、使用 java.util.">
 <meta property="og:locale" content="zh-Hans">
-<meta property="og:updated_time" content="2019-04-01T08:47:44.603Z">
+<meta property="og:updated_time" content="2019-09-17T06:56:42.560Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="Spring的RestTemplate">
-<meta name="twitter:description" content="系统之间调用Spring提供了一个RestTemplate模板工具类，对基于Http的客户端进行了封装，并且实现了对象与json的序列化和反序列化，非常方便。RestTemplate并没有限定Http的客户端类型，而是进行了抽象，目前常用的3种都有支持：1.HttpClient2.OkHttp3.JDK原生的URLConnection（默认的）首先在项目中注册一个RestTemplate对象，可以">
+<meta name="twitter:title" content="Java锁机制">
+<meta name="twitter:description" content="说说线程安全问题线程安全是多线程领域的问题，线程安全可以简单理解为一个方法或者一个实例可以在多线程环境中使用而不会出现问题。在 Java 多线程编程当中，提供了多种实现 Java 线程安全的方式：1、最简单的方式，使用 Synchronization 关键字2、使用 java.util.concurrent.atomic 包中的原子类，例如 AtomicInteger3、使用 java.util.">
 
 
 
@@ -127,13 +127,13 @@
 
 
 
-  <link rel="canonical" href="http://yoursite.com/2019/03/07/Spring的RestTemplate/">
+  <link rel="canonical" href="http://yoursite.com/2019/09/17/Java锁机制/">
 
 
 
 
 
-  <title>Spring的RestTemplate | 森巴</title>
+  <title>Java锁机制 | 森巴</title>
   
 
 
@@ -303,7 +303,7 @@
   
   
   <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2019/03/07/Spring的RestTemplate/">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2019/09/17/Java锁机制/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="name" content="森巴">
@@ -320,7 +320,7 @@
 
         
         
-          <h1 class="post-title" itemprop="name headline">Spring的RestTemplate</h1>
+          <h1 class="post-title" itemprop="name headline">Java锁机制</h1>
         
 
         <div class="post-meta">
@@ -332,8 +332,8 @@
               
                 <span class="post-meta-item-text">发表于</span>
               
-              <time title="创建于" itemprop="dateCreated datePublished" datetime="2019-03-07T19:55:44+08:00">
-                2019-03-07
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2019-09-17T14:15:07+08:00">
+                2019-09-17
               </time>
             
 
@@ -355,8 +355,8 @@
               
               
                 <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/SpringBoot/" itemprop="url" rel="index">
-                    <span itemprop="name">SpringBoot</span>
+                  <a href="/categories/java/" itemprop="url" rel="index">
+                    <span itemprop="name">java</span>
                   </a>
                 </span>
 
@@ -373,8 +373,8 @@
                 <span class="post-meta-item-icon">
                   <i class="fa fa-comment-o"></i>
                 </span>
-                <a href="/2019/03/07/Spring的RestTemplate/#comments" itemprop="discussionUrl">
-                  <span class="post-comments-count valine-comment-count" data-xid="/2019/03/07/Spring的RestTemplate/" itemprop="commentCount"></span>
+                <a href="/2019/09/17/Java锁机制/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count valine-comment-count" data-xid="/2019/09/17/Java锁机制/" itemprop="commentCount"></span>
                 </a>
               </span>
             
@@ -401,7 +401,7 @@
                   <span class="post-meta-item-text">字数统计&#58;</span>
                 
                 <span title="字数统计">
-                  251
+                  1.6k
                 </span>
               
 
@@ -417,7 +417,7 @@
                   <span class="post-meta-item-text">阅读时长 &asymp;</span>
                 
                 <span title="阅读时长">
-                  1
+                  5
                 </span>
               
             </div>
@@ -438,10 +438,15 @@
       
 
       
-        <h2 id="系统之间调用"><a href="#系统之间调用" class="headerlink" title="系统之间调用"></a>系统之间调用</h2><p>Spring提供了一个RestTemplate模板工具类，对基于Http的客户端进行了封装，并且实现了对象与json的序列化和反序列化，非常方便。RestTemplate并没有限定Http的客户端类型，而是进行了抽象，目前常用的3种都有支持：<br>1.HttpClient<br>2.OkHttp<br>3.JDK原生的URLConnection（默认的）<br>首先在项目中注册一个RestTemplate对象，可以在启动类位置注册：<br><a id="more"></a><br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line">@SpringBootApplication</span><br><span class="line">public class HttpDemoApplication &#123;</span><br><span class="line"></span><br><span class="line">	public static void main(String[] args) &#123;</span><br><span class="line">		SpringApplication.run(HttpDemoApplication.class, args);</span><br><span class="line">	&#125;</span><br><span class="line"></span><br><span class="line">	@Bean</span><br><span class="line">	public RestTemplate restTemplate() &#123;</span><br><span class="line">        // 默认的RestTemplate，底层是走JDK的URLConnection方式。</span><br><span class="line">		return new RestTemplate();</span><br><span class="line">	&#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
-<p>在测试类中直接@Autowired注入：</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line">@RunWith(SpringRunner.class)</span><br><span class="line">@SpringBootTest(classes = HttpDemoApplication.class)</span><br><span class="line">public class HttpDemoApplicationTests &#123;</span><br><span class="line"></span><br><span class="line">	@Autowired</span><br><span class="line">	private RestTemplate restTemplate;</span><br><span class="line"></span><br><span class="line">	@Test</span><br><span class="line">	public void httpGet() &#123;</span><br><span class="line">		User user = this.restTemplate.getForObject(&quot;http://localhost/hello&quot;, User.class);</span><br><span class="line">		System.out.println(user);</span><br><span class="line">	&#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<p>通过RestTemplate的getForObject()方法，传递url地址及实体类的字节码，RestTemplate会自动发起请求，接收响应，并且帮我们对响应结果进行反序列化。</p>
+        <h2 id="说说线程安全问题"><a href="#说说线程安全问题" class="headerlink" title="说说线程安全问题"></a>说说线程安全问题</h2><p>线程安全是多线程领域的问题，线程安全可以简单理解为一个方法或者一个实例可以在多线程环境中使用而不会出现问题。<br>在 Java 多线程编程当中，提供了多种实现 Java 线程安全的方式：<br>1、最简单的方式，使用 Synchronization 关键字<br>2、使用 java.util.concurrent.atomic 包中的原子类，例如 AtomicInteger<br>3、使用 java.util.concurrent.locks 包中的锁<br>4、使用线程安全的集合 ConcurrentHashMap<br>5、使用 volatile 关键字，保证变量可见性（直接从内存读，而不是从线程 cache 读）<br><a id="more"></a></p>
+<h2 id="volatile-实现原理"><a href="#volatile-实现原理" class="headerlink" title="volatile 实现原理"></a>volatile 实现原理</h2><p>在JVM底层volatile是采用的’内存屏障’来实现的<br>缓存一致性协议（MESI协议）它确保每个缓存中使用的共享变量的副本是一致的。<br>核心思想如下：当某个CPU在写数据的时候，如果发现操作变量是共享变量，则会通知其他CPU告知该变量的缓存行是无效的，因此其他CPU在读取数据该变量时，发现其无效会重新从主存中加载数据</p>
+<h2 id="Synchroniz-实现原理"><a href="#Synchroniz-实现原理" class="headerlink" title="Synchroniz 实现原理"></a>Synchroniz 实现原理</h2><p>同步代码块是使用monitorenter和monitorxit指令实现的，同步方法（在这看不出来 需要看JVM底层实现）依靠的时方法修饰符上的ACC_SYNCHRONIZED实现。</p>
+<h2 id="Synchronizd与Lock的区别"><a href="#Synchronizd与Lock的区别" class="headerlink" title="Synchronizd与Lock的区别"></a>Synchronizd与Lock的区别</h2><p>Synchronizd与Lock的用法区别：<br>synchronized(隐式锁)：在需要同步的对象中加入此控制，synchronized 可以加在方法上，也可以加在特定代码块中，括号中表示需要锁的对象。<br>lock（显示锁）：需要显示指定起始位置和终止位置。一般使用 ReentrantLock 类做为锁，多个线程中必须要使用一个 ReentrantLock 类做为对象才能保证锁的生效。且在加锁和解锁处需要通过 lock() 和 unlock() 显示指出。所以一般会在 finally 块中写 unlock() 以防死锁。<br>synchronized 和 lock 性能区别 synchronized 是托管给 JVM 执行的，而 lock 是 Java 写的控制锁的代码。在 JDK 1.5 中，synchronize 是性能低效的。因为这是一个重量级操作，需要调用操作接口，导致有可能加锁消耗的系统时间比加锁以外的操作还多。相比之下使用 Java 提供的 Lock 对象，性能更高一些。但是到了 JDK 1.6，发生了变化。synchronize 在语义上很清晰，可以进行很多优化，有适应自旋，锁消除，锁粗化，轻量级锁，偏向锁等等。导致在 JDK 1.6 上 synchronize 的性能并不比 Lock 差。</p>
+<p>synchronized 和 lock 机制区别<br>synchronized 原始采用的是 CPU 悲观锁机制，即线程获得的是独占锁。独占锁意味着其 他线程只能依靠阻塞来等待线程释放锁。<br>Lock 用的是乐观锁方式。所谓乐观锁就是，每次不加锁而是假设没有冲突而去完成某项操作，如果因为冲突失败就重试，直到成功为止。乐观锁实现的机制就是 CAS 操作（Compare and Swap）。</p>
+<h2 id="CAS-乐观锁"><a href="#CAS-乐观锁" class="headerlink" title="CAS 乐观锁"></a>CAS 乐观锁</h2><p>CAS 是项乐观锁技术，当多个线程尝试使用 CAS 同时更新同一个变量时，只有其中一个线程能更新变量的值，而其它线程都失败，失败的线程并不会被挂起，而是被告知这次竞争中失败，并可以再次尝试。</p>
+<p>CAS 操作包含三个操作数 —— 内存位置（V）、预期原值（A）和新值(B)。如果内存位置的值与预期原值相匹配，那么处理器会自动将该位置值更新为新值。否则，处理器不做任何操作。无论哪种情况，它都会在 CAS 指令之前返回该位置的值。（在 CAS 的一些特殊情况下将仅返回 CAS 是否成功，而不提取当前值。）CAS 有效地说明了“我认为位置 V 应该包含值 A；如果包含该值，则将 B 放到这个位置；否则，不要更改该位置，只告诉我这个位置现在的值即可。”这其实和乐观锁的冲突检查 + 数据更新的原理是一样的。</p>
+<h2 id="ABA问题"><a href="#ABA问题" class="headerlink" title="ABA问题"></a>ABA问题</h2><p>CAS 会导致“ABA问题”<br>CAS 算法实现一个重要前提需要取出内存中某时刻的数据，而在下时刻比较并替换，那么在这个时间差类会导致数据的变化。<br>比如说一个线程 one 从内存位置 V 中取出 A，这时候另一个线程 two 也从内存中取出 A，并且 two 进行了一些操作变成了 B，然后 two 又将 V 位置的数据变成 A，这时候线程 one 进行 CAS 操作发现内存中仍然是 A，然后 one 操作成功。尽管线程 one 的 CAS 操作成功，但是不代表这个过程就是没有问题的。<br>部分乐观锁的实现是通过版本号（version）的方式来解决 ABA 问题，乐观锁每次在执行数据的修改操作时，都会带上一个版本号，一旦版本号和数据的版本号一致就可以执行修改操作并对版本号执行 +1 操作，否则就执行失败。因为每次操作的版本号都会随之增加，所以不会出现 ABA 问题，因为版本号只会增加不会减少。</p>
+<h2 id="乐观锁的业务场景及实现方式"><a href="#乐观锁的业务场景及实现方式" class="headerlink" title="乐观锁的业务场景及实现方式"></a>乐观锁的业务场景及实现方式</h2><p>乐观锁（Optimistic Lock）：<br>每次获取数据的时候，都不会担心数据被修改，所以每次获取数据的时候都不会进行加锁，但是在更新数据的时候需要判断该数据是否被别人修改过。如果数据被其他线程修改，则不进行数据更新，如果数据没有被其他线程修改，则进行数据更新。由于数据没有进行加锁，期间该数据可以被其他线程进行读写操作。<br>比较适合读取操作比较频繁的场景，如果出现大量的写入操作，数据发生冲突的可能性就会增大，为了保证数据的一致性，应用层需要不断的重新获取数据，这样会增加大量的查询操作，降低了系统的吞吐量。</p>
 
       
     </div>
@@ -511,8 +516,8 @@
         <div class="post-nav">
           <div class="post-nav-next post-nav-item">
             
-              <a href="/2019/03/07/远程调用方式RPC与http/" rel="next" title="远程调用方式RPC与http">
-                <i class="fa fa-chevron-left"></i> 远程调用方式RPC与http
+              <a href="/2019/09/16/Java线程/" rel="next" title="Java线程">
+                <i class="fa fa-chevron-left"></i> Java线程
               </a>
             
           </div>
@@ -520,10 +525,6 @@
           <span class="post-nav-divider"></span>
 
           <div class="post-nav-prev post-nav-item">
-            
-              <a href="/2019/03/07/SpringCloud之Eureka注册中心/" rel="prev" title="SpringCloud之Eureka注册中心">
-                SpringCloud之Eureka注册中心 <i class="fa fa-chevron-right"></i>
-              </a>
             
           </div>
         </div>
