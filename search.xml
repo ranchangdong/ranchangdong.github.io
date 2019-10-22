@@ -1,15 +1,63 @@
 <?xml version="1.0" encoding="utf-8"?>
 <search>
   <entry>
-    <title><![CDATA[Spring理解]]></title>
-    <url>%2F2019%2F09%2F18%2FSpring%E7%90%86%E8%A7%A3%2F</url>
-    <content type="text"><![CDATA[BeanFactory和ApplicationContext有什么区别BeanFactory可以理解成含有bean集合的工厂类。BeanFactory包含了多种bean的定义,以便在接收客户端请求时将对应的bean实例化。BeanFactory还能在实例化对象时生成协作类之间的关系，此举将bean自身与bean客户端的配置中解放出来。BeanFactory还包含了bean生命周期的控制，调用客户端的初始化方法（initialization methods）和销毁方法（destruction methods）从表面看，ApplicationContext如同BeanFactory一样具有bean定义 、bean关联关系的设置，根据请求分发bean的功能，但ApplicationContext在此基础上还提供了其他的功能：1、提供了指出国际化的文本消息2、同意的资源文件读取方式3、以再监听器中注册的bean事件 Spring Bean 的声明周期Spring Bean 的生命周期简单易懂，在一个bean实例被初始化时，需要执行一系列的初始化操作以达到可用的状态，同样的当一个人bean不再被调用时需要进行相关的分析结构操作，并从bean容器中移除Spring bean factory 负责管理在Spring 容器中被创建bean的生命周期。Bean 的生命周期由两组回调（call back）方法组成。1、初始化后调用的回调方法2、销毁之前调用的回调方法Spring 框架提供了以下四种方式来管理bean的生命周期事件：1、InitializingBean和DisposableBean回调接口2、针对特殊行为的其他Aware接口3、Bean配置文件中的Custom init()方法和destory()方法4、@PostConstruct和@PreDestroy注解方式 Spring IOC 如何实现Spring 中的 org.springframework.beans 包和 org.springframework.context 包构成了 Spring 框架 IoC 容器的基础。BeanFactory 接口提供了一个先进的配置机制，使得任何类型的对象的配置成为可能。ApplicationContext 接口对 BeanFactory（是一个子接口）进行了扩展，在 BeanFactory 的基础上添加了其他功能，比如与 Spring 的 AOP 更容易集成，也提供了处理 message resource 的机制（用于国际化）、事件传播以及应用层的特别配置，比如针对 Web 应用的 WebApplicationContext。org.springframework.beans.factory.BeanFactory 是 Spring IoC 容器的具体实现，用来包装和管理前面提到的各种 bean。BeanFactory 接口是 Spring IoC 容器的核心接口。 说说Spring AOP面向切面编程，在我们的应用中，经常需要做一些事情，但是这些事情与核心业务无关，比如，要记录所有 update 方法的执行时间时间，操作人等等信息，记录到日志， 通过 Spring 的 AOP 技术，就可以在不修改 update 的代码的情况下完成该需求。 Spring AOP 实现原理Spring AOP 中的动态代理只要有两种方式，JDK 动态代理 和CGLIB动态代理。JDK动态代理通过放射来接收被代理的类，并且要求被代理的类必须事先一个接口。JDK 动态代理的核心是 InvocationHandler 接口和 Proxy 类。 如果目标类没有实现接口，那么Spring AOP 会选择使用CGLIB 来动态代理目标类。CGLIB(Code Generation Library)，是一个代码生成的类库，可以在运行时动态的生成某个类的子类，注意 CGLIB 是通过继承的方式做的动态代理，因此如果某个类被标记为final 那么他无法使用 CGLIB 做动态代理的。 动态代理（CGLIB 与 JDK）JDK动态代理类和委托类需要都实现同一个接口，也就是说只有实现了某个接口的类可以使用Java动态代理机制，但是，事实上使用中并不是遇到的所有类都会给你实现一个接口，因此，对于没有实现接口的类，就不能使用该机制，而 CGLIB 则可以实现对类的动态代理。]]></content>
+    <title><![CDATA[Redis]]></title>
+    <url>%2F2019%2F10%2F22%2FRedis%2F</url>
+    <content type="text"><![CDATA[Redis 有哪些类型在 Redis 中有五种数据类型 String：字符串Hash：字典List：列表Set：集合Sorted Set：有序集合 Redis 内部结构Redis 内部使用一个 redisObject 对象来表示所有的 key 和 value。 type ：代表一个 value 对象具体是何种数据类型。encoding ：是不同数据类型在 redis 内部的存储方式，比如：type=string 代表 value 存储的是一个普通字符串，那么对应的 encoding 可以是 raw 或者是 int，如果是 int 则代表实际 redis 内部是按数值型类存储和表示这个字符串的，当然前提是这个字符串本身可以用数值表示，比如：”123” “456”这样的字符串。vm 字段：只有打开了 Redis 的虚拟内存功能，此字段才会真正的分配内存，该功能默认是关闭状态的。 Redis 使用 redisObject 来表示所有的 key/value 数据是比较浪费内存的，当然这些内存管理成本的付出主要也是为了给 Redis 不同数据类型提供一个统一的管理接口，实际作者也提供了多种方法帮助我们尽量节省内存使用。 Redis 内存淘汰机制内存的淘汰机制的初衷是为了更好地使用内存，用一定的缓存 miss 来换取内存的使用效率。 作为 Redis 用户，我们如何使用 Redis 提供的这个特性呢？ maxmemory 我们可以通过配置 redis.conf 中的 maxmemory 这个值来开启内存淘汰功能，至于这个值有什么意义，我们可以通过了解内存淘汰的过程来理解它的意义： 客户端发起了需要申请更多内存的命令（如set）Redis 检查内存使用情况，如果已使用的内存大于 maxmemory 则开始根据用户配置的不同淘汰策略来淘汰内存（key），从而换取一定的内存如果上面都没问题，则这个命令执行成功maxmemory 为 0 的时候表示我们对 Redis 的内存使用没有限制 内存淘汰策略内存淘汰只是 Redis 提供的一个功能，为了更好地实现这个功能，必须为不同的应用场景提供不同的策略，内存淘汰策略讲的是为实现内存淘汰我们具体怎么做，要解决的问题包括淘汰键空间如何选择？在键空间中淘汰键如何选择？ Redis 提供了下面几种淘汰策略供用户选择，其中默认的策略为 noeviction 策略： noeviction：当内存使用达到阈值的时候，所有引起申请内存的命令会报错allkeys-lru：在主键空间中，优先移除最近未使用的keyvolatile-lru：在设置了过期时间的键空间中，优先移除最近未使用的 keyallkeys-random：在主键空间中，随机移除某个 keyvolatile-random：在设置了过期时间的键空间中，随机移除某个 keyvolatile-ttl：在设置了过期时间的键空间中，具有更早过期时间的 key 优先移除这里补充一下主键空间和设置了过期时间的键空间，举个例子，假设我们有一批键存储在Redis中，则有那么一个哈希表用于存储这批键及其值，如果这批键中有一部分设置了过期时间，那么这批键还会被存储到另外一个哈希表中，这个哈希表中的值对应的是键被设置的过期时间。设置了过期时间的键空间为主键空间的子集。 如何选择淘汰策略我们了解了 Redis 大概提供了这么几种淘汰策略，那么如何选择呢？淘汰策略的选择可以通过下面的配置指定： maxmemory-policy noeviction 但是这个值填什么呢？为解决这个问题，我们需要了解我们的应用请求对于 Redis 中存储的数据集的访问方式以及我们的诉求是什么。同时 Redis 也支持 Runtime 修改淘汰策略，这使得我们不需要重启 Redis 实例而实时的调整内存淘汰策略。 下面看看几种策略的适用场景： allkeys-lru：如果我们的应用对缓存的访问符合幂律分布（也就是存在相对热点数据），或者我们不太清楚我们应用的缓存访问分布状况，我们可以选择 allkeys-lru 策略allkeys-random：如果我们的应用对于缓存 key 的访问概率相等，则可以使用这个策略volatile-ttl：这种策略使得我们可以向 Redis 提示哪些 key 更适合被 eviction另外，volatile-lru 策略和 volatile-random 策略适合我们将一个Redis实例既应用于缓存和又应用于持久化存储的时候，然而我们也可以通过使用两个 Redis 实例来达到相同的效果，值得一提的是将key设置过期时间实际上会消耗更多的内存，因此我们建议使用 allkeys-lru 策略从而更有效率的使用内存。 非精准的 LRU上面提到的 LRU（Least Recently Used）策略，实际上 Redis 实现的 LRU 并不是可靠的 LRU，也就是名义上我们使用 LRU 算法淘汰键，但是实际上被淘汰的键并不一定是真正的最久没用的，这里涉及到一个权衡的问题，如果需要在全部键空间内搜索最优解，则必然会增加系统的开销，Redis 是单线程的，也就是同一个实例在每一个时刻只能服务于一个客户端，所以耗时的操作一定要谨慎。为了在一定成本内实现相对的 LRU，早期的 Redis 版本是基于采样的 LRU，也就是放弃全部键空间内搜索解改为采样空间搜索最优解。自从 Redis3.0 版本之后，Redis 作者对于基于采样的 LRU 进行了一些优化，目的是在一定的成本内让结果更靠近真实的 LRU。 聊聊 Redis 使用场景缓存会话缓存时效性访问频率计数器社交列表记录用户判定信息交集、并集和差集热门列表与排行榜最新动态消息队列 Redis 持久化机制Redis 有两种持久化机制:RDB:RDB 持久化方式会在一个特定的间隔保存那个时间点的一个数据快照 AOF:AOF 持久化方式则会记录每一个服务器收到的写操作。在服务启动时，这些记录的操作会逐条执行从而重建出原来的数据。写操作命令记录的格式跟 Redis 协议一致，以追加的方式进行保存,Redis 的持久化是可以禁用的，就是说你可以让数据的生命周期只存在于服务器的运行时间里。两种方式的持久化是可以同时存在的，但是当 Redis 重启时，AOF 文件会被优先用于重建数据。 Redis 为什么是单线程的因为 CPU 不是 Redis 的瓶颈。Redis 的瓶颈最有可能是机器内存或者网络带宽。（以上主要来自官方 FAQ）既然单线程容易实现，而且 CPU 不会成为瓶颈，那就顺理成章地采用单线程的方案了。 缓存崩溃碰到这种情况，一般并发量不是特别多的时候，使用最多的解决方案是加锁排队。加锁排队只是为了减轻数据库的压力，并没有提高系统吞吐量。假设在高并发下，缓存重建期间 key 是锁着的，这时过来 1000 个请求 999 个都在阻塞的。同样会导致用户等待超时，这是个治标不治本的方法。 缓存降级页面降级:在大促或者某些特殊情况下，某些页面占用了一些稀缺服务资源，在紧急情况下可以对其整个降级，以达到丢卒保帅 页面片段降级:比如商品详情页中的商家部分因为数据错误了，此时需要对其进行降级 页面异步请求降级:比如商品详情页上有推荐信息/配送至等异步加载的请求，如果这些信息响应慢或者后端服务有问题，可以进行降级； 服务功能降级:比如渲染商品详情页时需要调用一些不太重要的服务：相关分类、热销榜等，而这些服务在异常情况下直接不获取，即降级即可； 读降级:比如多级缓存模式，如果后端服务有问题，可以降级为只读缓存，这种方式适用于对读一致性要求不高的场景； 写降级:比如秒杀抢购，我们可以只进行Cache的更新，然后异步同步扣减库存到DB，保证最终一致性即可，此时可以将DB降级为Cache。 爬虫降级:在大促活动时，可以将爬虫流量导向静态页或者返回空数据，从而保护后端稀缺资源。 自动开关降级:自动降级是根据系统负载、资源使用情况、SLA等指标进行降级。 超时降级:当访问的数据库/http服务/远程调用响应慢或者长时间响应慢，且该服务不是核心服务的话可以在超时后自动降级；比如商品详情页上有推荐内容/评价，但是推荐内容/评价暂时不展示对用户购物流程不会产生很大的影响；对于这种服务是可以超时降级的。如果是调用别人的远程服务，和对方定义一个服务响应最大时间，如果超时了则自动降级。 使用缓存的合理性问题热点数据，缓存才有价值频繁修改的数据，看情况考虑使用缓存数据不一致性缓存更新机制缓存可用性缓存服务降级缓存预热缓存穿透]]></content>
+      <categories>
+        <category>数据库</category>
+      </categories>
+      <tags>
+        <tag>分享</tag>
+        <tag>导航</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title><![CDATA[日志规范]]></title>
+    <url>%2F2019%2F10%2F22%2F%E6%97%A5%E5%BF%97%E8%A7%84%E8%8C%83%2F</url>
+    <content type="text"><![CDATA[概述系统上线之后，一旦发生异常，第一件事就是要弄清楚当时发生了什么，用户当时做了什么操作，环境有无影响，数据有什么变化，是不是反复发生等，然后再进一步的确定大致是哪个方面的问题。这时，日志就给我们提供了第一手的资料。 基本原则● 不影响系统正常运行； ● 不允许产生安全问题； ● 不允许输出机密信息； ● 日志可供开发人员定位问题的真正原因； ● 日志可供监控系统自动监控与分析 日志级别ERROR：系统发生了错误事件，但仍然不影响系统的继续运行。系统需要将错误或异常细节记录ERROR日志中，方便后续人工回溯解决。WARN：系统在业务处理时触发了异常流程，但系统可恢复到正常态，下一次业务可以正常执行。如程序调用了一个旧版本的接口，可选参数不合法，非业务预期的状态但仍可继续处理等INFO：记录系统关键信息，旨在保留系统正常工作期间关键运行指标，开发人员可以将初始化系统配置、业务状态变化信息，或者用户业务流程中的核心处理记录到INFO日志中，方便日常运维工作以及错误回溯时上下文场景复现DEBUG：可以将各类详细信息记录到DEBUG里，起到调试的作用，包括参数信息，调试细节信息，返回值信息等等。TRACE：更详细的跟踪信息上述日志级别从高到低排列，是开发中最常用的五种。生产系统一般只打印INFO 级别以上的日志，对于 DEBUG 级别的日志，只在测试环境中打印。打印错误日志时，需要区分是业务异常(如:用户名不能为空)还是系统异常(如:调用 会员核心异常)，业务异常使用 warn 级别记录，系统异常使用 error 记录。 日志打点系统初始化：系统初始化时会依赖一些关键配置，根据参数不同会提供不一样的服务。将系统的启动参数记录INFO日志，打印出参数以及启动完成态服务表述。业务流程与预期不符：项目代码中结果与期望不符时也是日志场景之一，简单来说所有流程分支都可以加入考虑。取决于开发人员判断能否容忍情形发生。常见的合适场景包括外部参数不正确，数据处理问题导致返回码不在合理范围内等等。系统核心的关键动作：系统中核心角色触发的业务动作是需要多加关注的，是衡量系统正常运行的重要指标，建议记录INFO级别日志，比如电商系统用户从登录到下单的整个流程；微服务各服务节点交互；核心数据表增删改等等。系统异常：这类捕获的异常是系统告知开发人员需要加以关注的，是质量非常高的报错。应当适当记录日志，根据实际结合业务的情况使用warn或者error级别。 日志格式[线程 ID:]业务描述:方法描述:[业务流水号:]参数内容 日志规则对象声明:建议使用private static final。声明为private可防止logger对象被其他类非法使用。声明为static可防止重复new出logger对象，造成还可以防止logger被序列化，造成安全风险。声明为final是因为在类的生命周期内无需变更logger。 使用API:统一使用 slf4j，它本质是Facade, 便于我们后期随时切换日志实现。避免在代码中直接使用log4j或java logging 等实现类。 语言：最好在打印日志时输出英文，防止中文不支持而打印出乱码的情况。 禁用System输出：不要直接使用System.out或System.err 输出日志，也不允许使用 STDOUT、STDERR 作为Logger名字。 if..else判断：对于else 是非正常的情况，需要根据情况选择打印warn 或 error 日志。对于只有 if 没有 else 的地方，如果 else 的路径是不可能的，应当加上 else 语句，并打印 error 日志。 不打印无意义日志：不记录对于排查故障毫无意义的日志信息，日志信息一定要带有业务信息 不推荐字符串拼接：如果信息本身需要计算或合并的，打印前要对isxxxEnable()方法进行判断。这是因为在WARN级别时，即使INFO信息不打印，也会执行字符串拼接，造成资源浪费。实际上，不推荐使用字符串拼接的方式打印日志，可读性和可维护性都比较差。建议使用占位符 循环体内不要打印 INFO 级别日志 打印日志的代码任何情况下都不允许失败：一定要确保不会因为Log语句的问题而抛出异常造成中断。如下，如果request为null，就会抛空指针异常 重要方法入口：建议记录方法调用、入参、返回值，对于排查问题会有很大帮助。 异常：catch中的异常记录必须打印堆栈信息，不要用e.printStackTrace()。 不要记录日志后又抛出异常。抛出去的异常，一般外层会处理。如果不处理，那为什么还要抛出去？另外一个原则是，无论是否发生异常，都不要在不同地方重复记录针对同一事件的日志消息。 输出Exceptions的全部Throwable信息。否则会丢失最重要的堆栈信息。]]></content>
+      <categories>
+        <category>logs</category>
+      </categories>
+      <tags>
+        <tag>分享</tag>
+        <tag>导航</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title><![CDATA[微服务]]></title>
+    <url>%2F2019%2F10%2F22%2F%E5%BE%AE%E6%9C%8D%E5%8A%A1%2F</url>
+    <content type="text"><![CDATA[前后端分离是如何做的在前后端分离架构中，后端只需要负责按照约定的数据格式向前端提供可调用的 API 服务即可。前后端之间通过 HTTP 请求进行交互，前端获取到数据后，进行页面的组装和渲染，最终返回给浏览器。 微服务哪些框架Dubbo是阿里巴巴服务化治理的核心框架，并被广泛应用于阿里巴巴集团的各成员站点。阿里巴巴近几年对开源社区的贡献不论在国内还是国外都是引人注目的，比如：JStorm 捐赠给 Apache 并加入 Apache 基金会等，为中国互联网人争足了面子，使得阿里巴巴在国人眼里已经从电商升级为一家科技公司了。 Spring Cloud从命名我们就可以知道，它是 Spring Source 的产物，Spring 社区的强大背书可以说是 Java 企业界最有影响力的组织了，除了 Spring Source 之外，还有 Pivotal 和 Netflix 是其强大的后盾与技术输出。其中 Netflix 开源的整套微服务架构套件是 Spring Cloud 的核心。 ServiceComb这个框架是由华为公司开源的，在公司内部叫cse。功能大而全，包括一站式的服务注册、服务治理、动态配置功能，具备服务化契约增强、多语言SDK支持、多通信协议支持等优势特性,使用Saga——分布式事务最终一致性解决方案。虽然这块还没有深入的使用，但是从实现的原理来看，简化了配置和性能上面有了一定的优化。 你怎么理解 RPC 框架什么是 RPC？RPC 是指远程过程调用，也就是说两台服务器 A，B 一个应用部署在 A 服务器上，想要调用 B 服务器上应用提供的函数或方法，由于不在一个内存空间，不能直接调用，需要通过网络来表达调用的语义和传达调用的数据。 RPC 是如何通讯的？1、要解决通讯的问题，主要是通过在客户端和服务器之间建立 TCP 连接，远程过程调用的所有交换的数据都在这个连接里传输。连接可以是按需连接，调用结束后就断掉，也可以是长连接，多个远程过程调用共享同一个连接。2、要解决寻址的问题，也就是说，A 服务器上的应用怎么告诉底层的 RPC 框架，如何连接到 B 服务器（如主机或 IP 地址）以及特定的端口，方法的名称是什么，这样才能完成调用。比如基于 Web 服务协议栈的 RPC，就要提供一个 endpoint URI，或者是从 UDDI 服务上查找。如果是 RMI 调用的话，还需要一个 RMI Registry 来注册服务的地址。3、当 A 服务器上的应用发起远程过程调用时，方法的参数需要通过底层的网络协议如 TCP 传递到 B 服务器，由于网络协议是基于二进制的，内存中的参数的值要序列化成二进制的形式，也就是序列化（Serialize）或编组（marshal），通过寻址和传输将序列化的二进制发送给 B 服务器。4、B 服务器收到请求后，需要对参数进行反序列化（序列化的逆操作），恢复为内存中的表达方式，然后找到对应的方法（寻址的一部分）进行本地调用，然后得到返回值。5、返回值还要发送回服务器 A 上的应用，也要经过序列化的方式发送，服务器 A 接到后，再反序列化，恢复为内存中的表达方式，交给 A 服务器上的应用。 为什么要用 RPC？就是无法在一个进程内，甚至一个计算机内通过本地调用的方式完成的需求，比如比如不同的系统间的通讯，甚至不同的组织间的通讯。由于计算能力需要横向扩展，需要在多台机器组成的集群上部署应用。 说说 RPC 的实现原理首先需要有处理网络连接通讯的模块，负责连接建立、管理和消息的传输。其次需要有编解码的模块，因为网络通讯都是传输的字节码，需要将我们使用的对象序列化和反序列化。剩下的就是客户端和服务器端的部分，服务器端暴露要开放的服务接口，客户调用服务接口的一个代理实现，这个代理实现负责收集数据、编码并传输给服务器然后等待结果返回。 说说 Dubbo 的实现原理Dubbo 作为 RPC 框架，实现的效果就是调用远程的方法就像在本地调用一样。如何做到呢？1、本地有对远程方法的描述，包括方法名、参数、返回值，在 Dubbo 中是远程和本地使用同样的接口2、要有对网络通信的封装，要对调用方来说通信细节是完全不可见的，网络通信要做的就是将调用方法的属性通过一定的协议（简单来说就是消息格式）传递到服务端3、服务端按照协议解析出调用的信息；执行相应的方法；在将方法的返回值通过协议传递给客户端；客户端再解析；在调用方式上又可以分为同步调用和异步调用。 你怎么理解 RESTful借助于超媒体这种特殊的资源呈现方式，应用状态的转换体现为浏览器中呈现资源的转换。如果将超媒体进一步抽象成一般意义上的资源呈现（Representation ）方式，那么应用状态变成了可被呈现的状态（REpresentational State）。应用状态之间的转换就成了可被呈现的状态装换（REpresentational State Transfer），这就是 REST。 总之 REST 是一种很笼统的概念，它代表一种架构风格。 说说 CAP 定理、 BASE 理论CAP 定理2000 年 7 月，加州大学伯克利分校的 Eric Brewer 教授在 ACM PODC 会议上提出 CAP 猜想。2年后，麻省理工学院的 Seth Gilbert 和 Nancy Lynch 从理论上证明了 CAP。之后，CAP 理论正式成为分布式计算领域的公认定理。 CAP 理论为：一个分布式系统最多只能同时满足一致性（Consistency）、可用性（Availability）和分区容错性（Partition tolerance）这三项中的两项。 一致性（Consistency）一致性指 “all nodes see the same data at the same time”，即更新操作成功并返回客户端完成后，所有节点在同一时间的数据完全一致。 可用性（Availability）可用性指“Reads and writes always succeed”，即服务一直可用，而且是正常响应时间。 分区容错性（Partition tolerance）分区容错性指“the system continues to operate despite arbitrary message loss or failure of part of the system”，即分布式系统在遇到某节点或网络分区故障的时候，仍然能够对外提供满足一致性和可用性的服务。 CAP 权衡通过 CAP 理论，我们知道无法同时满足一致性、可用性和分区容错性这三个特性，那要舍弃哪个呢？ 对于多数大型互联网应用的场景，主机众多、部署分散，而且现在的集群规模越来越大，所以节点故障、网络故障是常态，而且要保证服务可用性达到 N 个 9，即保证 P 和 A，舍弃C（退而求其次保证最终一致性）。虽然某些地方会影响客户体验，但没达到造成用户流程的严重程度。 对于涉及到钱财这样不能有一丝让步的场景，C 必须保证。网络发生故障宁可停止服务，这是保证 CA，舍弃 P。貌似这几年国内银行业发生了不下 10 起事故，但影响面不大，报到也不多，广大群众知道的少。还有一种是保证 CP，舍弃 A。例如网络故障是只读不写。 孰优孰略，没有定论，只能根据场景定夺，适合的才是最好的。 BASE 理论eBay 的架构师 Dan Pritchett 源于对大规模分布式系统的实践总结，在 ACM 上发表文章提出 BASE 理论，BASE 理论是对 CAP 理论的延伸，核心思想是即使无法做到强一致性（Strong Consistency，CAP 的一致性就是强一致性），但应用可以采用适合的方式达到最终一致性（Eventual Consitency）。 基本可用（Basically Available）基本可用是指分布式系统在出现故障的时候，允许损失部分可用性，即保证核心可用。 电商大促时，为了应对访问量激增，部分用户可能会被引导到降级页面，服务层也可能只提供降级服务。这就是损失部分可用性的体现。 软状态（Soft State）软状态是指允许系统存在中间状态，而该中间状态不会影响系统整体可用性。分布式存储中一般一份数据至少会有三个副本，允许不同节点间副本同步的延时就是软状态的体现。mysql replication 的异步复制也是一种体现。 最终一致性（Eventual Consistency）最终一致性是指系统中的所有数据副本经过一定时间后，最终能够达到一致的状态。弱一致性和强一致性相反，最终一致性是弱一致性的一种特殊情况。 ACID 和 BASE 的区别与联系ACID 是传统数据库常用的设计理念，追求强一致性模型。BASE 支持的是大型分布式系统，提出通过牺牲强一致性获得高可用性。 ACID 和 BASE 代表了两种截然相反的设计哲学，在分布式系统设计的场景中，系统组件对一致性要求是不同的，因此 ACID 和 BASE 又会结合使用。 说说最终一致性的实现方案问题的起源在电商等业务中，系统一般由多个独立的服务组成，如何解决分布式调用时候数据的一致性？ 具体业务场景如下，比如一个业务操作，如果同时调用服务 A、B、C，需要满足要么同时成功；要么同时失败。A、B、C 可能是多个不同部门开发、部署在不同服务器上的远程服务。 在分布式系统来说，如果不想牺牲一致性，CAP 理论告诉我们只能放弃可用性，这显然不能接受。为了便于讨论问题，先简单介绍下数据一致性的基础理论。 强一致 ，弱一致性，最终一致性：在工程实践上，为了保障系统的可用性，互联网系统大多将强一致性需求转换成最终一致性的需求，并通过系统执行幂等性的保证，保证数据的最终一致性。但在电商等场景中，对于数据一致性的解决方法和常见的互联网系统（如 MySQL 主从同步）又有一定区别。有六种解决方案： 规避分布式事务——业务整合 经典方案 - eBay 模式 去哪儿网分布式事务方案 蘑菇街交易创建过程中的分布式一致性方案 支付宝及蚂蚁金融云的分布式服务 DTS 方案 农信网数据一致性方案 总之分布式服务对衍生的配套系统要求比较多，特别是我们基于消息、日志的最终一致性方案，需要考虑消息的积压、消费情况、监控、报警等。 微服务如何进行数据库管理数据库管理主要是为了数据一致性，数据一致性是微服务架构设计中唯恐避之不及却又不得不考虑的话题。通过保证事件驱动实现最终数据的一致性，此方案的优劣，也不能简单的一言而概之，而是应该根据场景定夺，适合的才是最好的。另外，我们在对微服务进行业务划分的时候就尽可能的避免“可能会产生一致性问题”的设计。如果这种设计过多，也许是时候考虑改改设计了。 如何应对微服务的链式调用异常一般情况下，每个微服务之间是独立的，如果某个服务宕机，只会影响到当前服务，而不会对整个业务系统产生影响。但是，服务端可能会在多个微服务之间产生一条链式调用，并把整合后的信息返回给客户端。在调用过程中，如果某个服务宕机或者网络不稳定可能造成整个请求失败。因此，为了应对微服务的链式调用异常，我们需要在设计微服务调用链时不宜过长，以免客户端长时间等待，以及中间环节出现错误造成整个请求失败。此外，可以考虑使用消息队列进行业务解耦，并且使用缓存避免微服务的链式调用从而提高该接口的可用性。 对于快速追踪与定位问题在微服务复杂的链式调用中，我们会比单体架构更难以追踪与定位问题。因此，在设计的时候，需要特别注意。一种比较好的方案是，当 RESTful API 接口出现非 2xx 的 HTTP 错误码响应时，采用全局的异常结构响应信息。其中，code 字段用来表示某类错误的错误码，在微服务中应该加上“{biz_name}/”前缀以便于定位错误发生在哪个业务系统上。我们来看一个案例，假设“用户中心”某个接口没有权限获取资源而出现错误，我们的业务系统可以响应“UC/AUTH_DENIED”，并且通过自动生成的 UUID 值的 request_id 字段，在日志系统中获得错误的详细信息。此外，我们需要在记录日志时，标记出错误来源以及错误详情便于更好地分析与定位问题。 微服务的安全OAuth 是一个关于授权的开放网络标准，它允许第三方网站在用户授权的前提下访问用户在服务商那里存储的各种信息。实际上，OAuth 2.0 允许用户提供一个令牌给第三方网站，一个令牌对应一个特定的第三方网站，同时该令牌只能在特定的时间内访问特定的资源。用户在客户端使用用户名和密码在用户中心获得授权，然后客户端在访问应用是附上 Token 令牌。此时，应用接收到客户端的 Token 令牌到用户中心进行认证。一般情况下，access token 会添加到 HTTP Header 的 Authorization 参数中使用，其中经常使用到的是 Bearer Token 与 Mac Token。其中，Bearer Token 适用于安全的网络下 API 授权。MAC Token 适用于不安全的网络下 API 授权。]]></content>
       <categories>
         <category>Spring</category>
       </categories>
       <tags>
-        <tag>导航</tag>
         <tag>分享</tag>
+        <tag>导航</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title><![CDATA[分布式]]></title>
+    <url>%2F2019%2F10%2F22%2F%E5%88%86%E5%B8%83%E5%BC%8F%2F</url>
+    <content type="text"><![CDATA[谈谈业务中使用分布式的场景首先，需要了解系统为什么使用分布式。 随着互联网的发展，传统单工程项目的很多性能瓶颈越发凸显，性能瓶颈可以有几个方面： 应用服务层：随着用户量的增加，并发量增加，单项目难以承受如此大的并发请求导致的性能瓶颈。底层数据库层：随着业务的发展，数据库压力越来越大，导致的性能瓶颈 场景1：应用系统集群的 Session 共享:应用系统集群最简单的就是服务器集群，比如：Tomcat 集群。应用系统集群的时候，比较凸显的问题是 Session 共享，Session 共享我们一是可以通过服务器插件来解决。另外一种也可以通过 Redis 等中间件实现. 场景2：应用系统的服务化拆分:服务化拆分，是目前非常火热的一种方式。现在都在提微服务。通过对传统项目进行服务化拆分，达到服务独立解耦，单服务又可以横向扩容。服务化拆分遇到的经典问题就是分布式事务问题。目前，比较常用的分布式事务解决方案有几种：消息最终一致性、TCC 补偿型事务等。 场景3：底层数据库的压力分摊如果系统的性能压力出现在数据库，那我们就可以读写分离、分库分表等方案进行解决。 Session 分布式方案基于 nfs(net filesystem) 的 Session 共享将共享服务器目录 mount 各服务器的本地 session 目录，session 读写受共享服务器 io 限制，不能满足高并发 基于关系数据库的 Session 共享这种方案普遍使用。使用关系数据库存储 session 数据，对于 mysql 数据库，建议使用 heap 引擎。这种方案性能取决于数据库的性能，在高并发下容易造成表锁（虽然可以采用行锁的存储引擎，性能会下降），并且需要自己实现 session 过期淘汰机制 基于 Cookie 的 Session 共享这种方案也在大型互联网中普遍使用，将用户的 session 加密序列化后以 cookie 的方式保存在网站根域名下（比如 taobao.com），当用户访问所有二级域名站点式，浏览器会传递所有匹配的根域名的 cookie 信息，这样实现了用户 cookie 化 session 的多服务共享。此方案能够节省大量服务器资源，缺点是存储的信息长度受到 http 协议限制；cookie 的信息还需要做加密解密；请求任何资源时都会将 cookie 附加到 http 头上传到服务器，占用了一定带宽。 基于 Web 容器的 Session 机制利用容器机制，通过配置即可实现 基于 Zookeeper 的分布式 Session 存储 基于 Redis/Memcached 的 Session 共享存储这些 key/value 非关系存储有较高的性能，轻松达到 2000 左右的 qps，内置的过期机制正好满足 session 的自动实效特性。 分布式锁的场景与实现分布式锁一般有三种实现方式1、数据库锁2、基于Redis的分布式锁3、基于Zookeeper的分布式锁 数据库锁：基于数据库表 要实现分布式锁，最简单的方式可能就是直接创建一张锁表，然后通过操作该表中的数据来实现了。 当我们要锁住某个方法或资源时，我们就在该表中增加一条记录，想要释放锁的时候就删除这条记录。 基于redis的分布式锁：相比较于基于数据库实现分布式锁的方案来说，基于缓存来实现在性能方面会表现的更好一点。而且很多缓存是可以集群部署的，可以解决单点问题。 可以使用缓存来代替数据库来实现分布式锁，这个可以提供更好的性能，同时，很多缓存服务都是集群部署的，可以避免单点问题。并且很多缓存服务都提供了可以用来实现分布式锁的方法，比如redis的setnx方法等。并且，这些缓存服务也都提供了对数据的过期自动删除的支持，可以直接设置超时时间来控制锁的释放。 基于Zookeeper实现分布式锁：基于zookeeper临时有序节点可以实现的分布式锁。大致思想即为：每个客户端对某个方法加锁时，在zookeeper上的与该方法对应的指定节点的目录下，生成一个唯一的瞬时有序节点。 判断是否获取锁的方式很简单，只需要判断有序节点中序号最小的一个。 当释放锁的时候，只需将这个瞬时节点删除即可。同时，其可以避免服务宕机导致的锁无法释放，而产生的死锁问题。 三种方案的比较：从理解的难易程度角度（从低到高）: 数据库 &gt; 缓存 &gt; Zookeeper 从实现的复杂性角度（从低到高）: Zookeeper &gt;= 缓存 &gt; 数据库 从性能角度（从高到低）: 缓存 &gt; Zookeeper &gt;= 数据库 从可靠性角度（从高到低）: Zookeeper &gt; 缓存 &gt; 数据库 还有可以利用Tair实现分布式并发锁，通过 Tair 来实现分布式锁和 Redis 的实现核心差不多，不过 Tair 有个很方便的 api，感觉是实现分布式锁的最佳配置，就是 Put api 调用的时候需要传入一个 version，就和数据库的乐观锁一样，修改数据之后，版本会自动累加，如果传入的版本和当前数据版本不一致，就不允许修改。 分布式事务分布式一致性在分布式系统中，为了保证数据的高可用，通常，我们会将数据保留多个副本(replica)，这些副本会放置在不同的物理的机器上。为了对用户提供正确的 CRUD 等语义，我们需要保证这些放置在不同物理机器上的副本是一致的。 为了解决这种分布式一致性问题，前人在性能和数据一致性的反反复复权衡过程中总结了许多典型的协议和算法。其中比较著名的有二阶提交协议（Two Phase Commitment Protocol）、三阶提交协议（Three Phase Commitment Protocol） 和 Paxos 算法 在分布式系统中，各个节点之间在物理上相互独立，通过网络进行沟通和协调。由于存在事务机制，可以保证每个独立节点上的数据操作可以满足 ACID。但是，相互独立的节点之间无法准确的知道其他节点中的事务执行情况。所以从理论上讲，两台机器理论上无法达到一致的状态。如果想让分布式部署的多台机器中的数据保持一致性，那么就要保证在所有节点的数据写操作，要不全部都执行，要么全部的都不执行。但是，一台机器在执行本地事务的时候无法知道其他机器中的本地事务的执行结果。所以他也就不知道本次事务到底应该 commit 还是 rollback。所以，常规的解决办法就是引入一个“协调者”的组件来统一调度所有分布式节点的执行。 XA 规范X/Open 组织（即现在的 Open Group ）定义了分布式事务处理模型。 X/Open DTP 模型（ 1994 ）包括应用程序（ AP ）、事务管理器（ TM ）、资源管理器（ RM ）、通信资源管理器（ CRM ）四部分。一般，常见的事务管理器（ TM ）是交易中间件，常见的资源管理器（ RM ）是数据库，常见的通信资源管理器（ CRM ）是消息中间件。 通常把一个数据库内部的事务处理，如对多个表的操作，作为本地事务看待。数据库的事务处理对象是本地事务，而分布式事务处理的对象是全局事务。 所谓全局事务，是指分布式事务处理环境中，多个数据库可能需要共同完成一个工作，这个工作即是一个全局事务，例如，一个事务中可能更新几个不同的数据库。对数据库的操作发生在系统的各处但必须全部被提交或回滚。此时一个数据库对自己内部所做操作的提交不仅依赖本身操作是否成功，还要依赖与全局事务相关的其它数据库的操作是否成功，如果任一数据库的任一操作失败，则参与此事务的所有数据库所做的所有操作都必须回滚。 一般情况下，某一数据库无法知道其它数据库在做什么，因此，在一个 DTP 环境中，交易中间件是必需的，由它通知和协调相关数据库的提交或回滚。而一个数据库只将其自己所做的操作（可恢复）影射到全局事务中。 二阶提交协议和三阶提交协议就是根据这一思想衍生出来的。可以说二阶段提交其实就是实现 XA 分布式事务的关键(确切地说：两阶段提交主要保证了分布式事务的原子性：即所有结点要么全做要么全不做) 2PC所谓的两个阶段是指：第一阶段：准备阶段(投票阶段) 和第二阶段：提交阶段（执行阶段）。 准备阶段事务协调者(事务管理器)给每个参与者(资源管理器)发送 Prepare 消息，每个参与者要么直接返回失败(如权限验证失败)，要么在本地执行事务，写本地的 redo 和 undo 日志，但不提交，到达一种“万事俱备，只欠东风”的状态。可以进一步将准备阶段分为以下三个步骤：协调者节点向所有参与者节点询问是否可以执行提交操作(vote)，并开始等待各参与者节点的响应。参与者节点执行询问发起为止的所有事务操作，并将 Undo 信息和 Redo 信息写入日志。（注意：若成功这里其实每个参与者已经执行了事务操作）各参与者节点响应协调者节点发起的询问。如果参与者节点的事务操作实际执行成功，则它返回一个”同意”消息；如果参与者节点的事务操作实际执行失败，则它返回一个”中止”消息。 事务的ACID特性：原子性、一致性、隔离性、持久性]]></content>
+      <categories>
+        <category>Spring</category>
+      </categories>
+      <tags>
+        <tag>分享</tag>
+        <tag>导航</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title><![CDATA[Spring理解]]></title>
+    <url>%2F2019%2F09%2F18%2FSpring%E7%90%86%E8%A7%A3%2F</url>
+    <content type="text"><![CDATA[BeanFactory和ApplicationContext有什么区别BeanFactory可以理解成含有bean集合的工厂类。BeanFactory包含了多种bean的定义,以便在接收客户端请求时将对应的bean实例化。BeanFactory还能在实例化对象时生成协作类之间的关系，此举将bean自身与bean客户端的配置中解放出来。BeanFactory还包含了bean生命周期的控制，调用客户端的初始化方法（initialization methods）和销毁方法（destruction methods）从表面看，ApplicationContext如同BeanFactory一样具有bean定义 、bean关联关系的设置，根据请求分发bean的功能，但ApplicationContext在此基础上还提供了其他的功能：1、提供了指出国际化的文本消息2、同意的资源文件读取方式3、以再监听器中注册的bean事件 Spring Bean 的声明周期Spring Bean 的生命周期简单易懂，在一个bean实例被初始化时，需要执行一系列的初始化操作以达到可用的状态，同样的当一个人bean不再被调用时需要进行相关的分析结构操作，并从bean容器中移除Spring bean factory 负责管理在Spring 容器中被创建bean的生命周期。Bean 的生命周期由两组回调（call back）方法组成。1、初始化后调用的回调方法2、销毁之前调用的回调方法Spring 框架提供了以下四种方式来管理bean的生命周期事件：1、InitializingBean和DisposableBean回调接口2、针对特殊行为的其他Aware接口3、Bean配置文件中的Custom init()方法和destory()方法4、@PostConstruct和@PreDestroy注解方式 Spring IOC 如何实现Spring 中的 org.springframework.beans 包和 org.springframework.context 包构成了 Spring 框架 IoC 容器的基础。BeanFactory 接口提供了一个先进的配置机制，使得任何类型的对象的配置成为可能。ApplicationContext 接口对 BeanFactory（是一个子接口）进行了扩展，在 BeanFactory 的基础上添加了其他功能，比如与 Spring 的 AOP 更容易集成，也提供了处理 message resource 的机制（用于国际化）、事件传播以及应用层的特别配置，比如针对 Web 应用的 WebApplicationContext。org.springframework.beans.factory.BeanFactory 是 Spring IoC 容器的具体实现，用来包装和管理前面提到的各种 bean。BeanFactory 接口是 Spring IoC 容器的核心接口。 说说Spring AOP面向切面编程，在我们的应用中，经常需要做一些事情，但是这些事情与核心业务无关，比如，要记录所有 update 方法的执行时间时间，操作人等等信息，记录到日志， 通过 Spring 的 AOP 技术，就可以在不修改 update 的代码的情况下完成该需求。 Spring AOP 实现原理Spring AOP 中的动态代理只要有两种方式，JDK 动态代理 和CGLIB动态代理。JDK动态代理通过放射来接收被代理的类，并且要求被代理的类必须事先一个接口。JDK 动态代理的核心是 InvocationHandler 接口和 Proxy 类。 如果目标类没有实现接口，那么Spring AOP 会选择使用CGLIB 来动态代理目标类。CGLIB(Code Generation Library)，是一个代码生成的类库，可以在运行时动态的生成某个类的子类，注意 CGLIB 是通过继承的方式做的动态代理，因此如果某个类被标记为final 那么他无法使用 CGLIB 做动态代理的。 动态代理（CGLIB 与 JDK）JDK动态代理类和委托类需要都实现同一个接口，也就是说只有实现了某个接口的类可以使用Java动态代理机制，但是，事实上使用中并不是遇到的所有类都会给你实现一个接口，因此，对于没有实现接口的类，就不能使用该机制，而 CGLIB 则可以实现对类的动态代理。 Spring 事务实现方式编码方式：所谓编程式事务指的是通过编码方式实现事务，即类似于 JDBC 编程实现事务管理。 声明式事务管理方式：声明式事务管理又有两种实现方式： 基于 xml 配置文件的方式；另一个实在业务方法上进行 @Transaction 注解，将事务规则应用到业务逻辑中； Spring 事务底层原理划分处理单元 IOC：由于 Spring 解决的问题是对单个数据库进行局部事务处理的，具体的实现首相用 Spring 中的 IOC 划分了事务处理单元。并且将对事务的各种配置放到了 IOC 容器中（设置事务管理器，设置事务的传播特性及隔离机制）。 AOP 拦截需要进行事务处理的类Spring 事务处理模块是通过 AOP 功能来实现声明式事务处理的，具体操作（比如事务实行的配置和读取，事务对象的抽象），用 TransactionProxyFactoryBean 接口来使用 AOP 功能，生成 proxy 代理对象，通过 TransactionInterceptor 完成对代理方法的拦截，将事务处理的功能编织到拦截的方法中。读取 IOC 容器事务配置属性，转化为 Spring 事务处理需要的内部数据结构（TransactionAttributeSourceAdvisor），转化为 TransactionAttribute 表示的数据对象 对事物处理实现（事务的生成、提交、回滚、挂起）：Spring 委托给具体的事务处理器实现。实现了一个抽象和适配。适配的具体事务处理器：DataSource 数据源支持、Hibernate 数据源事务处理支持、JDO 数据源事务处理支持，JPA、JTA 数据源事务处理支持。这些支持都是通过设计 PlatformTransactionManager、AbstractPlatforTransaction 一系列事务处理的支持。 为常用数据源支持提供了一系列的 TransactionManager。 结合PlatformTransactionManager 实现了 TransactionInterception 接口，让其与 TransactionProxyFactoryBean 结合起来，形成一个 Spring 声明式事务处理的设计体系。 如何自定义注解实现功能1、创建自定义注解和创建一个接口相似，但是注解的 interface 关键字需要以 @ 符号开头。2、注解方法不能带有参数；3、注解方法返回值类型限定为：基本类型、String、Enums、Annotation 或者是这些类型的数组；4、注解方法可以有默认值；5、注解本身能够包含元注解，元注解被用来注解其它注解。 Spring MVC 运行流程1、Spring MVC 将所有的请求都提交给 DispatcherServlet，它会委托应用系统的其他模块负责对请求进行真正的处理工作。2、DispatcherServlet 查询一个或多个 HandlerMapping，找到处理请求的 Controller.3、DispatcherServlet 请求提交到目标 Controller4、Controller 进行业务逻辑处理后，会返回一个 ModelAndView5、Dispatcher 查询一个或多个 ViewResolver 视图解析器,找到 ModelAndView 对象指定的视图对象6、视图对象负责渲染返回给客户端。 Spring MVC 启动流程在 web.xml 文件中给 Spring MVC 的 Servlet 配置了 load-on-startup，所以程序启动的时候会初始化 Spring MVC，在 HttpServletBean 中将配置的 contextConfigLocation 属性设置到 Servlet 中，然后在 FrameworkServlet 中创建了 WebApplicationContext，DispatcherServlet 根据 contextConfigLocation 配置的 classpath 下的 xml 文件初始化了 Spring MVC 总的组件。 Spring 的单例实现原理Spring 对 Bean 实例的创建是采用单例注册表的方式进行实现的，而这个注册表的缓存是 ConcurrentHashMap 对象。 Spring 框架中用到了哪些设计模式1、代理模式：在 AOP 和 Remoting 中被用的比较多。2、单例模式：在 Spring 配置文件中定义的 Bean 默认为单例模式。3、模板方法：用来解决代码重复的问题。比如. RestTemplate, JmsTemplate, JpaTemplate。4、前端控制器：Spring 提供了 DispatcherServlet 来对请求进行分发。5、视图帮助(View Helper )：Spring 提供了一系列的 JSP 标签，高效宏来辅助将分散的代码整合在视图里。6、依赖注入：贯穿于 BeanFactory / ApplicationContext 接口的核心理念。7、工厂模式：BeanFactory 用来创建对象的实例。]]></content>
+      <categories>
+        <category>Spring</category>
+      </categories>
+      <tags>
+        <tag>分享</tag>
+        <tag>导航</tag>
       </tags>
   </entry>
   <entry>
@@ -20,8 +68,8 @@
         <category>java</category>
       </categories>
       <tags>
-        <tag>导航</tag>
         <tag>分享</tag>
+        <tag>导航</tag>
       </tags>
   </entry>
   <entry>
@@ -32,8 +80,8 @@
         <category>java</category>
       </categories>
       <tags>
-        <tag>导航</tag>
         <tag>分享</tag>
+        <tag>导航</tag>
       </tags>
   </entry>
   <entry>
@@ -44,8 +92,8 @@
         <category>java</category>
       </categories>
       <tags>
-        <tag>导航</tag>
         <tag>分享</tag>
+        <tag>导航</tag>
       </tags>
   </entry>
   <entry>
@@ -56,8 +104,8 @@
         <category>java</category>
       </categories>
       <tags>
-        <tag>导航</tag>
         <tag>分享</tag>
+        <tag>导航</tag>
       </tags>
   </entry>
   <entry>
@@ -68,8 +116,8 @@
         <category>java</category>
       </categories>
       <tags>
-        <tag>导航</tag>
         <tag>分享</tag>
+        <tag>导航</tag>
       </tags>
   </entry>
   <entry>
@@ -80,8 +128,8 @@
         <category>前端</category>
       </categories>
       <tags>
-        <tag>导航</tag>
         <tag>分享</tag>
+        <tag>导航</tag>
       </tags>
   </entry>
   <entry>
@@ -92,8 +140,8 @@
         <category>全文检索</category>
       </categories>
       <tags>
-        <tag>导航</tag>
         <tag>分享</tag>
+        <tag>导航</tag>
       </tags>
   </entry>
   <entry>
@@ -104,8 +152,8 @@
         <category>全文检索</category>
       </categories>
       <tags>
-        <tag>导航</tag>
         <tag>分享</tag>
+        <tag>导航</tag>
       </tags>
   </entry>
   <entry>
@@ -116,8 +164,8 @@
         <category>全文检索</category>
       </categories>
       <tags>
-        <tag>导航</tag>
         <tag>分享</tag>
+        <tag>导航</tag>
       </tags>
   </entry>
   <entry>
@@ -128,8 +176,8 @@
         <category>全文检索</category>
       </categories>
       <tags>
-        <tag>导航</tag>
         <tag>分享</tag>
+        <tag>导航</tag>
       </tags>
   </entry>
   <entry>
@@ -140,8 +188,8 @@
         <category>文件存储</category>
       </categories>
       <tags>
-        <tag>导航</tag>
         <tag>分享</tag>
+        <tag>导航</tag>
       </tags>
   </entry>
   <entry>
@@ -152,8 +200,8 @@
         <category>SpringBoot</category>
       </categories>
       <tags>
-        <tag>导航</tag>
         <tag>分享</tag>
+        <tag>导航</tag>
       </tags>
   </entry>
   <entry>
@@ -164,8 +212,8 @@
         <category>ServiceComb</category>
       </categories>
       <tags>
-        <tag>导航</tag>
         <tag>分享</tag>
+        <tag>导航</tag>
       </tags>
   </entry>
   <entry>
@@ -176,8 +224,8 @@
         <category>ServiceComb</category>
       </categories>
       <tags>
-        <tag>导航</tag>
         <tag>分享</tag>
+        <tag>导航</tag>
       </tags>
   </entry>
   <entry>
@@ -188,8 +236,8 @@
         <category>ServiceComb</category>
       </categories>
       <tags>
-        <tag>导航</tag>
         <tag>分享</tag>
+        <tag>导航</tag>
       </tags>
   </entry>
   <entry>
@@ -200,8 +248,8 @@
         <category>ServiceComb</category>
       </categories>
       <tags>
-        <tag>导航</tag>
         <tag>分享</tag>
+        <tag>导航</tag>
       </tags>
   </entry>
   <entry>
@@ -212,8 +260,8 @@
         <category>SpringBoot</category>
       </categories>
       <tags>
-        <tag>导航</tag>
         <tag>分享</tag>
+        <tag>导航</tag>
       </tags>
   </entry>
   <entry>
@@ -224,8 +272,8 @@
         <category>消息队列</category>
       </categories>
       <tags>
-        <tag>导航</tag>
         <tag>分享</tag>
+        <tag>导航</tag>
       </tags>
   </entry>
   <entry>
@@ -236,8 +284,8 @@
         <category>文件存储</category>
       </categories>
       <tags>
-        <tag>导航</tag>
         <tag>分享</tag>
+        <tag>导航</tag>
       </tags>
   </entry>
   <entry>
@@ -248,8 +296,8 @@
         <category>基本框架</category>
       </categories>
       <tags>
-        <tag>导航</tag>
         <tag>分享</tag>
+        <tag>导航</tag>
       </tags>
   </entry>
   <entry>
@@ -260,8 +308,8 @@
         <category>跨域</category>
       </categories>
       <tags>
-        <tag>导航</tag>
         <tag>分享</tag>
+        <tag>导航</tag>
       </tags>
   </entry>
   <entry>
@@ -272,8 +320,8 @@
         <category>前端</category>
       </categories>
       <tags>
-        <tag>导航</tag>
         <tag>分享</tag>
+        <tag>导航</tag>
       </tags>
   </entry>
   <entry>
@@ -284,8 +332,8 @@
         <category>接口</category>
       </categories>
       <tags>
-        <tag>导航</tag>
         <tag>分享</tag>
+        <tag>导航</tag>
       </tags>
   </entry>
   <entry>
@@ -296,8 +344,8 @@
         <category>数据库</category>
       </categories>
       <tags>
-        <tag>导航</tag>
         <tag>分享</tag>
+        <tag>导航</tag>
       </tags>
   </entry>
   <entry>
@@ -308,8 +356,8 @@
         <category>SpringData</category>
       </categories>
       <tags>
-        <tag>导航</tag>
         <tag>分享</tag>
+        <tag>导航</tag>
       </tags>
   </entry>
   <entry>
@@ -320,8 +368,8 @@
         <category>crawler</category>
       </categories>
       <tags>
-        <tag>导航</tag>
         <tag>分享</tag>
+        <tag>导航</tag>
       </tags>
   </entry>
   <entry>
@@ -332,8 +380,8 @@
         <category>crawler</category>
       </categories>
       <tags>
-        <tag>导航</tag>
         <tag>分享</tag>
+        <tag>导航</tag>
       </tags>
   </entry>
   <entry>
@@ -344,8 +392,8 @@
         <category>crawler</category>
       </categories>
       <tags>
-        <tag>导航</tag>
         <tag>分享</tag>
+        <tag>导航</tag>
       </tags>
   </entry>
   <entry>
@@ -356,8 +404,8 @@
         <category>SpringData</category>
       </categories>
       <tags>
-        <tag>导航</tag>
         <tag>分享</tag>
+        <tag>导航</tag>
       </tags>
   </entry>
   <entry>
@@ -368,8 +416,8 @@
         <category>SpringData</category>
       </categories>
       <tags>
-        <tag>导航</tag>
         <tag>分享</tag>
+        <tag>导航</tag>
       </tags>
   </entry>
   <entry>
@@ -380,8 +428,8 @@
         <category>进阶</category>
       </categories>
       <tags>
-        <tag>导航</tag>
         <tag>分享</tag>
+        <tag>导航</tag>
       </tags>
   </entry>
   <entry>
@@ -392,8 +440,8 @@
         <category>进阶</category>
       </categories>
       <tags>
-        <tag>导航</tag>
         <tag>分享</tag>
+        <tag>导航</tag>
       </tags>
   </entry>
   <entry>
@@ -404,8 +452,8 @@
         <category>进阶</category>
       </categories>
       <tags>
-        <tag>导航</tag>
         <tag>分享</tag>
+        <tag>导航</tag>
       </tags>
   </entry>
   <entry>
@@ -416,8 +464,8 @@
         <category>基础</category>
       </categories>
       <tags>
-        <tag>导航</tag>
         <tag>分享</tag>
+        <tag>导航</tag>
       </tags>
   </entry>
   <entry>
@@ -428,8 +476,8 @@
         <category>基础</category>
       </categories>
       <tags>
-        <tag>导航</tag>
         <tag>分享</tag>
+        <tag>导航</tag>
       </tags>
   </entry>
   <entry>
@@ -440,8 +488,8 @@
         <category>基础</category>
       </categories>
       <tags>
-        <tag>导航</tag>
         <tag>分享</tag>
+        <tag>导航</tag>
       </tags>
   </entry>
   <entry>
@@ -452,8 +500,8 @@
         <category>基础</category>
       </categories>
       <tags>
-        <tag>导航</tag>
         <tag>分享</tag>
+        <tag>导航</tag>
       </tags>
   </entry>
   <entry>
@@ -464,8 +512,8 @@
         <category>基础</category>
       </categories>
       <tags>
-        <tag>导航</tag>
         <tag>分享</tag>
+        <tag>导航</tag>
       </tags>
   </entry>
   <entry>
@@ -476,8 +524,8 @@
         <category>基础</category>
       </categories>
       <tags>
-        <tag>导航</tag>
         <tag>分享</tag>
+        <tag>导航</tag>
       </tags>
   </entry>
   <entry>
@@ -488,8 +536,8 @@
         <category>基础</category>
       </categories>
       <tags>
-        <tag>导航</tag>
         <tag>分享</tag>
+        <tag>导航</tag>
       </tags>
   </entry>
   <entry>
@@ -500,8 +548,8 @@
         <category>基础</category>
       </categories>
       <tags>
-        <tag>导航</tag>
         <tag>分享</tag>
+        <tag>导航</tag>
       </tags>
   </entry>
   <entry>
@@ -512,8 +560,8 @@
         <category>基础</category>
       </categories>
       <tags>
-        <tag>导航</tag>
         <tag>分享</tag>
+        <tag>导航</tag>
       </tags>
   </entry>
   <entry>
@@ -524,8 +572,8 @@
         <category>基础</category>
       </categories>
       <tags>
-        <tag>导航</tag>
         <tag>分享</tag>
+        <tag>导航</tag>
       </tags>
   </entry>
   <entry>
@@ -536,8 +584,8 @@
         <category>基础</category>
       </categories>
       <tags>
-        <tag>导航</tag>
         <tag>分享</tag>
+        <tag>导航</tag>
       </tags>
   </entry>
   <entry>
@@ -548,8 +596,8 @@
         <category>工具类</category>
       </categories>
       <tags>
-        <tag>导航</tag>
         <tag>分享</tag>
+        <tag>导航</tag>
       </tags>
   </entry>
   <entry>
@@ -560,8 +608,8 @@
         <category>前端</category>
       </categories>
       <tags>
-        <tag>导航</tag>
         <tag>分享</tag>
+        <tag>导航</tag>
       </tags>
   </entry>
   <entry>
@@ -572,8 +620,8 @@
         <category>跨域</category>
       </categories>
       <tags>
-        <tag>导航</tag>
         <tag>分享</tag>
+        <tag>导航</tag>
       </tags>
   </entry>
   <entry>
@@ -584,8 +632,8 @@
         <category>SpringBoot</category>
       </categories>
       <tags>
-        <tag>导航</tag>
         <tag>分享</tag>
+        <tag>导航</tag>
       </tags>
   </entry>
   <entry>
@@ -596,8 +644,8 @@
         <category>SpringCloud</category>
       </categories>
       <tags>
-        <tag>导航</tag>
         <tag>分享</tag>
+        <tag>导航</tag>
       </tags>
   </entry>
   <entry>
@@ -608,8 +656,8 @@
         <category>SpringCloud</category>
       </categories>
       <tags>
-        <tag>导航</tag>
         <tag>分享</tag>
+        <tag>导航</tag>
       </tags>
   </entry>
   <entry>
@@ -620,8 +668,8 @@
         <category>SpringCloud</category>
       </categories>
       <tags>
-        <tag>导航</tag>
         <tag>分享</tag>
+        <tag>导航</tag>
       </tags>
   </entry>
   <entry>
@@ -632,8 +680,8 @@
         <category>SpringCloud</category>
       </categories>
       <tags>
-        <tag>导航</tag>
         <tag>分享</tag>
+        <tag>导航</tag>
       </tags>
   </entry>
   <entry>
@@ -644,8 +692,8 @@
         <category>SpringCloud</category>
       </categories>
       <tags>
-        <tag>导航</tag>
         <tag>分享</tag>
+        <tag>导航</tag>
       </tags>
   </entry>
   <entry>
@@ -656,8 +704,8 @@
         <category>SpringBoot</category>
       </categories>
       <tags>
-        <tag>导航</tag>
         <tag>分享</tag>
+        <tag>导航</tag>
       </tags>
   </entry>
   <entry>
@@ -668,8 +716,8 @@
         <category>http&amp;RPC</category>
       </categories>
       <tags>
-        <tag>导航</tag>
         <tag>分享</tag>
+        <tag>导航</tag>
       </tags>
   </entry>
   <entry>
@@ -680,8 +728,8 @@
         <category>系统架构</category>
       </categories>
       <tags>
-        <tag>导航</tag>
         <tag>分享</tag>
+        <tag>导航</tag>
       </tags>
   </entry>
   <entry>
@@ -692,8 +740,8 @@
         <category>SpringBoot</category>
       </categories>
       <tags>
-        <tag>导航</tag>
         <tag>分享</tag>
+        <tag>导航</tag>
       </tags>
   </entry>
   <entry>
@@ -704,8 +752,8 @@
         <category>SpringBoot</category>
       </categories>
       <tags>
-        <tag>导航</tag>
         <tag>分享</tag>
+        <tag>导航</tag>
       </tags>
   </entry>
   <entry>
@@ -716,8 +764,8 @@
         <category>SpringBoot</category>
       </categories>
       <tags>
-        <tag>导航</tag>
         <tag>分享</tag>
+        <tag>导航</tag>
       </tags>
   </entry>
   <entry>
@@ -728,8 +776,8 @@
         <category>SpringBoot</category>
       </categories>
       <tags>
-        <tag>导航</tag>
         <tag>分享</tag>
+        <tag>导航</tag>
       </tags>
   </entry>
   <entry>
@@ -740,8 +788,8 @@
         <category>SpringBoot</category>
       </categories>
       <tags>
-        <tag>导航</tag>
         <tag>分享</tag>
+        <tag>导航</tag>
       </tags>
   </entry>
   <entry>
@@ -752,8 +800,8 @@
         <category>SpringBoot</category>
       </categories>
       <tags>
-        <tag>导航</tag>
         <tag>分享</tag>
+        <tag>导航</tag>
       </tags>
   </entry>
   <entry>
@@ -764,8 +812,8 @@
         <category>SpringBoot</category>
       </categories>
       <tags>
-        <tag>导航</tag>
         <tag>分享</tag>
+        <tag>导航</tag>
       </tags>
   </entry>
   <entry>
@@ -776,8 +824,8 @@
         <category>SpringBoot</category>
       </categories>
       <tags>
-        <tag>导航</tag>
         <tag>分享</tag>
+        <tag>导航</tag>
       </tags>
   </entry>
   <entry>
@@ -788,8 +836,8 @@
         <category>前端</category>
       </categories>
       <tags>
-        <tag>导航</tag>
         <tag>分享</tag>
+        <tag>导航</tag>
       </tags>
   </entry>
   <entry>
