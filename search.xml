@@ -1,6 +1,18 @@
 <?xml version="1.0" encoding="utf-8"?>
 <search>
   <entry>
+    <title><![CDATA[使用react-rewired配置基本环境]]></title>
+    <url>%2F2020%2F01%2F13%2F%E4%BD%BF%E7%94%A8react-rewired%E9%85%8D%E7%BD%AE%E5%9F%BA%E6%9C%AC%E7%8E%AF%E5%A2%83%2F</url>
+    <content type="text"><![CDATA[之前也说明了什么是React应用，也编写过一个简单的React应用 如果在语法和应用上有什么不明白的地方可以借鉴React官方的中文文档来进行查阅 首先创建一个空的React应用 npx create-react-app react-tuts 引入 Ant Design 使用DOC命令 npm i react-app-rewired customize-cra -D 创建一个新文件 config-overrides.js 修改package.json 重新启动 查看是否异常 安装less npm i less less-loader -D 安装成功之后 需要修改config-overrides.js 文件 创建 index.less 文件 在index.js文件中引入index.less 文件 重新启动 测试 安装 antd 使用DOC命令 那npm i antd -S 和 npm i babel-plugin-import -D 修改 config-overrides.js 文件 修改App.js进行 测试结果 设置自定义主题 创建lessVars.js 然后引入到 config-overrides.js 文件中 配置装饰器模式写法安装 npm i @babel/plugin-proposal-decorators -D 修改config-overrides.js 修改App.js 测试结果 以上就是创建React项目最基本的配置就完成了]]></content>
+      <categories>
+        <category>React</category>
+      </categories>
+      <tags>
+        <tag>分享</tag>
+        <tag>导航</tag>
+      </tags>
+  </entry>
+  <entry>
     <title><![CDATA[第一个React应用]]></title>
     <url>%2F2019%2F12%2F13%2F%E7%AC%AC%E4%B8%80%E4%B8%AAReact%E5%BA%94%E7%94%A8%2F</url>
     <content type="text"><![CDATA[什么是React?React 是用于构建用户界面的 JavaScript 库 声明式React 使创建交互式 UI 变得轻而易举。为你应用的每一个状态设计简洁的视图，当数据改变时 React 能有效地更新并正确地渲染组件。 以声明式编写 UI，可以让你的代码更加可靠，且方便调试。 组件化创建拥有各自状态的组件，再由这些组件构成更加复杂的 UI。 组件逻辑使用 JavaScript 编写而非模版，因此你可以轻松地在应用中传递数据，并使得状态与 DOM 分离。一次学习，到处编写无论你现在正在使用什么技术栈，你都可以随时引入 React 来开发新特性，而不需要重写现有代码。 React 还可以使用 Node 进行服务器渲染，或使用 React Native 开发原生移动应用。 编写第一个React应用先打开DOC窗口 ： Ctrl+r 输入 cmd使用命令 创建React应用 npx create-react-app react-tuts 创建成功后 输入 Code . 打开开发工具 VS Code 输入命令启动项目 npm start 创建成功的项目的基本目录 启动成功之后 会自动打开默认浏览器 在编写React项目时 在index.js 中 必须引入的两个文件 import React from ‘react’import ReactDOM from ‘react-dom’ ReactDOM.render()方法 是 React最基本方法, 用于将模版转换成HTML语言,渲染DOM,并插入指定的DOM节点中在JSX语法中写html语言不需要使用单引号编写之后自动刷新为 创建简单的React元素编写之后自动刷新为 组件创建方法一：函数式组件其中函数式组件简单传值可以这样写编写之后自动刷新 可以看见 方法二：类组件其中render()方法可以直接引入其中类组件简单传值可以这样写编写之后自动刷新 可以看见 最后类组件的实现原理 以上就是我编写的第一个React应用。]]></content>
