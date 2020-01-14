@@ -1,6 +1,18 @@
 <?xml version="1.0" encoding="utf-8"?>
 <search>
   <entry>
+    <title><![CDATA[配置基本页面以及路由]]></title>
+    <url>%2F2020%2F01%2F13%2F%E9%85%8D%E7%BD%AE%E5%9F%BA%E6%9C%AC%E9%A1%B5%E9%9D%A2%E4%BB%A5%E5%8F%8A%E8%B7%AF%E7%94%B1%2F</url>
+    <content type="text"><![CDATA[在上一篇中讲到 一个React应用的基本配置 本篇依旧延续上一篇展开讲解 在src 目录下 创建五个文件夹分别为actions、components、reducers、routes 、views 安装路由 npm i react-router-dom -S 在views文件中创建 NotFuond、Login 、Dashboard 、Article、Stettings 文件夹 以及对应的index.js文件 在Article中还有一个Edit.js 文件 外层路由在创建完成之后 在views文件下的index.js中 统一导出文件 在routes文件下配置路径 在文件中定义了两个数组 分别为mainRouter、adminRouter pathname 指的是路径 component指的是对应的组件注意 exact是Route下的一条属性 一般而言，react路由会匹配所有匹配到的路由组价，exact能够使得路由的匹配更严格一些，exact的值为bool型，为true是表示严格匹配，为false时为正常匹配。 在src文件的index.js中引入router组件 可以根据 路径 localhost:8080/#/ 以及 localhost:8080/#/404 来进行测试路径是否配置成功 //在访问8080端口 不存在的路径的时候都会指向404页面 如果来自根路径为斜杠 自动跳转到 /admin 页面 内层路由的配置内层路由是指的是在 App组件之中可以跳转的组件同样在App.js文件中引入router组件 这里引入routes文件配置的adminRouter数组 //在访问路径来自/admin的时候 会直接访问到http://localhost:3000/#/admin/dashboard //同样 在访问不存在的路径也会指向404页面 可以根据 路径 http://localhost:3000/#/admin 以及 http://localhost:3000/#/admin/stettings 和其他已经配置过的路径来进行测试路径是否配置成功 路由的懒加载安装懒加载配置 npm i react-loadable -S 在components文件夹下创建Loading文件夹并创建对应的index.js文件 然后在components文件夹下的index.js文件中导出 Loading组件 修改在views文件下的index.js中的路径配置 先引入react-loadable中的Loadable 以及Loading组件 注意 懒加载中的属性loading和loader 都是小写 最后进行测试访问页面 按F12可以看见 一些chunk.js文件 这样懒加载就设置完成了 以上就是对React应用配置基本页面以及路由的讲解 如果还有其他不明白的可以自行百度或者观看官方给出的文档。]]></content>
+      <categories>
+        <category>React</category>
+      </categories>
+      <tags>
+        <tag>导航</tag>
+        <tag>分享</tag>
+      </tags>
+  </entry>
+  <entry>
     <title><![CDATA[使用react-rewired配置基本环境]]></title>
     <url>%2F2020%2F01%2F13%2F%E4%BD%BF%E7%94%A8react-rewired%E9%85%8D%E7%BD%AE%E5%9F%BA%E6%9C%AC%E7%8E%AF%E5%A2%83%2F</url>
     <content type="text"><![CDATA[之前也说明了什么是React应用，也编写过一个简单的React应用 如果在语法和应用上有什么不明白的地方可以借鉴React官方的中文文档来进行查阅 首先创建一个空的React应用 npx create-react-app react-tuts 引入 Ant Design 使用DOC命令 npm i react-app-rewired customize-cra -D 创建一个新文件 config-overrides.js 修改package.json 重新启动 查看是否异常 安装less npm i less less-loader -D 安装成功之后 需要修改config-overrides.js 文件 创建 index.less 文件 在index.js文件中引入index.less 文件 重新启动 测试 安装 antd 使用DOC命令 那npm i antd -S 和 npm i babel-plugin-import -D 修改 config-overrides.js 文件 修改App.js进行 测试结果 设置自定义主题 创建lessVars.js 然后引入到 config-overrides.js 文件中 配置装饰器模式写法安装 npm i @babel/plugin-proposal-decorators -D 修改config-overrides.js 修改App.js 测试结果 以上就是创建React项目最基本的配置就完成了]]></content>
@@ -8,8 +20,8 @@
         <category>React</category>
       </categories>
       <tags>
-        <tag>分享</tag>
         <tag>导航</tag>
+        <tag>分享</tag>
       </tags>
   </entry>
   <entry>
@@ -20,8 +32,8 @@
         <category>React</category>
       </categories>
       <tags>
-        <tag>分享</tag>
         <tag>导航</tag>
+        <tag>分享</tag>
       </tags>
   </entry>
   <entry>
@@ -32,8 +44,8 @@
         <category>数据库</category>
       </categories>
       <tags>
-        <tag>分享</tag>
         <tag>导航</tag>
+        <tag>分享</tag>
       </tags>
   </entry>
   <entry>
@@ -44,8 +56,8 @@
         <category>Linux</category>
       </categories>
       <tags>
-        <tag>分享</tag>
         <tag>导航</tag>
+        <tag>分享</tag>
       </tags>
   </entry>
   <entry>
@@ -56,8 +68,8 @@
         <category>Linux</category>
       </categories>
       <tags>
-        <tag>分享</tag>
         <tag>导航</tag>
+        <tag>分享</tag>
       </tags>
   </entry>
   <entry>
@@ -68,8 +80,8 @@
         <category>数据库</category>
       </categories>
       <tags>
-        <tag>分享</tag>
         <tag>导航</tag>
+        <tag>分享</tag>
       </tags>
   </entry>
   <entry>
@@ -80,8 +92,8 @@
         <category>数据库</category>
       </categories>
       <tags>
-        <tag>分享</tag>
         <tag>导航</tag>
+        <tag>分享</tag>
       </tags>
   </entry>
   <entry>
@@ -92,8 +104,8 @@
         <category>数据库</category>
       </categories>
       <tags>
-        <tag>分享</tag>
         <tag>导航</tag>
+        <tag>分享</tag>
       </tags>
   </entry>
   <entry>
@@ -104,8 +116,8 @@
         <category>数据库</category>
       </categories>
       <tags>
-        <tag>分享</tag>
         <tag>导航</tag>
+        <tag>分享</tag>
       </tags>
   </entry>
   <entry>
@@ -116,8 +128,8 @@
         <category>logs</category>
       </categories>
       <tags>
-        <tag>分享</tag>
         <tag>导航</tag>
+        <tag>分享</tag>
       </tags>
   </entry>
   <entry>
@@ -128,8 +140,8 @@
         <category>Spring</category>
       </categories>
       <tags>
-        <tag>分享</tag>
         <tag>导航</tag>
+        <tag>分享</tag>
       </tags>
   </entry>
   <entry>
@@ -140,8 +152,8 @@
         <category>Spring</category>
       </categories>
       <tags>
-        <tag>分享</tag>
         <tag>导航</tag>
+        <tag>分享</tag>
       </tags>
   </entry>
   <entry>
@@ -152,8 +164,8 @@
         <category>Spring</category>
       </categories>
       <tags>
-        <tag>分享</tag>
         <tag>导航</tag>
+        <tag>分享</tag>
       </tags>
   </entry>
   <entry>
@@ -164,8 +176,8 @@
         <category>java</category>
       </categories>
       <tags>
-        <tag>分享</tag>
         <tag>导航</tag>
+        <tag>分享</tag>
       </tags>
   </entry>
   <entry>
@@ -176,8 +188,8 @@
         <category>java</category>
       </categories>
       <tags>
-        <tag>分享</tag>
         <tag>导航</tag>
+        <tag>分享</tag>
       </tags>
   </entry>
   <entry>
@@ -188,8 +200,8 @@
         <category>java</category>
       </categories>
       <tags>
-        <tag>分享</tag>
         <tag>导航</tag>
+        <tag>分享</tag>
       </tags>
   </entry>
   <entry>
@@ -200,8 +212,8 @@
         <category>java</category>
       </categories>
       <tags>
-        <tag>分享</tag>
         <tag>导航</tag>
+        <tag>分享</tag>
       </tags>
   </entry>
   <entry>
@@ -212,8 +224,8 @@
         <category>java</category>
       </categories>
       <tags>
-        <tag>分享</tag>
         <tag>导航</tag>
+        <tag>分享</tag>
       </tags>
   </entry>
   <entry>
@@ -224,8 +236,8 @@
         <category>前端</category>
       </categories>
       <tags>
-        <tag>分享</tag>
         <tag>导航</tag>
+        <tag>分享</tag>
       </tags>
   </entry>
   <entry>
@@ -236,8 +248,8 @@
         <category>全文检索</category>
       </categories>
       <tags>
-        <tag>分享</tag>
         <tag>导航</tag>
+        <tag>分享</tag>
       </tags>
   </entry>
   <entry>
@@ -248,8 +260,8 @@
         <category>全文检索</category>
       </categories>
       <tags>
-        <tag>分享</tag>
         <tag>导航</tag>
+        <tag>分享</tag>
       </tags>
   </entry>
   <entry>
@@ -260,8 +272,8 @@
         <category>全文检索</category>
       </categories>
       <tags>
-        <tag>分享</tag>
         <tag>导航</tag>
+        <tag>分享</tag>
       </tags>
   </entry>
   <entry>
@@ -272,8 +284,8 @@
         <category>全文检索</category>
       </categories>
       <tags>
-        <tag>分享</tag>
         <tag>导航</tag>
+        <tag>分享</tag>
       </tags>
   </entry>
   <entry>
@@ -284,8 +296,8 @@
         <category>文件存储</category>
       </categories>
       <tags>
-        <tag>分享</tag>
         <tag>导航</tag>
+        <tag>分享</tag>
       </tags>
   </entry>
   <entry>
@@ -296,8 +308,8 @@
         <category>SpringBoot</category>
       </categories>
       <tags>
-        <tag>分享</tag>
         <tag>导航</tag>
+        <tag>分享</tag>
       </tags>
   </entry>
   <entry>
@@ -308,8 +320,8 @@
         <category>ServiceComb</category>
       </categories>
       <tags>
-        <tag>分享</tag>
         <tag>导航</tag>
+        <tag>分享</tag>
       </tags>
   </entry>
   <entry>
@@ -320,8 +332,8 @@
         <category>ServiceComb</category>
       </categories>
       <tags>
-        <tag>分享</tag>
         <tag>导航</tag>
+        <tag>分享</tag>
       </tags>
   </entry>
   <entry>
@@ -332,8 +344,8 @@
         <category>ServiceComb</category>
       </categories>
       <tags>
-        <tag>分享</tag>
         <tag>导航</tag>
+        <tag>分享</tag>
       </tags>
   </entry>
   <entry>
@@ -344,8 +356,8 @@
         <category>ServiceComb</category>
       </categories>
       <tags>
-        <tag>分享</tag>
         <tag>导航</tag>
+        <tag>分享</tag>
       </tags>
   </entry>
   <entry>
@@ -356,8 +368,8 @@
         <category>SpringBoot</category>
       </categories>
       <tags>
-        <tag>分享</tag>
         <tag>导航</tag>
+        <tag>分享</tag>
       </tags>
   </entry>
   <entry>
@@ -368,8 +380,8 @@
         <category>消息队列</category>
       </categories>
       <tags>
-        <tag>分享</tag>
         <tag>导航</tag>
+        <tag>分享</tag>
       </tags>
   </entry>
   <entry>
@@ -380,8 +392,8 @@
         <category>文件存储</category>
       </categories>
       <tags>
-        <tag>分享</tag>
         <tag>导航</tag>
+        <tag>分享</tag>
       </tags>
   </entry>
   <entry>
@@ -392,8 +404,8 @@
         <category>基本框架</category>
       </categories>
       <tags>
-        <tag>分享</tag>
         <tag>导航</tag>
+        <tag>分享</tag>
       </tags>
   </entry>
   <entry>
@@ -404,8 +416,8 @@
         <category>跨域</category>
       </categories>
       <tags>
-        <tag>分享</tag>
         <tag>导航</tag>
+        <tag>分享</tag>
       </tags>
   </entry>
   <entry>
@@ -416,8 +428,8 @@
         <category>前端</category>
       </categories>
       <tags>
-        <tag>分享</tag>
         <tag>导航</tag>
+        <tag>分享</tag>
       </tags>
   </entry>
   <entry>
@@ -428,8 +440,8 @@
         <category>接口</category>
       </categories>
       <tags>
-        <tag>分享</tag>
         <tag>导航</tag>
+        <tag>分享</tag>
       </tags>
   </entry>
   <entry>
@@ -440,8 +452,8 @@
         <category>数据库</category>
       </categories>
       <tags>
-        <tag>分享</tag>
         <tag>导航</tag>
+        <tag>分享</tag>
       </tags>
   </entry>
   <entry>
@@ -452,8 +464,8 @@
         <category>SpringData</category>
       </categories>
       <tags>
-        <tag>分享</tag>
         <tag>导航</tag>
+        <tag>分享</tag>
       </tags>
   </entry>
   <entry>
@@ -464,8 +476,8 @@
         <category>crawler</category>
       </categories>
       <tags>
-        <tag>分享</tag>
         <tag>导航</tag>
+        <tag>分享</tag>
       </tags>
   </entry>
   <entry>
@@ -476,8 +488,8 @@
         <category>crawler</category>
       </categories>
       <tags>
-        <tag>分享</tag>
         <tag>导航</tag>
+        <tag>分享</tag>
       </tags>
   </entry>
   <entry>
@@ -488,8 +500,8 @@
         <category>crawler</category>
       </categories>
       <tags>
-        <tag>分享</tag>
         <tag>导航</tag>
+        <tag>分享</tag>
       </tags>
   </entry>
   <entry>
@@ -500,8 +512,8 @@
         <category>SpringData</category>
       </categories>
       <tags>
-        <tag>分享</tag>
         <tag>导航</tag>
+        <tag>分享</tag>
       </tags>
   </entry>
   <entry>
@@ -512,8 +524,8 @@
         <category>SpringData</category>
       </categories>
       <tags>
-        <tag>分享</tag>
         <tag>导航</tag>
+        <tag>分享</tag>
       </tags>
   </entry>
   <entry>
@@ -524,8 +536,8 @@
         <category>进阶</category>
       </categories>
       <tags>
-        <tag>分享</tag>
         <tag>导航</tag>
+        <tag>分享</tag>
       </tags>
   </entry>
   <entry>
@@ -536,8 +548,8 @@
         <category>进阶</category>
       </categories>
       <tags>
-        <tag>分享</tag>
         <tag>导航</tag>
+        <tag>分享</tag>
       </tags>
   </entry>
   <entry>
@@ -548,8 +560,8 @@
         <category>进阶</category>
       </categories>
       <tags>
-        <tag>分享</tag>
         <tag>导航</tag>
+        <tag>分享</tag>
       </tags>
   </entry>
   <entry>
@@ -560,8 +572,8 @@
         <category>基础</category>
       </categories>
       <tags>
-        <tag>分享</tag>
         <tag>导航</tag>
+        <tag>分享</tag>
       </tags>
   </entry>
   <entry>
@@ -572,8 +584,8 @@
         <category>基础</category>
       </categories>
       <tags>
-        <tag>分享</tag>
         <tag>导航</tag>
+        <tag>分享</tag>
       </tags>
   </entry>
   <entry>
@@ -584,8 +596,8 @@
         <category>基础</category>
       </categories>
       <tags>
-        <tag>分享</tag>
         <tag>导航</tag>
+        <tag>分享</tag>
       </tags>
   </entry>
   <entry>
@@ -596,8 +608,8 @@
         <category>基础</category>
       </categories>
       <tags>
-        <tag>分享</tag>
         <tag>导航</tag>
+        <tag>分享</tag>
       </tags>
   </entry>
   <entry>
@@ -608,8 +620,8 @@
         <category>基础</category>
       </categories>
       <tags>
-        <tag>分享</tag>
         <tag>导航</tag>
+        <tag>分享</tag>
       </tags>
   </entry>
   <entry>
@@ -620,8 +632,8 @@
         <category>基础</category>
       </categories>
       <tags>
-        <tag>分享</tag>
         <tag>导航</tag>
+        <tag>分享</tag>
       </tags>
   </entry>
   <entry>
@@ -632,8 +644,8 @@
         <category>基础</category>
       </categories>
       <tags>
-        <tag>分享</tag>
         <tag>导航</tag>
+        <tag>分享</tag>
       </tags>
   </entry>
   <entry>
@@ -644,8 +656,8 @@
         <category>基础</category>
       </categories>
       <tags>
-        <tag>分享</tag>
         <tag>导航</tag>
+        <tag>分享</tag>
       </tags>
   </entry>
   <entry>
@@ -656,8 +668,8 @@
         <category>基础</category>
       </categories>
       <tags>
-        <tag>分享</tag>
         <tag>导航</tag>
+        <tag>分享</tag>
       </tags>
   </entry>
   <entry>
@@ -668,8 +680,8 @@
         <category>基础</category>
       </categories>
       <tags>
-        <tag>分享</tag>
         <tag>导航</tag>
+        <tag>分享</tag>
       </tags>
   </entry>
   <entry>
@@ -680,8 +692,8 @@
         <category>基础</category>
       </categories>
       <tags>
-        <tag>分享</tag>
         <tag>导航</tag>
+        <tag>分享</tag>
       </tags>
   </entry>
   <entry>
@@ -692,8 +704,8 @@
         <category>工具类</category>
       </categories>
       <tags>
-        <tag>分享</tag>
         <tag>导航</tag>
+        <tag>分享</tag>
       </tags>
   </entry>
   <entry>
@@ -704,8 +716,8 @@
         <category>前端</category>
       </categories>
       <tags>
-        <tag>分享</tag>
         <tag>导航</tag>
+        <tag>分享</tag>
       </tags>
   </entry>
   <entry>
@@ -716,8 +728,8 @@
         <category>跨域</category>
       </categories>
       <tags>
-        <tag>分享</tag>
         <tag>导航</tag>
+        <tag>分享</tag>
       </tags>
   </entry>
   <entry>
@@ -728,8 +740,8 @@
         <category>SpringBoot</category>
       </categories>
       <tags>
-        <tag>分享</tag>
         <tag>导航</tag>
+        <tag>分享</tag>
       </tags>
   </entry>
   <entry>
@@ -740,8 +752,8 @@
         <category>SpringCloud</category>
       </categories>
       <tags>
-        <tag>分享</tag>
         <tag>导航</tag>
+        <tag>分享</tag>
       </tags>
   </entry>
   <entry>
@@ -752,8 +764,8 @@
         <category>SpringCloud</category>
       </categories>
       <tags>
-        <tag>分享</tag>
         <tag>导航</tag>
+        <tag>分享</tag>
       </tags>
   </entry>
   <entry>
@@ -764,8 +776,8 @@
         <category>SpringCloud</category>
       </categories>
       <tags>
-        <tag>分享</tag>
         <tag>导航</tag>
+        <tag>分享</tag>
       </tags>
   </entry>
   <entry>
@@ -776,8 +788,8 @@
         <category>SpringCloud</category>
       </categories>
       <tags>
-        <tag>分享</tag>
         <tag>导航</tag>
+        <tag>分享</tag>
       </tags>
   </entry>
   <entry>
@@ -788,8 +800,8 @@
         <category>SpringCloud</category>
       </categories>
       <tags>
-        <tag>分享</tag>
         <tag>导航</tag>
+        <tag>分享</tag>
       </tags>
   </entry>
   <entry>
@@ -800,8 +812,8 @@
         <category>SpringBoot</category>
       </categories>
       <tags>
-        <tag>分享</tag>
         <tag>导航</tag>
+        <tag>分享</tag>
       </tags>
   </entry>
   <entry>
@@ -812,8 +824,8 @@
         <category>http&amp;RPC</category>
       </categories>
       <tags>
-        <tag>分享</tag>
         <tag>导航</tag>
+        <tag>分享</tag>
       </tags>
   </entry>
   <entry>
@@ -824,8 +836,8 @@
         <category>系统架构</category>
       </categories>
       <tags>
-        <tag>分享</tag>
         <tag>导航</tag>
+        <tag>分享</tag>
       </tags>
   </entry>
   <entry>
@@ -836,8 +848,8 @@
         <category>SpringBoot</category>
       </categories>
       <tags>
-        <tag>分享</tag>
         <tag>导航</tag>
+        <tag>分享</tag>
       </tags>
   </entry>
   <entry>
@@ -848,8 +860,8 @@
         <category>SpringBoot</category>
       </categories>
       <tags>
-        <tag>分享</tag>
         <tag>导航</tag>
+        <tag>分享</tag>
       </tags>
   </entry>
   <entry>
@@ -860,8 +872,8 @@
         <category>SpringBoot</category>
       </categories>
       <tags>
-        <tag>分享</tag>
         <tag>导航</tag>
+        <tag>分享</tag>
       </tags>
   </entry>
   <entry>
@@ -872,8 +884,8 @@
         <category>SpringBoot</category>
       </categories>
       <tags>
-        <tag>分享</tag>
         <tag>导航</tag>
+        <tag>分享</tag>
       </tags>
   </entry>
   <entry>
@@ -884,8 +896,8 @@
         <category>SpringBoot</category>
       </categories>
       <tags>
-        <tag>分享</tag>
         <tag>导航</tag>
+        <tag>分享</tag>
       </tags>
   </entry>
   <entry>
@@ -896,8 +908,8 @@
         <category>SpringBoot</category>
       </categories>
       <tags>
-        <tag>分享</tag>
         <tag>导航</tag>
+        <tag>分享</tag>
       </tags>
   </entry>
   <entry>
@@ -908,8 +920,8 @@
         <category>SpringBoot</category>
       </categories>
       <tags>
-        <tag>分享</tag>
         <tag>导航</tag>
+        <tag>分享</tag>
       </tags>
   </entry>
   <entry>
@@ -920,8 +932,8 @@
         <category>SpringBoot</category>
       </categories>
       <tags>
-        <tag>分享</tag>
         <tag>导航</tag>
+        <tag>分享</tag>
       </tags>
   </entry>
   <entry>
@@ -932,8 +944,8 @@
         <category>前端</category>
       </categories>
       <tags>
-        <tag>分享</tag>
         <tag>导航</tag>
+        <tag>分享</tag>
       </tags>
   </entry>
   <entry>
